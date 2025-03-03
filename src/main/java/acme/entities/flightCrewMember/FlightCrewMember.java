@@ -27,7 +27,7 @@ public class FlightCrewMember extends AbstractEntity {
 	@Mandatory
 	@Automapped
 	@Valid
-	Airline						airline;
+	private Airline				airline;
 
 	@Mandatory
 	@Column(unique = true)
