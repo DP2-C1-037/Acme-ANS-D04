@@ -3,21 +3,23 @@ package acme.entities.airline;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.validation.constraints.Max;
-import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
-
-import org.checkerframework.common.aliasing.qual.Unique;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidEmail;
+import acme.client.components.validation.ValidMoment;
+import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
 import acme.datatypes.Phone;
 import lombok.Getter;
 import lombok.Setter;
 
+@Entity
 @Getter
 @Setter
 public class Airline extends AbstractEntity {
@@ -26,11 +28,13 @@ public class Airline extends AbstractEntity {
 
 	@Mandatory
 	@Max(50)
+	@ValidString
 	private String				name;
 
 	@Mandatory
-	@Unique
+	@Column(unique = true)
 	@Pattern(regexp = "[A-Z]{2}X", message = "Invalid IATA_code. It is three-uppercase-letter, being the last and X")
+	@ValidString
 	private String				iataCode;
 
 	@Mandatory
@@ -41,7 +45,7 @@ public class Airline extends AbstractEntity {
 	private Type				type;
 
 	@Mandatory
-	@Past
+	@ValidMoment(past = true)
 	private Date				foundationMoment;
 
 	@Optional
