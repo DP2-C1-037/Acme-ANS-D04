@@ -40,7 +40,7 @@ public class Aircraft extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@ValidNumber(min = 0)
+	@ValidNumber(min = 0, max = 255)
 	private Integer				capacity; // number of passengers
 
 	@Mandatory
@@ -50,10 +50,11 @@ public class Aircraft extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	private Boolean				status; // true means "in active service" and false "under maintenance"
+	@Valid
+	private AircraftStatus		status;
 
 	@Optional
 	@Automapped
-	@ValidString(min = 1, max = 255)
+	@ValidString(min = 0, max = 255)
 	private String				optionalDetails;
 }
