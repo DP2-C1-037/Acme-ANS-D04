@@ -13,7 +13,6 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
-import acme.entities.airline.Airline;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,20 +23,24 @@ public class FlightCrewMember extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
-	@Mandatory
-	@Automapped
-	@Valid
-	private Airline				airline;
+	/*
+	 * @Mandatory
+	 * 
+	 * @Automapped
+	 * 
+	 * @Valid
+	 * private Airline airline;
+	 */
 
 	@Mandatory
 	@Column(unique = true)
-	@ValidString(pattern = "^[A-Z]{2-3}\\d{6}$")
+	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
 	private String				employeeCode;
 
-	@Mandatory
-	@Automapped
-	@ValidString(pattern = "^+?\\d{6,15}$")
-	private String				phoneNumber;
+	//	@Mandatory
+	//	@Automapped
+	//	@Valid
+	//	private Phone				phoneNumber;
 
 	@Mandatory
 	@Automapped
