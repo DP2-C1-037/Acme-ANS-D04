@@ -13,7 +13,6 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
-import acme.entities.airline.Airline;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,10 +23,15 @@ public class FlightCrewMember extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
-	@Mandatory
-	@Automapped
-	@Valid
-	private Airline				airline;
+	//	@Mandatory
+	//	@Automapped
+	//	@Valid
+	//	private Airline				airline;
+
+	//	@Mandatory
+	//	@ManyToOne
+	//	@Valid
+	//	private FlightAssignment	flightAssignment;
 
 	@Mandatory
 	@Column(unique = true)
