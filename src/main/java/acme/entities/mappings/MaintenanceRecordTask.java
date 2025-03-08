@@ -14,7 +14,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class MaintenanceRecordTaskMapping extends AbstractEntity {
+public class MaintenanceRecordTask extends AbstractEntity {
 
 	// Serialisation version -----------------------------------------------------------------------------------------
 
