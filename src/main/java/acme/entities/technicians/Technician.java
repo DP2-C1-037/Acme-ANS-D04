@@ -1,12 +1,9 @@
 
-package acme.entities.review;
+package acme.entities.technicians;
 
-import java.util.Date;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.OneToOne;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
@@ -14,7 +11,6 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.principals.UserAccount;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
-import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
 import lombok.Getter;
@@ -23,47 +19,47 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Review extends AbstractEntity {
+public class Technician extends AbstractEntity {
+
 	// Serialisation version -----------------------------------------------------------------------------------------
 
 	private static final long	serialVersionUID	= 1L;
 
 	// Attributes ----------------------------------------------------------------------------------------------------
+
+	@Mandatory
+	@ValidString(pattern = "^[A-Z]{2-3}\\d{6}$")
+	@Column(unique = true)
+	private String				licenseNumber;
+
+	@Mandatory
+	@ValidString(pattern = "^\\+?\\d{6,15}$")
+	@Automapped
+	private String				phoneNumber;
+
 	@Mandatory
 	@ValidString(min = 1, max = 50)
 	@Automapped
-	String						name;
+	private String				specialisation;
 
 	@Mandatory
-	@ValidMoment(past = true, min = "CURRENT_TIMESTAMP", max = "2000-01-01 00:00:00")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date				moment;
-
-	@Mandatory
-	@ValidString(min = 1, max = 50)
 	@Automapped
-	String						subject;
+	private Boolean				healthTestPassed;
 
 	@Mandatory
-	@ValidString(min = 1, max = 255)
+	@ValidNumber(min = 0, max = 120)
 	@Automapped
-	String						text;
+	private Integer				experienceYears;
 
 	@Optional
-	@ValidNumber(min = 0, max = 10, integer = 2, fraction = 2)
+	@ValidString(max = 255)
 	@Automapped
-	Double						score;
-
-	@Optional
-	@Valid
-	@Automapped
-	Boolean						recommended;
+	private String				certifications;
 
 	// Relationships ----------------------------------------------------------------------------------------------------
 
 	@Mandatory
 	@Valid
-	@ManyToOne(optional = false)
+	@OneToOne
 	private UserAccount			userAccount;
-
 }
