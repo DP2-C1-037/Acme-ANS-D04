@@ -1,20 +1,18 @@
 
 package acme.entities.airline;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import javax.persistence.Transient;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.datatypes.Money;
+import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
-import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
+import acme.client.helpers.SpringHelper;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,43 +24,50 @@ public class Flight extends AbstractEntity {
 	private static final long	serialVersionUID	= 1L;
 
 	@Mandatory
-	@Max(50)
-	@ValidString
+	@ValidString(min = 1, max = 50)
+	@Automapped
 	private String				tag;
 
 	@Mandatory
-	@ValidNumber
-	@Min(0)
-	@Max(1)
+	@ValidNumber(min = 0, max = 1)
+	@Automapped
 	private Integer				requiresSelfTransfer;
 
 	@Mandatory
 	@ValidMoney
+	@Automapped
 	private Money				cost;
 
 	@Optional
 	@ValidString
+	@Automapped
 	private String				description;
 
-	@Mandatory
-	@ValidMoment
-	private Date				scheduledDeparture;
+	/*
+	 * @Transient
+	 * public FlightLegInfo getScheduledDepartureAndOriginCity() {
+	 * LegRepository legRepository = SpringHelper.getBean(LegRepository.class);
+	 * return legRepository.flightArrivalDateAndCity(this.getId());
+	 * }
+	 * 
+	 * @Transient
+	 * public FlightLegInfo getScheduledArrivalAndDestinyCity() {
+	 * LegRepository legRepository = SpringHelper.getBean(LegRepository.class);
+	 * return legRepository.flightDepartureDateAndCity(this.getId());
+	 * }
+	 */
 
-	@Mandatory
-	@ValidMoment
-	private Date				scheduledArrival;
 
-	@Mandatory
-	@ValidString
-	private String				originCity;
+	@Transient
+	public FlightLegInfo getArrivalAndOriginData() {
+		LegRepository legRepository = SpringHelper.getBean(LegRepository.class);
+		return legRepository.flightData(this.getId());
+	}
 
-	@Mandatory
-	@ValidString
-	private String				destinationCity;
-
-	@Mandatory
-	// Numero de escalas
-	@ValidNumber
-	private Integer				layovers;
+	@Transient
+	private Integer getLayoversNumber() {
+		LegRepository legRepository = SpringHelper.getBean(LegRepository.class);
+		return legRepository.findAll().size();
+	}
 
 }
