@@ -5,10 +5,9 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
 import acme.client.components.basis.AbstractEntity;
+import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
@@ -25,31 +24,38 @@ public class Airline extends AbstractEntity {
 	private static final long	serialVersionUID	= 1L;
 
 	@Mandatory
-	@Size(max = 50)
-	@ValidString
+	@ValidString(min = 1, max = 50)
+	@Automapped
 	private String				name;
 
 	@Mandatory
 	@Column(unique = true)
-	@Pattern(regexp = "[A-Z]{2}X", message = "Invalid IATA_code. It is three-uppercase-letter, being the last and X")
-	@ValidString
+	@ValidString(min = 3, max = 3, pattern = "[A-Z]{2}X")
+	@Automapped
 	private String				iataCode;
 
 	@Mandatory
 	@ValidUrl
+	@Automapped
 	private String				website;
 
 	@Mandatory
+	@Automapped
 	private Type				type;
 
 	@Mandatory
 	@ValidMoment(past = true)
+	@Automapped
 	private Date				foundationMoment;
 
 	@Optional
+	@ValidEmail
+	@Automapped
 	private String				email;
 
 	@Optional
+	@ValidString(pattern = "^\\+?\\d{6,15}$")
+  @Automapped
 	private String				phoneNumber;
 
 }
