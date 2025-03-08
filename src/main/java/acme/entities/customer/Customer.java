@@ -25,12 +25,12 @@ public class Customer extends AbstractRole {
 	// Attributes ----------------------------------------------------------------------------------------------------
 
 	@Mandatory
-	//@ValidString(pattern = "^[A-Z]{2-3}\d{6}$")
+	@ValidString(pattern = "^[A-Z]{2-3}\\d{6}$")
 	@Column(unique = true)
 	private String				identifier;
 
 	@Mandatory
-	//@ValidString (pattern="^\+?\d{6,15}$")
+	@ValidString(pattern = "^\\+?\\d{6,15}$")
 	@Automapped
 	private String				phoneNumber;
 
@@ -51,7 +51,7 @@ public class Customer extends AbstractRole {
 
 	@Optional
 	@Automapped
-	@ValidNumber(min = 1, max = 500000)
+	@ValidNumber(min = 0, max = 500000)
 	private Integer				earnedPoints;
 
 }
