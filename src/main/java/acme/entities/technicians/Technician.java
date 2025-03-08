@@ -3,12 +3,9 @@ package acme.entities.technicians;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
-import javax.validation.Valid;
 
-import acme.client.components.basis.AbstractEntity;
+import acme.client.components.basis.AbstractRole;
 import acme.client.components.mappings.Automapped;
-import acme.client.components.principals.UserAccount;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidNumber;
@@ -19,7 +16,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Technician extends AbstractEntity {
+public class Technician extends AbstractRole {
 
 	// Serialisation version -----------------------------------------------------------------------------------------
 
@@ -56,10 +53,4 @@ public class Technician extends AbstractEntity {
 	@Automapped
 	private String				certifications;
 
-	// Relationships ----------------------------------------------------------------------------------------------------
-
-	@Mandatory
-	@Valid
-	@OneToOne
-	private UserAccount			userAccount;
 }
