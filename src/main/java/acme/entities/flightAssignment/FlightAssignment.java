@@ -4,7 +4,6 @@ package acme.entities.flightAssignment;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -15,7 +14,6 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.constraints.ValidLongText;
-import acme.entities.flightCrewMember.FlightCrewMember;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,10 +24,10 @@ public class FlightAssignment extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
-	@Mandatory
-	@ManyToOne(optional = false)
-	@Valid
-	private FlightCrewMember	flightCrewMember;
+	//	@Mandatory
+	//	@ManyToOne(optional = false)
+	//	@Valid
+	//	private Leg leg;
 
 	@Mandatory
 	@Automapped

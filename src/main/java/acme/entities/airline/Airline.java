@@ -11,11 +11,9 @@ import javax.validation.constraints.Size;
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
-import acme.client.components.validation.ValidEmail;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
-import acme.datatypes.Phone;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -49,10 +47,9 @@ public class Airline extends AbstractEntity {
 	private Date				foundationMoment;
 
 	@Optional
-	@ValidEmail
 	private String				email;
 
 	@Optional
-	private Phone				phoneNumber;
+	private String				phoneNumber;
 
 }

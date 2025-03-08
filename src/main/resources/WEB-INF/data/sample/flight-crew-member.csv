@@ -1,6 +1,6 @@
-key,employeeCode,languageSkills,availabilityStatus,salary,yearsOfExperience
-flight-crew-member-01,AB123456,"Greek, English",AVAILABLE,EUR 5000,10
-flight-crew-member-02,AB654321,"Arabic, Spanish, Chinese",ON_LEAVE,EUR 4500,5
-flight-crew-member-03,ABH820375,"Arabic, Spanish, Chinese",AVAILABLE,EUR 6500,8
-flight-crew-member-04,POL456789,Hindi,ON_VACATION,EUR 8000,6
-flight-crew-member-05,AOM987654,"Spanish, English, Italian, French",AVAILABLE,EUR 12000,0
+key,key:userAccount,key:airline,employeeCode,phoneNumber,languageSkills,availabilityStatus,salary,yearsOfExperience
+flight-crew-member-01,user-account-flight-crew-member-01,airline-01,AB123456,+302101234567,"Greek, English",AVAILABLE,EUR 5000,10
+flight-crew-member-02,user-account-flight-crew-member-02,airline-01,AB654321,+971501234567,"Arabic, Spanish, Chinese",ON_LEAVE,EUR 4500,5
+flight-crew-member-03,user-account-flight-crew-member-03,airline-02,ABH820375,+819012345678,"Arabic, Spanish, Chinese",AVAILABLE,EUR 6500,8
+flight-crew-member-04,user-account-flight-crew-member-04,airline-02,POL456789,+919812345678,Hindi,ON_VACATION,EUR 8000,6
+flight-crew-member-05,user-account-flight-crew-member-05,airline-03,AOM987654,+34640103529,"Spanish, English, Italian, French",AVAILABLE,EUR 12000,0
