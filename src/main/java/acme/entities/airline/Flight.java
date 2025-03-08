@@ -57,6 +57,7 @@ public class Flight extends AbstractEntity {
 	 */
 
 
+	@Transient
 	public FlightLegInfo getArrivalAndOriginData() {
 		LegRepository legRepository = SpringHelper.getBean(LegRepository.class);
 		return legRepository.flightData(this.getId());
