@@ -3,9 +3,10 @@ package acme.entities.flightCrewMember;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 
-import acme.client.components.basis.AbstractEntity;
+import acme.client.components.basis.AbstractRole;
 import acme.client.components.datatypes.Money;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
@@ -20,23 +21,25 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class FlightCrewMember extends AbstractEntity {
+// @ValidFlightCrewMember
+
+public class FlightCrewMember extends AbstractRole {
 
 	private static final long	serialVersionUID	= 1L;
 
 	@Mandatory
-	@Automapped
+	@ManyToOne(optional = false)
 	@Valid
 	private Airline				airline;
 
 	@Mandatory
 	@Column(unique = true)
-	@ValidString(pattern = "^[A-Z]{2-3}\\d{6}$")
+	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
 	private String				employeeCode;
 
 	@Mandatory
 	@Automapped
-	@ValidString(pattern = "^+?\\d{6,15}$")
+	@ValidString(pattern = "^\\+?\\d{6,15}$")
 	private String				phoneNumber;
 
 	@Mandatory
@@ -51,12 +54,12 @@ public class FlightCrewMember extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@ValidMoney
+	@ValidMoney(min = 0.00, max = 1000000.00)
 	private Money				salary;
 
 	@Optional
 	@Automapped
-	@ValidNumber(min = 0, max = 150) // no person can have more than 150 years of experience
+	@ValidNumber(min = 0, max = 120)
 	private Integer				yearsOfExperience;
 
 }

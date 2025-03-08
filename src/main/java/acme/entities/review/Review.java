@@ -35,7 +35,7 @@ public class Review extends AbstractEntity {
 	String						name;
 
 	@Mandatory
-	@ValidMoment(past = true)
+	@ValidMoment(past = true, min = "CURRENT_TIMESTAMP", max = "2000-01-01 00:00:00")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				moment;
 
@@ -50,7 +50,7 @@ public class Review extends AbstractEntity {
 	String						text;
 
 	@Optional
-	@ValidNumber(min = 0.0, max = 10.0)
+	@ValidNumber(min = 0, max = 10, integer = 2, fraction = 2)
 	@Automapped
 	Double						score;
 
