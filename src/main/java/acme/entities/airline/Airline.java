@@ -49,13 +49,13 @@ public class Airline extends AbstractEntity {
 	private Date				foundationMoment;
 
 	@Optional
-	@ValidEmail
+	// @ValidEmail
 	@Automapped
 	private String				email;
 
 	@Optional
 	@ValidString(pattern = "^\\+?\\d{6,15}$")
-  @Automapped
+	@Automapped
 	private String				phoneNumber;
 
 }
