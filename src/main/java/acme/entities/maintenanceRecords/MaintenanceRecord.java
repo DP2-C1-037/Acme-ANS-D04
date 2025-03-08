@@ -16,6 +16,7 @@ import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidString;
 import acme.constraints.ValidMaintenanceRecord;
+import acme.entities.aircraft.Aircraft;
 import acme.entities.technicians.Technician;
 import lombok.Getter;
 import lombok.Setter;
@@ -62,4 +63,9 @@ public class MaintenanceRecord extends AbstractEntity {
 	@Valid
 	@ManyToOne(optional = false)
 	private Technician			technician;
+
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Aircraft			aircraft;
 }
