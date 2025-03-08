@@ -1,4 +1,4 @@
-key,key:userAccount,identifier,phoneNumber,physicalAddress,city,country,earnedPoints,""
-customer1,user-account-customer-01,DC123456,+34955667788,"Calle Larios, 15",Málaga,España,75000,""
-customer2,user-account-customer-02,PC987654,+34776543210,"Plaza Nueva, 3",Sevilla,España,120000,""
-customer3,user-account-customer-03,"","","","","","",""
+key,key:userAccount,identifier,phoneNumber,physicalAddress,city,country,earnedPoints
+customer1,user-account-customer-01,DC123456,+34955667788,"Calle Larios, 15",Málaga,España,75000
+customer2,user-account-customer-02,PC987654,+34776543210,"Plaza Nueva, 3",Sevilla,España,120000
+customer3,user-account-customer-03,"","","","","",""
