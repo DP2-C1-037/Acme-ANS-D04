@@ -1,13 +1,10 @@
 
-package acme.entities.booking;
+package acme.entities.maintenanceRecords;
 
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -19,18 +16,18 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoney;
-import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
-import acme.entities.airline.Flight;
-import acme.entities.customer.Customer;
-import acme.entities.passenger.Passenger;
+import acme.constraints.ValidMaintenanceRecord;
+import acme.entities.aircraft.Aircraft;
+import acme.entities.technicians.Technician;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Booking extends AbstractEntity {
+@ValidMaintenanceRecord
+public class MaintenanceRecord extends AbstractEntity {
 
 	// Serialisation version -----------------------------------------------------------------------------------------
 
@@ -39,45 +36,38 @@ public class Booking extends AbstractEntity {
 	// Attributes ----------------------------------------------------------------------------------------------------
 
 	@Mandatory
-	@ValidString(pattern = "^[A-Z0-9]{6,8}$")
-	@Column(unique = true)
-	private String				locatorCode;
-
-	@Mandatory
-	@ValidMoment(past = true)
+	@ValidMoment
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date				purcharseMoment;
+	private Date				maintenanceDate;
 
 	@Mandatory
-	@Valid
 	@Automapped
-	private TravelClass			travelClass;
+	private MaintenanceStatus	status;
+
+	@Mandatory
+	@ValidMoment
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date				nextInspectionDueDate;
 
 	@Mandatory
 	@ValidMoney
 	@Automapped
-	private Money				price;
+	private Money				estimatedCost;
 
 	@Optional
-	@ValidNumber(integer = 4)
+	@ValidString(min = 0, max = 255)
 	@Automapped
-	private Integer				lastNibble;
+	private String				notes;
 
-	// Relationships -------------------------------------------------------------------------------------------------
+	// Relationships ----------------------------------------------------------------------------------------------------
 
 	@Mandatory
-	@ManyToOne
-	@Automapped
-	private Customer			customer;
+	@Valid
+	@ManyToOne(optional = false)
+	private Technician			technician;
 
 	@Mandatory
-	@ManyToOne
-	@Automapped
-	private Flight				flight;
-
-	@Mandatory
-	@OneToMany
-	@Automapped
-	private List<Passenger>		passengers;
-
+	@Valid
+	@ManyToOne(optional = false)
+	private Aircraft			aircraft;
 }
