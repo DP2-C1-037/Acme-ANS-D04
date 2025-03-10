@@ -68,4 +68,7 @@ public class Flight extends AbstractEntity {
 		return legRepository.findAll().size();
 	}
 
+	//	@ManyToOne
+	//	@JoinColumn(name = "weather_conditions_id")
+	//	private WeatherConditions weatherConditions;
 }
