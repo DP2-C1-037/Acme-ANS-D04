@@ -71,5 +71,4 @@ public class Flight extends AbstractEntity {
 	//	@ManyToOne
 	//	@JoinColumn(name = "weather_conditions_id")
 	//	private WeatherConditions weatherConditions;
-
 }

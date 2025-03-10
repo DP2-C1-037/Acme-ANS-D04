@@ -1,13 +1,12 @@
 
-package acme.entities.booking;
+package acme.entities.assistanceAgents;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -15,69 +14,69 @@ import javax.validation.Valid;
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.datatypes.Money;
 import acme.client.components.mappings.Automapped;
+import acme.client.components.principals.UserAccount;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoney;
-import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
-import acme.entities.airline.Flight;
-import acme.entities.customer.Customer;
-import acme.entities.passenger.Passenger;
+import acme.client.components.validation.ValidUrl;
+import acme.constraints.ValidEmployeeCode;
+import acme.entities.airline.Airline;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Booking extends AbstractEntity {
+@ValidEmployeeCode
+
+public class AssistanceAgents extends AbstractEntity {
 
 	// Serialisation version -----------------------------------------------------------------------------------------
-
 	private static final long	serialVersionUID	= 1L;
-
 	// Attributes ----------------------------------------------------------------------------------------------------
 
 	@Mandatory
-	@ValidString(pattern = "^[A-Z0-9]{6,8}$")
 	@Column(unique = true)
-	private String				locatorCode;
+	@ValidString(min = 8, max = 9, pattern = "^[A-Z]{2,3}\\d{6}$")
+	private String				employeeCode;
+
+	@Mandatory
+	@Automapped
+	@ValidString(min = 1, max = 255)
+	private String				spokenLanguages;
 
 	@Mandatory
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date				purcharseMoment;
-
-	@Mandatory
-	@Valid
-	@Automapped
-	private TravelClass			travelClass;
-
-	@Mandatory
-	@ValidMoney
-	@Automapped
-	private Money				price;
+	private Date				moment;
 
 	@Optional
-	@ValidNumber(integer = 4)
 	@Automapped
-	private Integer				lastNibble;
+	@ValidMoney
+	private Money				salary;
+
+	@Optional
+	@Automapped
+	@ValidString(max = 255)
+	private String				briefBio;
+
+	@Optional
+	@Automapped
+	@ValidUrl
+	private String				picture;
 
 	// Relationships -------------------------------------------------------------------------------------------------
 
 	@Mandatory
-	@ManyToOne
-	@Automapped
-	private Customer			customer;
+	@Valid
+	@OneToOne(optional = false)
+	private UserAccount			userAccount;
 
 	@Mandatory
-	@ManyToOne
-	@Automapped
-	private Flight				flight;
-
-	@Mandatory
-	@OneToMany
-	@Automapped
-	private List<Passenger>		passengers;
+	@ManyToOne(optional = false)
+	@Valid
+	private Airline				airline;
 
 }

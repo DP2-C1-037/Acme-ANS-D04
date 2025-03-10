@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 
 import acme.client.components.basis.AbstractRole;
 import acme.client.components.mappings.Automapped;
+import javax.persistence.OneToOne;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
