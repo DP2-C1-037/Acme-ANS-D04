@@ -19,7 +19,7 @@ import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidString;
 import acme.constraints.ValidMaintenanceRecord;
 import acme.entities.aircraft.Aircraft;
-import acme.entities.technicians.Technician;
+import acme.realms.Technician;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -36,7 +36,7 @@ public class MaintenanceRecord extends AbstractEntity {
 	// Attributes ----------------------------------------------------------------------------------------------------
 
 	@Mandatory
-	@ValidMoment
+	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				maintenanceDate;
 
