@@ -4,7 +4,7 @@ package acme.constraints;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import acme.entities.flightCrewMember.FlightCrewMember;
+import acme.realms.FlightCrewMember;
 
 public class FlightCrewMemberValidator implements ConstraintValidator<ValidFlightCrewMember, FlightCrewMember> {
 

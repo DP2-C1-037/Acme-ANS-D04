@@ -4,8 +4,6 @@ package acme.forms;
 import java.util.List;
 import java.util.Map;
 
-import javax.validation.constraints.Size;
-
 import acme.client.components.basis.AbstractForm;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidNumber;
@@ -22,7 +20,6 @@ public class FlightCrewMemberDashboard extends AbstractForm {
 	private static final long		serialVersionUID	= 1L;
 
 	@Mandatory
-	@Size(min = 1)
 	private List<String>			lastFiveDestinations;
 
 	@Mandatory
@@ -30,7 +27,6 @@ public class FlightCrewMemberDashboard extends AbstractForm {
 	private Map<String, Integer>	incidentCountsBySeverity; // Example: {"0-3": 5, "4-7": 2, "8-10": 1}
 
 	@Mandatory
-	@Size(min = 1)
 	private List<String>			lastLegCrewMembers;
 
 	@Mandatory
