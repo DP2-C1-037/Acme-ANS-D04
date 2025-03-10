@@ -32,32 +32,32 @@ public class Review extends AbstractEntity {
 	@Mandatory
 	@ValidString(min = 1, max = 50)
 	@Automapped
-	String						name;
+	private String				name;
 
 	@Mandatory
-	@ValidMoment(past = true, min = "CURRENT_TIMESTAMP", max = "2000-01-01 00:00:00")
+	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				moment;
 
 	@Mandatory
 	@ValidString(min = 1, max = 50)
 	@Automapped
-	String						subject;
+	private String				subject;
 
 	@Mandatory
 	@ValidString(min = 1, max = 255)
 	@Automapped
-	String						text;
+	private String				text;
 
 	@Optional
-	@ValidNumber(min = 0, max = 10, integer = 2, fraction = 2)
+	@ValidNumber(min = 0, max = 10, integer = 2)
 	@Automapped
-	Double						score;
+	private Double				score;
 
 	@Optional
 	@Valid
 	@Automapped
-	Boolean						recommended;
+	private Boolean				recommended;
 
 	// Relationships ----------------------------------------------------------------------------------------------------
 
