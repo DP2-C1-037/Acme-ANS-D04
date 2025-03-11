@@ -3,6 +3,7 @@ package acme.entities.airports;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
@@ -31,11 +32,12 @@ public class Airport extends AbstractEntity {
 	private String				name;
 
 	@Mandatory
-	@ValidString(min = 3, max = 3, pattern = "^[A-Z]{3}$")
+	@ValidString(pattern = "^[A-Z]{3}$")
 	@Column(unique = true)
 	private String				code;
 
 	@Mandatory
+	@Valid
 	@Automapped
 	private OperationalScope	operationalScope;
 
