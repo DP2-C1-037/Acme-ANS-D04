@@ -4,9 +4,9 @@ package acme.constraints;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import acme.entities.assistanceAgents.AssistanceAgents;
+import acme.realms.AssistanceAgent;
 
-public class EmployeeCodeValidator implements ConstraintValidator<ValidEmployeeCode, AssistanceAgents> {
+public class EmployeeCodeValidator implements ConstraintValidator<ValidEmployeeCode, AssistanceAgent> {
 
 	@Override
 	public void initialize(final ValidEmployeeCode constraintAnnotation) {
@@ -14,7 +14,7 @@ public class EmployeeCodeValidator implements ConstraintValidator<ValidEmployeeC
 	}
 
 	@Override
-	public boolean isValid(final AssistanceAgents value, final ConstraintValidatorContext context) {
+	public boolean isValid(final AssistanceAgent value, final ConstraintValidatorContext context) {
 		if (value == null || value.getEmployeeCode() == null || value.getUserAccount() == null)
 			return false;
 
