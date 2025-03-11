@@ -23,7 +23,7 @@ public class MaintenanceRecordValidator extends AbstractValidator<ValidMaintenan
 		boolean result;
 		boolean isNull;
 
-		isNull = maintenanceRecord == null || maintenanceRecord.getMaintenanceDate() == null && maintenanceRecord.getNextInspectionDueDate() == null;
+		isNull = maintenanceRecord == null || maintenanceRecord.getMaintenanceDate() == null || maintenanceRecord.getNextInspectionDueDate() == null;
 
 		if (!isNull) {
 			boolean nextInspectionIsAfterMaintenance;
@@ -32,7 +32,7 @@ public class MaintenanceRecordValidator extends AbstractValidator<ValidMaintenan
 			Date nextInspection = maintenanceRecord.getNextInspectionDueDate();
 			nextInspectionIsAfterMaintenance = MomentHelper.isAfter(nextInspection, maintenanceDate);
 
-			super.state(context, nextInspectionIsAfterMaintenance, "nextInspectionDueDate", "{acme.validation.next-inspection.message}");
+			super.state(context, nextInspectionIsAfterMaintenance, "nextInspectionDueDate", "{acme.validation.maintenance-record.next-inspection.message}");
 		}
 
 		result = !super.hasErrors(context);
