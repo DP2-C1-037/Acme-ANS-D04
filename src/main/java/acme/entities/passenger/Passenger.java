@@ -29,7 +29,7 @@ public class Passenger extends AbstractEntity {
 	// Attributes ----------------------------------------------------------------------------------------------------
 
 	@Mandatory
-	@ValidString(min = 1, max = 256)
+	@ValidString(min = 1, max = 255)
 	@Automapped
 	String						fullName;
 
@@ -52,5 +52,10 @@ public class Passenger extends AbstractEntity {
 	@ValidString(min = 1, max = 50)
 	@Automapped
 	String						specialNeeds;
+
+	// Crear entidad intermedia para almacenar los enlaces entre booking y passenger
+	// Booking 1 <-- * Intermedia, Intermedia * --> 1 Passenger
+	// Usar vocabulario cliente
+	// Esta entidad relaciona una instancia concreta de Booking hacia una instancia concreta de Passenger
 
 }

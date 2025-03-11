@@ -7,15 +7,15 @@ import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.validation.Mandatory;
-import acme.entities.maintenanceRecords.MaintenanceRecord;
-import acme.entities.tasks.Task;
+import acme.entities.booking.Booking;
+import acme.entities.passenger.Passenger;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class MaintenanceRecordTask extends AbstractEntity {
+public class AssignedTo extends AbstractEntity {
 
 	// Serialisation version -----------------------------------------------------------------------------------------
 
@@ -26,10 +26,10 @@ public class MaintenanceRecordTask extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private MaintenanceRecord	maintenanceRecord;
+	private Booking				booking;
 
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private Task				task;
+	private Passenger			passenger;
 }

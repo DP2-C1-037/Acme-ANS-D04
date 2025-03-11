@@ -8,14 +8,12 @@ import java.lang.annotation.Target;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
-import javax.validation.ReportAsSingleViolation;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = MaintenanceRecordValidator.class)
-@ReportAsSingleViolation
+@Constraint(validatedBy = PromotionCodeValidator.class)
 
-public @interface ValidMaintenanceRecord {
+public @interface ValidPromotionCode {
 
 	String message() default "";
 

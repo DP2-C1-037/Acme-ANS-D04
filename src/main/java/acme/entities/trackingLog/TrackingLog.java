@@ -1,5 +1,5 @@
 
-package acme.entities.maintenanceRecords;
+package acme.entities.trackingLog;
 
 import java.util.Date;
 
@@ -10,25 +10,19 @@ import javax.persistence.TemporalType;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
-import acme.client.components.datatypes.Money;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
-import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
-import acme.client.components.validation.ValidMoney;
+import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
-import acme.constraints.ValidMaintenanceRecord;
-import acme.entities.aircraft.Aircraft;
-import acme.realms.Technician;
+import acme.entities.claim.Claim;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-@ValidMaintenanceRecord
-public class MaintenanceRecord extends AbstractEntity {
-
+public class TrackingLog extends AbstractEntity {
 	// Serialisation version -----------------------------------------------------------------------------------------
 
 	private static final long	serialVersionUID	= 1L;
@@ -38,37 +32,32 @@ public class MaintenanceRecord extends AbstractEntity {
 	@Mandatory
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date				maintenanceDate;
+	private Date				lastUpdateMoment;
+
+	@Mandatory
+	@ValidString(min = 1, max = 50)
+	@Automapped
+	private String				step;
+
+	@Mandatory
+	@ValidNumber(min = 0, max = 100)
+	@Automapped
+	private Double				resolPercentage;
 
 	@Mandatory
 	@Valid
 	@Automapped
-	private MaintenanceStatus	status;
+	private Boolean				accepted;
 
 	@Mandatory
-	@ValidMoment
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date				nextInspectionDueDate;
-
-	@Mandatory
-	@ValidMoney
+	@ValidString(min = 1, max = 255)
 	@Automapped
-	private Money				estimatedCost;
-
-	@Optional
-	@ValidString(min = 0, max = 255)
-	@Automapped
-	private String				notes;
+	private String				resolution;
 
 	// Relationships ----------------------------------------------------------------------------------------------------
 
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private Technician			technician;
-
-	@Mandatory
-	@Valid
-	@ManyToOne(optional = false)
-	private Aircraft			aircraft;
+	private Claim				claim;
 }

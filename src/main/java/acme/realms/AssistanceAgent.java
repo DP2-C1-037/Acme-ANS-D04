@@ -1,5 +1,5 @@
 
-package acme.entities.assistanceAgents;
+package acme.realms;
 
 import java.util.Date;
 
@@ -11,7 +11,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
 
-import acme.client.components.basis.AbstractEntity;
+import acme.client.components.basis.AbstractRole;
 import acme.client.components.datatypes.Money;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.principals.UserAccount;
@@ -31,15 +31,16 @@ import lombok.Setter;
 @Setter
 @ValidEmployeeCode
 
-public class AssistanceAgents extends AbstractEntity {
+public class AssistanceAgent extends AbstractRole {
 
 	// Serialisation version -----------------------------------------------------------------------------------------
 	private static final long	serialVersionUID	= 1L;
 	// Attributes ----------------------------------------------------------------------------------------------------
 
 	@Mandatory
-	@Column(unique = true)
 	@ValidString(min = 8, max = 9, pattern = "^[A-Z]{2,3}\\d{6}$")
+	@Column(unique = true)
+
 	private String				employeeCode;
 
 	@Mandatory
