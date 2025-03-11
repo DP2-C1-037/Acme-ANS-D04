@@ -23,7 +23,7 @@ public class MaintenanceRecordValidator extends AbstractValidator<ValidMaintenan
 		boolean result;
 		boolean isNull;
 
-		isNull = maintenanceRecord == null || maintenanceRecord.getMaintenanceDate() == null && maintenanceRecord.getNextInspectionDueDate() == null;
+		isNull = maintenanceRecord == null || maintenanceRecord.getMaintenanceDate() == null || maintenanceRecord.getNextInspectionDueDate() == null;
 
 		if (!isNull) {
 			boolean nextInspectionIsAfterMaintenance;
