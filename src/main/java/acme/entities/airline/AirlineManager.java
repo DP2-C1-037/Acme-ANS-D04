@@ -5,11 +5,11 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-import acme.client.components.basis.AbstractEntity;
+import acme.client.components.basis.AbstractRole;
 import acme.client.components.mappings.Automapped;
-import acme.client.components.principals.UserAccount;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
@@ -24,14 +24,13 @@ import lombok.Setter;
 @Getter
 @Setter
 @ValidIdentifierNumber
-public class AirlineManager extends AbstractEntity {
+public class AirlineManager extends AbstractRole {
 
 	private static final long	serialVersionUID	= 1L;
 
 	@Mandatory
+	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
 	@Column(unique = true)
-	@ValidString(min = 8, max = 9, pattern = "^[A-Z]{2-3}\\d{6}$")
-	@Automapped
 	// the first two or three letters correspond to their initials -> @ValidIdentifierNumber
 	private String				identifierNumber;
 
@@ -42,7 +41,7 @@ public class AirlineManager extends AbstractEntity {
 
 	@Mandatory
 	@ValidMoment(past = true)
-	@Automapped
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date				birthDate;
 
 	// MUST BE STORED SOMEWHERE ELSE
@@ -50,9 +49,5 @@ public class AirlineManager extends AbstractEntity {
 	@ValidUrl
 	@Automapped
 	private String				pictureLink;
-
-	@OneToOne
-	@Automapped
-	private UserAccount			managerAccount;
 
 }
