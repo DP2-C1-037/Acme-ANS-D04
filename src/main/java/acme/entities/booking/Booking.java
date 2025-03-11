@@ -2,12 +2,10 @@
 package acme.entities.booking;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -23,7 +21,6 @@ import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
 import acme.entities.airline.Flight;
 import acme.entities.customer.Customer;
-import acme.entities.passenger.Passenger;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -59,7 +56,7 @@ public class Booking extends AbstractEntity {
 	private Money				price;
 
 	@Optional
-	@ValidNumber(integer = 4)
+	@ValidNumber(integer = 4) // Contemplar implementar como String en vez de Integer
 	@Automapped
 	private Integer				lastNibble;
 
@@ -75,9 +72,15 @@ public class Booking extends AbstractEntity {
 	@Automapped
 	private Flight				flight;
 
-	@Mandatory
-	@OneToMany
-	@Automapped
-	private List<Passenger>		passengers;
+	/*
+	 * Implementar aquí no
+	 * 
+	 * @Mandatory
+	 * 
+	 * @OneToMany
+	 * 
+	 * @Automapped
+	 * private List<Passenger> passengers;
+	 */
 
 }

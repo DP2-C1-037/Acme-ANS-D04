@@ -10,6 +10,7 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoney;
+import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
 import lombok.Getter;
@@ -37,11 +38,12 @@ public class Service extends AbstractEntity {
 	private String				picture;
 
 	@Mandatory
+	@ValidNumber(min = 0) //Revisar cuál es el máximo, limitar números decimales
 	@Automapped
 	private Double				averageDwellTime;
 
 	@Optional
-	@ValidString(pattern = "^[A-Z]{4}-[0-9]{2}$")
+	@ValidString(pattern = "^[A-Z]{4}-[0-9]{2}$") //Anotación personalizada; los dos últimos dígitos tienen que coincidir con los del año actual
 	@Column(unique = true)
 	private String				promotionCode;
 
