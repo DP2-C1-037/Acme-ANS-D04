@@ -31,7 +31,7 @@ import lombok.Setter;
 @Setter
 @ValidEmployeeCode
 
-public class AssistanceAgents extends AbstractEntity {
+public class AssistanceAgent extends AbstractEntity {
 
 	// Serialisation version -----------------------------------------------------------------------------------------
 	private static final long	serialVersionUID	= 1L;
