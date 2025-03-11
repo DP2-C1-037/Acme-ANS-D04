@@ -9,4 +9,7 @@
 # they accept any liabilities with respect to them.
 
 acme.validation.flight.identifierNumber.message = Las dos primeras letras del número de identificación deben corresponder a las iniciales del nombre del gerente.
+
+acme.validation.leg.flightNumber.message = El número de vuelo está compuesto por el código IATA de la aerolínea seguido de cuatro dígitos (las letras del número de vuelo tienen que ser las mismas que las del código IATA de la aerolínea).
+
 acme.validation.maintenance-record.next-inspection.message = La fecha asociada a la próxima inspección debe ser posterior a la fecha de mantenimiento.

@@ -6,7 +6,9 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
@@ -28,25 +30,20 @@ public class Leg extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
-	@ManyToOne
-	@Automapped
-	private Flight				flight;
-
 	@Mandatory
-	@ValidString(min = 3, max = 3, pattern = "[A-Z]{2}X\\d{4}$")
-	@Automapped
+	@ValidString(pattern = "[A-Z]{3}\\d{4}$")
 	@Column(unique = true)
 	// composed of the airline's IATA code followed by four digits, unique -> Done with @ValidLegFlightNumber
 	private String				flightNumber;
 
 	@Mandatory
 	@ValidMoment
-	@Automapped
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date				scheduledDeparture;
 
 	@Mandatory
 	@ValidMoment
-	@Automapped
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date				scheduledArrival;
 
 	@Mandatory
@@ -55,21 +52,29 @@ public class Leg extends AbstractEntity {
 	private Integer				duration;
 
 	@Mandatory
+	@Valid
 	@Automapped
-	private Status				status;
+	private LegStatus			status;
+
+	// Relationships
 
 	@Mandatory
-	@Automapped
-	@OneToOne
+	@Valid
+	@ManyToOne
+	private Flight				flight;
+
+	@Mandatory
+	@Valid
+	@ManyToOne
 	private Airport				departureAirport;
 
 	@Mandatory
-	@Automapped
-	@OneToOne
+	@Valid
+	@ManyToOne
 	private Airport				arrivalAirport;
 
 	@Mandatory
-	@Automapped
+	@Valid
 	@ManyToOne
 	private Aircraft			deployedAircraft;
 

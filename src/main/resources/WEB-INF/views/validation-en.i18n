@@ -8,5 +8,9 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-acme.validation.flight.identifierNumber.message = The first two letters of the identifier number must correspond to the managers's name initials.
+acme.validation.flight.identifierNumber.message = The first two letters of the identifier number must correspond to the managers's name initials
+
+acme.validation.leg.flightNumber.message = The flight number is composed of the airline's IATA code followed by four digits (flight number letters have to be the same of airline's IATA code).
+
 acme.validation.maintenance-record.next-inspection.message = Next inspection date must be after maintenance date.
+
