@@ -1,37 +1,28 @@
 
-package acme.entities.booking;
+package acme.entities.trackingLog;
 
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
-import acme.client.components.datatypes.Money;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
-import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
-import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
-import acme.entities.airline.Flight;
-import acme.entities.customer.Customer;
-import acme.entities.passenger.Passenger;
+import acme.entities.claim.Claim;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Booking extends AbstractEntity {
-
+public class TrackingLog extends AbstractEntity {
 	// Serialisation version -----------------------------------------------------------------------------------------
 
 	private static final long	serialVersionUID	= 1L;
@@ -39,45 +30,34 @@ public class Booking extends AbstractEntity {
 	// Attributes ----------------------------------------------------------------------------------------------------
 
 	@Mandatory
-	@ValidString(pattern = "^[A-Z0-9]{6,8}$")
-	@Column(unique = true)
-	private String				locatorCode;
-
-	@Mandatory
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date				purcharseMoment;
+	private Date				lastUpdateMoment;
+
+	@Mandatory
+	@ValidString(min = 1, max = 50)
+	@Automapped
+	private String				step;
+
+	@Mandatory
+	@ValidNumber(min = 0, max = 100)
+	@Automapped
+	private Double				resolPercentage;
 
 	@Mandatory
 	@Valid
 	@Automapped
-	private TravelClass			travelClass;
+	private Boolean				accepted;
 
 	@Mandatory
-	@ValidMoney
+	@ValidString(min = 1, max = 255)
 	@Automapped
-	private Money				price;
+	private String				resolution;
 
-	@Optional
-	@ValidNumber(integer = 4)
-	@Automapped
-	private Integer				lastNibble;
-
-	// Relationships -------------------------------------------------------------------------------------------------
+	// Relationships ----------------------------------------------------------------------------------------------------
 
 	@Mandatory
-	@ManyToOne
-	@Automapped
-	private Customer			customer;
-
-	@Mandatory
-	@ManyToOne
-	@Automapped
-	private Flight				flight;
-
-	@Mandatory
-	@OneToMany
-	@Automapped
-	private List<Passenger>		passengers;
-
+	@Valid
+	@ManyToOne(optional = false)
+	private Claim				claim;
 }

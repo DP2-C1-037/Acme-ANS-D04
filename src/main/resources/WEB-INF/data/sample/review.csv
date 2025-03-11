@@ -1,0 +1,10 @@
+key,username,moment,subject,text,score,recommended
+review-01,Salma's review,2021/07/08 10:00,Good Service,All was good.,9.5,true
+review-02,مراجعة محمد,2010/06/12 11:00,خدمة جيدة,كانت الخدمة جيدة.,8.0,true
+review-03,张伟的评论,2015/11/25 12:00,服务不错,服务很好。,9.0,true
+review-04,Juan's Review,2002/03/18 13:00,Buen Servicio,Todo estuvo bien.,9.5,true
+review-05,Отзыв Ивана,2018/09/14 14:00,Хорошее обслуживание,Все было хорошо.,8.5,true
+review-06,レビュー太郎,2007/04/22 15:00,良いサービス,すべて良かった。,9.0,true
+review-07,Kommentar von Anna,2021/12/01 16:00,Guter Service,Alles war gut.,8.0,true
+review-08,Commentaire de Marie,2019/07/19 17:00,Bon service,Tout était bien.,9.0,true
+review-09,Reseña de Pedro,2003/05/03 18:00,Buen servicio,Todo estuvo bien.,8.5,true
