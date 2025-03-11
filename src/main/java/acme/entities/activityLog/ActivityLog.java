@@ -28,22 +28,27 @@ import lombok.Setter;
 public class ActivityLog extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
+
 	@Mandatory
 	@ManyToOne(optional = false)
 	@Valid
 	private FlightAssignment	flightAssignment;
+
 	@Mandatory
 	@Temporal(TemporalType.TIMESTAMP)
 	@ValidMoment(past = true, max = "2201/01/01 00:00:00")
 	private Date				registrationMoment;
+
 	@Mandatory
 	@Automapped
 	@ValidString(min = 1, max = 50)
 	private String				typeOfIncident;
+
 	@Mandatory
 	@Automapped
 	@ValidLongText
 	private String				description;
+
 	@Mandatory
 	@Automapped
 	@ValidNumber(min = 0, max = 10)

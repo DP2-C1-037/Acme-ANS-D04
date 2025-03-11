@@ -7,7 +7,7 @@ import javax.validation.ConstraintValidatorContext;
 
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
-import acme.entities.flightAssignment.AssignmentStatus;
+import acme.datatypes.AssignmentStatus;
 
 @Validator
 public class FlightAssignmentsStatusValidator extends AbstractValidator<ValidFlightAssignmentsStatus, Map<String, Integer>> {

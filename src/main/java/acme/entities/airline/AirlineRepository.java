@@ -3,11 +3,13 @@ package acme.entities.airline;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
 
+@Repository
 public interface AirlineRepository extends AbstractRepository {
 
-	@Query("SELECT a.iataCode FROM Airline a where a.id = (SELECT l.aircraft.airline.id FROM Leg l where l.id =: legId")
+	@Query("SELECT a.iataCode FROM Airline a WHERE a.id = (SELECT l.deployedAircraft.airline.id FROM Leg l WHERE l.id = :legId)")
 	public String getIataCodeFromLegId(@Param("legId") Integer legId);
 }

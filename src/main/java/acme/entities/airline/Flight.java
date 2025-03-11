@@ -1,3 +1,4 @@
+
 package acme.entities.airline;
 
 import javax.persistence.Entity;
@@ -42,19 +43,17 @@ public class Flight extends AbstractEntity {
 	@Automapped
 	private String				description;
 
-	/*
-	 * @Transient
-	 * public FlightLegInfo getScheduledDepartureAndOriginCity() {
-	 * LegRepository legRepository = SpringHelper.getBean(LegRepository.class);
-	 * return legRepository.flightArrivalDateAndCity(this.getId());
-	 * }
-	 * 
-	 * @Transient
-	 * public FlightLegInfo getScheduledArrivalAndDestinyCity() {
-	 * LegRepository legRepository = SpringHelper.getBean(LegRepository.class);
-	 * return legRepository.flightDepartureDateAndCity(this.getId());
-	 * }
-	 */
+	//	@Transient
+	//	public FlightLegInfo getScheduledDepartureAndOriginCity() {
+	//		LegRepository legRepository = SpringHelper.getBean(LegRepository.class);
+	//		return legRepository.flightArrivalDateAndCity(this.getId());
+	//	}
+	//
+	//	@Transient
+	//	public FlightLegInfo getScheduledArrivalAndDestinyCity() {
+	//		LegRepository legRepository = SpringHelper.getBean(LegRepository.class);
+	//		return legRepository.flightDepartureDateAndCity(this.getId());
+	//	}
 
 
 	@Transient
@@ -69,4 +68,7 @@ public class Flight extends AbstractEntity {
 		return legRepository.findAll().size();
 	}
 
+	//	@ManyToOne
+	//	@JoinColumn(name = "weather_conditions_id")
+	//	private WeatherConditions weatherConditions;
 }
