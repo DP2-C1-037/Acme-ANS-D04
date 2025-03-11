@@ -1,6 +1,45 @@
-key,key:userAccount,key:airline,employeeCode,phoneNumber,languageSkills,availabilityStatus,salary,yearsOfExperience
-flight-crew-member-01,user-account-flight-crew-member-01,airline-01,AB123456,+302101234567,"Greek, English",AVAILABLE,EUR 5000,10
-flight-crew-member-02,user-account-flight-crew-member-02,airline-01,AB654321,+971501234567,"Arabic, Spanish, Chinese",ON_LEAVE,EUR 4500,5
-flight-crew-member-03,user-account-flight-crew-member-03,airline-02,ABH820375,+819012345678,"Arabic, Spanish, Chinese",AVAILABLE,EUR 6500,8
-flight-crew-member-04,user-account-flight-crew-member-04,airline-02,POL456789,+919812345678,Hindi,ON_VACATION,EUR 8000,6
-flight-crew-member-05,user-account-flight-crew-member-05,airline-03,AOM987654,+34640103529,"Spanish, English, Italian, French",AVAILABLE,EUR 12000,0
+﻿key,employee-code,phone-number,language-skills,availability-status,salary,years-of-experience,key:userAccount,key:airline
+flight-crew-member-01,AB123456,123456789012345,"Greek, English",AVAILABLE,EUR 5000,10,user-account-flight-crew-member-01,airline-01
+flight-crew-member-02,AB654321,1234567823,"Arabic, Spanish, Chinese",ON_LEAVE,EUR 4500,5,user-account-flight-crew-member-02,airline-01
+flight-crew-member-03,ABH820375,219384671,"Arabic, Spanish, Chinese",AVAILABLE,EUR 6500,8,user-account-flight-crew-member-03,airline-02
+flight-crew-member-04,POL456789,1294764,Hindi,ON_VACATION,EUR 8000,6,user-account-flight-crew-member-04,airline-02
+flight-crew-member-05,AOM987654,34640103529,"Spanish, English, Italian, French",AVAILABLE,EUR 12000,0,user-account-flight-crew-member-05,airline-03
+# base entity,,,,,,,,
+flight-crew-member-00,BH982788,34640103529,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",AVAILABLE,EUR 500000.00,60,user-account-flight-crew-member-01,airline-01
+# employeeCode - standard variations,,,,,,,,
+flight-crew-member-07,WR448431,34640103529,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",AVAILABLE,EUR 500000.00,60,user-account-flight-crew-member-01,airline-01
+flight-crew-member-08,AV777409,34640103529,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",AVAILABLE,EUR 500000.00,60,user-account-flight-crew-member-01,airline-01
+flight-crew-member-09,TCH836592,34640103529,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",AVAILABLE,EUR 500000.00,60,user-account-flight-crew-member-01,airline-01
+flight-crew-member-10,YK191078,34640103529,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",AVAILABLE,EUR 500000.00,60,user-account-flight-crew-member-01,airline-01
+flight-crew-member-11,XN757304,34640103529,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",AVAILABLE,EUR 500000.00,60,user-account-flight-crew-member-01,airline-01
+flight-crew-member-12,IOC289812,34640103529,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",AVAILABLE,EUR 500000.00,60,user-account-flight-crew-member-01,airline-01
+# phoneNumber - standard variations,,,,,,,,
+flight-crew-member-13,EE064968,123456,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",AVAILABLE,EUR 500000.00,60,user-account-flight-crew-member-01,airline-01
+flight-crew-member-14,MBK242070,1234567,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",AVAILABLE,EUR 500000.00,60,user-account-flight-crew-member-01,airline-01
+flight-crew-member-15,TKP945265,123456789012344,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",AVAILABLE,EUR 500000.00,60,user-account-flight-crew-member-01,airline-01
+flight-crew-member-16,YWL618103,123456789012345,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",AVAILABLE,EUR 500000.00,60,user-account-flight-crew-member-01,airline-01
+flight-crew-member-17,ZX101232,34640103529,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",AVAILABLE,EUR 500000.00,60,user-account-flight-crew-member-01,airline-01
+# languageSkills - standard variations,,,,,,,,
+flight-crew-member-18,IO775731,34640103529,L,AVAILABLE,EUR 500000.00,60,user-account-flight-crew-member-01,airline-01
+flight-crew-member-19,HZD923588,34640103529,Lo,AVAILABLE,EUR 500000.00,60,user-account-flight-crew-member-01,airline-01
+flight-crew-member-20,JX297883,34640103529,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",AVAILABLE,EUR 500000.00,60,user-account-flight-crew-member-01,airline-01
+flight-crew-member-21,FZ776660,34640103529,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*",AVAILABLE,EUR 500000.00,60,user-account-flight-crew-member-01,airline-01
+flight-crew-member-22,YNC672604,34640103529,โลเร็ม อิปซัม,AVAILABLE,EUR 500000.00,60,user-account-flight-crew-member-01,airline-01
+flight-crew-member-23,DM239965,34640103529,لوريم إيبسوم,AVAILABLE,EUR 500000.00,60,user-account-flight-crew-member-01,airline-01
+flight-crew-member-24,YLS479494,34640103529,洛伦·伊普森,AVAILABLE,EUR 500000.00,60,user-account-flight-crew-member-01,airline-01
+flight-crew-member-25,MR920264,34640103529,<marquee>Hacked</marquee>,AVAILABLE,EUR 500000.00,60,user-account-flight-crew-member-01,airline-01
+flight-crew-member-26,OTB285425,34640103529,<script>alert(‘Hacked!’);</script>,AVAILABLE,EUR 500000.00,60,user-account-flight-crew-member-01,airline-01
+flight-crew-member-27,AQW655503,34640103529,' or 'A' = 'A,AVAILABLE,EUR 500000.00,60,user-account-flight-crew-member-01,airline-01
+# availabilityStatus - standard variations,,,,,,,,
+flight-crew-member-28,DSL932582,34640103529,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",ON_VACATION,EUR 500000.00,60,user-account-flight-crew-member-01,airline-01
+flight-crew-member-29,GMX446813,34640103529,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",ON_LEAVE,EUR 500000.00,60,user-account-flight-crew-member-01,airline-01
+# salary - standard variations,,,,,,,,
+flight-crew-member-30,CDQ046452,34640103529,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",AVAILABLE,EUR 0.00,60,user-account-flight-crew-member-01,airline-01
+flight-crew-member-31,LJ431444,34640103529,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",AVAILABLE,EUR 0.01,60,user-account-flight-crew-member-01,airline-01
+flight-crew-member-32,NTW502436,34640103529,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",AVAILABLE,EUR 999999.99,60,user-account-flight-crew-member-01,airline-01
+flight-crew-member-33,PWQ927766,34640103529,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",AVAILABLE,EUR 1000000.00,60,user-account-flight-crew-member-01,airline-01
+# yearsOfExperience - standard variations,,,,,,,,
+flight-crew-member-34,WQ663439,34640103529,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",AVAILABLE,EUR 500000.00,0,user-account-flight-crew-member-01,airline-01
+flight-crew-member-35,CD961513,34640103529,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",AVAILABLE,EUR 500000.00,1,user-account-flight-crew-member-01,airline-01
+flight-crew-member-36,UC911076,34640103529,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",AVAILABLE,EUR 500000.00,119,user-account-flight-crew-member-01,airline-01
+flight-crew-member-37,HW926516,34640103529,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",AVAILABLE,EUR 500000.00,120,user-account-flight-crew-member-01,airline-01

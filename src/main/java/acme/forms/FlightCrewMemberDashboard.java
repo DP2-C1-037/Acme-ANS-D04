@@ -7,7 +7,6 @@ import java.util.Map;
 import acme.client.components.basis.AbstractForm;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidNumber;
-import acme.client.components.validation.ValidScore;
 import acme.constraints.ValidFlightAssignmentsStatus;
 import acme.constraints.ValidIncidentCounts;
 import lombok.Getter;
@@ -34,7 +33,7 @@ public class FlightCrewMemberDashboard extends AbstractForm {
 	private Map<String, Integer>	flightAssignmentsByStatus;
 
 	@Mandatory
-	@ValidScore
+	@ValidNumber(min = 0)
 	private Double					averageFlightAssignments;
 
 	@Mandatory
@@ -46,6 +45,6 @@ public class FlightCrewMemberDashboard extends AbstractForm {
 	private Integer					maxFlightAssignments;
 
 	@Mandatory
-	@ValidScore
+	@ValidNumber(min = 0)
 	private Double					stdDevFlightAssignments;
 }

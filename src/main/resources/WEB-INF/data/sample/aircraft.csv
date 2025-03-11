@@ -1,4 +1,4 @@
-﻿key,model,registrationNumber,capacity,cargoWeight,status,optionalDetails,key:airline
+﻿key,model,registration-number,capacity,cargo-weight,status,optional-details,key:airline
 # base entity,,,,,,,
 aircraft-00,Lorem ipsum dolor sit amet,REG-001,128,26000,ACTIVE_SERVICE,"Lorem ipsum dolor sit amet, consectetur adipiscing",airline-01
 # model - standard variations,,,,,,,
