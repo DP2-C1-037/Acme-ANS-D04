@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>250</x>
+      <y>180</y>
+      <w>650</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Form&gt;&gt;
+CustomerDashboard
+--
++ lastFiveDestinations: Double {Mandatory, Valid}
++ lastYearMoneySpentInBookings: Double {Mandatory, Valid, ValidNumber(min=0)}
++ numberOfBookingsByTravelClass: Map&lt;String, Integer&gt; {Mandatory, Valid}
++ lastFiveYearsBookingCostsCount: Double {Mandatory, Valid, ValidNumber(min=0)}
++ lastFiveYearsBookingCostsAverage: Double {Mandatory, Valid, ValidNumber(min=0)}
++ lastFiveYearsBookingCostsMinimun: Double {Mandatory, Valid, ValidNumber(min=0)}
++ lastFiveYearsBookingCostsMaximum: Double {Mandatory, Valid, ValidNumber(min=0)}
++ lastFiveYearsBookingCostsStandardDeviation: Double {Mandatory, Valid, ValidNumber(min=0)}
++ bookingsNumberOfPassengersCount: Integer {Mandatory, Valid, ValidNumber(min=0)}
++ bookingsNumberOfPassengersAverage: Double {Mandatory, Valid, ValidNumber(min=0)}
++ bookingsNumberOfPassengersMinimum: Integer {Mandatory, Valid, ValidNumber(min=0)}
++ bookingsNumberOfPassengersMaximum: Integer {Mandatory, Valid, ValidNumber(min=0)}
++ bookingsNumberOfPassengersStandardDeviation: Double {Mandatory, Valid, ValidNumber(min=0)}
+bg=cyan</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
