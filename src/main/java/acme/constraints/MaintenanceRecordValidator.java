@@ -6,13 +6,15 @@ import java.util.Date;
 import javax.validation.ConstraintValidatorContext;
 
 import acme.client.components.validation.AbstractValidator;
+import acme.client.components.validation.Validator;
 import acme.client.helpers.MomentHelper;
 import acme.entities.maintenanceRecords.MaintenanceRecord;
 
+@Validator
 public class MaintenanceRecordValidator extends AbstractValidator<ValidMaintenanceRecord, MaintenanceRecord> {
 
 	@Override
-	public void initialize(final ValidMaintenanceRecord constraintAnnotation) {
+	protected void initialise(final ValidMaintenanceRecord constraintAnnotation) {
 		assert constraintAnnotation != null;
 	}
 
