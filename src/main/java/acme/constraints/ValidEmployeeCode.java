@@ -15,7 +15,7 @@ import javax.validation.Payload;
 
 public @interface ValidEmployeeCode {
 
-	String message() default "Invalid employee code";
+	String message() default "";
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
 }
