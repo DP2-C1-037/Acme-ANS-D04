@@ -32,7 +32,7 @@ public class MaintenanceRecordValidator extends AbstractValidator<ValidMaintenan
 			Date nextInspection = maintenanceRecord.getNextInspectionDueDate();
 			nextInspectionIsAfterMaintenance = MomentHelper.isAfter(nextInspection, maintenanceDate);
 
-			super.state(context, nextInspectionIsAfterMaintenance, "nextInspectionDueDate", "{acme.validation.next-inspection.message}");
+			super.state(context, nextInspectionIsAfterMaintenance, "nextInspectionDueDate", "{acme.validation.maintenance-record.next-inspection.message}");
 		}
 
 		result = !super.hasErrors(context);
