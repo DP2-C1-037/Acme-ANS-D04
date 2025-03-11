@@ -17,7 +17,6 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoney;
-import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
 import acme.entities.airline.Flight;
 import acme.entities.customer.Customer;
@@ -56,9 +55,9 @@ public class Booking extends AbstractEntity {
 	private Money				price;
 
 	@Optional
-	@ValidNumber(integer = 4) // Contemplar implementar como String en vez de Integer
+	@ValidString(min = 4, max = 4)
 	@Automapped
-	private Integer				lastNibble;
+	private String				lastNibble;
 
 	// Relationships -------------------------------------------------------------------------------------------------
 
@@ -71,16 +70,5 @@ public class Booking extends AbstractEntity {
 	@ManyToOne
 	@Automapped
 	private Flight				flight;
-
-	/*
-	 * Implementar aquí no
-	 * 
-	 * @Mandatory
-	 * 
-	 * @OneToMany
-	 * 
-	 * @Automapped
-	 * private List<Passenger> passengers;
-	 */
 
 }
