@@ -10,9 +10,6 @@ import acme.client.components.basis.AbstractForm;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidNumber;
-import acme.entities.aircraft.Aircraft;
-import acme.entities.maintenanceRecords.MaintenanceRecord;
-import acme.entities.maintenanceRecords.MaintenanceStatus;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,50 +19,50 @@ public class TechnicianDashboard extends AbstractForm {
 
 	// Serialisation version --------------------------------------------------
 
-	private static final long				serialVersionUID	= 1L;
+	private static final long		serialVersionUID	= 1L;
 
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	private Map<MaintenanceStatus, Integer>	maintenanceRecordsByStatus;
+	private Map<String, Integer>	maintenanceRecordsByStatus;
 
 	@Optional
 	@Valid
-	private MaintenanceRecord				nearestInspectionMaintenanceRecord;
+	private String					nearestInspectionMaintenanceRecord;
 
 	@Mandatory
-	private List<Aircraft>					higherTaskNumberAircrafts;
+	private List<String>			higherTaskNumberAircrafts;
 
 	@Optional
 	@ValidNumber(min = 0)
-	private Double							lastYearAverageMaintenanceCost;
+	private Double					lastYearAverageMaintenanceCost;
 
 	@Optional
 	@ValidNumber(min = 0)
-	private Double							lastYearMaxMaintenanceCost;
+	private Double					lastYearMaxMaintenanceCost;
 
 	@Optional
 	@ValidNumber(min = 0)
-	private Double							lastYearMinMaintenanceCost;
+	private Double					lastYearMinMaintenanceCost;
 
 	@Optional
 	@ValidNumber(min = 0)
-	private Double							lastYearStandardDeviationMaintenanceCost;
+	private Double					lastYearStandardDeviationMaintenanceCost;
 
 	@Mandatory
 	@ValidNumber(min = 0)
-	private Double							taskAverageDuration;
+	private Double					taskAverageDuration;
 
 	@Mandatory
 	@ValidNumber(min = 0)
-	private Integer							taskMaxDuration;
+	private Integer					taskMaxDuration;
 
 	@Mandatory
 	@ValidNumber(min = 0)
-	private Integer							tasgMinDuration;
+	private Integer					tasgMinDuration;
 
 	@Mandatory
 	@ValidNumber(min = 0)
-	private Double							taskStandardDeviationDuration;
+	private Double					taskStandardDeviationDuration;
 
 }
