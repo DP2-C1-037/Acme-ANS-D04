@@ -19,7 +19,7 @@ import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidString;
 import acme.entities.airline.Flight;
-import acme.entities.customer.Customer;
+import acme.realms.Customer;
 import lombok.Getter;
 import lombok.Setter;
 

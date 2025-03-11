@@ -4,7 +4,7 @@ package acme.constraints;
 import javax.validation.ConstraintValidatorContext;
 
 import acme.client.components.validation.AbstractValidator;
-import acme.entities.customer.Customer;
+import acme.realms.Customer;
 
 public class CustomerIdentifierValidator extends AbstractValidator<ValidCustomerIdentifier, Customer> {
 
