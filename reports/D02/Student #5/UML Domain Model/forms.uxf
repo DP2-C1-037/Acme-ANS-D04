@@ -6,18 +6,23 @@
     <coordinates>
       <x>380</x>
       <y>280</y>
-      <w>360</w>
-      <h>150</h>
+      <w>440</w>
+      <h>230</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Form&gt;&gt;
 TechnicianDashboard
 --
-+ averageNumberOfJobsPerEmployer: Double
-+ averageNumberOfApplicationsPerWorker: Double
-+ avegageNumberOfApplicationsPerEmployer: Double
-+ ratioOfPendingApplications: Double
-+ ratioOfAcceptedApplications: Double
-+ ratioOfRejectedApplications: Double
++ maintenanceRecordsByStatus: Map&lt;MaintenanceStatus, Integer&gt;
++ nearestInspectionMaintenanceRecord: String
++ higherTaskNumberAircrafts: List&lt;String&gt;
++ lastYearAverageMaintenanceCost: Double
++ lastYearMaxMaintenanceCost: Double
++ lastYearMinMaintenanceCost: Double
++ lastYearStandardDeviationMaintenanceCost: Double
++ taskAverageDuration: Double
++ taskMaxDuration: Integer
++ taskMinDuration: Integer
++ taskStandardDeviationDuration: Double
 bg=cyan</panel_attributes>
     <additional_attributes/>
   </element>

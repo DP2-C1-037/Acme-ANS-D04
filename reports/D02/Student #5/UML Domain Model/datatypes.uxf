@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>170</x>
-      <y>330</y>
+      <x>310</x>
+      <y>370</y>
       <w>160</w>
       <h>110</h>
     </coordinates>
@@ -22,8 +22,8 @@ bg=LIGHT_GRAY</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>170</x>
-      <y>210</y>
+      <x>310</x>
+      <y>250</y>
       <w>160</w>
       <h>100</h>
     </coordinates>
@@ -39,8 +39,8 @@ bg=LIGHT_GRAY</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>390</x>
-      <y>210</y>
+      <x>530</x>
+      <y>250</y>
       <w>370</w>
       <h>80</h>
     </coordinates>
