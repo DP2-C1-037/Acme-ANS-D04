@@ -45,6 +45,8 @@ public class Flight extends AbstractEntity {
 	@Automapped
 	private String				description;
 
+	// Derived attributes
+
 
 	@Transient
 	public Date getScheduledDeparture() {
