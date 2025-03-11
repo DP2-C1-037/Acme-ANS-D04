@@ -1,5 +1,5 @@
 
-package acme.entities.flightCrewMember;
+package acme.realms;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +14,7 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
+import acme.datatypes.AvailabilityStatus;
 import acme.entities.airline.Airline;
 import lombok.Getter;
 import lombok.Setter;
