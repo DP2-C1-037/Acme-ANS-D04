@@ -15,6 +15,7 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
+import acme.constraints.ValidActivityLog;
 import acme.constraints.ValidLongText;
 import acme.entities.flightAssignment.FlightAssignment;
 import lombok.Getter;
@@ -23,6 +24,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@ValidActivityLog
 public class ActivityLog extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
@@ -34,7 +36,7 @@ public class ActivityLog extends AbstractEntity {
 
 	@Mandatory
 	@Temporal(TemporalType.TIMESTAMP)
-	@ValidMoment(past = true)
+	@ValidMoment(past = true, max = "2201/01/01 00:00:00")
 	private Date				registrationMoment;
 
 	@Mandatory
@@ -51,5 +53,4 @@ public class ActivityLog extends AbstractEntity {
 	@Automapped
 	@ValidNumber(min = 0, max = 10)
 	private Integer				severityLevel;
-
 }
