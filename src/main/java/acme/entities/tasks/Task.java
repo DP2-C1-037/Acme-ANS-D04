@@ -1,25 +1,23 @@
 
-package acme.entities.technicians;
+package acme.entities.tasks;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
-import acme.client.components.principals.UserAccount;
 import acme.client.components.validation.Mandatory;
-import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
+import acme.realms.Technician;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Technician extends AbstractEntity {
+public class Task extends AbstractEntity {
 
 	// Serialisation version -----------------------------------------------------------------------------------------
 
@@ -28,38 +26,29 @@ public class Technician extends AbstractEntity {
 	// Attributes ----------------------------------------------------------------------------------------------------
 
 	@Mandatory
-	@ValidString(pattern = "^[A-Z]{2-3}\\d{6}$")
-	@Column(unique = true)
-	private String				licenseNumber;
+	@Automapped
+	private TaskType			type;
 
 	@Mandatory
-	@ValidString(pattern = "^\\+?\\d{6,15}$")
+	@ValidString(min = 1, max = 255)
 	@Automapped
-	private String				phoneNumber;
+	private String				description;
 
 	@Mandatory
-	@ValidString(min = 1, max = 50)
+	@ValidNumber(min = 0, max = 10)
 	@Automapped
-	private String				specialisation;
+	private Integer				priority;
 
 	@Mandatory
+	@ValidNumber(min = 0, max = 1000)
 	@Automapped
-	private Boolean				healthTestPassed;
-
-	@Mandatory
-	@ValidNumber(min = 0, max = 120)
-	@Automapped
-	private Integer				experienceYears;
-
-	@Optional
-	@ValidString(max = 255)
-	@Automapped
-	private String				certifications;
+	private Integer				estimatedDuration;
 
 	// Relationships ----------------------------------------------------------------------------------------------------
 
 	@Mandatory
 	@Valid
-	@OneToOne
-	private UserAccount			userAccount;
+	@ManyToOne(optional = false)
+	private Technician			technician;
+
 }

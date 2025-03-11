@@ -9,10 +9,11 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-@Constraint(validatedBy = IdentifierNumberValidator.class)
-@Target(ElementType.TYPE) // Se aplica a la clase Leg en lugar del campo
+@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ValidIdentifierNumber {
+@Constraint(validatedBy = EmployeeCodeValidator.class)
+
+public @interface ValidEmployeeCode {
 
 	String message() default "";
 	Class<?>[] groups() default {};

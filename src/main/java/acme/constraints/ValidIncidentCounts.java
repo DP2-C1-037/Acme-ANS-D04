@@ -9,12 +9,13 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-@Constraint(validatedBy = IdentifierNumberValidator.class)
-@Target(ElementType.TYPE) // Se aplica a la clase Leg en lugar del campo
+@Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ValidIdentifierNumber {
+@Constraint(validatedBy = IncidentCountsValidator.class)
 
-	String message() default "";
+public @interface ValidIncidentCounts {
+
+	String message() default "{acme.validation.incidents-count.message}";
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
 }

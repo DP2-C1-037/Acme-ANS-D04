@@ -4,17 +4,17 @@ package acme.constraints;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import acme.realms.FlightCrewMember;
+import acme.realms.AssistanceAgent;
 
-public class FlightCrewMemberValidator implements ConstraintValidator<ValidFlightCrewMember, FlightCrewMember> {
+public class EmployeeCodeValidator implements ConstraintValidator<ValidEmployeeCode, AssistanceAgent> {
 
 	@Override
-	public void initialize(final ValidFlightCrewMember constraintAnnotation) {
+	public void initialize(final ValidEmployeeCode constraintAnnotation) {
 		assert constraintAnnotation != null;
 	}
 
 	@Override
-	public boolean isValid(final FlightCrewMember value, final ConstraintValidatorContext context) {
+	public boolean isValid(final AssistanceAgent value, final ConstraintValidatorContext context) {
 		if (value == null || value.getEmployeeCode() == null || value.getUserAccount() == null)
 			return false;
 
@@ -34,5 +34,4 @@ public class FlightCrewMemberValidator implements ConstraintValidator<ValidFligh
 
 		return initialsFromCode.equals(initialsFromName.toString().toUpperCase());
 	}
-
 }

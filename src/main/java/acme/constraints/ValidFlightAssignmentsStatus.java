@@ -9,12 +9,12 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-@Constraint(validatedBy = IdentifierNumberValidator.class)
-@Target(ElementType.TYPE) // Se aplica a la clase Leg en lugar del campo
+@Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ValidIdentifierNumber {
+@Constraint(validatedBy = FlightAssignmentsStatusValidator.class)
+public @interface ValidFlightAssignmentsStatus {
 
-	String message() default "";
+	String message() default "{acme.validation.assignments-status.message}";
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
 }
