@@ -62,13 +62,13 @@ public class Booking extends AbstractEntity {
 	// Relationships -------------------------------------------------------------------------------------------------
 
 	@Mandatory
+	@Valid
 	@ManyToOne
-	@Automapped
 	private Customer			customer;
 
 	@Mandatory
+	@Valid
 	@ManyToOne
-	@Automapped
 	private Flight				flight;
 
 }
