@@ -17,7 +17,7 @@ public class PromotionCodeValidator extends AbstractValidator<ValidPromotionCode
 		boolean result = true;
 
 		if (service == null || service.getPromotionCode() == null)
-			result = false;
+			return false;
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yy");
 
@@ -28,7 +28,7 @@ public class PromotionCodeValidator extends AbstractValidator<ValidPromotionCode
 
 		if (!promotionCodeLastTwoDigits.equals(currentYearLastTwoDigits)) {
 			super.state(context, false, "services", "acme.validation.service.promotionCode.message");
-			return false;
+			result = false;
 		}
 
 		return result;
