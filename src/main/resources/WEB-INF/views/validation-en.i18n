@@ -16,3 +16,4 @@ acme.validation.maintenance-record.next-inspection.message = Next inspection dat
 
 acme.validation.service.promotionCode.message = The promotion code last two characters must match current year last two digits.
 
+acme.validation.customer.identifier.message = The customer identifier first two or three letters must correspond to their initials.
