@@ -11,6 +11,14 @@ import acme.entities.customer.Customer;
 
 public class CustomerIdentifierValidator implements ConstraintValidator<ValidCustomerIdentifier, Customer> {
 
+	// No usar returns, declarar variable boolean: Boolean result
+
+	// El identificador debería ser letra del nombre, letras del primer apellido, no al revés
+
+	// La tercera letra no tiene porqué coincidir, no hay que comprobar eso
+
+	// Mensajes de error en los ficheros de internacionalización, no como Strings crudos --> fichero validation-en y validation-es
+
 	@Override
 	public boolean isValid(final Customer customer, final ConstraintValidatorContext context) {
 		if (customer == null || customer.getIdentity() == null || customer.getIdentity().getFullName() == null || customer.getIdentifier() == null)
