@@ -42,7 +42,7 @@ public class AirlineManager extends AbstractRole {
 	private Integer				experienceYears;
 
 	@Mandatory
-	@ValidMoment(past = true)
+	@ValidMoment(min = "1965/01/01 00:00", past = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				birthDate;
 

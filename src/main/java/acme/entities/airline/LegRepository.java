@@ -23,4 +23,7 @@ public interface LegRepository extends AbstractRepository {
 	@Query("SELECT l.arrivalAirport.city FROM Leg l WHERE l.id = :legId AND l.scheduledArrival = (SELECT MAX(l2.scheduledArrival) FROM Leg l2 WHERE l2.id = :legId)")
 	public String findDestinationCity(int legId);
 
+	@Query("SELECT COUNT(l) FROM Leg l WHERE l.id = :legId")
+	public Integer legsNumberFromFlightId(int legId);
+
 }

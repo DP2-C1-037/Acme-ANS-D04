@@ -37,7 +37,7 @@ service-30,"Lorem ipsum dolor sit amet,consectetu",http://lorem.com/ipsum,1.01,A
 service-31,"Lorem ipsum dolor sit amet,consectetu",http://lorem.com/ipsum,99.99,ABAK-25,50
 service-32,"Lorem ipsum dolor sit amet,consectetu",http://lorem.com/ipsum,100,ABAL-25,50
 # promotionCode - standard variations,"","","",""
-service-33,"Lorem ipsum dolor sit amet,consectetu",http://lorem.com/ipsum,50,"",50
+service-33,"Lorem ipsum dolor sit amet,consectetu",http://lorem.com/ipsum,50,,50
 service-34,"Lorem ipsum dolor sit amet,consectetu",http://lorem.com/ipsum,50,XXXX-25,50
 # money - standard variations,"","","","",""
 service-35,"Lorem ipsum dolor sit amet,consectetu",http://lorem.com/ipsum,50,ABAM-25,

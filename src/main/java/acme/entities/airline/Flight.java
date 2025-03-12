@@ -4,6 +4,7 @@ package acme.entities.airline;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 import javax.validation.Valid;
 
@@ -49,25 +50,25 @@ public class Flight extends AbstractEntity {
 
 
 	@Transient
-	public Date getScheduledDeparture() {
+	private Date getScheduledDeparture() {
 		LegRepository legRepository = SpringHelper.getBean(LegRepository.class);
 		return legRepository.findScheduledDeparture(this.getId());
 	}
 
 	@Transient
-	public Date getScheduledArrival() {
+	private Date getScheduledArrival() {
 		LegRepository legRepository = SpringHelper.getBean(LegRepository.class);
 		return legRepository.findScheduledArrival(this.getId());
 	}
 
 	@Transient
-	public String getOriginCity() {
+	private String getOriginCity() {
 		LegRepository legRepository = SpringHelper.getBean(LegRepository.class);
 		return legRepository.findOriginCity(this.getId());
 	}
 
 	@Transient
-	public String getDestinationCity() {
+	private String getDestinationCity() {
 		LegRepository legRepository = SpringHelper.getBean(LegRepository.class);
 		return legRepository.findDestinationCity(this.getId());
 	}
@@ -75,10 +76,19 @@ public class Flight extends AbstractEntity {
 	@Transient
 	private int getLayoversNumber() {
 		LegRepository legRepository = SpringHelper.getBean(LegRepository.class);
-		return legRepository.findAll().size() - 1;
+		return legRepository.legsNumberFromFlightId(this.getId()) - 1;
 	}
 
+	// Relationships
+
+
+	@Mandatory
+	@Valid
+	@ManyToOne
+	private Airline airline;
+
+	//	@Mandatory
+	//	@Valid
 	//	@ManyToOne
-	//	@JoinColumn(name = "weather_conditions_id")
 	//	private WeatherConditions weatherConditions;
 }
