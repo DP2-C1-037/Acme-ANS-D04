@@ -14,8 +14,13 @@ import acme.client.components.validation.ValidUuid;
 import lombok.Getter;
 import lombok.Setter;
 
-// API information can be accessed from: https: https://github.com/Purdue-io/PurdueApi
-// https://github.com/Purdue-io/PurdueApi/wiki/OData-Queries
+/*
+ * API information can be accessed from: https:https:// github.com/Purdue-io/PurdueApi
+ * https:// github.com/Purdue-io/PurdueApi/wiki/OData-Queries
+ * 
+ * The API has information about Purdue University's course catalog and scheduling system.
+ * When obtaining a Course, the following information conforms the response data (as seen when using Postman)
+ */
 
 @Entity
 @Getter
