@@ -10,7 +10,7 @@ public class IdentifierNumberValidator extends AbstractValidator<ValidIdentifier
 
 	@Override
 	public boolean isValid(final AirlineManager airlineManager, final ConstraintValidatorContext context) {
-		String initials = IdentifierNumberValidator.getInitials(airlineManager.getUserAccount().getIdentity().getName(), airlineManager.getUserAccount().getIdentity().getName());
+		String initials = IdentifierNumberValidator.getInitials(airlineManager.getUserAccount().getIdentity().getName(), airlineManager.getUserAccount().getIdentity().getSurname());
 		String identifierNumberToValidate = airlineManager.getIdentifierNumber().substring(0, initials.length());
 		boolean result = initials.equals(identifierNumberToValidate);
 		if (!result)
