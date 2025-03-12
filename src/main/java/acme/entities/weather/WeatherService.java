@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import acme.client.services.AbstractService;
 import acme.entities.airports.Airport;
 
+@SuppressWarnings("rawtypes")
 @Service
 public class WeatherService extends AbstractService {
 
@@ -21,6 +22,7 @@ public class WeatherService extends AbstractService {
 	private static final String	URL_TEMPLATE	= "http://api.openweathermap.org/data/2.5/weather?q=%s&appid=%s";
 
 
+	@SuppressWarnings("deprecation")
 	public WeatherConditions getWeatherForAirport(final Airport airport) {
 		try {
 			String urlString = String.format(WeatherService.URL_TEMPLATE, airport.getCity(), WeatherService.API_KEY);

@@ -16,19 +16,25 @@ public class PromotionCodeValidator extends AbstractValidator<ValidPromotionCode
 
 		boolean result = true;
 
-		if (service == null || service.getPromotionCode() == null)
-			return false;
+		if (!(service.getPromotionCode() == null || service.getPromotionCode().equals(""))) {
 
-		SimpleDateFormat sdf = new SimpleDateFormat("yy");
+			SimpleDateFormat sdf = new SimpleDateFormat("yy");
 
-		String promotionCode = service.getPromotionCode();
-		String promotionCodeLastTwoDigits = promotionCode.substring(promotionCode.length() - 2);
+			String promotionCode = service.getPromotionCode();
+			if (promotionCode.length() >= 2) {
+				String promotionCodeLastTwoDigits = promotionCode.substring(promotionCode.length() - 2);
 
-		String currentYearLastTwoDigits = sdf.format(MomentHelper.getBaseMoment());
+				String currentYearLastTwoDigits = sdf.format(MomentHelper.getBaseMoment());
 
-		if (!promotionCodeLastTwoDigits.equals(currentYearLastTwoDigits)) {
-			super.state(context, false, "services", "acme.validation.service.promotionCode.message");
-			result = false;
+				if (!promotionCodeLastTwoDigits.equals(currentYearLastTwoDigits) || !service.getPromotionCode().matches("^[A-Z]{4}-[0-9]{2}$")) {
+					super.state(context, false, "services", "acme.validation.service.promotionCode.message");
+					result = false;
+				}
+			} else {
+				super.state(context, false, "services", "acme.validation.service.promotionCode.message");
+				result = false;
+			}
+
 		}
 
 		return result;

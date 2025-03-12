@@ -1,0 +1,27 @@
+key,identifierNumber,experienceYears,birthDate,pictureLink,key:userAccount,key:airline
+airline-manager-01,JD123456,10,1990/01/01 00:00,https://example.com/photo.jpg,user-account-airline-manager-01,airline-01
+airline-manager-02,JS654321,5,1985/12/31 23:59,,user-account-airline-manager-02,airline-02
+airline-manager-03,CG820375,5,1995/05/05 00:00,,user-account-airline-manager-03,airline-03
+airline-manager-04,LM999999,15,1980/06/15 00:00,,user-account-airline-manager-06,airline-01
+# experienceYears: min=0
+airline-manager-05,EV000000,0,1965/01/01 00:00,,user-account-airline-manager-07,airline-02
+# experienceYears: min + delta=1
+airline-manager-06,EV000001,1,1965/01/02 00:00,,user-account-airline-manager-08,airline-03
+# experienceYears: max - delta=119
+airline-manager-07,EV119999,119,1965/01/01 00:00,,user-account-airline-manager-09,airline-01
+# experienceYears: max=120
+airline-manager-08,EV120000,120,1965/01/01 00:00,,user-account-airline-manager-10,airline-02
+# birthDate: min=1965/01/01
+airline-manager-09,EV000010,30,1965/01/01 00:00,,user-account-airline-manager-11,airline-03
+# birthDate: max=current (delta=1 día)
+airline-manager-10,EV111111,40,2024/12/31 23:59,,user-account-airline-manager-12,airline-01
+# pictureLink: Unicode & edge cases
+airline-manager-11,EV111112,40,2000/01/01 00:00,https://xn--example-0k6a.com,user-account-airline-manager-13,airline-02
+# pictureLink: URL con caracteres no latinos
+airline-manager-12,LA123456,20,1980/01/01 00:00,https://洛伦.伊普森.com,user-account-airline-manager-14,airline-03
+# pictureLink: Vacío (caso opcional)
+airline-manager-13,MP123456,50,1970/01/01 00:00,,user-account-airline-manager-15,airline-01
+# injections
+airline-manager-14,SI123456,5,1995/05/05 00:00,https://example.com/sql-injection' OR '1'='1--,user-account-airline-manager-16,airline-01
+airline-manager-15,MI123456,10,1985/12/31 23:59,https://example.com/page.html?content=<marquee>Hacked</marquee>,user-account-airline-manager-17,airline-02
+airline-manager-16,SI123457,15,1980/06/15 00:00,https://example.com/script.js?xss=alert('Hacked'),user-account-airline-manager-18,airline-03

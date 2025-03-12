@@ -12,8 +12,10 @@ acme.validation.flight.identifierNumber.message = Las dos primeras letras del n�
 
 acme.validation.leg.flightNumber.message = El número de vuelo está compuesto por el código IATA de la aerolínea seguido de cuatro dígitos (las letras del número de vuelo tienen que ser las mismas que las del código IATA de la aerolínea).
 
-acme.validation.maintenance-record.next-inspection.message = La fecha asociada a la próxima inspección debe ser posterior a la fecha de mantenimiento.
+acme.validation.maintenance-record.nextInspection.message = La fecha asociada a la próxima inspección debe ser posterior a la fecha de mantenimiento
 
-acme.validation.service.promotionCode.message = Los dos últimos caracteres del código promocional deben coincidir con los dos últimos dígitos del año actual.
+acme.validation.service.promotionCode.message = El código promocional debe coincidir con el patrón ^[A-Z]{4}-[0-9]{2}$, y sus dos últimos caracteres con los dos últimos dígitos del año actual
 
-acme.validation.customer.identifier.message = Los dos o tres primeros caracteres del identificador único del cliente deben coincidir con sus iniciales.
+acme.validation.customer.identifier.message = Los dos o tres primeros caracteres del identificador único del cliente deben coincidir con sus iniciales
+
+acme.validation.technician.licenseNumber.message = Los dos primeros caracteres del número de licencia deben coincidir con las iniciales del técnico

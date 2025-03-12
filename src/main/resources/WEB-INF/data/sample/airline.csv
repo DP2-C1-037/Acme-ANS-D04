@@ -1,4 +1,24 @@
-﻿key,name,iataCode,website,type,foundationMoment,email,phoneNumber
+key,name,iataCode,website,type,foundationMoment,email,phoneNumber
+# Base entity
 airline-01,SkyHigh Airlines,SHX,https://www.skyhigh.com,LUXURY,2005/02/01 10:00,contact@skyhigh.com,+18005551234
 airline-02,Oceanic Airways,OAX,https://www.oceanic.com,STANDARD,2010/04/10 13:25,info@oceanic.com,+442079460958
 airline-03,Global Wings,GWX,https://www.globalwings.com,LOW_COST,2001/12/20 00:00,,
+# name: edge cases (length & Unicode)
+airline-04,A,AAA,https://a.com,LOW_COST,2000/01/01 00:00,,
+airline-05,这是一条非常长的名字，测试最大长度限制，必须恰好50字符,BBB,https://long-domain.com,STANDARD,2000/01/02 00:00,test@example.com,+123456789012345
+# iataCode: unique 3-letter codes
+airline-06,Test,CCC,https://example.com,LOW_COST,2000/01/01 00:00,,
+airline-07,Test,DDD,https://example.com,STANDARD,2000/01/01 00:00,,
+# foundationMoment: min, max (current), delta
+airline-08,Test,EEE,https://example.com,LOW_COST,2000/01/01 00:00,,
+airline-09,Test,FFF,https://example.com,STANDARD,2024/12/31 23:59,,
+airline-10,Test,GGG,https://example.com,LOW_COST,2024/12/31 23:58,,
+# email: Unicode & valid patterns
+airline-11,Test,HHH,https://example.com,STANDARD,2000/01/01 00:00,洛伦@伊普森.com,
+airline-12,Test,III,https://example.com,LOW_COST,2000/01/01 00:00,лорем@ипсум.рф,
+# phoneNumber: min/max length & Unicode
+airline-13,Test,JJJ,https://example.com,LUXURY,2000/01/01 00:00,,+123456
+airline-14,Test,KKK,https://example.com,STANDARD,2000/01/01 00:00,,+123456789012345
+# injections
+airline-15,<marquee>Hacked</marquee> Airways,MAR,https://example.com/page.html?content=<marquee>Hacked</marquee>,STANDARD,2000/01/01 00:00,markup@example.com,+442079460958
+airline-16,Script<script>alert('XSS');</script> Airlines,SCR,https://example.com/script.js?xss=alert('Hacked'),LOW_COST,2000/01/01 00:00,script@example.com,

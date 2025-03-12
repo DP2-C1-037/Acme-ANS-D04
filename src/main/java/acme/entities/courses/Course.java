@@ -1,25 +1,31 @@
 
-package acme.realms;
+package acme.entities.courses;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.validation.Valid;
 
-import acme.client.components.basis.AbstractRole;
+import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
-import acme.constraints.ValidTechnician;
+import acme.client.components.validation.ValidUuid;
 import lombok.Getter;
 import lombok.Setter;
+
+/*
+ * API information can be accessed from: https:https:// github.com/Purdue-io/PurdueApi
+ * https:// github.com/Purdue-io/PurdueApi/wiki/OData-Queries
+ * 
+ * The API has information about Purdue University's course catalog and scheduling system.
+ * When obtaining a Course, the following information conforms the response data (as seen when using Postman)
+ */
 
 @Entity
 @Getter
 @Setter
-@ValidTechnician
-public class Technician extends AbstractRole {
+public class Course extends AbstractEntity {
 
 	// Serialisation version -----------------------------------------------------------------------------------------
 
@@ -28,33 +34,33 @@ public class Technician extends AbstractRole {
 	// Attributes ----------------------------------------------------------------------------------------------------
 
 	@Mandatory
-	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
+	@ValidUuid
 	@Column(unique = true)
-	private String				licenseNumber;
+	private String				courseIdentifier;
 
 	@Mandatory
-	@ValidString(pattern = "^\\+?\\d{6,15}$")
+	@ValidString(pattern = "\\d{5}")
 	@Automapped
-	private String				phoneNumber;
+	private String				number;
 
 	@Mandatory
 	@ValidString(min = 1, max = 50)
 	@Automapped
-	private String				specialisation;
+	private String				title;
 
 	@Mandatory
-	@Valid
+	@ValidUuid
 	@Automapped
-	private Boolean				healthTestPassed;
+	private String				belongedToSubjectIdentifier;
 
 	@Mandatory
-	@ValidNumber(min = 0, max = 120)
+	@ValidNumber(min = 0, integer = 2, fraction = 1)
 	@Automapped
-	private Integer				experienceYears;
+	private Double				creditHours;
 
 	@Optional
 	@ValidString(min = 0, max = 255)
 	@Automapped
-	private String				certifications;
+	private String				description;
 
 }
