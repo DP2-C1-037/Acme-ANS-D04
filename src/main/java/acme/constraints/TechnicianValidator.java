@@ -30,8 +30,8 @@ public class TechnicianValidator extends AbstractValidator<ValidTechnician, Tech
 
 			String licenseNumber = technician.getLicenseNumber();
 			DefaultUserIdentity identity = technician.getUserAccount().getIdentity();
-			String name = identity.getName();
-			String surname = identity.getSurname();
+			String name = identity.getName().trim();
+			String surname = identity.getSurname().trim();
 			licenseNumberValid = name.charAt(0) == licenseNumber.charAt(0) && surname.charAt(0) == licenseNumber.charAt(1);
 
 			super.state(context, licenseNumberValid, "licenseNumber", "{acme.validation.technician.licenseNumber.message}");
