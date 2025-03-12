@@ -15,13 +15,9 @@ public class FlightCrewMemberDashboard extends AbstractForm {
 	private static final long		serialVersionUID	= 1L;
 
 	private List<String>			lastFiveDestinations;
-
 	private Map<String, Integer>	incidentCountsBySeverity; // Example: {"0-3": 5, "4-7": 2, "8-10": 1}
-
 	private List<String>			lastLegCrewMembers;
-
 	private Map<String, Integer>	flightAssignmentsByStatus;
-
 	private Double					averageFlightAssignments;
 	private Integer					minFlightAssignments;
 	private Integer					maxFlightAssignments;

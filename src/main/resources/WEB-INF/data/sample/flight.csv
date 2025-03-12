@@ -1,0 +1,6 @@
+key,tag,requiresSelfTransfer,cost,description
+# base entity
+flight-01,"Lorem ipsum dolor sit amet,consectetu",true,EUR 500000.00,"Lorem ipsum dolor sit amet,consectetu"
+# tag - standard variations
+flight-02,"Lorem ipsum dolor sit amet,consectetu",true,EUR 500000.00,"Lorem ipsum dolor sit amet,consectetu"
+

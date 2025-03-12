@@ -9,7 +9,10 @@ user-account-flight-crew-member-01,true,"UserIdentity{name: 'Χρήστος', su
 user-account-flight-crew-member-02,true,"UserIdentity{name: '佐藤', surname: '健', email: 'sato.ken@acme.com'}",member2,member2
 user-account-flight-crew-member-03,true,"UserIdentity{name: 'علي', surname: 'النجار', email: 'ali.alnajar@acme.com'}",member3,member3
 user-account-flight-crew-member-04,true,"UserIdentity{name: 'अर्जुन', surname: 'शर्मा', email: 'arjun.sharma@acme.com'}",member4,member4
-user-account-flight-crew-member-05,true,"UserIdentity{name: 'Aitana', surname: 'Ocaña Morales', email: 'papadoaitana1727@acme.com'}",member,member
+user-account-flight-crew-member-05,true,"UserIdentity{name: 'Aitana', surname: 'Ocaña Morales', email: 'aitana1727@acme.com'}",member,member
 user-account-customer-01,true,"UserIdentity{name: 'Devola', surname: 'Customer', email: 'devola@acme.com'}",customer1,customer1
 user-account-customer-02,true,"UserIdentity{name: 'Popola', surname: 'Customer', email: 'popola@acme.com'}",customer2,customer2
 user-account-customer-03,true,"UserIdentity{name: 'Emil', surname: 'Customer', email: 'emil@acme.com'}",customer3,customer3
+user-account-technician-01,true,"UserIdentity{name: 'Alex', surname: 'Technician', email:'alex@acme.com'}",technician1,technician1
+user-account-technician-02,true,"UserIdentity{name: 'Mateo', surname: 'ทดสอบสตริงภาษาไทย', email:'mateo@acme.com'}",technician2,technician2
+user-account-technician-03,true,"UserIdentity{name: 'Shepard', surname: 'မြန်မာစာစမ်းသပ်မှု', email:'shepard@acme.com'}",technician3,technician3

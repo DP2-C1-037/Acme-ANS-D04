@@ -36,11 +36,12 @@ public class MaintenanceRecord extends AbstractEntity {
 	// Attributes ----------------------------------------------------------------------------------------------------
 
 	@Mandatory
-	@ValidMoment
+	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				maintenanceDate;
 
 	@Mandatory
+	@Valid
 	@Automapped
 	private MaintenanceStatus	status;
 
