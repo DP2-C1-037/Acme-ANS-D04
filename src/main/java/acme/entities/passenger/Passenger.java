@@ -53,9 +53,4 @@ public class Passenger extends AbstractEntity {
 	@Automapped
 	String						specialNeeds;
 
-	// Crear entidad intermedia para almacenar los enlaces entre booking y passenger
-	// Booking 1 <-- * Intermedia, Intermedia * --> 1 Passenger
-	// Usar vocabulario cliente
-	// Esta entidad relaciona una instancia concreta de Booking hacia una instancia concreta de Passenger
-
 }

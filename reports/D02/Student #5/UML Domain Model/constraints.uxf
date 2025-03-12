@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>280</x>
-      <y>140</y>
+      <x>260</x>
+      <y>170</y>
       <w>270</w>
       <h>90</h>
     </coordinates>
@@ -20,8 +20,8 @@ bg=RED</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>630</x>
-      <y>140</y>
+      <x>610</x>
+      <y>170</y>
       <w>390</w>
       <h>100</h>
     </coordinates>
@@ -37,13 +37,13 @@ bg=RED</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>280</x>
-      <y>270</y>
+      <x>260</x>
+      <y>300</y>
       <w>410</w>
       <h>90</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Constraint&gt;&gt;
-ValidString
+ValidMoment
 --
 + value must be in range min..max
 + value must be equal or before current moment if past == true
@@ -53,8 +53,8 @@ bg=RED</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>280</x>
-      <y>390</y>
+      <x>260</x>
+      <y>420</y>
       <w>230</w>
       <h>70</h>
     </coordinates>
@@ -68,8 +68,8 @@ bg=RED</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>280</x>
-      <y>490</y>
+      <x>260</x>
+      <y>520</y>
       <w>380</w>
       <h>70</h>
     </coordinates>
@@ -83,8 +83,8 @@ bg=RED</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>590</x>
-      <y>390</y>
+      <x>570</x>
+      <y>420</y>
       <w>260</w>
       <h>70</h>
     </coordinates>
