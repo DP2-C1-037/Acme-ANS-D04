@@ -50,25 +50,25 @@ public class Flight extends AbstractEntity {
 
 
 	@Transient
-	public Date getScheduledDeparture() {
+	private Date getScheduledDeparture() {
 		LegRepository legRepository = SpringHelper.getBean(LegRepository.class);
 		return legRepository.findScheduledDeparture(this.getId());
 	}
 
 	@Transient
-	public Date getScheduledArrival() {
+	private Date getScheduledArrival() {
 		LegRepository legRepository = SpringHelper.getBean(LegRepository.class);
 		return legRepository.findScheduledArrival(this.getId());
 	}
 
 	@Transient
-	public String getOriginCity() {
+	private String getOriginCity() {
 		LegRepository legRepository = SpringHelper.getBean(LegRepository.class);
 		return legRepository.findOriginCity(this.getId());
 	}
 
 	@Transient
-	public String getDestinationCity() {
+	private String getDestinationCity() {
 		LegRepository legRepository = SpringHelper.getBean(LegRepository.class);
 		return legRepository.findDestinationCity(this.getId());
 	}
