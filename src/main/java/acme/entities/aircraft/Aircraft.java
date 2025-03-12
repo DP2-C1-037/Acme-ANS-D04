@@ -12,6 +12,7 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
+import acme.datatypes.AircraftStatus;
 import acme.entities.airline.Airline;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,36 +25,37 @@ public class Aircraft extends AbstractEntity {
 	private static final long	serialVersionUID	= 1L; // olde Java remora
 
 	@Mandatory
-	@ManyToOne(optional = false)
-	@Valid
-	private Airline				airline; // an aircraft belongs to an arline
-
-	@Mandatory
-	@Automapped
 	@ValidString(min = 1, max = 50)
+	@Automapped
 	private String				model;
 
 	@Mandatory
-	@Column(unique = true)
 	@ValidString(min = 1, max = 50)
+	@Column(unique = true)
 	private String				registrationNumber;
 
 	@Mandatory
+	@ValidNumber(min = 1, max = 255)
 	@Automapped
-	@ValidNumber(min = 0)
 	private Integer				capacity; // number of passengers
 
 	@Mandatory
-	@Automapped
 	@ValidNumber(min = 2000, max = 50000)
+	@Automapped
 	private Integer				cargoWeight; //kgs
 
 	@Mandatory
+	@Valid
 	@Automapped
-	private Boolean				status; // true means "in active service" and false "under maintenance"
+	private AircraftStatus		status;
 
 	@Optional
+	@ValidString(min = 0, max = 255)
 	@Automapped
-	@ValidString(min = 1, max = 255)
 	private String				optionalDetails;
+
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Airline				airline; // an aircraft belongs to an arline
 }

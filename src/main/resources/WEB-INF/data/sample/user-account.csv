@@ -5,3 +5,11 @@ user-account-consumer-03,true,"UserIdentity{name: 'Manolo', surname: '之乎路�
 user-account-provider-01,true,"UserIdentity{name: 'Laurel', surname: 'Provider', email: 'laurel@acme.com'}",provider1,provider1
 user-account-provider-02,true,"UserIdentity{name: 'Martina', surname: 'коза თხა', email: 'martina@acme.com'}",provider2,provider2
 user-account-provider-03,true,"UserIdentity{name: 'Antonia', surname: 'אבטיח Æløzå', email: 'antonia@acme.com'}",provider3,provider3
+user-account-flight-crew-member-01,true,"UserIdentity{name: 'Χρήστος', surname: 'Παπαδόπουλος', email: 'papadopoulos@acme.com'}",member1,member1
+user-account-flight-crew-member-02,true,"UserIdentity{name: '佐藤', surname: '健', email: 'sato.ken@acme.com'}",member2,member2
+user-account-flight-crew-member-03,true,"UserIdentity{name: 'علي', surname: 'النجار', email: 'ali.alnajar@acme.com'}",member3,member3
+user-account-flight-crew-member-04,true,"UserIdentity{name: 'अर्जुन', surname: 'शर्मा', email: 'arjun.sharma@acme.com'}",member4,member4
+user-account-flight-crew-member-05,true,"UserIdentity{name: 'Aitana', surname: 'Ocaña Morales', email: 'aitana1727@acme.com'}",member,member
+user-account-customer-01,true,"UserIdentity{name: 'Devola', surname: 'Customer', email: 'devola@acme.com'}",customer1,customer1
+user-account-customer-02,true,"UserIdentity{name: 'Popola', surname: 'Customer', email: 'popola@acme.com'}",customer2,customer2
+user-account-customer-03,true,"UserIdentity{name: 'Emil', surname: 'Customer', email: 'emil@acme.com'}",customer3,customer3

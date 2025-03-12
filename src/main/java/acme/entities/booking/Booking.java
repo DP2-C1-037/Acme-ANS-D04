@@ -2,11 +2,9 @@
 package acme.entities.booking;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -19,10 +17,9 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoney;
-import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
-import acme.entities.customer.Customer;
-import acme.entities.passenger.Passenger;
+import acme.entities.airline.Flight;
+import acme.realms.Customer;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -58,29 +55,20 @@ public class Booking extends AbstractEntity {
 	private Money				price;
 
 	@Optional
-	@ValidNumber(integer = 4)
+	@ValidString(min = 4, max = 4)
 	@Automapped
-	private Integer				lastNibble;
+	private String				lastNibble;
 
 	// Relationships -------------------------------------------------------------------------------------------------
 
 	@Mandatory
+	@Valid
 	@ManyToOne
-	@Automapped
 	private Customer			customer;
 
-	/*
-	 * @Mandatory
-	 * 
-	 * @ManyToOne
-	 * 
-	 * @Automapped
-	 * private Flight flight;
-	 */
-
 	@Mandatory
-	@ManyToMany
-	@Automapped
-	private List<Passenger>		passengers;
+	@Valid
+	@ManyToOne
+	private Flight				flight;
 
 }

@@ -4,17 +4,17 @@ package acme.entities.airline;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import javax.persistence.Transient;
+import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.datatypes.Money;
+import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
-import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoney;
-import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
+import acme.client.helpers.SpringHelper;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,43 +26,59 @@ public class Flight extends AbstractEntity {
 	private static final long	serialVersionUID	= 1L;
 
 	@Mandatory
-	@Max(50)
-	@ValidString
+	@ValidString(min = 1, max = 50)
+	@Automapped
 	private String				tag;
 
 	@Mandatory
-	@ValidNumber
-	@Min(0)
-	@Max(1)
-	private Integer				requiresSelfTransfer;
+	@Valid
+	@Automapped
+	private boolean				requiresSelfTransfer;
 
 	@Mandatory
 	@ValidMoney
+	@Automapped
 	private Money				cost;
 
 	@Optional
 	@ValidString
+	@Automapped
 	private String				description;
 
-	@Mandatory
-	@ValidMoment
-	private Date				scheduledDeparture;
+	// Derived attributes
 
-	@Mandatory
-	@ValidMoment
-	private Date				scheduledArrival;
 
-	@Mandatory
-	@ValidString
-	private String				originCity;
+	@Transient
+	public Date getScheduledDeparture() {
+		LegRepository legRepository = SpringHelper.getBean(LegRepository.class);
+		return legRepository.findScheduledDeparture(this.getId());
+	}
 
-	@Mandatory
-	@ValidString
-	private String				destinationCity;
+	@Transient
+	public Date getScheduledArrival() {
+		LegRepository legRepository = SpringHelper.getBean(LegRepository.class);
+		return legRepository.findScheduledArrival(this.getId());
+	}
 
-	@Mandatory
-	// Numero de escalas
-	@ValidNumber
-	private Integer				layovers;
+	@Transient
+	public String getOriginCity() {
+		LegRepository legRepository = SpringHelper.getBean(LegRepository.class);
+		return legRepository.findOriginCity(this.getId());
+	}
 
+	@Transient
+	public String getDestinationCity() {
+		LegRepository legRepository = SpringHelper.getBean(LegRepository.class);
+		return legRepository.findDestinationCity(this.getId());
+	}
+
+	@Transient
+	private int getLayoversNumber() {
+		LegRepository legRepository = SpringHelper.getBean(LegRepository.class);
+		return legRepository.findAll().size() - 1;
+	}
+
+	//	@ManyToOne
+	//	@JoinColumn(name = "weather_conditions_id")
+	//	private WeatherConditions weatherConditions;
 }

@@ -15,7 +15,10 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
-import acme.entities.flightCrewMember.FlightCrewMember;
+import acme.datatypes.AssignmentStatus;
+import acme.datatypes.FlightCrewDuty;
+import acme.entities.airline.Leg;
+import acme.realms.FlightCrewMember;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,28 +30,33 @@ public class FlightAssignment extends AbstractEntity {
 	private static final long	serialVersionUID	= 1L;
 
 	@Mandatory
-	@ManyToOne(optional = false)
 	@Valid
-	private FlightCrewMember	flightCrewMember;
-
-	@Mandatory
 	@Automapped
-	@Valid
 	private FlightCrewDuty		flightCrewDuty;
 
 	@Mandatory
+	@ValidMoment(past = true, min = "2000/01/01 00:00")
 	@Temporal(TemporalType.TIMESTAMP)
-	@ValidMoment(past = true)
 	private Date				lastUpdateMoment;
 
 	@Mandatory
-	@Automapped
 	@Valid
+	@Automapped
 	private AssignmentStatus	status;
 
 	@Optional
+	@ValidString(min = 0, max = 255)
 	@Automapped
-	@ValidString(min = 1, max = 255)
 	private String				remarks;
+
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Leg					leg;
+
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private FlightCrewMember	flightCrewMember;
 
 }

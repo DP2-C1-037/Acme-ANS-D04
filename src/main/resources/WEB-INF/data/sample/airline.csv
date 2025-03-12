@@ -1,0 +1,4 @@
+﻿key,name,iataCode,website,type,foundationMoment,email,phoneNumber
+airline-01,SkyHigh Airlines,SHX,https://www.skyhigh.com,LUXURY,2005/02/01 10:00,contact@skyhigh.com,+18005551234
+airline-02,Oceanic Airways,OAX,https://www.oceanic.com,STANDARD,2010/04/10 13:25,info@oceanic.com,+442079460958
+airline-03,Global Wings,GWX,https://www.globalwings.com,LOW_COST,2001/12/20 00:00,,
