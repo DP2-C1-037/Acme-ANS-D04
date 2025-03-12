@@ -4,6 +4,7 @@ package acme.entities.airline;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 import javax.validation.Valid;
 
@@ -78,7 +79,16 @@ public class Flight extends AbstractEntity {
 		return legRepository.legsNumberFromFlightId(this.getId()) - 1;
 	}
 
+	// Relationships
+
+
+	@Mandatory
+	@Valid
+	@ManyToOne
+	private Airline airline;
+
+	//	@Mandatory
+	//	@Valid
 	//	@ManyToOne
-	//	@JoinColumn(name = "weather_conditions_id")
 	//	private WeatherConditions weatherConditions;
 }
