@@ -12,8 +12,8 @@ maintenance-record-08,2012/02/07 0:00,COMPLETED,2025/01/09 10:00,EUR 5000.00,"Lo
 # nextInspectionDueDate
 maintenance-record-09,2012/02/07 0:00,IN_PROGRESS,2025/01/01 0:01,EUR 5000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",technician-01,aircraft-01
 maintenance-record-10,2012/02/07 0:00,IN_PROGRESS,2025/01/01 0:02,EUR 5000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",technician-01,aircraft-01
-maintenance-record-11,2012/02/07 0:00,IN_PROGRESS,2200/12/31 23:59,EUR 5000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",technician-01,aircraft-01
-maintenance-record-12,2012/02/07 0:00,IN_PROGRESS,2201/01/01 0:00,EUR 5000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",technician-01,aircraft-01
+maintenance-record-11,2012/02/07 0:00,IN_PROGRESS,2200/12/31 23:58,EUR 5000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",technician-01,aircraft-01
+maintenance-record-12,2012/02/07 0:00,IN_PROGRESS,2200/12/31 23:59,EUR 5000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",technician-01,aircraft-01
 # estimatedCost - standard variations
 maintenance-record-13,2012/02/07 0:00,IN_PROGRESS,2025/01/09 10:00,EUR 0.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",technician-01,aircraft-01
 maintenance-record-14,2012/02/07 0:00,IN_PROGRESS,2025/01/09 10:00,EUR 0.01,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",technician-01,aircraft-01
