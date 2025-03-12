@@ -14,6 +14,6 @@ acme.validation.leg.flightNumber.message = El número de vuelo está compuesto p
 
 acme.validation.maintenance-record.next-inspection.message = La fecha asociada a la próxima inspección debe ser posterior a la fecha de mantenimiento.
 
-acme.validation.service.promotionCode.message = Los dos últimos caracteres del código promocional deben coincidir con los dos últimos dígitos del año actual.
+acme.validation.service.promotionCode.message = El código promocional debe coincidir con el patrón ^[A-Z]{4}-[0-9]{2}$, y sus dos últimos caracteres con los dos últimos dígitos del año actual
 
-acme.validation.customer.identifier.message = Los dos o tres primeros caracteres del identificador único del cliente deben coincidir con sus iniciales.
+acme.validation.customer.identifier.message = Los dos o tres primeros caracteres del identificador único del cliente deben coincidir con sus iniciales
