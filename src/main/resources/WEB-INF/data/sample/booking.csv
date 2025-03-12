@@ -23,15 +23,7 @@ booking-15,AAAAAAJ,2012/07/02 0:00,ECONOMY,EUR 1000000.00,1111,customer-01,fligh
 #lastNibble - standard variations
 booking-16,AAAAAAK,2012/07/02 0:00,ECONOMY,EUR 500000.00,,customer-01,flight-01
 booking-17,AAAAAAL,2012/07/02 0:00,ECONOMY,EUR 500000.00,9999,customer-01,flight-01
-#company - standard variations
+customer - standard variations
 booking-18,AAAAAAM,2012/07/02 0:00,ECONOMY,EUR 500000.00,1111,customer-02,flight-01
 #flight - standard variations
 booking-19,AAAAAAN,2012/07/02 0:00,ECONOMY,EUR 500000.00,1111,customer-01,flight-02
-
-
-
-
-
-
-
-
