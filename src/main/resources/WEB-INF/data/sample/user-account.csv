@@ -32,3 +32,11 @@ user-account-airline-manager-18,true,"UserIdentity{name: 'Script', surname: 'Inj
 user-account-technician-01,true,"UserIdentity{name: 'Alex', surname: 'Technician', email:'alex@acme.com'}",technician1,technician1
 user-account-technician-02,true,"UserIdentity{name: 'Mateo', surname: 'Technician', email:'mateo@acme.com'}",technician2,technician2
 user-account-technician-03,true,"UserIdentity{name: 'Shepard', surname: 'မြန်မာစာစမ်းသပ်မှု', email:'shepard@acme.com'}",technician3,technician3
+user-account-administrator-02,true,"UserIdentity{name: 'Admin1', surname: 'Acme', email: 'admin1@acme.com'}",administrator1,administrator1
+user-account-administrator-03,true,"UserIdentity{name: 'Admin2', surname: 'Acme', email: 'admin2@acme.com'}",administrator2,administrator2
+# Username/password edge cases (min=5, max=60)
+user-account-administrator-04,true,"UserIdentity{name: 'A', surname: 'A', email: 'a@a.com'}",administrator4,administrator4
+user-account-administrator-05,true,"UserIdentity{name: '这是一条非常长的名字', surname: '这是一条非常长的姓氏', email: '洛伦@伊普森.com'}",administrator5,administrator5
+# Unicode in identity fields
+user-account-administrator-06,true,"UserIdentity{name: '佐藤', surname: '健', email: 'sato.ken@acme.com'}",administrator6,administrator6
+user-account-administrator-07,true,"UserIdentity{name: 'لوريم', surname: 'إيبسوم', email: 'lorem.ipsum@acme.com'}",administrator7,administrator7
