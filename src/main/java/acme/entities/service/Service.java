@@ -3,6 +3,7 @@ package acme.entities.service;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
@@ -43,6 +44,7 @@ public class Service extends AbstractEntity {
 	private Double				averageDwellTime;
 
 	@Optional
+	@Valid
 	@Column(unique = true)
 	private String				promotionCode;
 
