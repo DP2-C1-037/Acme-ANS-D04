@@ -54,7 +54,7 @@ public class Course extends AbstractEntity {
 	private String				belongedToSubjectIdentifier;
 
 	@Mandatory
-	@ValidNumber(min = 0, integer = 2, fraction = 1)
+	@ValidNumber(min = 0, integer = 3, fraction = 2)
 	@Automapped
 	private Double				creditHours;
 
