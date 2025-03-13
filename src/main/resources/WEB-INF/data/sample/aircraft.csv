@@ -47,4 +47,7 @@ aircraft-37,"Lorem ipsum dolor sit amet, consectetur adipiscing",REG-028,128,260
 aircraft-38,"Lorem ipsum dolor sit amet, consectetur adipiscing",REG-029,128,26000,ACTIVE_SERVICE,<marquee>Hacked</marquee>,airline-01
 aircraft-39,"Lorem ipsum dolor sit amet, consectetur adipiscing",REG-030,128,26000,ACTIVE_SERVICE,<script>alert(‘Hacked!’);</script>,airline-01
 aircraft-40,"Lorem ipsum dolor sit amet, consectetur adipiscing",REG-031,128,26000,ACTIVE_SERVICE,' or 'A' = 'A,airline-01
+aircraft-41,"Lorem ipsum dolor sit amet, consectetur adipiscing",REG-032,128,26000,ACTIVE_SERVICE,,airline-01
 # airline - standard variations,,,,,,,
+aircraft-42,"Lorem ipsum dolor sit amet, consectetur adipiscing",REG-033,128,26000,ACTIVE_SERVICE,"Lorem ipsum dolor sit amet, consectetur adipiscing",airline-02
+

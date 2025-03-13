@@ -4,7 +4,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>50</x>
+      <x>0</x>
       <y>90</y>
       <w>350</w>
       <h>90</h>
@@ -21,7 +21,7 @@ bg=RED
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>50</x>
+      <x>0</x>
       <y>210</y>
       <w>420</w>
       <h>90</h>
@@ -38,7 +38,7 @@ bg=RED
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>50</x>
+      <x>0</x>
       <y>320</y>
       <w>520</w>
       <h>100</h>
@@ -56,7 +56,7 @@ bg=RED
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>650</x>
+      <x>600</x>
       <y>90</y>
       <w>150</w>
       <h>70</h>
@@ -72,7 +72,7 @@ bg=RED
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>650</x>
+      <x>600</x>
       <y>360</y>
       <w>350</w>
       <h>150</h>
@@ -93,7 +93,7 @@ bg=RED
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>50</x>
+      <x>0</x>
       <y>440</y>
       <w>430</w>
       <h>100</h>
@@ -111,7 +111,7 @@ bg=RED
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>650</x>
+      <x>600</x>
       <y>180</y>
       <w>380</w>
       <h>70</h>
@@ -127,7 +127,7 @@ bg=RED
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>650</x>
+      <x>600</x>
       <y>270</y>
       <w>370</w>
       <h>70</h>
@@ -143,33 +143,16 @@ bg=RED
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>50</x>
-      <y>560</y>
-      <w>420</w>
-      <h>80</h>
+      <x>0</x>
+      <y>570</y>
+      <w>540</w>
+      <h>100</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Constraint&gt;&gt;
-ValidIncidentCounts
+ValidFlightCrewMember
 --
-+ each key in the map must match the pattern "^(0-3|4-7|8-10)$"  
-+ map must not be null or empty
-bg=RED
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>650</x>
-      <y>530</y>
-      <w>450</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Constraint&gt;&gt;
-ValidFlightAssignmentsStatus
---
-+ each key in the map must be a valid AssignmentStatus enum value
-+ map must not be null or empty  
++ employeeCode must match the pattern "^[A-Z]{2,3}\\d{6}$"
++ employeeCode initials must match the first letters of the user's name and surname
 bg=RED
 </panel_attributes>
     <additional_attributes/>

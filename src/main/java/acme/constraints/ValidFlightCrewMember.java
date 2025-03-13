@@ -15,7 +15,7 @@ import javax.validation.Payload;
 
 public @interface ValidFlightCrewMember {
 
-	String message() default "{acme.validation.employee-code.message}";
+	String message() default "";
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
 }
