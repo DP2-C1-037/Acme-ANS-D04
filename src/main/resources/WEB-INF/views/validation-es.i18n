@@ -9,4 +9,4 @@
 # they accept any liabilities with respect to them.
 
 acme.validation.flight.identifierNumber.message = Las dos primeras letras del número de identificación deben corresponder a las iniciales del nombre del gerente.
-acme.validation.maintenance-record.next-inspection.message = La fecha asociada a la próxima inspección debe ser posterior a la fecha de mantenimiento.
+acme.validation.maintenance-record.nextInspection.message = La fecha asociada a la próxima inspección debe ser en el futuro
