@@ -49,8 +49,8 @@ public class Service extends AbstractEntity {
 	private String				promotionCode;
 
 	@Optional
-	@ValidNumber(min = 0, max = 100, fraction = 2)
+	@ValidNumber(min = 0, max = 100, fraction = 2, integer = 3)
 	@Automapped
-	private Double				money;
+	private Double				discount;
 
 }

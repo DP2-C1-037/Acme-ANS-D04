@@ -49,7 +49,7 @@ public class Passenger extends AbstractEntity {
 	Date						birthDate;
 
 	@Optional
-	@ValidString(min = 1, max = 50)
+	@ValidString(min = 0, max = 50)
 	@Automapped
 	String						specialNeeds;
 
