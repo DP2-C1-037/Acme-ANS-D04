@@ -1,3 +1,3 @@
 key,key:userAccount,identifier,phoneNumber,physicalAddress,city,country,earnedPoints
-customer-01,user-account-customer-01,CD123456,+34955667788,"Calle Larios, 15",Málaga,España,75000
-customer-02,user-account-customer-02,CP987654,+34776543210,"Plaza Nueva, 3",Sevilla,España,120000
+customer-01,user-account-customer-01,DC123456,+34955667788,"Calle Larios, 15",Málaga,España,75000
+customer-02,user-account-customer-02,PC987654,+34776543210,"Plaza Nueva, 3",Sevilla,España,120000

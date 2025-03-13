@@ -13,10 +13,11 @@ import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
-import acme.client.components.validation.ValidEmail;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
+import acme.constraints.ValidEmail2;
+import acme.datatypes.AirlineType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,7 +29,7 @@ public class Airline extends AbstractEntity {
 	private static final long	serialVersionUID	= 1L;
 
 	@Mandatory
-	@ValidString(max = 50)
+	@ValidString(min = 1, max = 50)
 	@Automapped
 	private String				name;
 
@@ -48,12 +49,12 @@ public class Airline extends AbstractEntity {
 	private AirlineType			type;
 
 	@Mandatory
-	@ValidMoment(past = true)
+	@ValidMoment(min = "2000/01/01 00:00", past = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				foundationMoment;
 
 	@Optional
-	@ValidEmail
+	@ValidEmail2
 	@Automapped
 	private String				email;
 

@@ -22,52 +22,52 @@ public class VisaRequirement extends AbstractEntity {
 	private static final long	serialVersionUID	= 1L;
 
 	@Mandatory
+	@ValidString(min = 1, max = 50)
 	@Automapped
-	@ValidString(min = 0, max = 50)
 	private String				passportOf;
 
 	@Mandatory
-	@Automapped
 	@ValidString(min = 2, max = 2)
+	@Automapped
 	private String				passportCode;
 
 	@Mandatory
+	@ValidString(min = 1, max = 50)
 	@Automapped
-	@ValidString(min = 0, max = 50)
 	private String				destination;
 
 	@Mandatory
+	@ValidString(min = 1, max = 50)
 	@Automapped
-	@ValidString(min = 0, max = 50)
 	private String				passValid;
 
 	@Optional
-	@Automapped
 	@ValidString(min = 0, max = 255)
+	@Automapped
 	private String				exceptText;
 
 	@Mandatory
+	@ValidString(min = 1, max = 50)
 	@Automapped
-	@ValidString(min = 0, max = 50)
 	private String				visa;
 
 	@Optional
-	@Automapped
 	@ValidString(min = 0, max = 255)
+	@Automapped
 	private String				stayOf;
 
 	@Mandatory
-	@Automapped
 	@ValidUrl
+	@Automapped
 	private String				link;
 
 	@Mandatory
-	@Automapped
 	@Valid
+	@Automapped
 	private Boolean				error;
 
 	@Mandatory
+	@ValidString(min = 1, max = 10)
 	@Automapped
-	@ValidString(min = 0, max = 10)
 	private String				color;
 }

@@ -17,6 +17,7 @@ import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
 import acme.constraints.ValidLegFlightNumber;
+import acme.datatypes.LegStatus;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.airports.Airport;
 import lombok.Getter;
@@ -37,12 +38,12 @@ public class Leg extends AbstractEntity {
 	private String				flightNumber;
 
 	@Mandatory
-	@ValidMoment
+	@ValidMoment(min = "2000/01/01 00:00")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				scheduledDeparture;
 
 	@Mandatory
-	@ValidMoment
+	@ValidMoment(min = "2000/01/01 00:00")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				scheduledArrival;
 

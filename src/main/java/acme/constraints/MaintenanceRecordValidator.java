@@ -1,18 +1,21 @@
 
 package acme.constraints;
 
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 import javax.validation.ConstraintValidatorContext;
 
 import acme.client.components.validation.AbstractValidator;
+import acme.client.components.validation.Validator;
 import acme.client.helpers.MomentHelper;
 import acme.entities.maintenanceRecords.MaintenanceRecord;
 
+@Validator
 public class MaintenanceRecordValidator extends AbstractValidator<ValidMaintenanceRecord, MaintenanceRecord> {
 
 	@Override
-	public void initialize(final ValidMaintenanceRecord constraintAnnotation) {
+	protected void initialise(final ValidMaintenanceRecord constraintAnnotation) {
 		assert constraintAnnotation != null;
 	}
 
@@ -23,16 +26,16 @@ public class MaintenanceRecordValidator extends AbstractValidator<ValidMaintenan
 		boolean result;
 		boolean isNull;
 
-		isNull = maintenanceRecord == null || maintenanceRecord.getMaintenanceDate() == null || maintenanceRecord.getNextInspectionDueDate() == null;
+		isNull = maintenanceRecord == null || maintenanceRecord.getNextInspectionDueDate() == null;
 
 		if (!isNull) {
-			boolean nextInspectionIsAfterMaintenance;
+			boolean nextInspectionIsFuture;
 
-			Date maintenanceDate = maintenanceRecord.getMaintenanceDate();
 			Date nextInspection = maintenanceRecord.getNextInspectionDueDate();
-			nextInspectionIsAfterMaintenance = MomentHelper.isAfter(nextInspection, maintenanceDate);
+			Date minDate = MomentHelper.deltaFromCurrentMoment(1, ChronoUnit.MINUTES);
+			nextInspectionIsFuture = MomentHelper.isAfterOrEqual(nextInspection, minDate);
 
-			super.state(context, nextInspectionIsAfterMaintenance, "nextInspectionDueDate", "{acme.validation.maintenance-record.next-inspection.message}");
+			super.state(context, nextInspectionIsFuture, "nextInspectionDueDate", "{acme.validation.maintenance-record.nextInspection.message}");
 		}
 
 		result = !super.hasErrors(context);

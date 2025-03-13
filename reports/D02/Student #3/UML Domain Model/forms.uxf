@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="15.1">
-  <zoom_level>9</zoom_level>
+  <zoom_level>13</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>18</x>
-      <y>18</y>
-      <w>549</w>
-      <h>171</h>
+      <x>0</x>
+      <y>0</y>
+      <w>442</w>
+      <h>247</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Form&gt;&gt;
 FlightCrewMemberDashboard
 --
-+ lastFiveDestinations: List&lt;String&gt; {Mandatory, Size(min = 1)}
-+ incidentCountsBySeverity: Map&lt;String, Integer&gt; {Mandatory, ValidIncidentCounts}
-+ lastLegCrewMembers: List&lt;String&gt; {Mandatory, Size(min = 1)}
-+ flightAssignmentsByStatus: Map&lt;String, Integer&gt; {Mandatory, ValidFlightAssignmentsStatus}
-+ averageFlightAssignments: Double {Mandatory, ValidScore}
-+ minFlightAssignments: Integer {Mandatory, ValidNumber(min = 0)}
-+ maxFlightAssignments: Integer {Mandatory, ValidNumber(min = 0)}
-+ stdDevFlightAssignments: Double {Mandatory, ValidScore}
++ lastFiveDestinations: List&lt;String&gt;
++ incidentCountsBySeverity: Map&lt;String, Integer&gt;
++ lastLegCrewMembers: List&lt;String&gt;
++ flightAssignmentsByStatus: Map&lt;String, Integer&gt;
++ averageFlightAssignments: Double
++ minFlightAssignments: Integer
++ maxFlightAssignments: Integer
++ stdDevFlightAssignments: Double
 bg=cyan</panel_attributes>
     <additional_attributes/>
   </element>
