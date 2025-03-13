@@ -41,3 +41,6 @@ user-account-administrator-05,true,"UserIdentity{name: '这是一条非常长的
 # Unicode in identity fields
 user-account-administrator-06,true,"UserIdentity{name: '佐藤', surname: '健', email: 'sato.ken@acme.com'}",administrator6,administrator6
 user-account-administrator-07,true,"UserIdentity{name: 'لوريم', surname: 'إيبسوم', email: 'lorem.ipsum@acme.com'}",administrator7,administrator7
+user-account-assistance-agent-01,true,"UserIdentity{name: 'Agent', surname: 'One', email: 'agent1@acme.com'}",AG123456,agent1
+user-account-assistance-agent-02,true,"UserIdentity{name: 'Agent', surname: 'Two', email: 'agent2@acme.com'}",AT456789,agent2
+user-account-assistance-agent-03,true,"UserIdentity{name: 'Manager', surname: 'Three', email: 'manager3@acme.com'}",MT123456,agent3
