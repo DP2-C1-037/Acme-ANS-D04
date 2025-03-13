@@ -26,6 +26,7 @@ public class Task extends AbstractEntity {
 	// Attributes ----------------------------------------------------------------------------------------------------
 
 	@Mandatory
+	@Valid
 	@Automapped
 	private TaskType			type;
 
@@ -42,7 +43,7 @@ public class Task extends AbstractEntity {
 	@Mandatory
 	@ValidNumber(min = 0, max = 1000)
 	@Automapped
-	private Integer				estimatedDuration;
+	private Double				estimatedDuration;
 
 	// Relationships ----------------------------------------------------------------------------------------------------
 
