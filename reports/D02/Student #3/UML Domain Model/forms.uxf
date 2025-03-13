@@ -14,7 +14,7 @@ FlightCrewMemberDashboard
 --
 + lastFiveDestinations: List&lt;String&gt;
 + incidentCountsBySeverity: Map&lt;String, Integer&gt;
-+ lastLegCrewMembers: List&lt;FlightCrewMember&gt;
++ lastLegCrewMembers: List&lt;String&gt;
 + flightAssignmentsByStatus: Map&lt;String, Integer&gt;
 + averageFlightAssignments: Double
 + minFlightAssignments: Integer
