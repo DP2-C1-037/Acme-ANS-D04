@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="15.1">
-  <zoom_level>9</zoom_level>
+  <zoom_level>13</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>18</x>
-      <y>18</y>
-      <w>306</w>
-      <h>171</h>
+      <x>0</x>
+      <y>0</y>
+      <w>442</w>
+      <h>247</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Form&gt;&gt;
 FlightCrewMemberDashboard
 --
 + lastFiveDestinations: List&lt;String&gt;
 + incidentCountsBySeverity: Map&lt;String, Integer&gt;
-+ lastLegCrewMembers: List&lt;String&gt;
++ lastLegCrewMembers: List&lt;FlightCrewMember&gt;
 + flightAssignmentsByStatus: Map&lt;String, Integer&gt;
 + averageFlightAssignments: Double
 + minFlightAssignments: Integer
