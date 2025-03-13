@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>368</x>
-      <y>328</y>
+      <x>408</x>
+      <y>296</y>
       <w>456</w>
       <h>104</h>
     </coordinates>
@@ -23,8 +23,8 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>360</x>
-      <y>176</y>
+      <x>400</x>
+      <y>144</y>
       <w>472</w>
       <h>88</h>
     </coordinates>
@@ -41,8 +41,8 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>968</x>
-      <y>368</y>
+      <x>1008</x>
+      <y>336</y>
       <w>88</w>
       <h>32</h>
     </coordinates>
@@ -54,8 +54,8 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>816</x>
-      <y>368</y>
+      <x>856</x>
+      <y>336</y>
       <w>168</w>
       <h>48</h>
     </coordinates>
@@ -70,8 +70,8 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>824</x>
-      <y>184</y>
+      <x>864</x>
+      <y>152</y>
       <w>216</w>
       <h>200</h>
     </coordinates>
@@ -86,8 +86,8 @@ m2=*
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>40</x>
-      <y>360</y>
+      <x>80</x>
+      <y>328</y>
       <w>96</w>
       <h>32</h>
     </coordinates>
@@ -99,8 +99,8 @@ bg=pink</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>80</x>
-      <y>208</y>
+      <x>120</x>
+      <y>176</y>
       <w>296</w>
       <h>168</h>
     </coordinates>
@@ -115,8 +115,8 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>128</x>
-      <y>360</y>
+      <x>168</x>
+      <y>328</y>
       <w>256</w>
       <h>48</h>
     </coordinates>
@@ -131,8 +131,8 @@ m2=*
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>544</x>
-      <y>496</y>
+      <x>584</x>
+      <y>464</y>
       <w>96</w>
       <h>32</h>
     </coordinates>
@@ -144,8 +144,8 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>584</x>
-      <y>424</y>
+      <x>624</x>
+      <y>392</y>
       <w>64</w>
       <h>88</h>
     </coordinates>
@@ -160,8 +160,8 @@ m2=*
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>40</x>
-      <y>560</y>
+      <x>80</x>
+      <y>528</y>
       <w>472</w>
       <h>120</h>
     </coordinates>
