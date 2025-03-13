@@ -6,7 +6,6 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -14,7 +13,6 @@ import javax.validation.Valid;
 import acme.client.components.basis.AbstractRole;
 import acme.client.components.datatypes.Money;
 import acme.client.components.mappings.Automapped;
-import acme.client.components.principals.UserAccount;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
@@ -51,7 +49,7 @@ public class AssistanceAgent extends AbstractRole {
 	@Mandatory
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date				moment;
+	private Date				startDate;
 
 	@Optional
 	@Automapped
@@ -60,7 +58,7 @@ public class AssistanceAgent extends AbstractRole {
 
 	@Optional
 	@Automapped
-	@ValidString(max = 255)
+	@ValidString
 	private String				briefBio;
 
 	@Optional
@@ -69,11 +67,6 @@ public class AssistanceAgent extends AbstractRole {
 	private String				picture;
 
 	// Relationships -------------------------------------------------------------------------------------------------
-
-	@Mandatory
-	@Valid
-	@OneToOne(optional = false)
-	private UserAccount			userAccount;
 
 	@Mandatory
 	@ManyToOne(optional = false)
