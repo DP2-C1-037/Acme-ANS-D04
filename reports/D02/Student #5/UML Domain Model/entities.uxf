@@ -34,7 +34,7 @@ Task
 + type: TaskType {Mandatory, Valid, Automapped}
 + description: String {Mandatory, ValidString(min=1, max=255), Automapped}
 + priority: Integer {Mandatory, ValidNumber(min=0, max=10), Automapped}
-+ estimatedDuration: Integer {Mandatory, ValidNumber(min=0, max=1000), Automapped}
++ estimatedDuration: Double {Mandatory, ValidNumber(min=0, max=1000), Automapped}
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>
