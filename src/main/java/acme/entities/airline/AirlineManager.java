@@ -5,8 +5,11 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.Valid;
+
 import acme.client.components.basis.AbstractRole;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
@@ -39,7 +42,7 @@ public class AirlineManager extends AbstractRole {
 	private Integer				experienceYears;
 
 	@Mandatory
-	@ValidMoment(past = true)
+	@ValidMoment(min = "1965/01/01 00:00", past = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				birthDate;
 
@@ -48,5 +51,12 @@ public class AirlineManager extends AbstractRole {
 	@ValidUrl
 	@Automapped
 	private String				pictureLink;
+
+	// Relationships
+
+	@Mandatory
+	@Valid
+	@ManyToOne
+	private Airline				airline;
 
 }

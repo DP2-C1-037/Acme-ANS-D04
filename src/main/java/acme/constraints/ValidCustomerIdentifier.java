@@ -15,7 +15,7 @@ import javax.validation.Payload;
 
 public @interface ValidCustomerIdentifier {
 
-	String message() default "Identifier must match the initials of its respective customer account";
+	String message() default "";
 
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};

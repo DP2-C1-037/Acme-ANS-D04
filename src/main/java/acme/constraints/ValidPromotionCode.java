@@ -9,13 +9,14 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-@Target(ElementType.FIELD)
+@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = IncidentCountsValidator.class)
+@Constraint(validatedBy = PromotionCodeValidator.class)
 
-public @interface ValidIncidentCounts {
+public @interface ValidPromotionCode {
 
-	String message() default "{acme.validation.incidents-count.message}";
+	String message() default "";
+
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
 }

@@ -14,7 +14,7 @@ import javax.validation.Payload;
 @Constraint(validatedBy = ActivityLogValidator.class)
 public @interface ValidActivityLog {
 
-	String message() default "{acme.validation.registration-moment-log.message}";
+	String message() default "";
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
 }

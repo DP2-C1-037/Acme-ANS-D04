@@ -1,9 +1,6 @@
 
 package acme.constraints;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
 import javax.validation.ConstraintValidatorContext;
 
 import acme.client.components.validation.AbstractValidator;
@@ -13,7 +10,7 @@ public class IdentifierNumberValidator extends AbstractValidator<ValidIdentifier
 
 	@Override
 	public boolean isValid(final AirlineManager airlineManager, final ConstraintValidatorContext context) {
-		String initials = IdentifierNumberValidator.getInitials(airlineManager.getUserAccount().getIdentity().getFullName());
+		String initials = IdentifierNumberValidator.getInitials(airlineManager.getUserAccount().getIdentity().getName(), airlineManager.getUserAccount().getIdentity().getSurname());
 		String identifierNumberToValidate = airlineManager.getIdentifierNumber().substring(0, initials.length());
 		boolean result = initials.equals(identifierNumberToValidate);
 		if (!result)
@@ -21,7 +18,10 @@ public class IdentifierNumberValidator extends AbstractValidator<ValidIdentifier
 		return result;
 	}
 
-	private static String getInitials(final String fullName) {
-		return Arrays.stream(fullName.split(" ")).map(p -> String.valueOf(p.charAt(0))).collect(Collectors.joining());
+	private static String getInitials(final String name, final String surname) {
+		StringBuilder result = new StringBuilder();
+		result.append(name.charAt(0));
+		result.append(surname.charAt(0));
+		return result.toString();
 	}
 }

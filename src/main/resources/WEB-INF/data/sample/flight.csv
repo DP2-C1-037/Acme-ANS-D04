@@ -1,0 +1,21 @@
+key,tag,requiresSelfTransfer,cost,description,key:airline
+# Base entity
+flight-01,Flight Tag 1,true,EUR 500000.00,Flight description,airline-01
+# tag: min/max length & Unicode
+flight-02,A,false,EUR 500000.00,Flight description,airline-02
+flight-03,这是一条测试标签，长度正好50字符,true,EUR 500000.00,Flight description,airline-03
+# cost: min/max (delta=0.01)
+flight-04,Flight Tag 4,true,EUR 0.00,Flight description,airline-01
+flight-05,Flight Tag 5,true,EUR 0.01,Flight description,airline-02
+flight-06,Flight Tag 6,true,EUR 999999.99,Flight description,airline-03
+flight-07,Flight Tag 7,true,EUR 1000000.00,Flight description,airline-01
+# description: Unicode & edge cases
+flight-08,Flight Tag 8,true,EUR 500000.00,这是一条非常长的描述，包含中文字符和特殊符号如@#$%^&*,airline-02
+flight-09,Flight Tag 9,true,EUR 500000.00,لوريم إيبسوم,airline-03
+flight-10,Flight Tag 10,true,EUR 500000.00,洛伦·伊普森,airline-01
+# requiresSelfTransfer: boolean coverage
+flight-11,Flight Tag 11,false,EUR 500000.00,Flight description,airline-02
+# injections
+flight-12,Flight Tag 12,true,EUR 500000.00,' OR '1'='1--,airline-01
+flight-13,Flight Tag 13,true,EUR 500000.00,<marquee>Hacked</marquee>,airline-02
+flight-14,Flight Tag 14,true,EUR 500000.00,<script>alert('XSS');</script>,airline-03
