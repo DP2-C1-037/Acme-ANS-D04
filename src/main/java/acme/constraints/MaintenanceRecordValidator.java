@@ -1,6 +1,7 @@
 
 package acme.constraints;
 
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 import javax.validation.ConstraintValidatorContext;
@@ -25,16 +26,16 @@ public class MaintenanceRecordValidator extends AbstractValidator<ValidMaintenan
 		boolean result;
 		boolean isNull;
 
-		isNull = maintenanceRecord == null || maintenanceRecord.getMaintenanceDate() == null || maintenanceRecord.getNextInspectionDueDate() == null;
+		isNull = maintenanceRecord == null || maintenanceRecord.getNextInspectionDueDate() == null;
 
 		if (!isNull) {
-			boolean nextInspectionIsAfterMaintenance;
+			boolean nextInspectionIsFuture;
 
-			Date maintenanceDate = maintenanceRecord.getMaintenanceDate();
 			Date nextInspection = maintenanceRecord.getNextInspectionDueDate();
-			nextInspectionIsAfterMaintenance = MomentHelper.isAfter(nextInspection, maintenanceDate);
+			Date minDate = MomentHelper.deltaFromCurrentMoment(1, ChronoUnit.MINUTES);
+			nextInspectionIsFuture = MomentHelper.isAfterOrEqual(nextInspection, minDate);
 
-			super.state(context, nextInspectionIsAfterMaintenance, "nextInspectionDueDate", "{acme.validation.maintenance-record.nextInspection.message}");
+			super.state(context, nextInspectionIsFuture, "nextInspectionDueDate", "{acme.validation.maintenance-record.nextInspection.message}");
 		}
 
 		result = !super.hasErrors(context);

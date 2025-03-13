@@ -1,13 +1,19 @@
 
 package acme.entities.weather;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
+import acme.client.components.mappings.Automapped;
+import acme.client.components.validation.Mandatory;
+import acme.client.components.validation.ValidNumber;
+import acme.client.components.validation.ValidString;
 import acme.entities.airports.Airport;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,15 +25,35 @@ public class WeatherConditions extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "airport_iata") // Relación con el aeropuerto (ej: "MAD", "JFK")
+	@Mandatory
+	@Valid
+	@ManyToOne
 	private Airport				airport;
 
+	@Mandatory
+	@ValidNumber
+	@Automapped
 	private Double				temperature;   // Temperatura en Kelvin (directo de la API)
+
+	@Mandatory
+	@ValidNumber
+	@Automapped
 	private Double				windSpeed;     // Velocidad del viento en m/s (directo de la API)
+
+	@Mandatory
+	@ValidString
+	@Automapped
 	private String				conditions;    // Ej: "clear sky", "rain"
+
+	@Mandatory
+	@ValidNumber
+	@Automapped
 	private Double				humidity;     // Porcentaje (0-100)
-	private LocalDateTime		timestamp;
+
+	@Mandatory
+	@ValidNumber
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date				dataDate;
 
 	// EJEMPLO RESPUESTA API OpenWeatherMap
 	//	{

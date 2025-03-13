@@ -1,4 +1,4 @@
-key,name,picture,averageDwellTime,promotionCode,money
+key,name,picture,averageDwellTime,promotionCode,discount
 # base entity
 service-00,"Lorem ipsum dolor sit amet,consectetu",http://lorem.com/ipsum,50,AAAA-25,50
 # name - standard variations

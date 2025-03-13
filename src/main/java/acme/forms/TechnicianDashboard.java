@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import acme.client.components.basis.AbstractForm;
+import acme.client.components.datatypes.Money;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,13 +22,13 @@ public class TechnicianDashboard extends AbstractForm {
 	private Map<String, Integer>	maintenanceRecordsByStatus;
 	private String					nearestInspectionMaintenanceRecord;
 	private List<String>			higherTaskNumberAircrafts;
-	private Double					lastYearAverageMaintenanceCost;
-	private Double					lastYearMaxMaintenanceCost;
-	private Double					lastYearMinMaintenanceCost;
-	private Double					lastYearStandardDeviationMaintenanceCost;
+	private Money					lastYearAverageMaintenanceCost;
+	private Money					lastYearMaxMaintenanceCost;
+	private Money					lastYearMinMaintenanceCost;
+	private Money					lastYearStandardDeviationMaintenanceCost;
 	private Double					taskAverageDuration;
-	private Integer					taskMaxDuration;
-	private Integer					tasgMinDuration;
+	private Double					taskMaxDuration;
+	private Double					tasgMinDuration;
 	private Double					taskStandardDeviationDuration;
 
 }
