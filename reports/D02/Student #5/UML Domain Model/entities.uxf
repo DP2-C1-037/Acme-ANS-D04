@@ -157,4 +157,24 @@ m2=*
 </panel_attributes>
     <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
   </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>40</x>
+      <y>560</y>
+      <w>472</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Course
+--
++ courseIdentifier: String {Mandatory, ValidUuid, Column(unique=true)}
++ number: String {Mandatory, ValidString(pattern="\\d{5}"), Automapped}
++ title: String {Mandatory, ValidString(min=1, max=50), Automapped}
++ belongedToSubjectIdentifier: String {Mandatory, ValidUuid, Automapped}
++ creditHours: Double {Mandatory, ValidNumber(min=0, integer=3, fraction=2), Automapped}
++ description: String {Optional, ValidString(min=0, max=255), Automapped}
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
 </diagram>

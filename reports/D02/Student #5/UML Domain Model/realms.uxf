@@ -10,7 +10,7 @@
       <h>150</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
-Technician
+Technician {ValidTechnician}
 --
 + licenseNumber: String {Mandatory, ValidString(pattern="^[A-Z]{2,3}\d{6}$"), Column(unique=true)}
 + phoneNumber: String {Mandatory, ValidString(pattern="^\+?\d{6,15}$"), Automapped}
