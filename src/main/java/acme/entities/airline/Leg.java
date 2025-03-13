@@ -48,7 +48,7 @@ public class Leg extends AbstractEntity {
 	private Date				scheduledArrival;
 
 	@Mandatory
-	@ValidNumber(min = 1, max = 24) // Consultar
+	@ValidNumber(min = 1, max = 24) // Consultar -> CAMBIAR A DERIVADA
 	@Automapped
 	private Integer				duration;
 
