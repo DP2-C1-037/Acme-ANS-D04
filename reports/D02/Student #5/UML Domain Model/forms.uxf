@@ -12,7 +12,7 @@
     <panel_attributes>&lt;&lt;Form&gt;&gt;
 TechnicianDashboard
 --
-+ maintenanceRecordsByStatus: Map&lt;MaintenanceStatus, Integer&gt;
++ maintenanceRecordsByStatus: Map&lt;String, Integer&gt;
 + nearestInspectionMaintenanceRecord: String
 + higherTaskNumberAircrafts: List&lt;String&gt;
 + lastYearAverageMaintenanceCost: Money
