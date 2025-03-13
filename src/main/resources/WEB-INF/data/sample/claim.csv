@@ -1,49 +1,44 @@
 key,registrationMoment,passengerEmail,description,type,accepted,key:assistanceAgent
 # base entity
-claim-00,2021/09/01 10:00,user00@example.com,"Flight delay on AA123",FLIGHT_ISSUES,TRUE,assistance-agent-01
+claim-00,2021/09/01 10:00,user00@example.com,Flight delay on AA123,FLIGHT_ISSUES,TRUE,assistance-agent-01
 # registrationMoment - standard variations
-claim-01,2022/01/01 00:00,user01@example.com,"Flight delay",FLIGHT_ISSUES,TRUE,assistance-agent-01
-claim-02,2022/01/01 00:01,user02@example.com,"Flight delay",FLIGHT_ISSUES,TRUE,assistance-agent-01
-claim-03,2021/09/01 10:00,user03@example.com,"Flight delay",FLIGHT_ISSUES,TRUE,assistance-agent-01
-claim-04,2021/10/25 23:59,user04@example.com,"Flight delay",FLIGHT_ISSUES,TRUE,assistance-agent-01
+claim-01,2022/01/01 00:00,user01@example.com,Flight delay,FLIGHT_ISSUES,TRUE,assistance-agent-01
+claim-02,2022/01/01 00:01,user02@example.com,Flight delay,FLIGHT_ISSUES,TRUE,assistance-agent-01
+claim-03,2021/09/01 10:00,user03@example.com,Flight delay,FLIGHT_ISSUES,TRUE,assistance-agent-01
+claim-04,2021/10/25 23:59,user04@example.com,Flight delay,FLIGHT_ISSUES,TRUE,assistance-agent-01
 # registrationMoment - no singular values
 # passengerEmail - standard variations
-claim-05,2021/09/01 10:00,a@b.c,"Short claim",FLIGHT_ISSUES,TRUE,assistance-agent-01
-claim-06,2021/09/01 10:00,short@example.com,"Short claim",FLIGHT_ISSUES,TRUE,assistance-agent-01
-claim-07,2021/09/01 10:00,typical.email-address_123@example.co.uk,"Short claim",FLIGHT_ISSUES,TRUE,assistance-agent-01
-claim-08,2021/09/01 10:00,very.long.email.address.with.many.parts.and.subdomains@subdomain.example.co.uk,"Short claim",FLIGHT_ISSUES,TRUE,assistance-agent-01
-claim-09,2021/09/01 10:00,email+with-special_chars@example.com,"Short claim",FLIGHT_ISSUES,TRUE,assistance-agent-01
-claim-10,2021/09/01 10:00,invalid-email,"Short claim",FLIGHT_ISSUES,TRUE,assistance-agent-01
-claim-11,2021/09/01 10:00,invalid@,"Short claim",FLIGHT_ISSUES,TRUE,assistance-agent-01
-claim-12,2021/09/01 10:00,invalid@domain,"Short claim",FLIGHT_ISSUES,TRUE,assistance-agent-01
-claim-13,2021/09/01 10:00,<script>alert('Hacked!');</script>@example.com,"Short claim",FLIGHT_ISSUES,TRUE,assistance-agent-01
-claim-14,2021/09/01 10:00,' OR 1=1 --@example.com,"Short claim",FLIGHT_ISSUES,TRUE,assistance-agent-01
+claim-05,2021/09/01 10:00,a@b.c,Short claim,FLIGHT_ISSUES,TRUE,assistance-agent-01
+claim-06,2021/09/01 10:00,short@example.com,Short claim,FLIGHT_ISSUES,TRUE,assistance-agent-01
+claim-07,2021/09/01 10:00,typical.email-address_123@example.co.uk,Short claim,FLIGHT_ISSUES,TRUE,assistance-agent-01
+claim-08,2021/09/01 10:00,very.long.email.address.with.many.parts.and.subdomains@subdomain.example.co.uk,Short claim,FLIGHT_ISSUES,TRUE,assistance-agent-01
+claim-09,2021/09/01 10:00,email+with-special_chars@example.com,Short claim,FLIGHT_ISSUES,TRUE,assistance-agent-01
 # passengerEmail - no singular values
 # description - standard variations
 claim-15,2021/09/01 10:00,user15@example.com,L,FLIGHT_ISSUES,TRUE,assistance-agent-01
 claim-16,2021/09/01 10:00,user16@example.com,Lo,FLIGHT_ISSUES,TRUE,assistance-agent-01
-claim-17,2021/09/01 10:00,user17@example.com,"Flight delay claim with compensation request",FLIGHT_ISSUES,TRUE,assistance-agent-01
-claim-18,2021/09/01 10:00,user18@example.com,"Flight delay claim with compensation request",FLIGHT_ISSUES,TRUE,assistance-agent-01
-claim-19,2021/09/01 10:00,user19@example.com,"Thai text",FLIGHT_ISSUES,TRUE,assistance-agent-01
-claim-20,2021/09/01 10:00,user20@example.com,"Arabic text",FLIGHT_ISSUES,TRUE,assistance-agent-01
-claim-21,2021/09/01 10:00,user21@example.com,"Chinese text",FLIGHT_ISSUES,TRUE,assistance-agent-01
-claim-22,2021/09/01 10:00,user22@example.com,"Markup test",FLIGHT_ISSUES,TRUE,assistance-agent-01
-claim-23,2021/09/01 10:00,user23@example.com,"Script test",FLIGHT_ISSUES,TRUE,assistance-agent-01
-claim-24,2021/09/01 10:00,user24@example.com,"SQL test",FLIGHT_ISSUES,TRUE,assistance-agent-01
+claim-17,2021/09/01 10:00,user17@example.com,Flight delay claim with compensation request,FLIGHT_ISSUES,TRUE,assistance-agent-01
+claim-18,2021/09/01 10:00,user18@example.com,Flight delay claim with compensation request,FLIGHT_ISSUES,TRUE,assistance-agent-01
+claim-19,2021/09/01 10:00,user19@example.com,Thai text,FLIGHT_ISSUES,TRUE,assistance-agent-01
+claim-20,2021/09/01 10:00,user20@example.com,Arabic text,FLIGHT_ISSUES,TRUE,assistance-agent-01
+claim-21,2021/09/01 10:00,user21@example.com,Chinese text,FLIGHT_ISSUES,TRUE,assistance-agent-01
+claim-22,2021/09/01 10:00,user22@example.com,Markup test,FLIGHT_ISSUES,TRUE,assistance-agent-01
+claim-23,2021/09/01 10:00,user23@example.com,Script test,FLIGHT_ISSUES,TRUE,assistance-agent-01
+claim-24,2021/09/01 10:00,user24@example.com,SQL test,FLIGHT_ISSUES,TRUE,assistance-agent-01
 # description - no singular values
 # type - standard variations
-claim-25,2021/09/01 10:00,user25@example.com,"Flight delay",FLIGHT_ISSUES,TRUE,assistance-agent-01
-claim-26,2021/09/01 10:00,user26@example.com,"Lost luggage",LUGGAGE_ISSUES,TRUE,assistance-agent-01
-claim-27,2021/09/01 10:00,user27@example.com,"Cancelled flight",FLIGHT_ISSUES,TRUE,assistance-agent-01
-claim-28,2021/09/01 10:00,user28@example.com,"Overbooking issue",OTHER_ISSUES,TRUE,assistance-agent-01
-claim-29,2021/09/01 10:00,user29@example.com,"Damaged luggage",LUGGAGE_ISSUES,TRUE,assistance-agent-01
-claim-30,2021/09/01 10:00,user30@example.com,"Invalid claim type",OTHER_ISSUES,TRUE,assistance-agent-01
+claim-25,2021/09/01 10:00,user25@example.com,Flight delay,FLIGHT_ISSUES,TRUE,assistance-agent-01
+claim-26,2021/09/01 10:00,user26@example.com,Lost luggage,LUGGAGE_ISSUES,TRUE,assistance-agent-01
+claim-27,2021/09/01 10:00,user27@example.com,Cancelled flight,FLIGHT_ISSUES,TRUE,assistance-agent-01
+claim-28,2021/09/01 10:00,user28@example.com,Overbooking issue,OTHER_ISSUES,TRUE,assistance-agent-01
+claim-29,2021/09/01 10:00,user29@example.com,Damaged luggage,LUGGAGE_ISSUES,TRUE,assistance-agent-01
+claim-30,2021/09/01 10:00,user30@example.com,Invalid claim type,OTHER_ISSUES,TRUE,assistance-agent-01
 # type - no singular values
 # accepted - standard variations
-claim-31,2021/09/01 10:00,user31@example.com,"Flight delay",FLIGHT_ISSUES,TRUE,assistance-agent-01
-claim-32,2021/09/01 10:00,user32@example.com,"Flight delay",FLIGHT_ISSUES,FALSE,assistance-agent-01
+claim-31,2021/09/01 10:00,user31@example.com,Flight delay,FLIGHT_ISSUES,TRUE,assistance-agent-01
+claim-32,2021/09/01 10:00,user32@example.com,Flight delay,FLIGHT_ISSUES,FALSE,assistance-agent-01
 # accepted - no singular values
 # assistantAgent - standard variations
-claim-33,2021/09/01 10:00,user33@example.com,"Flight delay",FLIGHT_ISSUES,TRUE,assistance-agent-01
-claim-34,2021/09/01 10:00,user34@example.com,"Flight delay",FLIGHT_ISSUES,TRUE,assistance-agent-02
-claim-35,2021/09/01 10:00,user35@example.com,"Flight delay",FLIGHT_ISSUES,TRUE,assistance-agent-03
+claim-33,2021/09/01 10:00,user33@example.com,Flight delay,FLIGHT_ISSUES,TRUE,assistance-agent-01
+claim-34,2021/09/01 10:00,user34@example.com,Flight delay,FLIGHT_ISSUES,TRUE,assistance-agent-02
+claim-35,2021/09/01 10:00,user35@example.com,Flight delay,FLIGHT_ISSUES,TRUE,assistance-agent-03
