@@ -33,7 +33,7 @@ public class Review extends AbstractEntity {
 	private String				username;
 
 	@Mandatory
-	@ValidMoment(past = true)
+	@ValidMoment(past = true, max = "2000/01/01 00:00")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				moment;
 

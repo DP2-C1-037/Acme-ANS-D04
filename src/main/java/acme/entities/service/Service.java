@@ -3,6 +3,7 @@ package acme.entities.service;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
@@ -38,18 +39,18 @@ public class Service extends AbstractEntity {
 	private String				picture;
 
 	@Mandatory
-	@ValidNumber(min = 1, max = 100, fraction = 2)
+	@ValidNumber(min = 1, max = 100, fraction = 2, integer = 3)
 	@Automapped
 	private Double				averageDwellTime;
 
 	@Optional
-	@ValidString(pattern = "^[A-Z]{4}-[0-9]{2}$")
+	@Valid
 	@Column(unique = true)
 	private String				promotionCode;
 
 	@Optional
-	@ValidNumber(min = 0, max = 100, fraction = 2)
+	@ValidNumber(min = 0, max = 100, fraction = 2, integer = 3)
 	@Automapped
-	private Double				money;
+	private Double				discount;
 
 }
