@@ -9,7 +9,8 @@ user-account-flight-crew-member-01,true,"UserIdentity{name: 'Miguel', surname: '
 user-account-flight-crew-member-02,true,"UserIdentity{name: 'María', surname: 'Ferrer', email: 'maria@acme.com'}",member2,member2
 user-account-flight-crew-member-03,true,"UserIdentity{name: 'Lucas', surname: 'Ronquillo', email: 'lucas@acme.com'}",member3,member3
 user-account-flight-crew-member-04,true,"UserIdentity{name: 'Amaia', surname: 'Romero', email: 'amaia@acme.com'}",member4,member4
-user-account-flight-crew-member-05,true,"UserIdentity{name: 'Aitana', surname: 'Ocaña Morales', email: 'aitana1727@acme.com'}",member,member
+user-account-flight-crew-member-00,true,"UserIdentity{name: 'Aitana', surname: 'Ocaña Morales', email: 'aitana1727@acme.com'}",member0,member0
+user-account-flight-crew-member-05,true,"UserIdentity{name: 'Marta', surname: 'Díaz', email: 'marta@acme.com'}",member,member
 user-account-customer-01,true,"UserIdentity{name: 'Devola', surname: 'Customer', email: 'devola@acme.com'}",customer1,customer1
 user-account-customer-02,true,"UserIdentity{name: 'Popola', surname: 'Customer', email: 'popola@acme.com'}",customer2,customer2
 user-account-customer-03,true,"UserIdentity{name: 'Emil', surname: 'Customer', email: 'emil@acme.com'}",customer3,customer3
@@ -34,7 +35,7 @@ user-account-technician-02,true,"UserIdentity{name: 'Mateo', surname: 'Technicia
 user-account-technician-03,true,"UserIdentity{name: 'Shepard', surname: 'မြန်မာစာစမ်းသပ်မှု', email:'shepard@acme.com'}",technician3,technician3
 user-account-administrator-02,true,"UserIdentity{name: 'Admin1', surname: 'Acme', email: 'admin1@acme.com'}",administrator1,administrator1
 user-account-administrator-03,true,"UserIdentity{name: 'Admin2', surname: 'Acme', email: 'admin2@acme.com'}",administrator2,administrator2
-# Username/password edge cases (min=5, max=60)
+# Username/password edge cases (min=5,max=60)
 user-account-administrator-04,true,"UserIdentity{name: 'A', surname: 'A', email: 'a@a.com'}",administrator4,administrator4
 user-account-administrator-05,true,"UserIdentity{name: '这是一条非常长的名字', surname: '这是一条非常长的姓氏', email: '洛伦@伊普森.com'}",administrator5,administrator5
 # Unicode in identity fields
