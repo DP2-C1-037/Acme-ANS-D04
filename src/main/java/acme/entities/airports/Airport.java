@@ -3,14 +3,15 @@ package acme.entities.airports;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
-import acme.client.components.validation.ValidEmail;
 import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
+import acme.constraints.ValidEmail2;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -36,6 +37,7 @@ public class Airport extends AbstractEntity {
 	private String				code;
 
 	@Mandatory
+	@Valid
 	@Automapped
 	private OperationalScope	operationalScope;
 
@@ -55,7 +57,7 @@ public class Airport extends AbstractEntity {
 	private String				website;
 
 	@Optional
-	@ValidEmail
+	@ValidEmail2
 	@Automapped
 	private String				email;
 

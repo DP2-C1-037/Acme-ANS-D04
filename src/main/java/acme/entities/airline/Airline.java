@@ -5,15 +5,19 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
-import acme.client.components.validation.ValidEmail;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
+import acme.constraints.ValidEmail2;
+import acme.datatypes.AirlineType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,9 +34,8 @@ public class Airline extends AbstractEntity {
 	private String				name;
 
 	@Mandatory
+	@ValidString(pattern = "[A-Z]{3}") // typically an X but no restriction.
 	@Column(unique = true)
-	@ValidString(min = 3, max = 3, pattern = "[A-Z]{2}X")
-	@Automapped
 	private String				iataCode;
 
 	@Mandatory
@@ -41,16 +44,17 @@ public class Airline extends AbstractEntity {
 	private String				website;
 
 	@Mandatory
+	@Valid
 	@Automapped
-	private Type				type;
+	private AirlineType			type;
 
 	@Mandatory
-	@ValidMoment(past = true)
-	@Automapped
+	@ValidMoment(min = "2000/01/01 00:00", past = true)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date				foundationMoment;
 
 	@Optional
-	@ValidEmail
+	@ValidEmail2
 	@Automapped
 	private String				email;
 

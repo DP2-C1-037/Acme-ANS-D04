@@ -23,8 +23,8 @@ public class WeatherService extends AbstractService {
 	private static final String	API_KEY			= "478a54206224dd3e0153ae2c8570045d";
 	private static final String	URL_TEMPLATE	= "http://api.openweathermap.org/data/2.5/weather?q=%s&appid=%s";
 
-
-	public WeatherConditions getLegWeatherConditions(final Airport airport) {
+	@SuppressWarnings("deprecation")
+	public WeatherConditions getWeatherForAirport(final Airport airport) {
 		try {
 			// Codificar ciudades para URL
 			String encodedCity = URLEncoder.encode(airport.getCity(), StandardCharsets.UTF_8);

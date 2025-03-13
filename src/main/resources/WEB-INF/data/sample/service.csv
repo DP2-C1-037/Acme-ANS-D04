@@ -1,0 +1,47 @@
+key,name,picture,averageDwellTime,promotionCode,discount
+# base entity
+service-00,"Lorem ipsum dolor sit amet,consectetu",http://lorem.com/ipsum,50,AAAA-25,50
+# name - standard variations
+service-01,L,http://lorem.com/ipsum,50,AAAD-25,50
+service-02,Lo,http://lorem.com/ipsum,50,AAAE-25,50
+service-03,"Lorem ipsum dolor sit amet, consectetur adipiscin",http://lorem.com/ipsum,50,AAAF-25,50
+service-04,"Lorem ipsum dolor sit amet, consectetur adipiscing",http://lorem.com/ipsum,50,AAAG-25,50
+service-05,โลเร็ม อิปซัม,http://lorem.com/ipsum,50,AAAI-25,50
+service-06,لوريم إيبسوم,http://lorem.com/ipsum,50,AAAK-25,50
+service-07,洛伦·伊普森,http://lorem.com/ipsum,50,AAAL-25,50
+service-08,<marquee>Hacked</marquee>,http://lorem.com/ipsum,50,AAAM-25,50
+service-09,<script>alert(‘Hacked!’);</script>,http://lorem.com/ipsum,50,AAAN-25,50
+service-10,'' or 'A' = 'A,http://lorem.com/ipsum,50,AAAO-25,50
+# picture - standard variations
+service-11,"Lorem ipsum dolor sit amet,consectetu",ftp://a,50,AAAQ-25,50
+service-12,"Lorem ipsum dolor sit amet,consectetu",ftp://a.b,50,AAAR-25,50
+service-13,"Lorem ipsum dolor sit amet,consectetu","http://www.lorem-ipsum.org/dolor/sit/amet,/consectetur/adipiscing/elit,/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/",50,AAAS-25,50
+service-14,"Lorem ipsum dolor sit amet,consectetu","http://www.lorem-ipsum.org/dolor/sit/amet,/consectetur/adipiscing/elit,/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/X",50,AAAT-25,50
+service-15,"Lorem ipsum dolor sit amet,consectetu",https://www.lorem-ipsum.org,50,AAAU-25,50
+service-16,"Lorem ipsum dolor sit amet,consectetu",ftp://www.lorem-ipsum.org,50,AAAV-25,50
+service-17,"Lorem ipsum dolor sit amet,consectetu",http://www.lorem-ipsum.org/dolor/sit.html,50,AAAW-25,50
+service-18,"Lorem ipsum dolor sit amet,consectetu",http://www.lorem-ipsum.org/dolor/sit.html#dolor,50,AAAX-25,50
+service-19,"Lorem ipsum dolor sit amet,consectetu",http://example.org?a=1&b=2,50,AAAY-25,50
+service-20,"Lorem ipsum dolor sit amet,consectetu",http://example.org?,50,AAAZ-25,50
+service-21,"Lorem ipsum dolor sit amet,consectetu",http://example.org?a,50,ABAA-25,50
+service-22,"Lorem ipsum dolor sit amet,consectetu",http://example.org?a&b,50,ABAB-25,50
+service-23,"Lorem ipsum dolor sit amet,consectetu",http://example.org/,50,ABAC-25,50
+service-24,"Lorem ipsum dolor sit amet,consectetu",http://example.org/a,50,ABAD-25,50
+service-25,"Lorem ipsum dolor sit amet,consectetu",http://example.org/a/b,50,ABAE-25,50
+service-26,"Lorem ipsum dolor sit amet,consectetu",http://example.org/a/b?,50,ABAF-25,50
+service-27,"Lorem ipsum dolor sit amet,consectetu",http://example.org/a/b?a&b,50,ABAG-25,50
+service-28,"Lorem ipsum dolor sit amet,consectetu",ftp://,50,ABAH-25,50
+# averageDwellTime - standard variations
+service-29,"Lorem ipsum dolor sit amet,consectetu",http://lorem.com/ipsum,1,ABAI-25,50
+service-30,"Lorem ipsum dolor sit amet,consectetu",http://lorem.com/ipsum,1.01,ABAJ-25,50
+service-31,"Lorem ipsum dolor sit amet,consectetu",http://lorem.com/ipsum,99.99,ABAK-25,50
+service-32,"Lorem ipsum dolor sit amet,consectetu",http://lorem.com/ipsum,100,ABAL-25,50
+# promotionCode - standard variations,"","","",""
+service-33,"Lorem ipsum dolor sit amet,consectetu",http://lorem.com/ipsum,50,,50
+service-34,"Lorem ipsum dolor sit amet,consectetu",http://lorem.com/ipsum,50,XXXX-25,50
+# money - standard variations,"","","","",""
+service-35,"Lorem ipsum dolor sit amet,consectetu",http://lorem.com/ipsum,50,ABAM-25,
+service-36,"Lorem ipsum dolor sit amet,consectetu",http://lorem.com/ipsum,50,ABAN-25,0
+service-37,"Lorem ipsum dolor sit amet,consectetu",http://lorem.com/ipsum,50,ABAO-25,0.01
+service-38,"Lorem ipsum dolor sit amet,consectetu",http://lorem.com/ipsum,50,ABAP-25,99.99
+service-39,"Lorem ipsum dolor sit amet,consectetu",http://lorem.com/ipsum,50,ABAQ-25,100
