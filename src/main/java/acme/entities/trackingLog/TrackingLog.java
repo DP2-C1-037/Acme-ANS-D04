@@ -47,9 +47,9 @@ public class TrackingLog extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@Automapped
-	private Boolean				accepted;
+	private Boolean				accepted; // enum
 
-	@Mandatory
+	@Mandatory //
 	@ValidString(min = 1, max = 255)
 	@Automapped
 	private String				resolution;

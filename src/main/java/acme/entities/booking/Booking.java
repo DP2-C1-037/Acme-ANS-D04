@@ -57,7 +57,7 @@ public class Booking extends AbstractEntity {
 	@Optional
 	@ValidString(min = 4, max = 4)
 	@Automapped
-	private String				lastNibble;
+	private String				lastNibble; // poner expersion regular para comprobar que tambien hay digitos
 
 	// Relationships -------------------------------------------------------------------------------------------------
 

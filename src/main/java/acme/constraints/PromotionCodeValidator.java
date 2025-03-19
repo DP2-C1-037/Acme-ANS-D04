@@ -16,7 +16,7 @@ public class PromotionCodeValidator extends AbstractValidator<ValidPromotionCode
 
 		boolean result = true;
 
-		if (!(service.getPromotionCode() == null || service.getPromotionCode().equals(""))) {
+		if (!(service.getPromotionCode() == null || service.getPromotionCode().equals(""))) { // servicio puede ser nulo
 
 			SimpleDateFormat sdf = new SimpleDateFormat("yy");
 
@@ -24,7 +24,7 @@ public class PromotionCodeValidator extends AbstractValidator<ValidPromotionCode
 			if (promotionCode.length() >= 2) {
 				String promotionCodeLastTwoDigits = promotionCode.substring(promotionCode.length() - 2);
 
-				String currentYearLastTwoDigits = sdf.format(MomentHelper.getBaseMoment());
+				String currentYearLastTwoDigits = sdf.format(MomentHelper.getBaseMoment()); // current momeny en vez de base moment
 
 				if (!promotionCodeLastTwoDigits.equals(currentYearLastTwoDigits) || !service.getPromotionCode().matches("^[A-Z]{4}-[0-9]{2}$")) {
 					super.state(context, false, "services", "acme.validation.service.promotionCode.message");

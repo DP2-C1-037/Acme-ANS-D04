@@ -25,7 +25,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@ValidIdentifierNumber
+@ValidIdentifierNumber // cambiar nombre a ValidAirlineNumber
 public class AirlineManager extends AbstractRole {
 
 	private static final long	serialVersionUID	= 1L;

@@ -10,9 +10,10 @@ public class IdentifierNumberValidator extends AbstractValidator<ValidIdentifier
 
 	@Override
 	public boolean isValid(final AirlineManager airlineManager, final ConstraintValidatorContext context) {
+		// hay que verificar que sea nulo airilineManager e identifierNumber
 		String initials = IdentifierNumberValidator.getInitials(airlineManager.getUserAccount().getIdentity().getName(), airlineManager.getUserAccount().getIdentity().getSurname());
 		String identifierNumberToValidate = airlineManager.getIdentifierNumber().substring(0, initials.length());
-		boolean result = initials.equals(identifierNumberToValidate);
+		boolean result = initials.equals(identifierNumberToValidate); // usar StringHelper para todo
 		if (!result)
 			super.state(context, false, "identifierNumber", "acme.validation.flight.identifierNumber.message");
 		return result;

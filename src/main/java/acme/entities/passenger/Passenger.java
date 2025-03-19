@@ -53,4 +53,6 @@ public class Passenger extends AbstractEntity {
 	@Automapped
 	String						specialNeeds;
 
+	// relacion passenger y booking (many to many bidireccional)
+
 }

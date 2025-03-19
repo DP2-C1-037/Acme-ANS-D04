@@ -30,10 +30,10 @@ public class Review extends AbstractEntity {
 	@Mandatory
 	@ValidString(min = 1, max = 50)
 	@Automapped
-	private String				username;
+	private String				username; // alias
 
 	@Mandatory
-	@ValidMoment(past = true, max = "2000/01/01 00:00")
+	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				moment;
 

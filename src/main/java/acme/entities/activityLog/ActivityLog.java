@@ -30,7 +30,7 @@ public class ActivityLog extends AbstractEntity {
 	private static final long	serialVersionUID	= 1L;
 
 	@Mandatory
-	@ValidMoment(past = true, max = "2201/01/01 00:00")
+	@ValidMoment(past = true, max = "2201/01/01 00:00") // quitar maximo
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				registrationMoment;
 

@@ -52,4 +52,6 @@ public class Task extends AbstractEntity {
 	@ManyToOne(optional = false)
 	private Technician			technician;
 
+	// relacion muchos a muchos con maintenance record
+
 }
