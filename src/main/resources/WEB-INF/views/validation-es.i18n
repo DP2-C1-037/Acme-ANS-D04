@@ -20,7 +20,8 @@ acme.validation.customer.identifier.syntax.message = Los dos o tres primeros car
 
 acme.validation.customer.identifier.unique.message = El identificador del cliente debe ser único
 
-acme.validation.technician.licenseNumber.message = Los dos primeros caracteres del número de licencia deben coincidir con las iniciales del técnico
+acme.validation.technician.license-number-duplicated.message = El número de licencia ya está en uso
+acme.validation.technician.license-number.message = Los dos primeros caracteres del número de licencia deben coincidir con las iniciales del técnico
 
 acme.validation.aircraft.registration-number-duplicated.message  = Número de registro ya usado
 
@@ -29,3 +30,5 @@ acme.validation.flight-crew-member.employee-code-invalid-format.message = El có
 acme.validation.flight-crew-member.employee-code-not-matching-initials.message = Las dos primeras letras del employee code deben coincidir con las iniciales del miembro
 
 acme.validation.log.registration-moment.message = El momento de registro del log debe ocurrir después de que termine la escala.
+
+acme.validation.airport.code-duplicated.message = El código del aeropuerto ya está en uso
