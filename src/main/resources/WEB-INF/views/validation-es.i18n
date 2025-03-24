@@ -19,3 +19,11 @@ acme.validation.service.promotionCode.message = El código promocional debe coin
 acme.validation.customer.identifier.message = Los dos o tres primeros caracteres del identificador único del cliente deben coincidir con sus iniciales
 
 acme.validation.technician.licenseNumber.message = Los dos primeros caracteres del número de licencia deben coincidir con las iniciales del técnico
+
+acme.validation.aircraft.registration-number-duplicated.message  = Número de registro ya usado
+
+acme.validation.flight-crew-member.employee-code-duplicated.message = Código de empleado ya usado
+acme.validation.flight-crew-member.employee-code-invalid-format.message = El código de empleado debe coincidir con el patrón ^[A-Z]{2,3}\\d{6}$
+acme.validation.flight-crew-member.employee-code-not-matching-initials.message = Las dos primeras letras del employee code deben coincidir con las iniciales del miembro
+
+acme.validation.log.registration-moment.message = El momento de registro del log debe ocurrir después de que termine la escala.

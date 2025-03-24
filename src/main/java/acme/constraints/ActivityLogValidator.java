@@ -7,7 +7,9 @@ import javax.validation.ConstraintValidatorContext;
 
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
+import acme.client.helpers.MomentHelper;
 import acme.entities.activityLog.ActivityLog;
+import acme.entities.airline.Leg;
 
 @Validator
 public class ActivityLogValidator extends AbstractValidator<ValidActivityLog, ActivityLog> {
@@ -22,18 +24,19 @@ public class ActivityLogValidator extends AbstractValidator<ValidActivityLog, Ac
 		assert context != null;
 
 		boolean result;
-		boolean isNull = log == null || log.getFlightAssignment() == null || log.getRegistrationMoment() == null;
+		if (log == null)
+			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
+		else {
+			if (log.getFlightAssignment() == null)
+				super.state(context, false, "flightAssignment", "javax.validation.constraints.NotNull.message");
+			if (log.getFlightAssignment().getLeg() == null)
+				super.state(context, false, "leg", "javax.validation.constraints.NotNull.message");
 
-		if (!isNull) {
-			var leg = log.getFlightAssignment().getLeg();
-			boolean legIsNull = leg == null || leg.getScheduledArrival() == null;
+			Leg leg = log.getFlightAssignment().getLeg();
+			Date endMoment = leg.getScheduledArrival();
+			boolean isAfter = MomentHelper.isAfter(log.getRegistrationMoment(), endMoment);
 
-			if (!legIsNull) {
-				Date endMoment = leg.getScheduledArrival();
-				boolean isAfter = log.getRegistrationMoment().after(endMoment);
-
-				super.state(context, isAfter, "registrationMoment", "{acme.validation.registration-moment-log.message}");
-			}
+			super.state(context, isAfter, "registrationMoment", "{acme.validation.registration-moment-log.message}");
 		}
 
 		result = !super.hasErrors(context);

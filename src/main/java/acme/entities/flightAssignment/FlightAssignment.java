@@ -35,7 +35,7 @@ public class FlightAssignment extends AbstractEntity {
 	private FlightCrewDuty		flightCrewDuty;
 
 	@Mandatory
-	@ValidMoment(past = true, min = "2000/01/01 00:00") // quitar minimo
+	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				lastUpdateMoment;
 
