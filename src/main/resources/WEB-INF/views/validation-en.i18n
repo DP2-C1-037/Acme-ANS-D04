@@ -21,3 +21,11 @@ acme.validation.customer.identifier.syntax.message = The customer identifier fir
 acme.validation.customer.identifier.unique.message = The customer identifier must be unique
 
 acme.validation.technician.licenseNumber.message = The first two letters of the license number must correspond to the technician's initials
+
+acme.validation.aircraft.registration-number-duplicated.message  = The registraton number is already in use
+
+acme.validation.flight-crew-member.employee-code-duplicated.message = The employee code is already in use
+acme.validation.flight-crew-member.employee-code-invalid-format.message = The employee code must match the pattern ^[A-Z]{2,3}\\d{6}$
+acme.validation.flight-crew-member.employee-code-not-matching-initials.message = The first two letters of the employee code must match the initials of the member
+
+acme.validation.log.registration-moment.message = The log registration moment must occur after the leg finishes.
