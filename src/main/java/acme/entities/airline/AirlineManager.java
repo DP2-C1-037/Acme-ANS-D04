@@ -3,7 +3,6 @@ package acme.entities.airline;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
@@ -18,31 +17,31 @@ import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
-import acme.constraints.ValidIdentifierNumber;
+import acme.constraints.ValidAirlineManager;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-@ValidIdentifierNumber // cambiar nombre a ValidAirlineNumber
+@ValidAirlineManager
 public class AirlineManager extends AbstractRole {
 
 	private static final long	serialVersionUID	= 1L;
 
 	@Mandatory
 	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
-	@Column(unique = true)
-	// the first two or three letters correspond to their initials -> @ValidIdentifierNumber
+	@Automapped
+	// the first two or three letters correspond to their initials -> @ValidAirlineManager
 	private String				identifierNumber;
 
 	@Mandatory
-	@ValidNumber
+	@ValidNumber(min = 0, max = 120)
 	@Automapped
 	private Integer				experienceYears;
 
 	@Mandatory
-	@ValidMoment(min = "1965/01/01 00:00", past = true)
+	@ValidMoment(min = "2000/01/01 00:00", past = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				birthDate;
 
@@ -56,7 +55,7 @@ public class AirlineManager extends AbstractRole {
 
 	@Mandatory
 	@Valid
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private Airline				airline;
 
 }

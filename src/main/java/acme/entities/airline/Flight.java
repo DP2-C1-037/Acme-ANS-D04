@@ -16,6 +16,7 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidString;
 import acme.client.helpers.SpringHelper;
+import acme.datatypes.FlightSelfTransfer;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,17 +28,17 @@ public class Flight extends AbstractEntity {
 	private static final long	serialVersionUID	= 1L;
 
 	@Mandatory
-	@ValidString(min = 1, max = 50)
+	@ValidString(min = 50, max = 50)
 	@Automapped
 	private String				tag;
 
 	@Mandatory
 	@Valid
 	@Automapped
-	private Boolean				requiresSelfTransfer;
+	private FlightSelfTransfer	requiresSelfTransfer;
 
 	@Mandatory
-	@ValidMoney
+	@ValidMoney(min = 0, max = 1000000)
 	@Automapped
 	private Money				cost;
 
@@ -76,14 +77,19 @@ public class Flight extends AbstractEntity {
 	@Transient
 	private int getLayoversNumber() {
 		LegRepository legRepository = SpringHelper.getBean(LegRepository.class);
-		return legRepository.legsNumberFromFlightId(this.getId()) - 1;
+		return legRepository.legsNumberFromFlightId(this.getId());
 	}
 
 	// Relationships
 
 
+	/*
+	 * PREGUNTAR. Inicialmente, un objeto" de la clase "Flight" podría no tener ningún leg asociado.
+	 * La comprobación de que un objeto "Flight" tiene al menos un "Leg" es necesaria antes de poder publicar un vuelo;
+	 * es entonces cuando se debe rechazar la posibilidad de publicar si un vuelo no tiene ningún "Leg" asociado.
+	 */
 	@Mandatory
 	@Valid
-	@ManyToOne
-	private Airline airline;
+	@ManyToOne(optional = false)
+	private AirlineManager airlineManager;
 }

@@ -9,10 +9,10 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-@Constraint(validatedBy = IdentifierNumberValidator.class)
-@Target(ElementType.TYPE) // Se aplica a la clase Leg en lugar del campo
+@Constraint(validatedBy = AirlineManagerValidator.class)
+@Target(ElementType.TYPE) // Se aplica a la clase AirlineManager en lugar del campo
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ValidIdentifierNumber {
+public @interface ValidAirlineManager {
 
 	String message() default "";
 	Class<?>[] groups() default {};
