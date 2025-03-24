@@ -16,6 +16,8 @@ acme.validation.maintenance-record.nextInspection.message = Next inspection date
 
 acme.validation.service.promotionCode.message = The promotion code must match the pattern ^[A-Z]{4}-[0-9]{2}$, and its last two characters must match current year last two digits
 
-acme.validation.customer.identifier.message = The customer identifier first two or three letters must correspond to their initials
+acme.validation.customer.identifier.syntax.message = The customer identifier first two or three letters must correspond to their initials
+
+acme.validation.customer.identifier.unique.message = The customer identifier must be unique
 
 acme.validation.technician.licenseNumber.message = The first two letters of the license number must correspond to the technician's initials

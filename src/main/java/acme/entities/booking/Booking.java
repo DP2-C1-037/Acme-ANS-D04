@@ -55,9 +55,9 @@ public class Booking extends AbstractEntity {
 	private Money				price;
 
 	@Optional
-	@ValidString(min = 4, max = 4)
+	@ValidString(pattern = "^[0-9]{4}$")
 	@Automapped
-	private String				lastNibble; // poner expersion regular para comprobar que tambien hay digitos
+	private String				lastNibble;
 
 	// Relationships -------------------------------------------------------------------------------------------------
 

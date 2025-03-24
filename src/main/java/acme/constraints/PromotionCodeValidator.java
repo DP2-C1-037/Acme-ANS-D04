@@ -15,16 +15,14 @@ public class PromotionCodeValidator extends AbstractValidator<ValidPromotionCode
 	public boolean isValid(final Service service, final ConstraintValidatorContext context) {
 
 		boolean result = true;
+		SimpleDateFormat sdf = new SimpleDateFormat("yy");
 
-		if (!(service.getPromotionCode() == null || service.getPromotionCode().equals(""))) { // servicio puede ser nulo
+		String promotionCode = service.getPromotionCode();
 
-			SimpleDateFormat sdf = new SimpleDateFormat("yy");
-
-			String promotionCode = service.getPromotionCode();
+		if (!promotionCode.isEmpty())
 			if (promotionCode.length() >= 2) {
 				String promotionCodeLastTwoDigits = promotionCode.substring(promotionCode.length() - 2);
-
-				String currentYearLastTwoDigits = sdf.format(MomentHelper.getBaseMoment()); // current momeny en vez de base moment
+				String currentYearLastTwoDigits = sdf.format(MomentHelper.getCurrentMoment());
 
 				if (!promotionCodeLastTwoDigits.equals(currentYearLastTwoDigits) || !service.getPromotionCode().matches("^[A-Z]{4}-[0-9]{2}$")) {
 					super.state(context, false, "services", "acme.validation.service.promotionCode.message");
@@ -34,8 +32,6 @@ public class PromotionCodeValidator extends AbstractValidator<ValidPromotionCode
 				super.state(context, false, "services", "acme.validation.service.promotionCode.message");
 				result = false;
 			}
-
-		}
 
 		return result;
 	}
