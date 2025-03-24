@@ -1,27 +1,39 @@
 key,identifierNumber,experienceYears,birthDate,pictureLink,key:userAccount,key:airline
-airline-manager-01,JD123456,10,1990/01/01 00:00,https://example.com/photo.jpg,user-account-airline-manager-01,airline-01
-airline-manager-02,JS654321,5,1985/12/31 23:59,,user-account-airline-manager-02,airline-02
-airline-manager-03,CG820375,5,1995/05/05 00:00,,user-account-airline-manager-03,airline-03
-airline-manager-04,LM999999,15,1980/06/15 00:00,,user-account-airline-manager-06,airline-01
-# experienceYears: min=0
-airline-manager-05,EV000000,0,1965/01/01 00:00,,user-account-airline-manager-07,airline-02
-# experienceYears: min + delta=1
-airline-manager-06,EV000001,1,1965/01/02 00:00,,user-account-airline-manager-08,airline-03
-# experienceYears: max - delta=119
-airline-manager-07,EV119999,119,1965/01/01 00:00,,user-account-airline-manager-09,airline-01
-# experienceYears: max=120
-airline-manager-08,EV120000,120,1965/01/01 00:00,,user-account-airline-manager-10,airline-02
-# birthDate: min=1965/01/01
-airline-manager-09,EV000010,30,1965/01/01 00:00,,user-account-airline-manager-11,airline-03
-# birthDate: max=current (delta=1 día)
-airline-manager-10,EV111111,40,2024/12/31 23:59,,user-account-airline-manager-12,airline-01
-# pictureLink: Unicode & edge cases
-airline-manager-11,EV111112,40,2000/01/01 00:00,https://xn--example-0k6a.com,user-account-airline-manager-13,airline-02
-# pictureLink: URL con caracteres no latinos
-airline-manager-12,LA123456,20,1980/01/01 00:00,https://洛伦.伊普森.com,user-account-airline-manager-14,airline-03
-# pictureLink: Vacío (caso opcional)
-airline-manager-13,MP123456,50,1970/01/01 00:00,,user-account-airline-manager-15,airline-01
-# injections
-airline-manager-14,SI123456,5,1995/05/05 00:00,https://example.com/sql-injection' OR '1'='1--,user-account-airline-manager-16,airline-01
-airline-manager-15,MI123456,10,1985/12/31 23:59,https://example.com/page.html?content=<marquee>Hacked</marquee>,user-account-airline-manager-17,airline-02
-airline-manager-16,SI123457,15,1980/06/15 00:00,https://example.com/script.js?xss=alert('Hacked'),user-account-airline-manager-18,airline-03
+
+# Base entities
+airline-manager-01,JD123456,50,2022/09/01 10:00,http://lorem.com/ipsum,user-account-airline-manager-01,airline-01
+airline-manager-02,JSX123456,50,2022/09/01 10:00,http://lorem.com/ipsum,user-account-airline-manager-02,airline-01
+
+# identifierNumber - standard variations
+# Done in base entities
+
+# experienceYears - standard variations
+airline-manager-03,JD123458,0,2022/09/01 10:00,http://lorem.com/ipsum,user-account-airline-manager-01,airline-01
+airline-manager-04,JD123459,1,2022/09/01 10:00,http://lorem.com/ipsum,user-account-airline-manager-01,airline-01
+airline-manager-05,JD123460,100,2022/09/01 10:00,http://lorem.com/ipsum,user-account-airline-manager-01,airline-01
+airline-manager-06,JD123461,99,2022/09/01 10:00,http://lorem.com/ipsum,user-account-airline-manager-01,airline-01
+
+# birthDate - standard variations
+airline-manager-09,JD123464,100,2000/01/01 00:00,http://lorem.com/ipsum,user-account-airline-manager-01,airline-01
+airline-manager-10,JD123465,99,2000/01/01 00:00,http://lorem.com/ipsum,user-account-airline-manager-01,airline-01
+airline-manager-07,JD123462,0,2025/01/01 00:00,http://lorem.com/ipsum,user-account-airline-manager-01,airline-01
+airline-manager-08,JD123463,1,2024/12/31 23:59,http://lorem.com/ipsum,user-account-airline-manager-01,airline-01
+
+# pictureLink - standard variations
+airline-manager-11,JD123466,50,2022/09/01 10:00,ftp://a,user-account-airline-manager-01,airline-01
+airline-manager-12,JD123467,50,2022/09/01 10:00,ftp://a.b,user-account-airline-manager-01,airline-01
+airline-manager-13,JD123468,50,2022/09/01 10:00,http://www.lorem-ipsum.org/dolor/sit/amet/consectetur/adipiscing/elit/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/,user-account-airline-manager-01,airline-01
+airline-manager-14,JD123469,50,2022/09/01 10:00,http://www.lorem-ipsum.org/dolor/sit/amet/consectetur/adipiscing/elit/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/X,user-account-airline-manager-01,airline-01
+airline-manager-15,JD123470,50,2022/09/01 10:00,https://www.lorem-ipsum.org,user-account-airline-manager-01,airline-01
+airline-manager-16,JD123471,50,2022/09/01 10:00,ftp://www.lorem-ipsum.org,user-account-airline-manager-01,airline-01
+airline-manager-17,JD123472,50,2022/09/01 10:00,http://www.lorem-ipsum.org/dolor/sit.html,user-account-airline-manager-01,airline-01
+airline-manager-18,JD123473,50,2022/09/01 10:00,http://www.lorem-ipsum.org/dolor/sit.html#dolor,user-account-airline-manager-01,airline-01
+airline-manager-19,JD123474,50,2022/09/01 10:00,http://example.org?a=1&b=2,user-account-airline-manager-01,airline-01
+airline-manager-20,JD123475,50,2022/09/01 10:00,http://example.org?,user-account-airline-manager-01,airline-01
+airline-manager-21,JD123476,50,2022/09/01 10:00,http://example.org?a,user-account-airline-manager-01,airline-01
+airline-manager-22,JD123477,50,2022/09/01 10:00,http://example.org?a&b,user-account-airline-manager-01,airline-01
+airline-manager-23,JD123478,50,2022/09/01 10:00,http://example.org/,user-account-airline-manager-01,airline-01
+airline-manager-24,JD123479,50,2022/09/01 10:00,http://example.org/a,user-account-airline-manager-01,airline-01
+airline-manager-25,JD123480,50,2022/09/01 10:00,http://example.org/a/b,user-account-airline-manager-01,airline-01
+airline-manager-26,JD123481,50,2022/09/01 10:00,http://example.org/a/b?,user-account-airline-manager-01,airline-01
+airline-manager-27,JD123482,50,2022/09/01 10:00,http://example.org/a/b?a&b,user-account-airline-manager-01,airline-01
