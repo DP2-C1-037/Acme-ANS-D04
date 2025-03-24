@@ -1,0 +1,14 @@
+customer.booking.form.title = booking form 
+
+customer.booking.form.label.locator-code = Locator code:
+customer.booking.form.label.purcharse-moment = Purcharse moment:
+customer.booking.form.label.confirmation = Confirm that you wish to submit this booking.
+
+customer.booking.form.button.create = Create
+
+customer.booking.list.title = Listing of bookings
+
+customer.booking.list.label.locator-code = Locator code
+customer.booking.list.label.purcharse-moment = Purcharse moment
+
+customer.booking.list.button.create = Create
