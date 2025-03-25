@@ -10,12 +10,16 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.datatypes.AircraftStatus;
 import acme.entities.aircraft.Aircraft;
+import acme.entities.airline.AirlineRepository;
 
 @GuiService
 public class AdministratorAircraftCreateService extends AbstractGuiService<Administrator, Aircraft> {
 
 	@Autowired
-	private AdministratorAircraftRepository repository;
+	private AdministratorAircraftRepository	repository;
+
+	@Autowired
+	private AirlineRepository				repositoryAirline;
 
 
 	@Override
@@ -53,6 +57,7 @@ public class AdministratorAircraftCreateService extends AbstractGuiService<Admin
 	@Override
 	public void unbind(final Aircraft aircraft) {
 		SelectChoices statuses;
+		SelectChoices airlines;
 		Dataset dataset;
 
 		statuses = SelectChoices.from(AircraftStatus.class, aircraft.getStatus());
