@@ -3,7 +3,6 @@ package acme.entities.airline;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -35,7 +34,7 @@ public class Airline extends AbstractEntity {
 
 	@Mandatory
 	@ValidString(pattern = "[A-Z]{3}") // typically an X but no restriction.
-	@Column(unique = true)
+	@Automapped
 	private String				iataCode;
 
 	@Mandatory
@@ -49,7 +48,7 @@ public class Airline extends AbstractEntity {
 	private AirlineType			type;
 
 	@Mandatory
-	@ValidMoment(min = "2000/01/01 00:00", past = true)
+	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				foundationMoment;
 
