@@ -1,4 +1,4 @@
-key,username,moment,subject,text,score,recommended
+key,alias,moment,subject,text,score,recommended
 # base entity
 review-00,user00,2021/09/01 10:00,Lorem ipsum dolor sit amet,"Lorem ipsum dolor sit amet, consectetur adipiscing",5.00,TRUE
 # username - standard variations
