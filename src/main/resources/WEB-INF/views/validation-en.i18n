@@ -10,7 +10,11 @@
 
 acme.validation.flight.identifierNumber.message = The first two letters of the identifier number must correspond to the managers's name initials
 
-acme.validation.leg.flightNumber.message = The flight number is composed of the airline's IATA code followed by four digits (flight number letters have to be the same of airline's IATA code).
+acme.validation.leg.flightNumber.iataCode.message = The flight number is composed of the airline's IATA code followed by four digits (flight number letters have to be the same of airline's IATA code)
+
+acme.validation.leg.flightNumber.unique.message = The flight number must be unique, there cannot be two equal
+
+acme.validation.airline.iataCode.message = Airline iata code must be unique
 
 acme.validation.maintenance-record.nextInspection.message = Next inspection date must be a future date
 
