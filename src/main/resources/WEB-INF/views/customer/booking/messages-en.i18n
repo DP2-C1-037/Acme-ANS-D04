@@ -4,6 +4,8 @@ customer.booking.form.label.locator-code = Locator code:
 customer.booking.form.label.purcharse-moment = Purcharse moment:
 customer.booking.form.label.travel-class = Travel class:
 customer.booking.form.label.price = Price:
+customer.booking.form.label.last-nibble = Credit card last nibble:
+customer.booking.form.label.flight = Flight:
 customer.booking.form.label.confirmation = Confirm that you wish to submit this booking.
 
 customer.booking.form.button.create = Create
