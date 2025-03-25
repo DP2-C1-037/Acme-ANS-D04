@@ -4,10 +4,21 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form>	
-	<acme:input-textbox code="customer.booking.form.label.header" path="header"/>
-	<acme:input-textarea code="customer.booking.form.label.description" path="description"/>
+	
 	<jstl:if test="${_command == 'show' }">
-		<acme:input-textarea code="customer.booking.form.label.redress" path="redress"/>
+		<acme:input-textbox code="customer.booking.form.label.locator-code" path="locatorCode"/>
+		<acme:input-textbox code="customer.booking.form.label.purcharse-moment" path="purcharseMoment"/>
+		<acme:input-textbox code="customer.booking.form.label.travel-class" path="travelClass"/>
+		<acme:input-textbox code="customer.booking.form.label.price" path="price"/>
+		<acme:input-textbox code="customer.booking.form.label.last-nibble" path="lastNibble"/>
+		<acme:list>
+			<acme:list-column code="customer.booking.list.label.locator-code" path="locatorCode" width="10%"/>
+			<acme:list-column code="customer.booking.list.label.purcharse-moment" path="purcharseMoment" width="90%"/>
+			<acme:list-column code="customer.booking.list.label.travel-class" path="travelClass" width="90%"/>	
+			<acme:list-column code="customer.booking.list.label.price" path="price" width="90%"/>	
+			<acme:list-payload path="payload"/>
+		</acme:list>
+		
 	</jstl:if>
 	
 	<jstl:if test="${_command == 'create' }">
