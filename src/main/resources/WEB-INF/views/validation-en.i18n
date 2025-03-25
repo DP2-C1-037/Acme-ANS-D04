@@ -29,6 +29,6 @@ acme.validation.flight-crew-member.employee-code-duplicated.message = The employ
 acme.validation.flight-crew-member.employee-code-invalid-format.message = The employee code must match the pattern ^[A-Z]{2,3}\\d{6}$
 acme.validation.flight-crew-member.employee-code-not-matching-initials.message = The first two letters of the employee code must match the initials of the member
 
-acme.validation.log.registration-moment.message = The log registration moment must occur after the leg finishes.
+acme.validation.log.registration-moment.message = The log registration moment must occur after the leg finishes
 
 acme.validation.airport.code-duplicated.message = The airport code is already in use
