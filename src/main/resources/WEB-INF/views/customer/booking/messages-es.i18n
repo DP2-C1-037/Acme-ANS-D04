@@ -1,7 +1,9 @@
-customer.whine.form.title = Detalles de reserva
+customer.booking.form.title = Detalles de reserva
 
 customer.booking.form.label.locator-code = Código localizador:
 customer.booking.form.label.purcharse-moment = Momento de compra:
+customer.booking.form.label.travel-class = Clase:
+customer.booking.form.label.price = Precio:
 customer.booking.form.label.confirmation = Confirma que quieres crear esta reserva.
 
 customer.booking.form.button.create = Crear
@@ -10,5 +12,7 @@ customer.booking.list.title = Lista de reservas
 
 customer.booking.list.label.locator-code = Código localizador
 customer.booking.list.label.purcharse-moment = Momento de compra
+customer.booking.list.label.travel-class = Clase
+customer.booking.list.label.price = Precio
 
 customer.booking.list.button.create = Crear
