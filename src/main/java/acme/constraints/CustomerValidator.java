@@ -9,7 +9,7 @@ import acme.client.components.validation.AbstractValidator;
 import acme.realms.Customer;
 import acme.realms.CustomerRepository;
 
-public class CustomerIdentifierValidator extends AbstractValidator<ValidCustomerIdentifier, Customer> {
+public class CustomerValidator extends AbstractValidator<ValidCustomer, Customer> {
 
 	@Autowired
 	private CustomerRepository repository;
