@@ -9,8 +9,8 @@ import acme.client.components.principals.DefaultUserIdentity;
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
 import acme.client.helpers.StringHelper;
-import acme.features.flightCrewMember.FlightCrewMemberRepository;
-import acme.realms.FlightCrewMember;
+import acme.realms.flightCrewMember.FlightCrewMember;
+import acme.realms.flightCrewMember.FlightCrewMemberRepository;
 
 @Validator
 public class FlightCrewMemberValidator extends AbstractValidator<ValidFlightCrewMember, FlightCrewMember> {
@@ -29,10 +29,11 @@ public class FlightCrewMemberValidator extends AbstractValidator<ValidFlightCrew
 		assert context != null;
 
 		boolean result;
+		boolean isNull;
 
-		if (flightCrewMember == null)
-			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
-		else {
+		isNull = flightCrewMember == null || flightCrewMember.getEmployeeCode() == null || flightCrewMember.getUserAccount() == null;
+
+		if (!isNull) {
 			{
 				boolean uniqueFlightCrewMember;
 				FlightCrewMember existingFlightCrewMember;
@@ -40,7 +41,7 @@ public class FlightCrewMemberValidator extends AbstractValidator<ValidFlightCrew
 				existingFlightCrewMember = this.repository.findFlightCrewMemberByEmployeeCode(flightCrewMember.getEmployeeCode());
 				uniqueFlightCrewMember = existingFlightCrewMember == null || existingFlightCrewMember.equals(flightCrewMember);
 
-				super.state(context, uniqueFlightCrewMember, "flightCrewMember", "acme.validation.flight-crew-member.employee-code-duplicated.message");
+				super.state(context, uniqueFlightCrewMember, "employeeCode", "acme.validation.flight-crew-member.employee-code-duplicated.message");
 			}
 			{
 				String employeeCode = flightCrewMember.getEmployeeCode();
@@ -50,21 +51,23 @@ public class FlightCrewMemberValidator extends AbstractValidator<ValidFlightCrew
 
 			}
 			{
+				boolean employeeCodeValid;
+
 				DefaultUserIdentity identity = flightCrewMember.getUserAccount().getIdentity();
 				String employeeCode = flightCrewMember.getEmployeeCode();
 
-				String nameInitial = StringHelper.capitaliseInitial(StringHelper.smallInitial(identity.getName())).substring(0, 1);
-				String firstNameInitial = StringHelper.capitaliseInitial(StringHelper.smallInitial(identity.getSurname())).substring(0, 1);
-				String expectedInitials = nameInitial + firstNameInitial;
+				String name = identity.getName().trim();
+				String surname = identity.getSurname().trim();
+				String initials = "" + name.charAt(0) + surname.charAt(0);
 
-				String employeeCodeInitials = employeeCode.substring(0, 2);
+				employeeCodeValid = StringHelper.startsWith(employeeCode, initials, true);
 
-				if (!StringHelper.isEqual(expectedInitials, employeeCodeInitials, false))
-					super.state(context, false, "employeeCode", "{acme.validation.flight-crew-member.employee-code-not-matching-initials.message}");
+				super.state(context, employeeCodeValid, "employeeCode", "{acme.validation.flight-crew-member.employee-code-not-matching-initials.message}");
 			}
 		}
 
 		result = !super.hasErrors(context);
 		return result;
 	}
+
 }
