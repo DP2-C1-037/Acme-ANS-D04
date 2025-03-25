@@ -16,3 +16,4 @@ customer.booking.list.label.travel-class = Clase
 customer.booking.list.label.price = Precio
 
 customer.booking.list.button.create = Crear
+customer.booking.form.button.passengers = Pasajeros
