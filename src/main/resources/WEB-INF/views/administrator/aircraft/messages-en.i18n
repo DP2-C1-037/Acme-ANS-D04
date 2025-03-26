@@ -20,6 +20,5 @@ administrator.aircraft.list.label.registrationNumber = Registration number
 administrator.aircraft.list.label.capacity = Capacity
 administrator.aircraft.list.label.cargoWeight = Cargo weight
 administrator.aircraft.list.label.status = Status
-administrator.aircraft.form.label.airline = Airline
 
 administrator.aircraft.list.button.create = Create
