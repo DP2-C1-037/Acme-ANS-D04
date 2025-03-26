@@ -1,6 +1,8 @@
 
 package acme.features.administrator.aircraft;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
@@ -10,6 +12,7 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.datatypes.AircraftStatus;
 import acme.entities.aircraft.Aircraft;
+import acme.entities.airline.Airline;
 import acme.entities.airline.AirlineRepository;
 
 @GuiService
@@ -58,14 +61,18 @@ public class AdministratorAircraftCreateService extends AbstractGuiService<Admin
 	public void unbind(final Aircraft aircraft) {
 		SelectChoices statuses;
 		SelectChoices airlines;
+		Collection<Airline> airlinesCollection;
 		Dataset dataset;
 
 		statuses = SelectChoices.from(AircraftStatus.class, aircraft.getStatus());
+		// airlinesCollection = this.repositoryAirline.findAllAirlines();
+		// airlines = SelectChoices.from(airlinesCollection, "name", aircraft.getAirline());
 
 		dataset = super.unbindObject(aircraft, "model", "registrationNumber", "capacity", "cargoWeight", "status", "optionalDetails");
 		dataset.put("confirmation", false);
 		dataset.put("readonly", false);
 		dataset.put("statuses", statuses);
+		// dataset.put("airlines", airlines);
 
 		super.getResponse().addData(dataset);
 	}

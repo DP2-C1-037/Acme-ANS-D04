@@ -21,7 +21,7 @@
 	<acme:input-integer code="administrator.aircraft.form.label.capacity" path="capacity"/>
 	<acme:input-integer code="administrator.aircraft.form.label.cargoWeight" path="cargoWeight"/>
 	<acme:input-select code="administrator.aircraft.form.label.status" path="status" choices= "${statuses}"/>
-	<acme:input-select code="administrator.aircraft.form.label.ailine" path="airlines" choices= "${airlines}"/>
+	<acme:input-select code="administrator.aircraft.form.label.airline" path="airlines" choices= "${airlines}"/>
 	<acme:input-textarea code="administrator.aircraft.form.label.details" path="optionalDetails"/>
 	
 	
