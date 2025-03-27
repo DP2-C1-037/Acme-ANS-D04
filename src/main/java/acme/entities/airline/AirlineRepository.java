@@ -12,6 +12,6 @@ public interface AirlineRepository extends AbstractRepository {
 	@Query("SELECT a.iataCode FROM Airline a WHERE a.id = (SELECT l.deployedAircraft.airline.id FROM Leg l WHERE l.id = :legId)")
 	public String getIataCodeFromLegId(int legId);
 
-	@Query("SELECT COUNT(a) > 0 FROM Airline a WHERE a.iataCode = :iataCode")
-	public Boolean iataCodeAlreadyExists(String iataCode);
+	@Query("SELECT a FROM Airline a WHERE a.iataCode = :iataCode")
+	public Airline findAirlineByIataCode(String iataCode);
 }
