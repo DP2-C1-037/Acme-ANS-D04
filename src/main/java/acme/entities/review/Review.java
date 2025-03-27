@@ -30,7 +30,7 @@ public class Review extends AbstractEntity {
 	@Mandatory
 	@ValidString(min = 1, max = 50)
 	@Automapped
-	private String				username; // alias
+	private String				alias;
 
 	@Mandatory
 	@ValidMoment(past = true)

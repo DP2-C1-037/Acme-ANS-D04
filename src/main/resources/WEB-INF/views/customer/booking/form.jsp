@@ -4,14 +4,15 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form>	
-	<acme:input-textbox code="customer.booking.form.label.header" path="header"/>
-	<acme:input-textarea code="customer.booking.form.label.description" path="description"/>
-	<jstl:if test="${_command == 'show' }">
-		<acme:input-textarea code="customer.booking.form.label.redress" path="redress"/>
-	</jstl:if>
 	
-	<jstl:if test="${_command == 'create' }">
-		<acme:input-checkbox code="customer.booking.form.label.confirmation" path="confirmation"/>	
-		<acme:submit code="customer.booking.form.button.create" action="/customer/booking/create"/>
-	</jstl:if>	
+	<jstl:if test="${_command == 'show' }">
+		<acme:input-textbox code="customer.booking.form.label.locator-code" path="locatorCode"/>
+		<acme:input-textbox code="customer.booking.form.label.purcharse-moment" path="purcharseMoment"/>
+		<acme:input-textbox code="customer.booking.form.label.travel-class" path="travelClass"/>
+		<acme:input-textbox code="customer.booking.form.label.price" path="price"/>
+		<acme:input-textbox code="customer.booking.form.label.last-nibble" path="lastNibble"/>
+		
+		<acme:button code="customer.booking.form.button.passengers" action="/customer/passenger/list?masterId=${id}"/>			
+	</jstl:if>
+
 </acme:form>

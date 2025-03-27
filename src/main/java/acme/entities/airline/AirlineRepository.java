@@ -14,4 +14,5 @@ public interface AirlineRepository extends AbstractRepository {
 
 	@Query("SELECT a FROM Airline a WHERE a.iataCode = :iataCode")
 	public Airline findAirlineByIataCode(String iataCode);
+
 }
