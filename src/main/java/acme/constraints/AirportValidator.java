@@ -29,13 +29,13 @@ public class AirportValidator extends AbstractValidator<ValidAirport, Airport> {
 		boolean result;
 		boolean isNull;
 
-		isNull = airport == null || airport.getCode() == null;
+		isNull = airport == null || airport.getIataCode() == null;
 
 		if (!isNull) {
 			boolean uniqueAirport;
 			Airport existingAirport;
 
-			existingAirport = this.repository.findAirportByCode(airport.getCode());
+			existingAirport = this.repository.findAirportByCode(airport.getIataCode());
 			uniqueAirport = existingAirport == null || existingAirport.equals(airport);
 
 			super.state(context, uniqueAirport, "code", "acme.validation.airport.code-duplicated.message");

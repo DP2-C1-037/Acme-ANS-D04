@@ -1,4 +1,4 @@
-key,name,code,operationalScope,city,country,website,email,phoneNumber
+key,name,iataCode,operationalScope,city,country,website,email,phoneNumber
 # base entity
 airport-01,"Lorem ipsum dolor sit ame","TJV","INTERNATIONAL","Lorem ipsum dolor sit ame","Lorem ipsum dolor sit ame","http://lorem.com/ipsum","acme@lorem-ipsum.org","34866785814"
 # name - standard variations
