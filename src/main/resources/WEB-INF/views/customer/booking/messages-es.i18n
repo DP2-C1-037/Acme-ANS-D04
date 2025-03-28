@@ -4,6 +4,8 @@ customer.booking.form.label.locator-code = Código localizador:
 customer.booking.form.label.purcharse-moment = Momento de compra:
 customer.booking.form.label.travel-class = Clase:
 customer.booking.form.label.price = Precio:
+customer.booking.form.label.last-nibble = Últimos cuatro dígitos de la tarjeta de crédito:
+customer.booking.form.label.flight = Vuelo:
 customer.booking.form.label.confirmation = Confirma que quieres crear esta reserva.
 
 customer.booking.form.button.create = Crear
