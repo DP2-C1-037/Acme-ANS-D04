@@ -6,7 +6,6 @@
 <acme:list>
 	<acme:list-column code="customer.booking.list.label.locator-code" path="locatorCode" width="10%"/>
 	<acme:list-column code="customer.booking.list.label.purcharse-moment" path="purcharseMoment" width="90%"/>
-	<acme:list-column code="customer.booking.list.label.travel-class" path="travelClass" width="90%"/>	
 	<acme:list-column code="customer.booking.list.label.price" path="price" width="90%"/>	
 	<acme:list-payload path="payload"/>
 </acme:list>
