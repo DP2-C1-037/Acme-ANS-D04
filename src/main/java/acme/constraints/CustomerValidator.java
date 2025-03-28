@@ -6,6 +6,7 @@ import javax.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.validation.AbstractValidator;
+import acme.client.helpers.StringHelper;
 import acme.realms.Customer;
 import acme.realms.CustomerRepository;
 
@@ -38,14 +39,17 @@ public class CustomerValidator extends AbstractValidator<ValidCustomer, Customer
 				boolean identifierCorrectSyntax;
 				String name = customer.getIdentity().getName().trim();
 				String surname = customer.getIdentity().getSurname().trim();
-				String initials = "" + name.charAt(0) + surname.charAt(0);
+				if (!StringHelper.isBlank(name) && !StringHelper.isBlank(surname)) {
+					String initials = "" + name.charAt(0) + surname.charAt(0);
 
-				String identifier = customer.getIdentifier().trim();
-				String identifierPrefix = identifier.substring(0, initials.length());
+					String identifier = customer.getIdentifier().trim();
+					String identifierPrefix = identifier.substring(0, initials.length());
 
-				identifierCorrectSyntax = initials.equals(identifierPrefix);
+					identifierCorrectSyntax = initials.equals(identifierPrefix);
+					super.state(context, identifierCorrectSyntax, "customers", "acme.validation.customer.identifier.syntax.message");
+				} else
+					super.state(context, false, "customers", "acme.validation.customer.identifier.syntax.message");
 
-				super.state(context, identifierCorrectSyntax, "customers", "acme.validation.customer.identifier.syntax.message");
 			}
 		}
 
