@@ -1,12 +1,10 @@
 customer.passenger.form.title = Detalles de pasajero
 
-customer.passenger.form.label.locator-code = Locator code:
-customer.passenger.form.label.purcharse-moment = Purcharse moment:
-customer.passenger.form.label.travel-class = Travel class:
-customer.passenger.form.label.price = Price:
-customer.passenger.form.label.last-nibble = Credit card last nibble:
-customer.passenger.form.label.flight = Flight:
-customer.passenger.form.label.confirmation = Confirm that you wish to submit this booking.
+customer.passenger.form.label.full-name = Nombre completo:
+customer.passenger.form.label.email = Email:
+customer.passenger.form.label.passport-number = Número de pasaporte:
+customer.passenger.form.label.birth-date = Fecha de nacimiento:
+customer.passenger.form.label.special-needs = Necesidades especiales:
 
 customer.passenger.form.button.create = Crear
 
