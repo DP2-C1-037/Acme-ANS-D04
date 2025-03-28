@@ -16,10 +16,13 @@ public class BookingController extends AbstractGuiController<Customer, Booking> 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private BookingListService	listService;
+	private BookingListService		listService;
 
 	@Autowired
-	private BookingShowService	showService;
+	private BookingShowService		showService;
+
+	@Autowired
+	private BookingCreateService	createService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -28,6 +31,7 @@ public class BookingController extends AbstractGuiController<Customer, Booking> 
 	protected void initialise() {
 		super.addBasicCommand("list", this.listService);
 		super.addBasicCommand("show", this.showService);
+		super.addBasicCommand("create", this.createService);
 	}
 
 }
