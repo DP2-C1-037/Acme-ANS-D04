@@ -39,32 +39,32 @@ public class FlightCrewMemberFlightAssignmentShowService extends AbstractGuiServ
 	}
 
 	@Override
-	public void unbind(final FlightAssignment assignment) {
+	public void unbind(final FlightAssignment flightAssignment) {
 		Dataset dataset;
 		SelectChoices statuses;
 		SelectChoices duties;
-		SelectChoices selectedLegs;
 		Collection<Leg> legs;
-		SelectChoices selectedMembers;
+		SelectChoices selectedLegs;
 		Collection<FlightCrewMember> members;
+		SelectChoices selectedMembers;
 
-		statuses = SelectChoices.from(AssignmentStatus.class, assignment.getStatus());
-		duties = SelectChoices.from(FlightCrewDuty.class, assignment.getFlightCrewDuty());
 		legs = this.repository.findAllLegs();
-		selectedLegs = SelectChoices.from(legs, "flightNumber", assignment.getLeg());
 		members = this.repository.findAllFlightCrewMembers();
-		selectedMembers = SelectChoices.from(members, "employeeCode", assignment.getFlightCrewMember());
 
-		dataset = super.unbindObject(assignment, "lastUpdateMoment", "remarks");
-		dataset.put("confirmation", false);
-		dataset.put("readonly", false);
+		statuses = SelectChoices.from(AssignmentStatus.class, flightAssignment.getStatus());
+		duties = SelectChoices.from(FlightCrewDuty.class, flightAssignment.getFlightCrewDuty());
+		selectedLegs = SelectChoices.from(legs, "flightNumber", flightAssignment.getLeg());
+		selectedMembers = SelectChoices.from(members, "employeeCode", flightAssignment.getFlightCrewMember());
+
+		dataset = super.unbindObject(flightAssignment, "flightCrewDuty", "lastUpdateMoment", "status", "remarks");
 		dataset.put("statuses", statuses);
 		dataset.put("duties", duties);
-		dataset.put("legs", selectedLegs);
 		dataset.put("leg", selectedLegs.getSelected().getKey());
-		dataset.put("members", members);
+		dataset.put("legs", selectedLegs);
 		dataset.put("member", selectedMembers.getSelected().getKey());
+		dataset.put("members", selectedMembers);
 
 		super.getResponse().addData(dataset);
 	}
+
 }

@@ -37,7 +37,7 @@ public class FlightCrewMemberFlightAssignmentListService extends AbstractGuiServ
 		Dataset dataset;
 
 		dataset = super.unbindObject(assignment, "lastUpdateMoment", "status", "flightCrewDuty");
-		super.addPayload(dataset, assignment, "remarks", "assignment.leg", "assignment.flightCrewMember");
+		super.addPayload(dataset, assignment, "remarks");
 
 		super.getResponse().addData(dataset);
 	}
