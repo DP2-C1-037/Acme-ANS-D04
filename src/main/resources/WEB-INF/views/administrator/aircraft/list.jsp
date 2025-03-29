@@ -7,8 +7,8 @@
 	<acme:list-column code="administrator.aircraft.list.label.model" path="model" width="50%"/>
 	<acme:list-column code="administrator.aircraft.list.label.capacity" path="capacity" width="25%"/>
 	<acme:list-column code="administrator.aircraft.list.label.status" path="status" width="25%"/>
-	
 	<acme:list-payload path="payload"/>	
+	
 </acme:list>
 
 <jstl:if test="${_command == 'list'}">
