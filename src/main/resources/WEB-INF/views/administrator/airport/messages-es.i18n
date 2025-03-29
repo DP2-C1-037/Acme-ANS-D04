@@ -13,7 +13,6 @@ administrator.airport.form.label.phoneNumber = Número de teléfono: (Opcional)
 administrator.airport.form.button.create = Crear
 administrator.airport.form.button.update = Actualizar
 administrator.airport.form.button.delete = Eliminar
-administrator.airport.form.button.publish = Public
 administrator.airport.form.label.confirmation = Confirma que el aeropuerto es correcto.
 
 administrator.airport.list.label.name = Nomber
