@@ -26,7 +26,9 @@ task-19,MAINTENANCE,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Se
 task-20,MAINTENANCE,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",5,0.01,false,technician-01
 task-21,MAINTENANCE,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",5,999.99,false,technician-01
 task-22,MAINTENANCE,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",5,1000,false,technician-01
+# draftmode - standard variations
+task-23,MAINTENANCE,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",5,500,true,technician-01
 # key:technician - standard variations
-task-23,MAINTENANCE,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",5,500,false,technician-02
+task-24,MAINTENANCE,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",5,500,false,technician-02
 
 
