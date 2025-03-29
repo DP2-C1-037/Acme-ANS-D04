@@ -16,10 +16,26 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form>
-	<acme:input-textbox code="customer.passenger.form.label.full-name" path="fullName"/>
-	<acme:input-textbox code="customer.passenger.form.label.email" path="email"/>
-	<acme:input-textbox code="customer.passenger.form.label.passport-number" path="passportNumber"/>
-	<acme:input-textbox code="customer.passenger.form.label.birth-date" path="birthDate"/>
-	<acme:input-textbox code="customer.passenger.form.label.special-needs" path="specialNeeds"/>
+	<jstl:if test="${_command == 'show' }">
+		<acme:input-textbox code="customer.passenger.form.label.full-name" path="fullName"/>
+		<acme:input-textbox code="customer.passenger.form.label.email" path="email"/>
+		<acme:input-textbox code="customer.passenger.form.label.passport-number" path="passportNumber"/>
+		<acme:input-moment code="customer.passenger.form.label.birth-date" path="birthDate"/>
+		<acme:input-textbox code="customer.passenger.form.label.special-needs" path="specialNeeds"/>
+	</jstl:if>
+	<jstl:if test="${_command == 'create' }">
+		<acme:input-textbox code="customer.passenger.form.label.full-name" path="fullName"/>
+		<acme:input-textbox code="customer.passenger.form.label.email" path="email"/>
+		<acme:input-textbox code="customer.passenger.form.label.passport-number" path="passportNumber"/>
+		<acme:input-moment code="customer.passenger.form.label.birth-date" path="birthDate"/>
+		<acme:input-textbox code="customer.passenger.form.label.special-needs" path="specialNeeds"/>
+		
+		<acme:submit code="customer.booking.form.button.create" action="/customer/passenger/create"/>
+	</jstl:if>
+	
+	
+	
 </acme:form>
+
+
 
