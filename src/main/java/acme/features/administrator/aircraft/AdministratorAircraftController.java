@@ -20,9 +20,6 @@ public class AdministratorAircraftController extends AbstractGuiController<Admin
 	private AdministratorAircraftShowService	showService;
 
 	@Autowired
-	private AdministratorAircraftDeleteService	deleteService;
-
-	@Autowired
 	private AdministratorAircraftCreateService	createService;
 
 	@Autowired
@@ -33,7 +30,6 @@ public class AdministratorAircraftController extends AbstractGuiController<Admin
 	protected void initialise() {
 		super.addBasicCommand("list", this.listService);
 		super.addBasicCommand("show", this.showService);
-		super.addBasicCommand("delete", this.deleteService);
 		super.addBasicCommand("create", this.createService);
 		super.addBasicCommand("update", this.updateService);
 	}

@@ -75,7 +75,6 @@ public class AdministratorAircraftUpdateService extends AbstractGuiService<Admin
 
 		dataset = super.unbindObject(aircraft, "model", "registrationNumber", "capacity", "cargoWeight", "status", "optionalDetails");
 		dataset.put("confirmation", false);
-		dataset.put("readonly", false);
 		dataset.put("statuses", statuses);
 		dataset.put("airlines", selectedAirlines);
 		dataset.put("airline", selectedAirlines.getSelected().getKey());
