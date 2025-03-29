@@ -43,6 +43,7 @@ master.menu.consumer.favourite-link = Favourite link
 
 master.menu.customer = Customer
 master.menu.customer.bookings = Bookings
+master.menu.customer.assigned-to = Bookings assignations
 
 # master.menu.flightCrewMember ##########################################################
 
