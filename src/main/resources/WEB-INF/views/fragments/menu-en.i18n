@@ -49,7 +49,7 @@ master.menu.customer.assigned-to = Bookings assignations
 # master.menu.flightCrewMember ##########################################################
 
 master.menu.flightCrewMember = Flight Crew Member
-master.menu.flightCrewMember.flightAssignment = Flight Assignments 
+master.menu.flightCrewMember.flightAssignment = List flight assignments 
 
 # master.menu.user-account ####################################################
 

@@ -48,7 +48,7 @@ master.menu.customer.assigned-to = Asignaciones de reserva
 # master.menu.flightCrewMember ##########################################################
 
 master.menu.flightCrewMember = Miembro de la tripulación de vuelo
-master.menu.flightCrewMember.flightAssignment = Asignación de vuelo
+master.menu.flightCrewMember.flightAssignment = Ver asignaciones de vuelo
 
 # master.menu.user-account ####################################################
 
