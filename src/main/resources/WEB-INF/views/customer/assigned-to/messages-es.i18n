@@ -1,0 +1,8 @@
+customer.assigned-to.form.title = Detalles de asignaciones de reservas 
+
+customer.assigned-to.list.title = Lista de asignaciones de reservas
+
+customer.assigned-to.list.label.locator-code = Código localizador
+customer.assigned-to.list.label.passport-number = Número de pasaporte
+
+customer.assigned-to.list.button.create = Crear

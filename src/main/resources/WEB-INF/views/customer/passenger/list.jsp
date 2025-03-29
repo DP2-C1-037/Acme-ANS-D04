@@ -16,9 +16,9 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:list>
-	<acme:list-column code="customer.passenger.list.label.full-name" path="fullName" width="20%"/>	
-	<acme:list-column code="customer.passenger.list.label.email" path="email" width="80%"/>	
-	<acme:list-column code="customer.passenger.list.label.passport-number" path="passportNumber" width="80%"/>	
+	<acme:list-column code="customer.passenger.list.label.full-name" path="fullName" width="40%"/>	
+	<acme:list-column code="customer.passenger.list.label.email" path="email" width="40%"/>	
+	<acme:list-column code="customer.passenger.list.label.passport-number" path="passportNumber" width="20%"/>	
 	<acme:list-payload path="payload"/>
 </acme:list>
 

@@ -29,21 +29,28 @@ public class PassengerListService extends AbstractGuiService<Customer, Passenger
 		int masterId;
 		Booking booking;
 
-		masterId = super.getRequest().getData("masterId", int.class);
-		booking = this.repository.findBookingById(masterId);
-		status = booking != null && super.getRequest().getPrincipal().hasRealm(booking.getCustomer());
-
-		super.getResponse().setAuthorised(status);
+		if (super.getRequest().hasData("masterId")) {
+			masterId = super.getRequest().getData("masterId", int.class);
+			booking = this.repository.findBookingById(masterId);
+			status = booking != null && super.getRequest().getPrincipal().hasRealm(booking.getCustomer());
+			super.getResponse().setAuthorised(status);
+		} else
+			super.getResponse().setAuthorised(true);
 	}
 
 	@Override
 	public void load() {
 		Collection<Passenger> passengers;
+		int customerId;
 		int masterId;
 
-		masterId = super.getRequest().getData("masterId", int.class);
-		passengers = this.repository.findPassengersByBookingId(masterId);
-
+		if (super.getRequest().hasData("masterId")) {
+			masterId = super.getRequest().getData("masterId", int.class);
+			passengers = this.repository.findPassengersByBookingId(masterId);
+		} else {
+			customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+			passengers = this.repository.findPassengersByCustomerId(customerId);
+		}
 		super.getBuffer().addData(passengers);
 	}
 
@@ -51,7 +58,12 @@ public class PassengerListService extends AbstractGuiService<Customer, Passenger
 	public void unbind(final Passenger passenger) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(passenger, "fullName", "email", "passportNumber");
+		String fullname = passenger.getFullName().length() > 50 ? passenger.getFullName().substring(0, 50) + "..." : passenger.getFullName();
+		String email = passenger.getEmail().length() > 50 ? passenger.getEmail().substring(0, 50) + "..." : passenger.getEmail();
+
+		dataset = super.unbindObject(passenger, "passportNumber");
+		dataset.put("fullName", fullname);
+		dataset.put("email", email);
 
 		super.getResponse().addData(dataset);
 	}
@@ -62,11 +74,14 @@ public class PassengerListService extends AbstractGuiService<Customer, Passenger
 		Booking booking;
 		final boolean showCreate;
 
-		masterId = super.getRequest().getData("masterId", int.class);
-		booking = this.repository.findBookingById(masterId);
-		showCreate = super.getRequest().getPrincipal().hasRealm(booking.getCustomer());
+		if (super.getRequest().hasData("masterId")) {
+			masterId = super.getRequest().getData("masterId", int.class);
+			booking = this.repository.findBookingById(masterId);
+			showCreate = super.getRequest().getPrincipal().hasRealm(booking.getCustomer());
 
-		super.getResponse().addGlobal("masterId", masterId);
-		super.getResponse().addGlobal("showCreate", showCreate);
+			super.getResponse().addGlobal("masterId", masterId);
+			super.getResponse().addGlobal("showCreate", showCreate);
+		}
+
 	}
 }
