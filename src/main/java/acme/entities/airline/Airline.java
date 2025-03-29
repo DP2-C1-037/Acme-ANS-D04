@@ -3,7 +3,6 @@ package acme.entities.airline;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -13,10 +12,11 @@ import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
+import acme.client.components.validation.ValidEmail;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
-import acme.constraints.ValidEmail2;
+import acme.constraints.ValidAirline;
 import acme.datatypes.AirlineType;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,6 +24,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@ValidAirline
 public class Airline extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
@@ -35,7 +36,7 @@ public class Airline extends AbstractEntity {
 
 	@Mandatory
 	@ValidString(pattern = "[A-Z]{3}") // typically an X but no restriction.
-	@Column(unique = true)
+	@Automapped
 	private String				iataCode;
 
 	@Mandatory
@@ -49,12 +50,12 @@ public class Airline extends AbstractEntity {
 	private AirlineType			type;
 
 	@Mandatory
-	@ValidMoment(min = "2000/01/01 00:00", past = true)
+	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				foundationMoment;
 
 	@Optional
-	@ValidEmail2
+	@ValidEmail
 	@Automapped
 	private String				email;
 

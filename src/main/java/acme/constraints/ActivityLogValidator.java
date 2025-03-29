@@ -34,9 +34,9 @@ public class ActivityLogValidator extends AbstractValidator<ValidActivityLog, Ac
 
 			Leg leg = log.getFlightAssignment().getLeg();
 			Date endMoment = leg.getScheduledArrival();
-			boolean isAfter = MomentHelper.isAfter(log.getRegistrationMoment(), endMoment);
+			boolean isAfter = MomentHelper.isAfter(endMoment, log.getRegistrationMoment()); // esto esta bien?
 
-			super.state(context, isAfter, "registrationMoment", "{acme.validation.registration-moment-log.message}");
+			super.state(context, isAfter, "registrationMoment", "{acme.validation.log.registration-moment.message}");
 		}
 
 		result = !super.hasErrors(context);

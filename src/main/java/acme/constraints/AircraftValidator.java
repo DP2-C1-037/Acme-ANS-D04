@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
 import acme.entities.aircraft.Aircraft;
-import acme.features.aircraft.AircraftRepository;
+import acme.entities.aircraft.AircraftRepository;
 
 @Validator
 public class AircraftValidator extends AbstractValidator<ValidAircraft, Aircraft> {
@@ -28,10 +28,11 @@ public class AircraftValidator extends AbstractValidator<ValidAircraft, Aircraft
 		assert context != null;
 
 		boolean result;
+		boolean isNull;
 
-		if (aircraft == null)
-			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
-		else {
+		isNull = aircraft == null || aircraft.getRegistrationNumber() == null;
+
+		if (!isNull) {
 			boolean uniqueAircraft;
 			Aircraft existingAircraft;
 
