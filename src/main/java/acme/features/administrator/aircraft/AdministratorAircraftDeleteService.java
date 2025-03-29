@@ -51,7 +51,7 @@ public class AdministratorAircraftDeleteService extends AbstractGuiService<Admin
 
 	@Override
 	public void validate(final Aircraft aircraft) {
-		super.state(true, "*", "administrator.aircraft.delete.aircraft-linked");
+		;
 	}
 
 	@Override
