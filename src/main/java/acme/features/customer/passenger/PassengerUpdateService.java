@@ -10,14 +10,14 @@ import acme.entities.passenger.Passenger;
 import acme.realms.Customer;
 
 @GuiService
-public class PassengerShowService extends AbstractGuiService<Customer, Passenger> {
+public class PassengerUpdateService extends AbstractGuiService<Customer, Passenger> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
 	private PassengerRepository repository;
 
-	// AbstractGuiService interface -------------------------------------------
+	// AbstractGuiService interfaced ------------------------------------------
 
 
 	@Override
@@ -28,20 +28,36 @@ public class PassengerShowService extends AbstractGuiService<Customer, Passenger
 
 		passengerId = super.getRequest().getData("id", int.class);
 		passenger = this.repository.findPassengerById(passengerId);
-		status = passenger != null && super.getRequest().getPrincipal().hasRealm(passenger.getCustomer());
+		status = passenger != null && passenger.isDraftMode() && super.getRequest().getPrincipal().hasRealm(passenger.getCustomer());
 
 		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
-		int passengerId;
 		Passenger passenger;
+		int id;
 
-		passengerId = super.getRequest().getData("id", int.class);
-		passenger = this.repository.findPassengerById(passengerId);
+		id = super.getRequest().getData("id", int.class);
+		passenger = this.repository.findPassengerById(id);
 
 		super.getBuffer().addData(passenger);
+	}
+
+	@Override
+	public void bind(final Passenger passenger) {
+		super.bindObject(passenger, "fullName", "email", "passportNumber", "birthDate", "specialNeeds");
+	}
+
+	@Override
+	public void validate(final Passenger passenger) {
+
+		;
+	}
+
+	@Override
+	public void perform(final Passenger passenger) {
+		this.repository.save(passenger);
 	}
 
 	@Override
@@ -49,7 +65,8 @@ public class PassengerShowService extends AbstractGuiService<Customer, Passenger
 		Dataset dataset;
 
 		dataset = super.unbindObject(passenger, "fullName", "email", "passportNumber", "birthDate", "specialNeeds");
-		dataset.put("draftMode", !passenger.isDraftMode());
+
 		super.getResponse().addData(dataset);
 	}
+
 }

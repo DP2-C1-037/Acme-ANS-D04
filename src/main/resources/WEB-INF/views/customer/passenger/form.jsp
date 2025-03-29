@@ -16,25 +16,23 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form>
-	<jstl:if test="${_command == 'show' }">
-		<acme:input-textbox code="customer.passenger.form.label.full-name" path="fullName"/>
-		<acme:input-textbox code="customer.passenger.form.label.email" path="email"/>
-		<acme:input-textbox code="customer.passenger.form.label.passport-number" path="passportNumber"/>
-		<acme:input-moment code="customer.passenger.form.label.birth-date" path="birthDate"/>
-		<acme:input-textbox code="customer.passenger.form.label.special-needs" path="specialNeeds"/>
-	</jstl:if>
-	<jstl:if test="${_command == 'create' }">
-		<acme:input-textbox code="customer.passenger.form.label.full-name" path="fullName"/>
-		<acme:input-textbox code="customer.passenger.form.label.email" path="email"/>
-		<acme:input-textbox code="customer.passenger.form.label.passport-number" path="passportNumber"/>
-		<acme:input-moment code="customer.passenger.form.label.birth-date" path="birthDate"/>
-		<acme:input-textbox code="customer.passenger.form.label.special-needs" path="specialNeeds"/>
-		
-		<acme:submit code="customer.booking.form.button.create" action="/customer/passenger/create"/>
+	<acme:input-textbox code="customer.passenger.form.label.full-name" path="fullName"/>
+	<acme:input-textbox code="customer.passenger.form.label.email" path="email"/>
+	<acme:input-textbox code="customer.passenger.form.label.passport-number" path="passportNumber"/>
+	<acme:input-moment code="customer.passenger.form.label.birth-date" path="birthDate"/>
+	<acme:input-textbox code="customer.passenger.form.label.special-needs" path="specialNeeds"/>
+	<jstl:if test="${_command == 'show'}">
+		<acme:input-checkbox code="customer.passenger.form.label.draft-mode" path="draftMode" readonly="true"/>
 	</jstl:if>
 	
-	
-	
+	<jstl:choose>
+		<jstl:when test="${acme:anyOf(_command, 'show|update')}">
+			<acme:submit code="customer.passenger.form.button.update" action="/customer/passenger/update"/>
+		</jstl:when>
+		<jstl:when test="${_command == 'create'}">
+			<acme:submit code="customer.passenger.form.button.create" action="/customer/passenger/create"/>
+		</jstl:when>		
+	</jstl:choose>		
 </acme:form>
 
 

@@ -5,8 +5,10 @@ customer.passenger.form.label.email = Email:
 customer.passenger.form.label.passport-number = Número de pasaporte:
 customer.passenger.form.label.birth-date = Fecha de nacimiento:
 customer.passenger.form.label.special-needs = Necesidades especiales:
+customer.passenger.form.label.draft-mode = ¿Está publicado?
 
 customer.passenger.form.button.create = Crear
+customer.passenger.form.button.update = Actualizar
 
 customer.passenger.list.title = Lista de pasajeros
 
