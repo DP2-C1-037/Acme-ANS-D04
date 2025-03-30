@@ -32,3 +32,7 @@ acme.validation.flight-crew-member.employee-code-not-matching-initials.message =
 acme.validation.log.registration-moment.message = El momento de registro del log debe ocurrir después de que termine la escala.
 
 acme.validation.airport.code-duplicated.message = El código del aeropuerto ya está en uso
+
+acme.validation.trackingLog.resolPercentage.message=El porcentaje de resolución debe estar entre 0 y 100.
+acme.validation.trackingLog.status.message=El estado debe ser PENDIENTE si el porcentaje de resolución es menor que 100, y ACEPTADO o RECHAZADO si es 100.
+acme.validation.trackingLog.resolution.message=La resolución no debe estar vacía si el porcentaje de resolución es 100.
