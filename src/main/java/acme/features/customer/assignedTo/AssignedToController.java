@@ -16,7 +16,13 @@ public class AssignedToController extends AbstractGuiController<Customer, Assign
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AssignedToListService listService;
+	private AssignedToListService	listService;
+
+	@Autowired
+	private AssignedToShowService	showService;
+
+	@Autowired
+	private AssignedToCreateService	createService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -24,6 +30,9 @@ public class AssignedToController extends AbstractGuiController<Customer, Assign
 	@PostConstruct
 	protected void initialise() {
 		super.addBasicCommand("list", this.listService);
+		super.addBasicCommand("show", this.showService);
+		super.addBasicCommand("create", this.createService);
+
 	}
 
 }
