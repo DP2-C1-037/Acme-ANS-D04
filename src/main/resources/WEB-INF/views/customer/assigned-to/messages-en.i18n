@@ -7,5 +7,5 @@ customer.assigned-to.list.label.passport-number = Passport number
 
 customer.assigned-to.list.button.create = Create
 
-customer.assigned-to.form.label.locator-code = Locator code:
-customer.assigned-to.form.label.passport-number = Passport number:
+customer.assigned-to.form.label.locator-code = Booking locator code:
+customer.assigned-to.form.label.passport-number = Passenger passport number:
