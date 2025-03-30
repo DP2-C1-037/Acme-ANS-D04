@@ -12,9 +12,11 @@ import javax.validation.Valid;
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
+import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
+import acme.constraints.ValidTrackingLog;
 import acme.entities.claim.Claim;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,6 +24,8 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@ValidTrackingLog
+
 public class TrackingLog extends AbstractEntity {
 	// Serialisation version -----------------------------------------------------------------------------------------
 
@@ -47,10 +51,10 @@ public class TrackingLog extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@Automapped
-	private Boolean				accepted; // enum
+	private TrackingLogStatus	status;
 
-	@Mandatory //
-	@ValidString(min = 1, max = 255)
+	@Optional
+	@ValidString
 	@Automapped
 	private String				resolution;
 

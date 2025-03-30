@@ -36,3 +36,7 @@ acme.validation.flight-crew-member.employee-code-not-matching-initials.message =
 acme.validation.log.registration-moment.message = The log registration moment must occur after the leg finishes
 
 acme.validation.airport.code-duplicated.message = The airport code is already in use
+
+acme.validation.trackingLog.resolPercentage.message=Resolution percentage must be between 0 and 100.
+acme.validation.trackingLog.status.message=Status must be PENDING if resolution percentage is less than 100, and ACCEPTED or DENIED if it is 100.
+acme.validation.trackingLog.resolution.message=Resolution must not be empty if resolution percentage is 100.
