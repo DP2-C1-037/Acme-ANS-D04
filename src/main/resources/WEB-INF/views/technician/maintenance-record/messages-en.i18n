@@ -15,9 +15,9 @@ technician.maintenance-record.form.button.update = Update
 technician.maintenance-record.form.button.delete = Delete
 technician.maintenance-record.form.button.publish = Publish
 
+technician.maintenance-record.list.label.aircraft-model = Aircraft
 technician.maintenance-record.list.label.maintenanceDate = Maintenance date
 technician.maintenance-record.list.label.nextInspectionDueDate = Next inspection
 technician.maintenance-record.list.label.status = Status
-technician.maintenance-record.list.label.estimatedCost = Estimated cost
 
 technician.maintenance-record.list.button.create = Create

@@ -17,6 +17,7 @@ import acme.realms.technicians.Technician;
 
 @GuiService
 public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService<Technician, MaintenanceRecord> {
+
 	// Internal state ------------------------------------------------------------
 
 	@Autowired

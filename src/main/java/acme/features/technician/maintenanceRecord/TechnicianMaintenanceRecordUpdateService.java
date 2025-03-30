@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
@@ -15,7 +16,7 @@ import acme.entities.maintenanceRecords.MaintenanceStatus;
 import acme.realms.technicians.Technician;
 
 @GuiService
-public class TechnicianMaintenanceRecordShowService extends AbstractGuiService<Technician, MaintenanceRecord> {
+public class TechnicianMaintenanceRecordUpdateService extends AbstractGuiService<Technician, MaintenanceRecord> {
 
 	// Internal state ------------------------------------------------------------
 
@@ -42,6 +43,29 @@ public class TechnicianMaintenanceRecordShowService extends AbstractGuiService<T
 	}
 
 	@Override
+	public void bind(final MaintenanceRecord maintenanceRecord) {
+		int aircraftId;
+		Aircraft aircraft;
+
+		aircraftId = super.getRequest().getData("aircraft", int.class);
+		aircraft = this.repository.findAircraftById(aircraftId);
+
+		super.bindObject(maintenanceRecord, "nextInspectionDueDate", "status", "estimatedCost", "notes");
+		maintenanceRecord.setMaintenanceDate(MomentHelper.getCurrentMoment());
+		maintenanceRecord.setAircraft(aircraft);
+	}
+
+	@Override
+	public void validate(final MaintenanceRecord maintenanceRecord) {
+		;
+	}
+
+	@Override
+	public void perform(final MaintenanceRecord maintenanceRecord) {
+		this.repository.save(maintenanceRecord);
+	}
+
+	@Override
 	public void unbind(final MaintenanceRecord maintenanceRecord) {
 		SelectChoices statuses;
 		Collection<Aircraft> aircrafts;
@@ -53,7 +77,7 @@ public class TechnicianMaintenanceRecordShowService extends AbstractGuiService<T
 		aircrafts = this.repository.findAvailableAircrafts();
 		choices = SelectChoices.from(aircrafts, "model", maintenanceRecord.getAircraft());
 
-		dataset = super.unbindObject(maintenanceRecord, "technician.identity.name", "maintenanceDate", "nextInspectionDueDate", "status", "estimatedCost", "notes", "draftMode");
+		dataset = super.unbindObject(maintenanceRecord, "maintenanceDate", "nextInspectionDueDate", "status", "estimatedCost", "notes");
 		dataset.put("statuses", statuses);
 		dataset.put("aircraft", choices.getSelected().getKey());
 		dataset.put("aircrafts", choices);
