@@ -24,6 +24,9 @@ public class TechnicianMaintenanceRecordController extends AbstractGuiController
 	@Autowired
 	private TechnicianMaintenanceRecordShowService		showService;
 
+	@Autowired
+	private TechnicianMaintenanceRecordCreateService	createService;
+
 	// Constructors --------------------------------------------------------------
 
 
@@ -31,6 +34,7 @@ public class TechnicianMaintenanceRecordController extends AbstractGuiController
 	protected void initialise() {
 		super.addBasicCommand("list", this.listService);
 		super.addBasicCommand("show", this.showService);
+		super.addBasicCommand("create", this.createService);
 
 		super.addCustomCommand("list-mine", "list", this.listMineService);
 	}

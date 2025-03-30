@@ -5,6 +5,9 @@ technician.maintenance-record.form.label.maintenanceDate = Fecha del registo de 
 technician.maintenance-record.form.label.nextInspectionDueDate = Próxima inspección:
 technician.maintenance-record.form.label.status = Estado:
 technician.maintenance-record.form.label.estimatedCost = Coste estimado:
+technician.maintenance-record.form.label.notes = Notas: (Opcional)
+technician.maintenance-record.form.label.technician = Técnico:
+technician.maintenance-record.form.label.aircraft = Aeronave:
 
 technician.maintenance-record.form.button.tasks = Tareas
 technician.maintenance-record.form.button.create = Crear
