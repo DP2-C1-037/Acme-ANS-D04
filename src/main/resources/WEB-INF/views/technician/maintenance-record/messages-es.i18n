@@ -1,0 +1,20 @@
+technician.maintenance-record.form.title = Detalles del registro de mantenimiento
+technician.maintenance-record.list.title = Listado de registros de mantenimiento
+
+technician.maintenance-record.form.label.maintenanceDate = Fecha del registo de mantenimiento:
+technician.maintenance-record.form.label.nextInspectionDueDate = Próxima inspección:
+technician.maintenance-record.form.label.status = Estado:
+technician.maintenance-record.form.label.estimatedCost = Coste estimado:
+
+technician.maintenance-record.form.button.tasks = Tareas
+technician.maintenance-record.form.button.create = Crear
+technician.maintenance-record.form.button.update = Actualizar
+technician.maintenance-record.form.button.delete = Eliminar
+technician.maintenance-record.form.button.publish = Publicar
+
+technician.maintenance-record.list.label.maintenanceDate = Fecha del registo de mantenimiento
+technician.maintenance-record.list.label.nextInspectionDueDate = Próxima inspección
+technician.maintenance-record.list.label.status = Estado
+technician.maintenance-record.list.label.estimatedCost = Coste estimado
+
+technician.maintenance-record.list.button.create = Crear

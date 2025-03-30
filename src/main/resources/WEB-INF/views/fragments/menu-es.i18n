@@ -48,6 +48,11 @@ master.menu.customer.bookings = Reservas
 master.menu.flightCrewMember = Miembro de la tripulación de vuelo
 master.menu.flightCrewMember.flightAssignment = Asignación de vuelo
 
+# master.menu.technician ##########################################################
+master.menu.technician = Técnico
+master.menu.technician.maintenance-record = Listar todos los registros de mantenimiento
+master.menu.technician.maintenance-record-mine = Listar mis registros de mantenimiento
+
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Cuenta
