@@ -51,6 +51,7 @@ master.menu.customer.assigned-to = Bookings assignations
 master.menu.flightCrewMember = Flight Crew Member
 master.menu.flightCrewMember.flightAssignmentCompleted = List completed flight assignments 
 master.menu.flightCrewMember.flightAssignmentPlanned = List planned flight assignments 
+master.menu.flightCrewMember.activityLogs = List activity logs 
 
 # master.menu.user-account ####################################################
 
