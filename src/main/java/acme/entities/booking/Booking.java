@@ -58,7 +58,7 @@ public class Booking extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	private boolean				draftMode;
+	private boolean				draftMode			= true;
 
 	// Relationships -------------------------------------------------------------------------------------------------
 
@@ -84,11 +84,17 @@ public class Booking extends AbstractEntity {
 
 		repository = SpringHelper.getBean(BookingRepository.class);
 		result = new Money();
-		flightCost = this.getFlight().getCost();
-		numberOfPassengers = repository.findNumberOfPassengersAssignedToBookingById(this.getId());
 
-		result.setCurrency(flightCost.getCurrency());
-		result.setAmount(flightCost.getAmount() * numberOfPassengers);
+		if (this.getFlight() != null) {
+			flightCost = this.getFlight().getCost();
+			numberOfPassengers = repository.findNumberOfPassengersAssignedToBookingById(this.getId());
+
+			result.setCurrency(flightCost.getCurrency());
+			result.setAmount(flightCost.getAmount() * numberOfPassengers);
+		} else {
+			result.setCurrency("EUR");
+			result.setAmount(0.);
+		}
 
 		return result;
 

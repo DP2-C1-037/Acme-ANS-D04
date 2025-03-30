@@ -18,11 +18,9 @@
 	<jstl:if test="${_command == 'create' }">
 		<acme:input-textbox code="customer.booking.form.label.locator-code" path="locatorCode"/>
 		<acme:input-select code="customer.booking.form.label.travel-class" path="travelClass" choices="${travelClasses}"/>
-		<acme:input-textbox code="customer.booking.form.label.last-nibble" path="lastNibble"/>
-		<acme:input-money code="customer.booking.form.label.price" path="price"/>
 		<acme:input-select code="customer.booking.form.label.flight" path="flight" choices="${flights}"/>
-		
-				
+		<acme:input-textbox code="customer.booking.form.label.last-nibble" path="lastNibble"/>
+			
 		<acme:submit code="customer.booking.form.button.create" action="/customer/booking/create"/>
 	</jstl:if>
 

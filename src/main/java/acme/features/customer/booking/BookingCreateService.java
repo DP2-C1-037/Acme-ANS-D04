@@ -1,9 +1,8 @@
 
 package acme.features.customer.booking;
 
+import java.util.Collection;
 import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -47,7 +46,6 @@ public class BookingCreateService extends AbstractGuiService<Customer, Booking> 
 		booking.setPurcharseMoment(moment);
 		booking.setTravelClass(TravelClass.ECONOMY);
 		booking.setLastNibble(null);
-		//booking.setPrice(null);
 		booking.setCustomer(customer);
 
 		super.getBuffer().addData(booking);
@@ -55,7 +53,7 @@ public class BookingCreateService extends AbstractGuiService<Customer, Booking> 
 
 	@Override
 	public void bind(final Booking booking) {
-		super.bindObject(booking, "locatorCode", "travelClass", "lastNibble", "flight", "price");
+		super.bindObject(booking, "locatorCode", "travelClass", "lastNibble", "flight");
 	}
 
 	@Override
@@ -65,26 +63,22 @@ public class BookingCreateService extends AbstractGuiService<Customer, Booking> 
 
 	@Override
 	public void perform(final Booking booking) {
-		Flight selectedFlight;
-		selectedFlight = booking.getFlight();
-
-		//booking.setPrice(selectedFlight.getCost());
 		this.repository.save(booking);
 	}
 
 	@Override
 	public void unbind(final Booking booking) {
 		SelectChoices travelClassesChoices;
-		List<Flight> flights;
+		Collection<Flight> flights;
 		SelectChoices flightsChoices;
 		Dataset dataset;
 
-		flights = this.repository.findAllFlights().stream().collect(Collectors.toList());
+		flights = this.repository.findAllFlights();
 
 		travelClassesChoices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
-		flightsChoices = SelectChoices.from(flights, "id", flights.get(0));
+		flightsChoices = SelectChoices.from(flights, "id", null);
 
-		dataset = super.unbindObject(booking, "locatorCode", "travelClass", "lastNibble", "flight", "price");
+		dataset = super.unbindObject(booking, "locatorCode", "travelClass", "lastNibble", "flight");
 		dataset.put("travelClasses", travelClassesChoices);
 		dataset.put("flights", flightsChoices);
 
