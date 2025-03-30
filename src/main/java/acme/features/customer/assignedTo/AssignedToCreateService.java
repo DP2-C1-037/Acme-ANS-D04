@@ -2,6 +2,7 @@
 package acme.features.customer.assignedTo;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -36,15 +37,26 @@ public class AssignedToCreateService extends AbstractGuiService<Customer, Assign
 		AssignedTo assignedTo;
 
 		assignedTo = new AssignedTo();
-		assignedTo.setBooking(null);
-		assignedTo.setPassenger(null);
 
 		super.getBuffer().addData(assignedTo);
 	}
 
 	@Override
 	public void bind(final AssignedTo assignedTo) {
+		int bookingId;
+		int passengerId;
+		Booking booking;
+		Passenger passenger;
+
+		bookingId = super.getRequest().getData("booking", int.class);
+		passengerId = super.getRequest().getData("passenger", int.class);
+		booking = this.repository.findBookingById(bookingId);
+		passenger = this.repository.findPassengerById(passengerId);
+
 		super.bindObject(assignedTo, "booking", "passenger");
+
+		assignedTo.setBooking(booking);
+		assignedTo.setPassenger(passenger);
 	}
 
 	@Override
@@ -56,10 +68,13 @@ public class AssignedToCreateService extends AbstractGuiService<Customer, Assign
 			super.state(bothInDraftMode, "booking", "acme.validation.assignedTo.draftMode.message");
 		}
 		{
-			//boolean alreadyAssigned;
+			boolean alreadyAssigned;
 
-			//alreadyAssigned = true;
-			//super.state(alreadyAssigned, "booking", "acme.validation.assignedTo.alreadyAssigned.message");
+			List<AssignedTo> assignedTos = this.repository.findAssignationFromBookingIdAndPassengerId(assignedTo.getBooking().getId(), assignedTo.getPassenger().getId()).stream().toList();
+
+			alreadyAssigned = assignedTos.isEmpty();
+
+			super.state(alreadyAssigned, "passenger", "acme.validation.assignedTo.alreadyAssigned.message");
 		}
 	}
 
@@ -74,17 +89,22 @@ public class AssignedToCreateService extends AbstractGuiService<Customer, Assign
 		Collection<Booking> bookings;
 		SelectChoices passengerChoices;
 		Collection<Passenger> passengers;
+		Customer customer;
 
 		Dataset dataset;
 
-		bookings = this.repository.findAllNotPublishedBookings();
-		passengers = this.repository.findAllNotPublishedPassengers();
+		customer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
 
-		bookingChoices = SelectChoices.from(bookings, "locatorCode", null);
-		passengerChoices = SelectChoices.from(passengers, "passportNumber", null);
+		bookings = this.repository.findAllNotPublishedBookingsFromCustomerId(customer.getId());
+		passengers = this.repository.findAllNotPublishedPassengersFromCustomerId(customer.getId());
+
+		bookingChoices = SelectChoices.from(bookings, "locatorCode", assignedTo.getBooking());
+		passengerChoices = SelectChoices.from(passengers, "passportNumber", assignedTo.getPassenger());
 
 		dataset = super.unbindObject(assignedTo, "booking", "passenger");
+		dataset.put("booking", bookingChoices.getSelected().getKey());
 		dataset.put("bookings", bookingChoices);
+		dataset.put("passenger", passengerChoices.getSelected().getKey());
 		dataset.put("passengers", passengerChoices);
 
 		super.getResponse().addData(dataset);

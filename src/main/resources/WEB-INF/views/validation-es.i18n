@@ -36,3 +36,6 @@ acme.validation.flight-crew-member.employee-code-not-matching-initials.message =
 acme.validation.log.registration-moment.message = El momento de registro del log debe ocurrir después de que termine la escala.
 
 acme.validation.airport.code-duplicated.message = El código del aeropuerto ya está en uso
+
+acme.validation.assignedTo.draftMode.message = Tanto el pasajero como la reserva deben estar en modo borrador para asignarlos el uno al otro
+acme.validation.assignedTo.alreadyAssigned.message = Este pasajero ya está asignado a esta reserva

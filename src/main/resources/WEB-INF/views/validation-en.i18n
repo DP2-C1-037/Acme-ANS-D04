@@ -36,3 +36,6 @@ acme.validation.flight-crew-member.employee-code-not-matching-initials.message =
 acme.validation.log.registration-moment.message = The log registration moment must occur after the leg finishes
 
 acme.validation.airport.code-duplicated.message = The airport code is already in use
+
+acme.validation.assignedTo.draftMode.message = Both passenger and booking must be in draft mode to be assigned to each other
+acme.validation.assignedTo.alreadyAssigned.message = This passenger is already assigned to this booking
