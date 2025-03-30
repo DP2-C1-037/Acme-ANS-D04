@@ -13,6 +13,8 @@ flight-crew-member.flight-assignment.form.button.update = Actualizar
 flight-crew-member.flight-assignment.form.button.delete = Eliminar
 flight-crew-member.flight-assignment.form.button.publish = Publicar
 flight-crew-member.flight-assignment.form.label.confirmation = Confirme que la asignación de vuelo es correcta.
+flight-crew-member.flight-assignment.form.button.leg: Tramo
+flight-crew-member.flight-assignment.form.button.member: Miembro
 
 flight-crew-member.flight-assignment.list.label.flightCrewDuty = Tarea:
 flight-crew-member.flight-assignment.list.label.lastUpdateMoment = Momento de última actualización:

@@ -1,12 +1,14 @@
 
 package acme.features.flightCrewMember.activityLog;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
+import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.activityLog.ActivityLog;
-import acme.entities.flightAssignment.FlightAssignment;
 import acme.realms.flightCrewMember.FlightCrewMember;
 
 @GuiService
@@ -18,16 +20,26 @@ public class FlightCrewMemberActivityLogListService extends AbstractGuiService<F
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int assignmentId;
-		FlightAssignment assignment;
+		super.getResponse().setAuthorised(true);
+	}
 
-		assignmentId = super.getRequest().getData("flightAssignmentId", int.class);
-		assignment = this.repository.findAssignmentById(assignmentId);
+	@Override
+	public void load() {
+		FlightCrewMember member = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
 
-		// status = !assignment.isDraftMode();
+		Collection<ActivityLog> logs = this.repository.findAllLogsByFlightCrewMemberId(member.getId());
 
-		//super.getResponse().setAuthorised(status);
+		super.getBuffer().addData(logs);
+	}
+
+	@Override
+	public void unbind(final ActivityLog log) {
+		Dataset dataset;
+
+		dataset = super.unbindObject(log, "typeOfIncident", "severityLevel", "registrationMoment");
+		super.addPayload(dataset, log, "description");
+		super.getResponse().addData(dataset);
+
 	}
 
 }
