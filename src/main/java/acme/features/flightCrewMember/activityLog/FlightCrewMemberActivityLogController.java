@@ -14,20 +14,20 @@ import acme.realms.flightCrewMember.FlightCrewMember;
 public class FlightCrewMemberActivityLogController extends AbstractGuiController<FlightCrewMember, ActivityLog> {
 
 	@Autowired
-	private FlightCrewMemberActivityLogListService	listService;
+	private FlightCrewMemberActivityLogListService		listService;
 
 	@Autowired
-	private FlightCrewMemberActivityLogShowService	showService;
+	private FlightCrewMemberActivityLogShowService		showService;
 
 	//	@Autowired
 	//	private FlightCrewMemberActivityLogCreateService	createService;
 	//
 	//	@Autowired
 	//	private FlightCrewMemberActivityLogUpdateService	updateService;
-	//
-	//	@Autowired
-	//	private FlightCrewMemberActivityLogDeleteService	deleteService;
-	//
+
+	@Autowired
+	private FlightCrewMemberActivityLogDeleteService	deleteService;
+
 	//	@Autowired
 	//	private FlightCrewMemberActivityLogPublishService	publishService;
 
@@ -38,7 +38,7 @@ public class FlightCrewMemberActivityLogController extends AbstractGuiController
 		super.addBasicCommand("show", this.showService);
 		//		super.addBasicCommand("create", this.createService);
 		//		super.addBasicCommand("update", this.updateService);
-		//		super.addBasicCommand("delete", this.deleteService);
+		super.addBasicCommand("delete", this.deleteService);
 		//		super.addCustomCommand("publish", "update", this.publishService);
 	}
 
