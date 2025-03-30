@@ -47,7 +47,7 @@ public class BookingCreateService extends AbstractGuiService<Customer, Booking> 
 		booking.setPurcharseMoment(moment);
 		booking.setTravelClass(TravelClass.ECONOMY);
 		booking.setLastNibble(null);
-		booking.setPrice(null);
+		//booking.setPrice(null);
 		booking.setCustomer(customer);
 
 		super.getBuffer().addData(booking);
@@ -68,7 +68,7 @@ public class BookingCreateService extends AbstractGuiService<Customer, Booking> 
 		Flight selectedFlight;
 		selectedFlight = booking.getFlight();
 
-		booking.setPrice(selectedFlight.getCost());
+		//booking.setPrice(selectedFlight.getCost());
 		this.repository.save(booking);
 	}
 
