@@ -13,7 +13,7 @@ administrator.airline.form.button.create = Create
 administrator.airline.form.button.update = Update
 administrator.airline.form.button.delete = Delete
 administrator.airline.form.button.publish = Publish
-administrator.airline.form.label.confirmation = Confirm that the aircraft is correct.
+administrator.airline.form.label.confirmation = Confirm that the airline data is correct.
 
 administrator.airline.list.label.name = Name
 administrator.airline.list.label.iataCode = Iata code

@@ -12,11 +12,10 @@
 	<acme:input-textbox code="administrator.airline.form.label.email" path="email"/>
 	<acme:input-textbox code="administrator.airline.form.label.phoneNumber" path="phoneNumber"/>
 	
-	
 	<jstl:choose>	 
-		<jstl:when test="${acme:anyOf(_command, 'show|update|delete')}">
+		<jstl:when test="${acme:anyOf(_command, 'show|update')}">
+			<acme:input-checkbox code="administrator.airline.form.label.confirmation" path="confirmation"/>
 			<acme:submit code="administrator.airline.form.button.update" action="/administrator/airline/update"/>
-			<acme:submit code="administrator.airline.form.button.delete" action="/administrator/airline/delete"/>
 		</jstl:when>
 		<jstl:when test="${_command == 'create'}">
 			<acme:input-checkbox code="administrator.airline.form.label.confirmation" path="confirmation"/>

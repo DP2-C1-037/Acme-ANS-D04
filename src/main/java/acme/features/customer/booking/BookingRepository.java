@@ -22,4 +22,7 @@ public interface BookingRepository extends AbstractRepository {
 	@Query("select f from Flight f")
 	Collection<Flight> findAllFlights();
 
+	@Query("select count(at) from AssignedTo at where at.booking.id = :bookingId")
+	Integer findNumberOfPassengersAssignedToBookingById(final int bookingId);
+
 }
