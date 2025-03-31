@@ -16,7 +16,7 @@ import acme.entities.flightAssignment.FlightAssignment;
 import acme.realms.flightCrewMember.FlightCrewMember;
 
 @GuiService
-public class FlightCrewMemberActivityLogPublishService extends AbstractGuiService<FlightCrewMember, ActivityLog> {
+public class FlightCrewMemberActivityLogUpdateService extends AbstractGuiService<FlightCrewMember, ActivityLog> {
 
 	@Autowired
 	private FlightCrewMemberActivityLogRepository repository;
@@ -24,7 +24,17 @@ public class FlightCrewMemberActivityLogPublishService extends AbstractGuiServic
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int logId;
+		FlightCrewMember member;
+		ActivityLog log;
+
+		logId = super.getRequest().getData("id", int.class);
+		log = this.repository.findActivityLogById(logId);
+		member = log == null ? null : log.getFlightAssignment().getFlightCrewMember();
+		status = member != null && super.getRequest().getPrincipal().hasRealm(member);
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -55,14 +65,11 @@ public class FlightCrewMemberActivityLogPublishService extends AbstractGuiServic
 
 	@Override
 	public void validate(final ActivityLog log) {
-		FlightAssignment assignment = log.getFlightAssignment();
-		if (assignment.isDraftMode())
-			super.state(false, "*", "acme.validation.activity-log.flight-assignment-not-published.message");
+		;
 	}
 
 	@Override
 	public void perform(final ActivityLog log) {
-		log.setDraftMode(false);
 		this.repository.save(log);
 	}
 
