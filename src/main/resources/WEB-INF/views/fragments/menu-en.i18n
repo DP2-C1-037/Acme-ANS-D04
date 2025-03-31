@@ -58,6 +58,10 @@ master.menu.technician = Technician
 master.menu.technician.maintenance-record = List all maintenance records
 master.menu.technician.maintenance-record-mine = List my maintenance records
 
+# master.menu.airlineManager ##########################################################
+master.menu.airlineManager = Manager
+master.menu.airlineManager.flight = List my flights
+
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Account
