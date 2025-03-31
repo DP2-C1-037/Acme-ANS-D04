@@ -56,6 +56,8 @@ master.menu.flightCrewMember.activityLogs = Ver registros de actividad
 master.menu.technician = Técnico
 master.menu.technician.maintenance-record = Listar todos los registros de mantenimiento
 master.menu.technician.maintenance-record-mine = Listar mis registros de mantenimiento
+master.menu.technician.task = Listar todas las tareas
+master.menu.technician.task-mine = Listar mis tareas
 
 # master.menu.airlineManager ##########################################################
 master.menu.airlineManager = Gestor
