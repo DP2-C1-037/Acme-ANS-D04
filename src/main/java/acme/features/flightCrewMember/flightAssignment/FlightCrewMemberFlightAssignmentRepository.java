@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
+import acme.entities.activityLog.ActivityLog;
 import acme.entities.airline.Leg;
 import acme.entities.flightAssignment.FlightAssignment;
 import acme.realms.flightCrewMember.FlightCrewMember;
@@ -38,4 +39,13 @@ public interface FlightCrewMemberFlightAssignmentRepository extends AbstractRepo
 
 	@Query("select m from FlightCrewMember m where m.id = :memberId")
 	FlightCrewMember findFlightCrewMemberById(int memberId);
+
+	@Query("select l from ActivityLog l where l.flightAssignment.id = :id")
+	Collection<ActivityLog> findActivityLogsByAssignmentId(int id);
+
+	@Query("select distinct fa.leg from FlightAssignment fa where fa.flightCrewMember.id = :memberId")
+	Collection<Leg> findLegsByFlightCrewMemberId(int memberId);
+
+	@Query("select fa from FlightAssignment fa where fa.leg.id = :legId")
+	Collection<FlightAssignment> findFlightAssignmentByLegId(int legId);
 }

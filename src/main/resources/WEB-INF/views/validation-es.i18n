@@ -33,6 +33,12 @@ acme.validation.flight-crew-member.employee-code-duplicated.message = Código de
 acme.validation.flight-crew-member.employee-code-invalid-format.message = El código de empleado debe coincidir con el patrón ^[A-Z]{2,3}\\d{6}$
 acme.validation.flight-crew-member.employee-code-not-matching-initials.message = Las dos primeras letras del employee code deben coincidir con las iniciales del miembro
 
+acme.validation.flight-assignment.member-with-overlapping-legs.message = El miembro seleccionado tiene escaladas solapadas
+acme.validation.flight-assignment.leg-has-copilot.message = La escala seleccionada ya tiene un copiloto
+acme.validation.flight-assignment.leg-has-pilot.message = La escala seleccionada ya tiene un piloto
+acme.validation.flight-assignment.member-not-available.message = El miembro seleccionado no está disponible
+acme.validation.flight-assignment.leg-has-occurred.message = La escala seleccionada ya ha ocurrido 
+
 acme.validation.log.registration-moment.message = El momento de registro del log debe ocurrir después de que termine la escala.
 
 acme.validation.airport.code-duplicated.message = El código del aeropuerto ya está en uso

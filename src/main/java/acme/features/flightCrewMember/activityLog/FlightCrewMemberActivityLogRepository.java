@@ -4,12 +4,14 @@ package acme.features.flightCrewMember.activityLog;
 import java.util.Collection;
 
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
 import acme.entities.activityLog.ActivityLog;
 import acme.entities.airline.Leg;
 import acme.entities.flightAssignment.FlightAssignment;
 
+@Repository
 public interface FlightCrewMemberActivityLogRepository extends AbstractRepository {
 
 	@Query("select al from ActivityLog al where al.flightAssignment.flightCrewMember.id = :memberId")
