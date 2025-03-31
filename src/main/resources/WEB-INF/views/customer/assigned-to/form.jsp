@@ -7,8 +7,13 @@
 	<acme:input-select code="customer.assigned-to.form.label.locator-code" path="booking" choices="${bookings}"/>
 	<acme:input-select code="customer.assigned-to.form.label.passport-number" path="passenger" choices="${passengers}"/>
 	
-	<jstl:if test="${_command == 'create' }">
-		<acme:submit code="customer.booking.form.button.create" action="/customer/assigned-to/create"/>
-	</jstl:if>
+	<jstl:choose>
+		<jstl:when test="${acme:anyOf(_command, 'show|delete')}">
+			<acme:submit code="customer.booking.form.button.delete" action="/customer/assigned-to/delete"/>
+		</jstl:when>
+		<jstl:when test="${_command == 'create'}">
+			<acme:submit code="customer.booking.form.button.create" action="/customer/assigned-to/create"/>
+		</jstl:when>
+	</jstl:choose>
 
 </acme:form>
