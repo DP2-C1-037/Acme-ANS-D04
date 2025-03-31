@@ -40,6 +40,8 @@ acme.validation.airport.code-duplicated.message = El código del aeropuerto ya e
 acme.validation.assignedTo.draftMode.message = Tanto el pasajero como la reserva deben estar en modo borrador para asignarlos el uno al otro
 acme.validation.assignedTo.alreadyAssigned.message = Este pasajero ya está asignado a esta reserva
 
+acme.validation.booking.lastNibble.message = Los últimos cuatro dígitos de la tarjeta de crédito deben ser registrados para publicar esta reserva
+
 acme.validation.trackingLog.resolPercentage.message=El porcentaje de resolución debe estar entre 0 y 100.
 acme.validation.trackingLog.status.message=El estado debe ser PENDIENTE si el porcentaje de resolución es menor que 100, y ACEPTADO o RECHAZADO si es 100.
 acme.validation.trackingLog.resolution.message=La resolución no debe estar vacía si el porcentaje de resolución es 100.

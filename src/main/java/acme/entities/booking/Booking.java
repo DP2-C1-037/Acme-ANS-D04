@@ -44,7 +44,7 @@ public class Booking extends AbstractEntity {
 	@Mandatory
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date				purcharseMoment;
+	private Date				purchaseMoment;
 
 	@Mandatory
 	@Valid
