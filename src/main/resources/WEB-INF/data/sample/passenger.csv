@@ -40,3 +40,5 @@ passenger-31,"Lorem ipsum dolor sit amet,consectetu",acme@lorem-ipsum.org,US39N3
 passenger-32,"Lorem ipsum dolor sit amet,consectetu",acme@lorem-ipsum.org,US39N3HE,2012/07/02 0:00,"'' or 'A' = 'A",true,customer-01
 # draftMode - standard variations
 passenger-33,"published dolor sit amet,consectetu",acme@lorem-ipsum.org,US39N3HE,2012/07/02 0:00,"Lorem ipsum dolor sit amet,consectetu",false,customer-01
+# customer - standard variations
+passenger-34,"Lorem ipsum dolor sit amet,consectetu",acme@lorem-ipsum.org,US39N3HE,2012/07/02 0:00,"Lorem ipsum dolor sit amet,consectetu",true,customer-02

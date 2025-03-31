@@ -9,3 +9,6 @@ customer.assigned-to.list.button.create = Crear
 
 customer.assigned-to.form.label.locator-code = Código localizador de la reserva:
 customer.assigned-to.form.label.passport-number = Número de pasaporte del pasajero:
+
+customer.assigned-to.form.button.create = Crear
+customer.assigned-to.form.button.delete = Eliminar
