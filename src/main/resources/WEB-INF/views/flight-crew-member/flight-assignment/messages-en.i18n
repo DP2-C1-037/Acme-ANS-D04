@@ -1,8 +1,8 @@
 flight-crew-member.flight-assignment.form.title = Flight assignment details
 flight-crew-member.flight-assignment.list.title = Listing of flight assignments
 
-flight-crew-member.flight-assignment.form.label.flightCrewDuty = Duty:
-flight-crew-member.flight-assignment.form.label.lastUpdateMoment = Last update moment:
+flight-crew-member.flight-assignment.form.label.flight-crew-duty = Duty:
+flight-crew-member.flight-assignment.form.label.last-update-moment = Last update moment:
 flight-crew-member.flight-assignment.form.label.status = Status:
 flight-crew-member.flight-assignment.form.label.remarks = Remarks (Optional):
 flight-crew-member.flight-assignment.form.label.leg = Leg:

@@ -12,12 +12,13 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.datatypes.AssignmentStatus;
 import acme.datatypes.FlightCrewDuty;
+import acme.entities.activityLog.ActivityLog;
 import acme.entities.airline.Leg;
 import acme.entities.flightAssignment.FlightAssignment;
 import acme.realms.flightCrewMember.FlightCrewMember;
 
 @GuiService
-public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiService<FlightCrewMember, FlightAssignment> {
+public class FlightCrewMemberFlightAssignmentDeleteService extends AbstractGuiService<FlightCrewMember, FlightAssignment> {
 
 	@Autowired
 	private FlightCrewMemberFlightAssignmentRepository repository;
@@ -25,24 +26,35 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int assignmentId;
+		FlightCrewMember member;
+		FlightAssignment assignment;
+
+		assignmentId = super.getRequest().getData("id", int.class);
+		assignment = this.repository.findFlightAssignmentById(assignmentId);
+		member = assignment == null ? null : assignment.getFlightCrewMember();
+		status = member != null && super.getRequest().getPrincipal().hasRealm(member);
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
 		FlightAssignment assignment;
+		int assignmentId;
 
-		assignment = new FlightAssignment();
-		assignment.setDraftMode(true);
+		assignmentId = super.getRequest().getData("id", int.class);
+		assignment = this.repository.findFlightAssignmentById(assignmentId);
 
 		super.getBuffer().addData(assignment);
 	}
 
 	@Override
 	public void bind(final FlightAssignment assignment) {
-		int legId;
+		Integer legId;
 		Leg leg;
-		int memberId;
+		Integer memberId;
 		FlightCrewMember member;
 
 		legId = super.getRequest().getData("leg", int.class);
@@ -63,7 +75,14 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 
 	@Override
 	public void perform(final FlightAssignment assignment) {
-		this.repository.save(assignment);
+		Collection<ActivityLog> logs;
+		int assignmentId;
+
+		assignmentId = assignment.getId();
+		logs = this.repository.findActivityLogsByAssignmentId(assignmentId);
+
+		this.repository.deleteAll(logs);
+		this.repository.delete(assignment);
 	}
 
 	@Override
@@ -94,4 +113,5 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 
 		super.getResponse().addData(dataset);
 	}
+
 }

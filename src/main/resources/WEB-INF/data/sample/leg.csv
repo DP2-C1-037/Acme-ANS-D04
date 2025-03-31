@@ -1,24 +1,19 @@
 key,flightNumber,scheduledDeparture,scheduledArrival,status,key:flight,key:departureAirport,key:arrivalAirport,key:deployedAircraft
-
 # Base entity
-leg-01,SHX1234,2100/07/02 0:00,2100/07/02 0:00,ON_TIME,flight-01,airport-01,airport-02,aircraft-01
-leg-02,SHX1235,2100/07/02 0:00,2100/07/02 0:00,ON_TIME,flight-01,airport-01,airport-02,aircraft-01
-
+leg-01,SHX1234,2100/07/02 00:00,2100/07/02 00:00,ON_TIME,flight-01,airport-01,airport-02,aircraft-01
+leg-02,SHX1235,2100/07/02 00:00,2100/07/02 00:00,ON_TIME,flight-01,airport-01,airport-02,aircraft-01
 # flightNumber does not have any standard variations
-
 # scheduledDeparture - standard variations
-leg-03,SHX1236,2000/01/01 0:00,2100/07/02 0:00,ON_TIME,flight-01,airport-01,airport-02,aircraft-01
-leg-04,SHX1237,2000/01/01 0:01,2100/07/02 0:00,ON_TIME,flight-01,airport-01,airport-02,aircraft-01
-leg-05,SHX1238,2200/12/31 23:59,2100/07/02 0:00,ON_TIME,flight-01,airport-01,airport-02,aircraft-01
-leg-06,SHX1239,2201/01/01 0:00,2100/07/02 0:00,ON_TIME,flight-01,airport-01,airport-02,aircraft-01
-
+leg-03,SHX1236,2000/01/01 00:00,2100/07/02 00:00,ON_TIME,flight-01,airport-01,airport-02,aircraft-01
+leg-04,SHX1237,2000/01/01 00:01,2100/07/02 00:00,ON_TIME,flight-01,airport-01,airport-02,aircraft-01
+leg-05,SHX1238,2200/12/31 23:59,2100/07/02 00:00,ON_TIME,flight-01,airport-01,airport-02,aircraft-01
+leg-06,SHX1239,2201/01/01 00:00,2100/07/02 00:00,ON_TIME,flight-01,airport-01,airport-02,aircraft-01
 # scheduledArrival - standard variations
-leg-07,SHX1230,2100/07/02 0:00,2000/01/01 0:00,ON_TIME,flight-01,airport-01,airport-02,aircraft-01
-leg-08,SHX1231,2100/07/02 0:00,2000/01/01 0:01,ON_TIME,flight-01,airport-01,airport-02,aircraft-01
-leg-09,SHX1232,2100/07/02 0:00,2200/12/31 23:59,ON_TIME,flight-01,airport-01,airport-02,aircraft-01
-leg-10,SHX1233,2100/07/02 0:00,2201/01/01 0:00,ON_TIME,flight-01,airport-01,airport-02,aircraft-01
-
+leg-07,SHX1230,2100/07/02 00:00,2000/01/01 00:00,ON_TIME,flight-01,airport-01,airport-02,aircraft-01
+leg-08,SHX1231,2100/07/02 00:00,2000/01/01 00:01,ON_TIME,flight-01,airport-01,airport-02,aircraft-01
+leg-09,SHX1232,2100/07/02 00:00,2200/12/31 23:59,ON_TIME,flight-01,airport-01,airport-02,aircraft-01
+leg-10,SHX1233,2100/07/02 00:00,2201/01/01 00:00,ON_TIME,flight-01,airport-01,airport-02,aircraft-01
 # status - standard variations
-leg-11,SHX1201,2100/07/02 0:00,2100/07/02 0:00,DELAYED,flight-01,airport-01,airport-02,aircraft-01
-leg-12,SHX1202,2100/07/02 0:00,2100/07/02 0:00,CANCELLED,flight-01,airport-01,airport-02,aircraft-01
-leg-13,SHX1203,2100/07/02 0:00,2100/07/02 0:00,LANDED,flight-01,airport-01,airport-02,aircraft-01
+leg-11,SHX1201,2100/07/02 00:00,2100/07/02 00:00,DELAYED,flight-01,airport-01,airport-02,aircraft-01
+leg-12,SHX1202,2100/07/02 00:00,2100/07/02 00:00,CANCELLED,flight-01,airport-01,airport-02,aircraft-01
+leg-13,SHX1203,2100/07/02 00:00,2100/07/02 00:00,LANDED,flight-01,airport-01,airport-02,aircraft-01
