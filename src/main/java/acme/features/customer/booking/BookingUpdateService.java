@@ -15,14 +15,14 @@ import acme.entities.booking.TravelClass;
 import acme.realms.Customer;
 
 @GuiService
-public class BookingShowService extends AbstractGuiService<Customer, Booking> {
+public class BookingUpdateService extends AbstractGuiService<Customer, Booking> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
 	private BookingRepository repository;
 
-	// AbstractGuiService interface -------------------------------------------
+	// AbstractGuiService interfaced ------------------------------------------
 
 
 	@Override
@@ -33,20 +33,36 @@ public class BookingShowService extends AbstractGuiService<Customer, Booking> {
 
 		bookingId = super.getRequest().getData("id", int.class);
 		booking = this.repository.findBookingById(bookingId);
-		status = super.getRequest().getPrincipal().hasRealm(booking.getCustomer());
+		status = booking != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(booking.getCustomer());
 
 		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
-		int bookingId;
 		Booking booking;
+		int id;
 
-		bookingId = super.getRequest().getData("id", int.class);
-		booking = this.repository.findBookingById(bookingId);
+		id = super.getRequest().getData("id", int.class);
+		booking = this.repository.findBookingById(id);
 
 		super.getBuffer().addData(booking);
+	}
+
+	@Override
+	public void bind(final Booking booking) {
+		super.bindObject(booking, "locatorCode", "purcharseMoment", "lastNibble", "draftMode");
+	}
+
+	@Override
+	public void validate(final Booking booking) {
+
+		;
+	}
+
+	@Override
+	public void perform(final Booking booking) {
+		this.repository.save(booking);
 	}
 
 	@Override
@@ -61,15 +77,14 @@ public class BookingShowService extends AbstractGuiService<Customer, Booking> {
 		travelClassesChoices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 		flightsChoices = SelectChoices.from(flights, "id", booking.getFlight());
 
-		dataset = super.unbindObject(booking, "locator-code", "purcharse-moment", "last-nibble", "draft-mode");
+		dataset = super.unbindObject(booking, "locatorCode", "purcharseMoment", "lastNibble", "draftMode");
 		dataset.put("price", booking.getPrice());
 		dataset.put("travelClasses", travelClassesChoices);
-		dataset.put("travel-class", travelClassesChoices.getSelected().getKey());
+		dataset.put("travelClass", travelClassesChoices.getSelected().getKey());
 		dataset.put("flights", flightsChoices);
 		dataset.put("flight", flightsChoices.getSelected().getKey());
-		//dataset.put("origin-city", booking.getFlight().getOriginCity());
-		//dataset.put("destination-city", booking.getFlight().getDestinationCity());
 
 		super.getResponse().addData(dataset);
 	}
+
 }

@@ -6,9 +6,11 @@ customer.booking.form.label.travel-class = Clase:
 customer.booking.form.label.price = Precio:
 customer.booking.form.label.last-nibble = Últimos cuatro dígitos de la tarjeta de crédito:
 customer.booking.form.label.flight = Vuelo:
-customer.booking.form.label.confirmation = Confirma que quieres crear esta reserva.
+customer.booking.form.label.draft-mode = ¿Está en modo borrador?
 
 customer.booking.form.button.create = Crear
+customer.booking.form.button.update = Actualizar
+customer.booking.form.button.publish = Publicar
 
 customer.booking.list.title = Lista de reservas
 
