@@ -21,3 +21,5 @@ technician.maintenance-record.list.label.nextInspectionDueDate = Próxima inspec
 technician.maintenance-record.list.label.status = Estado
 
 technician.maintenance-record.list.button.create = Crear
+
+technician.maintenance-record.delete.published-tasks = El registro de mantenimiento no tiene tareas publicadas o tiene tareas sin publicar

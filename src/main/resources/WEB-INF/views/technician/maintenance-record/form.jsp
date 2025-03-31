@@ -4,7 +4,7 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form>
-	<acme:input-select code="technician.maintenance-record.form.label.aircraft" path="aircraft" choices= "${aircrafts}"/>
+	<acme:input-select code="technician.maintenance-record.form.label.aircraft" path="aircraft" choices= "${aircrafts}" readonly="${_command != 'create'}"/>
 	<jstl:choose>
 		<jstl:when test="${_command != 'create'}">
 			<acme:input-textbox code="technician.maintenance-record.form.label.technician" path="technician.identity.name" readonly="true"/>

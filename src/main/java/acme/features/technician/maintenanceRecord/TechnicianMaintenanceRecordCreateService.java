@@ -40,6 +40,9 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 
 		maintenanceRecord = new MaintenanceRecord();
 		maintenanceRecord.setTechnician(technician);
+		maintenanceRecord.setMaintenanceDate(MomentHelper.getCurrentMoment());
+		maintenanceRecord.setStatus(MaintenanceStatus.PENDING);
+		maintenanceRecord.setDraftMode(true);
 
 		super.getBuffer().addData(maintenanceRecord);
 	}
@@ -53,10 +56,7 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 		aircraft = this.repository.findAircraftById(aircraftId);
 
 		super.bindObject(maintenanceRecord, "nextInspectionDueDate", "estimatedCost", "notes");
-		maintenanceRecord.setMaintenanceDate(MomentHelper.getCurrentMoment());
-		maintenanceRecord.setStatus(MaintenanceStatus.PENDING);
 		maintenanceRecord.setAircraft(aircraft);
-		maintenanceRecord.setDraftMode(true);
 	}
 
 	@Override
