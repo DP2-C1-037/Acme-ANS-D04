@@ -24,6 +24,9 @@ public class AssignedToController extends AbstractGuiController<Customer, Assign
 	@Autowired
 	private AssignedToCreateService	createService;
 
+	@Autowired
+	private AssignedToDeleteService	deleteService;
+
 	// Constructors -----------------------------------------------------------
 
 
@@ -32,6 +35,7 @@ public class AssignedToController extends AbstractGuiController<Customer, Assign
 		super.addBasicCommand("list", this.listService);
 		super.addBasicCommand("show", this.showService);
 		super.addBasicCommand("create", this.createService);
+		super.addBasicCommand("delete", this.deleteService);
 
 	}
 
