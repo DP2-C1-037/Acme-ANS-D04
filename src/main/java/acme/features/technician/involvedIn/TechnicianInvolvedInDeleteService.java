@@ -88,6 +88,7 @@ public class TechnicianInvolvedInDeleteService extends AbstractGuiService<Techni
 		dataset.put("tasks", choices);
 
 		dataset.put("masterId", super.getRequest().getData("masterId", int.class));
+		dataset.put("draftMode", involvedIn.getMaintenanceRecord().getDraftMode());
 
 		super.getResponse().addData(dataset);
 	}
