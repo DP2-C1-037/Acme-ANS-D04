@@ -21,6 +21,7 @@
 	<acme:input-textbox code="customer.passenger.form.label.passport-number" path="passportNumber"/>
 	<acme:input-moment code="customer.passenger.form.label.birth-date" path="birthDate"/>
 	<acme:input-textbox code="customer.passenger.form.label.special-needs" path="specialNeeds"/>
+	
 	<jstl:if test="${_command == 'show'}">
 		<acme:input-checkbox code="customer.passenger.form.label.draft-mode" path="draftMode" readonly="true"/>
 	</jstl:if>
@@ -33,7 +34,8 @@
 		<jstl:when test="${_command == 'create'}">
 			<acme:submit code="customer.passenger.form.button.create" action="/customer/passenger/create"/>
 		</jstl:when>		
-	</jstl:choose>		
+	</jstl:choose>	
+		
 </acme:form>
 
 

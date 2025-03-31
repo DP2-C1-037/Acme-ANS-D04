@@ -101,11 +101,12 @@ bg=RED</panel_attributes>
       <x>588</x>
       <y>147</y>
       <w>266</w>
-      <h>49</h>
+      <h>56</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Constraint&gt;&gt;
 ValidTechnician
 --
++ licenseNumber must be unique
 + initials must match the first two letters of licenseNumber
 bg=RED</panel_attributes>
     <additional_attributes/>

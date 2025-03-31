@@ -58,6 +58,19 @@
 			<acme:menu-suboption code="master.menu.flightCrewMember.flightAssignmentPlanned" action="/flight-crew-member/flight-assignment/list-planned"/>
 			<acme:menu-suboption code="master.menu.flightCrewMember.activityLogs" action="/flight-crew-member/activity-log/list"/>
 		</acme:menu-option>
+		
+		<acme:menu-option code="master.menu.technician" access="hasRealm('Technician')">
+			<acme:menu-suboption code="master.menu.technician.maintenance-record" action="/technician/maintenance-record/list"/>
+			<acme:menu-suboption code="master.menu.technician.maintenance-record-mine" action="/technician/maintenance-record/list-mine"/>
+			<acme:menu-separator/>
+			<acme:menu-suboption code="master.menu.technician.task" action="/technician/task/list"/>
+			<acme:menu-suboption code="master.menu.technician.task-mine" action="/technician/task/list-mine"/>
+		</acme:menu-option>
+	
+		<acme:menu-option code="master.menu.airlineManager" access="hasRealm('AirlineManager')">
+			<acme:menu-suboption code="master.menu.airlineManager.flight" action="/airline-manager/flight/list"/>
+		</acme:menu-option>
+	
 	</acme:menu-left>
 
 	<acme:menu-right>		

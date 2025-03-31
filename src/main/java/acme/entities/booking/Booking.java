@@ -20,7 +20,7 @@ import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
 import acme.client.helpers.SpringHelper;
 import acme.entities.airline.Flight;
-import acme.features.customer.booking.BookingRepository;
+import acme.features.customer.booking.CustomerBookingRepository;
 import acme.realms.Customer;
 import lombok.Getter;
 import lombok.Setter;
@@ -44,7 +44,7 @@ public class Booking extends AbstractEntity {
 	@Mandatory
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date				purcharseMoment;
+	private Date				purchaseMoment;
 
 	@Mandatory
 	@Valid
@@ -78,11 +78,11 @@ public class Booking extends AbstractEntity {
 	@Transient
 	public Money getPrice() {
 		Money result;
-		BookingRepository repository;
+		CustomerBookingRepository repository;
 		Integer numberOfPassengers;
 		Money flightCost;
 
-		repository = SpringHelper.getBean(BookingRepository.class);
+		repository = SpringHelper.getBean(CustomerBookingRepository.class);
 		result = new Money();
 
 		if (this.getFlight() != null) {
