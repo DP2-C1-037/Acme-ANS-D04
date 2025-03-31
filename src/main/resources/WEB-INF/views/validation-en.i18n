@@ -39,6 +39,7 @@ acme.validation.flight-assignment.leg-has-pilot.message = The selected leg alrea
 acme.validation.flight-assignment.member-not-available.message = The selected member is not available
 acme.validation.flight-assignment.leg-has-occurred.message = The selected leg already has occurred 
 
+acme.validation.activity-log.flight-assignment-not-published.message = This log cannot be published as the selected flight assignment has not been published yet.
 acme.validation.log.registration-moment.message = The log registration moment must occur after the leg finishes
 
 acme.validation.airport.code-duplicated.message = The airport code is already in use
