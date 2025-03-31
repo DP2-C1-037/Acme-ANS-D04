@@ -62,10 +62,16 @@ public class CustomerAssignedToCreateService extends AbstractGuiService<Customer
 	@Override
 	public void validate(final AssignedTo assignedTo) {
 		{
-			boolean bothInDraftMode;
+			boolean passengerInDraftMode;
 
-			bothInDraftMode = assignedTo.getBooking().isDraftMode() && assignedTo.getPassenger().isDraftMode();
-			super.state(bothInDraftMode, "booking", "acme.validation.assignedTo.draftMode.message");
+			passengerInDraftMode = assignedTo.getPassenger().isDraftMode();
+			super.state(passengerInDraftMode, "passenger", "acme.validation.assignedTo.passenger.draftMode.message");
+		}
+		{
+			boolean bookingInDraftMode;
+
+			bookingInDraftMode = assignedTo.getBooking().isDraftMode();
+			super.state(bookingInDraftMode, "booking", "acme.validation.assignedTo.booking.draftMode.message");
 		}
 		{
 			boolean alreadyAssigned;

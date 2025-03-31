@@ -69,7 +69,18 @@ public class CustomerAssignedToDeleteService extends AbstractGuiService<Customer
 
 	@Override
 	public void validate(final AssignedTo assignedTo) {
-		;
+		{
+			boolean passengerInDraftMode;
+
+			passengerInDraftMode = assignedTo.getPassenger().isDraftMode();
+			super.state(passengerInDraftMode, "passenger", "acme.validation.assignedTo.passenger.draftMode.message");
+		}
+		{
+			boolean bookingInDraftMode;
+
+			bookingInDraftMode = assignedTo.getBooking().isDraftMode();
+			super.state(bookingInDraftMode, "booking", "acme.validation.assignedTo.booking.draftMode.message");
+		}
 	}
 
 	@Override
@@ -89,8 +100,8 @@ public class CustomerAssignedToDeleteService extends AbstractGuiService<Customer
 
 		customer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
 
-		bookings = this.repository.findAllNotPublishedBookingsFromCustomerId(customer.getId());
-		passengers = this.repository.findAllNotPublishedPassengersFromCustomerId(customer.getId());
+		bookings = this.repository.findAllBookingsFromCustomerId(customer.getId());
+		passengers = this.repository.findAllPassengersFromCustomerId(customer.getId());
 
 		bookingChoices = SelectChoices.from(bookings, "locatorCode", assignedTo.getBooking());
 		passengerChoices = SelectChoices.from(passengers, "passportNumber", assignedTo.getPassenger());
