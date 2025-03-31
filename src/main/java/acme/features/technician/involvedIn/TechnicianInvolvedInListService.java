@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.entities.maintenanceRecords.MaintenanceRecord;
 import acme.entities.mappings.InvolvedIn;
 import acme.realms.technicians.Technician;
 
@@ -41,10 +42,13 @@ public class TechnicianInvolvedInListService extends AbstractGuiService<Technici
 	@Override
 	public void unbind(final Collection<InvolvedIn> involvedIns) {
 		int masterId;
+		MaintenanceRecord maintenanceRecord;
 
 		masterId = super.getRequest().getData("masterId", int.class);
+		maintenanceRecord = this.repository.findMaintenanceRecordById(masterId);
 
 		super.getResponse().addGlobal("masterId", masterId);
+		super.getResponse().addGlobal("draftMode", maintenanceRecord.getDraftMode());
 	}
 
 	@Override

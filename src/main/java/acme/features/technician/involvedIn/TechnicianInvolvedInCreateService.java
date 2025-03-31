@@ -27,7 +27,17 @@ public class TechnicianInvolvedInCreateService extends AbstractGuiService<Techni
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int masterId;
+		MaintenanceRecord maintenanceRecord;
+		Technician technician;
+
+		masterId = super.getRequest().getData("masterId", int.class);
+		maintenanceRecord = this.repository.findMaintenanceRecordById(masterId);
+		technician = maintenanceRecord == null ? null : maintenanceRecord.getTechnician();
+		status = maintenanceRecord != null && maintenanceRecord.getDraftMode() && super.getRequest().getPrincipal().hasRealm(technician);
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -37,7 +47,7 @@ public class TechnicianInvolvedInCreateService extends AbstractGuiService<Techni
 		int masterId;
 
 		masterId = super.getRequest().getData("masterId", int.class);
-		maintenanceRecord = this.repository.findMaintenanceRecordByMasterId(masterId);
+		maintenanceRecord = this.repository.findMaintenanceRecordById(masterId);
 
 		object = new InvolvedIn();
 		object.setMaintenanceRecord(maintenanceRecord);
