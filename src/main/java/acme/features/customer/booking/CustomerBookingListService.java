@@ -1,5 +1,5 @@
 
-package acme.features.customer.assignedTo;
+package acme.features.customer.booking;
 
 import java.util.Collection;
 
@@ -8,16 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.entities.mappings.AssignedTo;
+import acme.entities.booking.Booking;
 import acme.realms.Customer;
 
 @GuiService
-public class AssignedToListService extends AbstractGuiService<Customer, AssignedTo> {
+public class CustomerBookingListService extends AbstractGuiService<Customer, Booking> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AssignedToRepository repository;
+	private CustomerBookingRepository repository;
 
 	// AbstractGuiService interface -------------------------------------------
 
@@ -29,20 +29,21 @@ public class AssignedToListService extends AbstractGuiService<Customer, Assigned
 
 	@Override
 	public void load() {
-		Collection<AssignedTo> assignedTos;
+		Collection<Booking> bookings;
 		int customerId;
 
 		customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		assignedTos = this.repository.findAssignedTosByCustomerId(customerId);
+		bookings = this.repository.findBookingsByCustomerId(customerId);
 
-		super.getBuffer().addData(assignedTos);
+		super.getBuffer().addData(bookings);
 	}
 
 	@Override
-	public void unbind(final AssignedTo assignedTo) {
+	public void unbind(final Booking booking) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(assignedTo, "booking.locatorCode", "passenger.passportNumber");
+		dataset = super.unbindObject(booking, "locator-code", "purchase-moment");
+		dataset.put("price", booking.getPrice());
 		super.getResponse().addData(dataset);
 	}
 }

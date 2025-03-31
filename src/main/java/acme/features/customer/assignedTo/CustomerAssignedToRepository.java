@@ -12,7 +12,7 @@ import acme.entities.mappings.AssignedTo;
 import acme.entities.passenger.Passenger;
 
 @Repository
-public interface AssignedToRepository extends AbstractRepository {
+public interface CustomerAssignedToRepository extends AbstractRepository {
 
 	@Query("select b from Booking b where b.id = :bookingId")
 	Booking findBookingById(final int bookingId);

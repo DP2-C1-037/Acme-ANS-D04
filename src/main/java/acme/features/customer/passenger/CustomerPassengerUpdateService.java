@@ -10,35 +10,36 @@ import acme.entities.passenger.Passenger;
 import acme.realms.Customer;
 
 @GuiService
-public class PassengerCreateService extends AbstractGuiService<Customer, Passenger> {
+public class CustomerPassengerUpdateService extends AbstractGuiService<Customer, Passenger> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private PassengerRepository repository;
+	private CustomerPassengerRepository repository;
 
-	// AbstractGuiService interface -------------------------------------------
+	// AbstractGuiService interfaced ------------------------------------------
 
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int passengerId;
+		Passenger passenger;
+
+		passengerId = super.getRequest().getData("id", int.class);
+		passenger = this.repository.findPassengerById(passengerId);
+		status = passenger != null && passenger.isDraftMode() && super.getRequest().getPrincipal().hasRealm(passenger.getCustomer());
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
-		Customer customer;
 		Passenger passenger;
+		int id;
 
-		customer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
-
-		passenger = new Passenger();
-		passenger.setFullName("");
-		passenger.setEmail("");
-		passenger.setPassportNumber("");
-		passenger.setBirthDate(null);
-		passenger.setSpecialNeeds(null);
-		passenger.setCustomer(customer);
+		id = super.getRequest().getData("id", int.class);
+		passenger = this.repository.findPassengerById(id);
 
 		super.getBuffer().addData(passenger);
 	}
@@ -50,6 +51,7 @@ public class PassengerCreateService extends AbstractGuiService<Customer, Passeng
 
 	@Override
 	public void validate(final Passenger passenger) {
+
 		;
 	}
 

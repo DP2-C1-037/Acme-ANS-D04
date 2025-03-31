@@ -15,12 +15,12 @@ import acme.entities.passenger.Passenger;
 import acme.realms.Customer;
 
 @GuiService
-public class AssignedToShowService extends AbstractGuiService<Customer, AssignedTo> {
+public class CustomerAssignedToDeleteService extends AbstractGuiService<Customer, AssignedTo> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AssignedToRepository repository;
+	private CustomerAssignedToRepository repository;
 
 	// AbstractGuiService interface -------------------------------------------
 
@@ -28,11 +28,11 @@ public class AssignedToShowService extends AbstractGuiService<Customer, Assigned
 	@Override
 	public void authorise() {
 		boolean status;
-		int assignedToId;
+		int id;
 		AssignedTo assignedTo;
 
-		assignedToId = super.getRequest().getData("id", int.class);
-		assignedTo = this.repository.findAssignedToById(assignedToId);
+		id = super.getRequest().getData("id", int.class);
+		assignedTo = this.repository.findAssignedToById(id);
 		status = assignedTo != null && super.getRequest().getPrincipal().hasRealm(assignedTo.getBooking().getCustomer());
 
 		super.getResponse().setAuthorised(status);
@@ -40,13 +40,41 @@ public class AssignedToShowService extends AbstractGuiService<Customer, Assigned
 
 	@Override
 	public void load() {
-		int assignedToId;
 		AssignedTo assignedTo;
+		int id;
 
-		assignedToId = super.getRequest().getData("id", int.class);
-		assignedTo = this.repository.findAssignedToById(assignedToId);
+		id = super.getRequest().getData("id", int.class);
+		assignedTo = this.repository.findAssignedToById(id);
 
 		super.getBuffer().addData(assignedTo);
+	}
+
+	@Override
+	public void bind(final AssignedTo assignedTo) {
+		int bookingId;
+		int passengerId;
+		Booking booking;
+		Passenger passenger;
+
+		bookingId = super.getRequest().getData("booking", int.class);
+		passengerId = super.getRequest().getData("passenger", int.class);
+		booking = this.repository.findBookingById(bookingId);
+		passenger = this.repository.findPassengerById(passengerId);
+
+		super.bindObject(assignedTo, "booking", "passenger");
+
+		assignedTo.setBooking(booking);
+		assignedTo.setPassenger(passenger);
+	}
+
+	@Override
+	public void validate(final AssignedTo assignedTo) {
+		;
+	}
+
+	@Override
+	public void perform(final AssignedTo assignedTo) {
+		this.repository.delete(assignedTo);
 	}
 
 	@Override
@@ -61,8 +89,8 @@ public class AssignedToShowService extends AbstractGuiService<Customer, Assigned
 
 		customer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
 
-		bookings = this.repository.findAllBookingsFromCustomerId(customer.getId());
-		passengers = this.repository.findAllPassengersFromCustomerId(customer.getId());
+		bookings = this.repository.findAllNotPublishedBookingsFromCustomerId(customer.getId());
+		passengers = this.repository.findAllNotPublishedPassengersFromCustomerId(customer.getId());
 
 		bookingChoices = SelectChoices.from(bookings, "locatorCode", assignedTo.getBooking());
 		passengerChoices = SelectChoices.from(passengers, "passportNumber", assignedTo.getPassenger());
@@ -75,4 +103,5 @@ public class AssignedToShowService extends AbstractGuiService<Customer, Assigned
 
 		super.getResponse().addData(dataset);
 	}
+
 }

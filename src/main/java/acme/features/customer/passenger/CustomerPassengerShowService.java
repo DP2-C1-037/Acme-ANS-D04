@@ -10,14 +10,14 @@ import acme.entities.passenger.Passenger;
 import acme.realms.Customer;
 
 @GuiService
-public class PassengerUpdateService extends AbstractGuiService<Customer, Passenger> {
+public class CustomerPassengerShowService extends AbstractGuiService<Customer, Passenger> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private PassengerRepository repository;
+	private CustomerPassengerRepository repository;
 
-	// AbstractGuiService interfaced ------------------------------------------
+	// AbstractGuiService interface -------------------------------------------
 
 
 	@Override
@@ -28,45 +28,27 @@ public class PassengerUpdateService extends AbstractGuiService<Customer, Passeng
 
 		passengerId = super.getRequest().getData("id", int.class);
 		passenger = this.repository.findPassengerById(passengerId);
-		status = passenger != null && passenger.isDraftMode() && super.getRequest().getPrincipal().hasRealm(passenger.getCustomer());
+		status = passenger != null && super.getRequest().getPrincipal().hasRealm(passenger.getCustomer());
 
 		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
+		int passengerId;
 		Passenger passenger;
-		int id;
 
-		id = super.getRequest().getData("id", int.class);
-		passenger = this.repository.findPassengerById(id);
+		passengerId = super.getRequest().getData("id", int.class);
+		passenger = this.repository.findPassengerById(passengerId);
 
 		super.getBuffer().addData(passenger);
-	}
-
-	@Override
-	public void bind(final Passenger passenger) {
-		super.bindObject(passenger, "fullName", "email", "passportNumber", "birthDate", "specialNeeds");
-	}
-
-	@Override
-	public void validate(final Passenger passenger) {
-
-		;
-	}
-
-	@Override
-	public void perform(final Passenger passenger) {
-		this.repository.save(passenger);
 	}
 
 	@Override
 	public void unbind(final Passenger passenger) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(passenger, "fullName", "email", "passportNumber", "birthDate", "specialNeeds");
-
+		dataset = super.unbindObject(passenger, "fullName", "email", "passportNumber", "birthDate", "specialNeeds", "draftMode");
 		super.getResponse().addData(dataset);
 	}
-
 }
