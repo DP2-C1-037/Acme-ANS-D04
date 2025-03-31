@@ -15,12 +15,12 @@ import acme.entities.booking.TravelClass;
 import acme.realms.Customer;
 
 @GuiService
-public class BookingPublishService extends AbstractGuiService<Customer, Booking> {
+public class CustomerBookingShowService extends AbstractGuiService<Customer, Booking> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private BookingRepository repository;
+	private CustomerBookingRepository repository;
 
 	// AbstractGuiService interface -------------------------------------------
 
@@ -33,41 +33,20 @@ public class BookingPublishService extends AbstractGuiService<Customer, Booking>
 
 		bookingId = super.getRequest().getData("id", int.class);
 		booking = this.repository.findBookingById(bookingId);
-		status = booking != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(booking.getCustomer());
+		status = super.getRequest().getPrincipal().hasRealm(booking.getCustomer());
 
 		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
+		int bookingId;
 		Booking booking;
-		int id;
 
-		id = super.getRequest().getData("id", int.class);
-		booking = this.repository.findBookingById(id);
+		bookingId = super.getRequest().getData("id", int.class);
+		booking = this.repository.findBookingById(bookingId);
 
 		super.getBuffer().addData(booking);
-	}
-
-	@Override
-	public void bind(final Booking booking) {
-		super.bindObject(booking, "locatorCode", "purchaseMoment", "lastNibble", "draftMode");
-	}
-
-	@Override
-	public void validate(final Booking booking) {
-
-		boolean lastNibbleStored;
-
-		lastNibbleStored = !(booking.getLastNibble().isBlank() || booking.getLastNibble() == null);
-		super.state(lastNibbleStored, "lastNibble", "acme.validation.booking.lastNibble.message");
-
-	}
-
-	@Override
-	public void perform(final Booking booking) {
-		booking.setDraftMode(false);
-		this.repository.save(booking);
 	}
 
 	@Override
@@ -88,8 +67,9 @@ public class BookingPublishService extends AbstractGuiService<Customer, Booking>
 		dataset.put("travelClass", travelClassesChoices.getSelected().getKey());
 		dataset.put("flights", flightsChoices);
 		dataset.put("flight", flightsChoices.getSelected().getKey());
+		//dataset.put("origin-city", booking.getFlight().getOriginCity());
+		//dataset.put("destination-city", booking.getFlight().getDestinationCity());
 
 		super.getResponse().addData(dataset);
 	}
-
 }

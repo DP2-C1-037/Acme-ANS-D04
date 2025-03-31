@@ -16,12 +16,12 @@ import acme.entities.passenger.Passenger;
 import acme.realms.Customer;
 
 @GuiService
-public class AssignedToCreateService extends AbstractGuiService<Customer, AssignedTo> {
+public class CustomerAssignedToCreateService extends AbstractGuiService<Customer, AssignedTo> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AssignedToRepository repository;
+	private CustomerAssignedToRepository repository;
 
 	// AbstractGuiService interface -------------------------------------------
 
