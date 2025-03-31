@@ -37,7 +37,8 @@ acme.validation.log.registration-moment.message = The log registration moment mu
 
 acme.validation.airport.code-duplicated.message = The airport code is already in use
 
-acme.validation.assignedTo.draftMode.message = Both passenger and booking must be in draft mode to be assigned to each other
+acme.validation.assignedTo.booking.draftMode.message = Booking must be in draft mode to be assigned to a passenger
+acme.validation.assignedTo.passenger.draftMode.message = Passenger must be in draft mode to be assigned to a booking
 acme.validation.assignedTo.alreadyAssigned.message = This passenger is already assigned to this booking
 
 acme.validation.booking.lastNibble.message = Last nibble must be stored in order to publish this booking
