@@ -6,15 +6,12 @@
 <acme:form>	
 	
 		<acme:input-textbox code="customer.booking.form.label.locator-code" path="locatorCode"/>
-		<acme:input-textbox code="customer.booking.form.label.purcharse-moment" path="purcharseMoment" readonly="true"/>
+		<acme:input-textbox code="customer.booking.form.label.purchase-moment" path="purchaseMoment" readonly="true"/>
 		<acme:input-select code="customer.booking.form.label.travel-class" path="travelClass" choices="${travelClasses}"/>
 		<acme:input-money code="customer.booking.form.label.price" path="price" readonly="true"/>
 		<acme:input-textbox code="customer.booking.form.label.last-nibble" path="lastNibble"/>
 		<acme:input-select code="customer.booking.form.label.flight" path="flight" choices="${flights}"/>
-		
-		<jstl:if test="${_command == 'show'}">
-			<acme:input-checkbox code="customer.booking.form.label.draft-mode" path="draftMode" readonly="true"/>
-		</jstl:if>
+		<acme:input-checkbox code="customer.booking.form.label.draft-mode" path="draftMode" readonly="true"/>
 		
 		<acme:button code="customer.booking.form.button.passengers" action="/customer/passenger/list?masterId=${id}"/>			
 		

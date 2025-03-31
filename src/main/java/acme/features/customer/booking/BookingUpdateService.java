@@ -51,7 +51,7 @@ public class BookingUpdateService extends AbstractGuiService<Customer, Booking> 
 
 	@Override
 	public void bind(final Booking booking) {
-		super.bindObject(booking, "locatorCode", "purcharseMoment", "lastNibble", "draftMode");
+		super.bindObject(booking, "locatorCode", "purchaseMoment", "lastNibble", "draftMode");
 	}
 
 	@Override
@@ -77,7 +77,7 @@ public class BookingUpdateService extends AbstractGuiService<Customer, Booking> 
 		travelClassesChoices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 		flightsChoices = SelectChoices.from(flights, "id", booking.getFlight());
 
-		dataset = super.unbindObject(booking, "locatorCode", "purcharseMoment", "lastNibble", "draftMode");
+		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "lastNibble", "draftMode");
 		dataset.put("price", booking.getPrice());
 		dataset.put("travelClasses", travelClassesChoices);
 		dataset.put("travelClass", travelClassesChoices.getSelected().getKey());
