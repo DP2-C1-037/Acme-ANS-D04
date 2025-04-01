@@ -4,8 +4,10 @@ package acme.features.airlineManager.flight;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
+import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.datatypes.FlightSelfTransfer;
 import acme.entities.airline.AirlineManager;
 import acme.entities.airline.Flight;
 
@@ -40,8 +42,11 @@ public class AirlineManagerFlightShowService extends AbstractGuiService<AirlineM
 	public void unbind(final Flight flight) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(flight, "tag", "requiresSelfTransfer", "cost", "description");
+		SelectChoices selfTransfer = SelectChoices.from(FlightSelfTransfer.class, flight.getRequiresSelfTransfer());
 
+		dataset = super.unbindObject(flight, "tag", "requiresSelfTransfer", "cost", "description");
+		dataset.put("confirmation", false);
+		dataset.put("selfTransfer", selfTransfer);
 		super.getResponse().addData(dataset);
 	}
 

@@ -1,8 +1,6 @@
 
 package acme.features.airlineManager.flight;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
@@ -27,10 +25,11 @@ public class AirlineManagerFlightCreateService extends AbstractGuiService<Airlin
 
 	@Override
 	public void load() {
-		Flight flight;
+		AirlineManager manager = (AirlineManager) super.getRequest().getPrincipal().getActiveRealm();
 
-		flight = new Flight();
+		Flight flight = new Flight();
 		flight.setDraftMode(true);
+		flight.setAirlineManager(manager);
 
 		super.getBuffer().addData(flight);
 	}
@@ -57,15 +56,11 @@ public class AirlineManagerFlightCreateService extends AbstractGuiService<Airlin
 	public void unbind(final Flight flight) {
 		Dataset dataset;
 
-		Collection<AirlineManager> managers = this.repository.findAllManagers();
-		SelectChoices selectedManagers = SelectChoices.from(managers, "airlineManager", flight.getAirlineManager());
 		SelectChoices selfTransfer = SelectChoices.from(FlightSelfTransfer.class, flight.getRequiresSelfTransfer());
 
-		dataset = super.unbindObject(flight, "tag", "requiresSelfTransfer", "cost", "description", "draftMode");
+		dataset = super.unbindObject(flight, "tag", "requiresSelfTransfer", "cost", "description");
 		dataset.put("confirmation", false);
 		dataset.put("selfTransfer", selfTransfer);
-		dataset.put("manager", selectedManagers.getSelected().getKey());
-		dataset.put("managers", selectedManagers);
 		super.getResponse().addData(dataset);
 	}
 }
