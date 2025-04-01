@@ -41,7 +41,6 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 		maintenanceRecord = new MaintenanceRecord();
 		maintenanceRecord.setTechnician(technician);
 		maintenanceRecord.setMaintenanceDate(MomentHelper.getCurrentMoment());
-		maintenanceRecord.setStatus(MaintenanceStatus.PENDING);
 		maintenanceRecord.setDraftMode(true);
 
 		super.getBuffer().addData(maintenanceRecord);
@@ -55,13 +54,18 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 		aircraftId = super.getRequest().getData("aircraft", int.class);
 		aircraft = this.repository.findAircraftById(aircraftId);
 
-		super.bindObject(maintenanceRecord, "nextInspectionDueDate", "estimatedCost", "notes");
+		super.bindObject(maintenanceRecord, "maintenanceDate", "status", "nextInspectionDueDate", "estimatedCost", "notes");
 		maintenanceRecord.setAircraft(aircraft);
 	}
 
 	@Override
 	public void validate(final MaintenanceRecord maintenanceRecord) {
-		;
+		{
+			boolean status;
+			status = !maintenanceRecord.getStatus().equals(MaintenanceStatus.COMPLETED);
+
+			super.state(status, "*", "technician.maintenance-record.create.status");
+		}
 	}
 
 	@Override
@@ -71,14 +75,18 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 
 	@Override
 	public void unbind(final MaintenanceRecord maintenanceRecord) {
+		SelectChoices statuses;
 		Collection<Aircraft> aircrafts;
 		SelectChoices choices;
 		Dataset dataset;
 
+		statuses = SelectChoices.from(MaintenanceStatus.class, maintenanceRecord.getStatus());
+
 		aircrafts = this.repository.findAvailableAircrafts();
 		choices = SelectChoices.from(aircrafts, "model", maintenanceRecord.getAircraft());
 
-		dataset = super.unbindObject(maintenanceRecord, "nextInspectionDueDate", "estimatedCost", "notes");
+		dataset = super.unbindObject(maintenanceRecord, "maintenanceDate", "nextInspectionDueDate", "estimatedCost", "notes");
+		dataset.put("statuses", statuses);
 		dataset.put("aircraft", choices.getSelected().getKey());
 		dataset.put("aircrafts", choices);
 

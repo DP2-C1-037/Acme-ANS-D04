@@ -22,4 +22,7 @@ technician.maintenance-record.list.label.status = Status
 
 technician.maintenance-record.list.button.create = Create
 
-technician.maintenance-record.delete.published-tasks = The maintenance record has either no published tasks or some unpublished tasks
+technician.maintenance-record.create.status = The maintenance record can't be completed when created
+
+technician.maintenance-record.publish.status = The maintenance record must be completed
+technician.maintenance-record.publish.published-tasks = The maintenance record has either no published tasks or some unpublished tasks
