@@ -37,7 +37,7 @@ public class TechnicianMaintenanceRecordShowService extends AbstractGuiService<T
 		technician = maintenanceRecord == null ? null : maintenanceRecord.getTechnician();
 		status = maintenanceRecord != null;
 
-		status = status && (maintenanceRecord.getDraftMode() ? super.getRequest().getPrincipal().hasRealm(technician) : true);
+		status = status && (!maintenanceRecord.getDraftMode() || super.getRequest().getPrincipal().hasRealm(technician));
 
 		super.getResponse().setAuthorised(status);
 	}
