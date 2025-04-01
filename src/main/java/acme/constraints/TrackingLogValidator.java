@@ -18,6 +18,7 @@ public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, Tr
 
 	@Override
 	public boolean isValid(final TrackingLog trackingLog, final ConstraintValidatorContext context) {
+		// HINT: trackingLog can be null
 		assert context != null;
 
 		boolean result;
