@@ -4,8 +4,9 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:list>
-	<acme:list-column code="customer.assigned-to.list.label.locator-code" path="booking.locatorCode" width="50%"/>
-	<acme:list-column code="customer.assigned-to.list.label.passport-number" path="passenger.passportNumber" width="50%"/>
+	<acme:list-column code="customer.assigned-to.list.label.passport-number" path="passenger.fullName" width="40%"/>
+	<acme:list-column code="customer.assigned-to.list.label.passport-number" path="passenger.email" width="40%"/>
+	<acme:list-column code="customer.assigned-to.list.label.passport-number" path="passenger.passportNumber" width="20%"/>
 	<acme:list-payload path="payload"/>
 </acme:list>
 

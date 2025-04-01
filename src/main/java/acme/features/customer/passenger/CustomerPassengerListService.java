@@ -25,17 +25,17 @@ public class CustomerPassengerListService extends AbstractGuiService<Customer, P
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int masterId;
-		Booking booking;
-
-		if (super.getRequest().hasData("masterId")) {
-			masterId = super.getRequest().getData("masterId", int.class);
-			booking = this.repository.findBookingById(masterId);
-			status = booking != null && super.getRequest().getPrincipal().hasRealm(booking.getCustomer());
-			super.getResponse().setAuthorised(status);
-		} else
-			super.getResponse().setAuthorised(true);
+		//		boolean status;
+		//		int masterId;
+		//		Booking booking;
+		//
+		//		if (super.getRequest().hasData("masterId")) {
+		//			masterId = super.getRequest().getData("masterId", int.class);
+		//			booking = this.repository.findBookingById(masterId);
+		//			status = booking != null && super.getRequest().getPrincipal().hasRealm(booking.getCustomer());
+		//			super.getResponse().setAuthorised(status);
+		//		} else
+		super.getResponse().setAuthorised(true);
 	}
 
 	@Override
@@ -44,13 +44,13 @@ public class CustomerPassengerListService extends AbstractGuiService<Customer, P
 		int customerId;
 		int masterId;
 
-		if (super.getRequest().hasData("masterId")) {
-			masterId = super.getRequest().getData("masterId", int.class);
-			passengers = this.repository.findPassengersByBookingId(masterId);
-		} else {
-			customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-			passengers = this.repository.findPassengersByCustomerId(customerId);
-		}
+		//		if (super.getRequest().hasData("masterId")) {
+		//			masterId = super.getRequest().getData("masterId", int.class);
+		//			passengers = this.repository.findPassengersByBookingId(masterId);
+		//		} else {
+		customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		passengers = this.repository.findPassengersByCustomerId(customerId);
+		//		}
 		super.getBuffer().addData(passengers);
 	}
 
