@@ -1,0 +1,16 @@
+customer.assigned-to.form.title = Booking assignation form 
+
+customer.assigned-to.list.title = Listing of bookings assignations
+
+customer.assigned-to.list.label.locator-code = Locator code
+customer.assigned-to.list.label.passport-number = Passport number
+
+customer.assigned-to.list.button.create = Create
+
+customer.assigned-to.form.label.locator-code = Booking locator code:
+customer.assigned-to.form.label.passport-number = Passenger passport number:
+
+customer.assigned-to.form.button.create = Create
+customer.assigned-to.form.button.delete = Delete
+
+

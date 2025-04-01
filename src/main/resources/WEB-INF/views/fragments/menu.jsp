@@ -29,7 +29,9 @@
 
 		<acme:menu-option code="master.menu.administrator" access="hasRealm('Administrator')">
 			<acme:menu-suboption code="master.menu.administrator.list-user-accounts" action="/administrator/user-account/list"/>
+			<acme:menu-suboption code="master.menu.administrator.list-airports" action="/administrator/airport/list"/>
 			<acme:menu-suboption code="master.menu.administrator.list-aircrafts" action="/administrator/aircraft/list"/>
+			<acme:menu-suboption code="master.menu.administrator.list-airlines" action="/administrator/airline/list"/>
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.populate-db-initial" action="/administrator/system/populate-initial"/>
 			<acme:menu-suboption code="master.menu.administrator.populate-db-sample" action="/administrator/system/populate-sample"/>			
@@ -44,6 +46,31 @@
 		<acme:menu-option code="master.menu.consumer" access="hasRealm('Consumer')">
 			<acme:menu-suboption code="master.menu.consumer.favourite-link" action="http://www.example.com/"/>
 		</acme:menu-option>
+		
+		<acme:menu-option code="master.menu.customer" access="hasRealm('Customer')">
+			<acme:menu-suboption code="master.menu.customer.bookings" action="/customer/booking/list"/>
+			<acme:menu-suboption code="master.menu.customer.passengers" action="/customer/passenger/list"/>
+			<acme:menu-suboption code="master.menu.customer.assigned-to" action="/customer/assigned-to/list"/>
+		</acme:menu-option>
+		
+		<acme:menu-option code="master.menu.flightCrewMember" access="hasRealm('FlightCrewMember')">
+			<acme:menu-suboption code="master.menu.flightCrewMember.flightAssignmentCompleted" action="/flight-crew-member/flight-assignment/list-completed"/>
+			<acme:menu-suboption code="master.menu.flightCrewMember.flightAssignmentPlanned" action="/flight-crew-member/flight-assignment/list-planned"/>
+			<acme:menu-suboption code="master.menu.flightCrewMember.activityLogs" action="/flight-crew-member/activity-log/list"/>
+		</acme:menu-option>
+		
+		<acme:menu-option code="master.menu.technician" access="hasRealm('Technician')">
+			<acme:menu-suboption code="master.menu.technician.maintenance-record" action="/technician/maintenance-record/list"/>
+			<acme:menu-suboption code="master.menu.technician.maintenance-record-mine" action="/technician/maintenance-record/list-mine"/>
+			<acme:menu-separator/>
+			<acme:menu-suboption code="master.menu.technician.task" action="/technician/task/list"/>
+			<acme:menu-suboption code="master.menu.technician.task-mine" action="/technician/task/list-mine"/>
+		</acme:menu-option>
+	
+		<acme:menu-option code="master.menu.airlineManager" access="hasRealm('AirlineManager')">
+			<acme:menu-suboption code="master.menu.airlineManager.flight" action="/airline-manager/flight/list"/>
+		</acme:menu-option>
+	
 	</acme:menu-left>
 
 	<acme:menu-right>		

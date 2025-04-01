@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
@@ -16,9 +17,10 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
-import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidString;
+import acme.client.helpers.SpringHelper;
 import acme.entities.airline.Flight;
+import acme.features.customer.booking.CustomerBookingRepository;
 import acme.realms.Customer;
 import lombok.Getter;
 import lombok.Setter;
@@ -42,22 +44,21 @@ public class Booking extends AbstractEntity {
 	@Mandatory
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date				purcharseMoment;
+	private Date				purchaseMoment;
 
 	@Mandatory
 	@Valid
 	@Automapped
 	private TravelClass			travelClass;
 
-	@Mandatory
-	@ValidMoney
-	@Automapped
-	private Money				price;
-
 	@Optional
 	@ValidString(pattern = "^[0-9]{4}$")
 	@Automapped
 	private String				lastNibble;
+
+	@Mandatory
+	@Automapped
+	private boolean				draftMode			= true;
 
 	// Relationships -------------------------------------------------------------------------------------------------
 
@@ -70,5 +71,33 @@ public class Booking extends AbstractEntity {
 	@Valid
 	@ManyToOne
 	private Flight				flight;
+
+	// Derived attributes --------------------------------------------------------------------------------------------
+
+
+	@Transient
+	public Money getPrice() {
+		Money result;
+		CustomerBookingRepository repository;
+		Integer numberOfPassengers;
+		Money flightCost;
+
+		repository = SpringHelper.getBean(CustomerBookingRepository.class);
+		result = new Money();
+
+		if (this.getFlight() != null) {
+			flightCost = this.getFlight().getCost();
+			numberOfPassengers = repository.findNumberOfPassengersAssignedToBookingById(this.getId());
+
+			result.setCurrency(flightCost.getCurrency());
+			result.setAmount(flightCost.getAmount() * numberOfPassengers);
+		} else {
+			result.setCurrency("EUR");
+			result.setAmount(0.);
+		}
+
+		return result;
+
+	}
 
 }

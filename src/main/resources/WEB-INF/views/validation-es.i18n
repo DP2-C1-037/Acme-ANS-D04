@@ -8,9 +8,13 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-acme.validation.flight.identifierNumber.message = Las dos primeras letras del número de identificación deben corresponder a las iniciales del nombre del gerente.
+acme.validation.flight.identifierNumber.message = Las dos primeras letras del número de identificación deben corresponder a las iniciales del nombre del gerente
 
-acme.validation.leg.flightNumber.message = El número de vuelo está compuesto por el código IATA de la aerolínea seguido de cuatro dígitos (las letras del número de vuelo tienen que ser las mismas que las del código IATA de la aerolínea).
+acme.validation.leg.flightNumber.iataCode.message = El número de vuelo está compuesto por el código IATA de la aerolínea seguido de cuatro dígitos (las letras del número de vuelo tienen que ser las mismas que las del código IATA de la aerolínea)
+
+acme.validation.leg.flightNumber.unique.message = El número de vuelo debe ser único, no puede haber dos iguales
+
+acme.validation.airline.iataCode.message = El código iata de la aerolínea debe ser único
 
 acme.validation.maintenance-record.nextInspection.message = La fecha asociada a la próxima inspección debe ser en el futuro
 
@@ -29,7 +33,14 @@ acme.validation.flight-crew-member.employee-code-duplicated.message = Código de
 acme.validation.flight-crew-member.employee-code-invalid-format.message = El código de empleado debe coincidir con el patrón ^[A-Z]{2,3}\\d{6}$
 acme.validation.flight-crew-member.employee-code-not-matching-initials.message = Las dos primeras letras del employee code deben coincidir con las iniciales del miembro
 
-acme.validation.log.registration-moment.message = El momento de registro del log debe ocurrir después de que termine la escala.
+acme.validation.flight-assignment.member-with-overlapping-legs.message = El miembro seleccionado tiene escaladas solapadas
+acme.validation.flight-assignment.leg-has-copilot.message = La escala seleccionada ya tiene un copiloto
+acme.validation.flight-assignment.leg-has-pilot.message = La escala seleccionada ya tiene un piloto
+acme.validation.flight-assignment.member-not-available.message = El miembro seleccionado no está disponible
+acme.validation.flight-assignment.leg-has-occurred.message = La escala seleccionada ya ha ocurrido 
+
+acme.validation.activity-log.flight-assignment-not-published.message = Este registro no puede ser publicado porque la asignación de vuelo seleccionada no ha sido publicada todavía
+acme.validation.log.registration-moment.message = El momento de registro del registro debe ocurrir después de que termine la escala.
 
 acme.validation.airport.code-duplicated.message = El código del aeropuerto ya está en uso
 
@@ -40,3 +51,12 @@ acme.validation.trackingLog.resolution.message = Cuando el porcentaje de resoluc
 acme.validation.assistance-agent.employee-code-duplicated.message=El código de empleado debe ser único
 acme.validation.assistance-agent.employee-code-invalid-format.message=El código de empleado debe seguir el patrón: 2-3 letras mayúsculas seguidas de 6 dígitos
 acme.validation.assistance-agent.employee-code-not-matching-initials.message=Las iniciales del código de empleado deben coincidir con las iniciales del nombre y apellido
+
+acme.validation.assignedTo.booking.draftMode.message = La reserva debe estar en modo borrador para ser asignada a un pasajero
+acme.validation.assignedTo.passenger.draftMode.message = El pasajero debe estar en modo borrador para ser asignado a una reserva
+acme.validation.assignedTo.alreadyAssigned.message = Este pasajero ya está asignado a esta reserva
+
+acme.validation.booking.lastNibble.message = Los últimos cuatro dígitos de la tarjeta de crédito deben ser registrados para publicar esta reserva
+
+
+

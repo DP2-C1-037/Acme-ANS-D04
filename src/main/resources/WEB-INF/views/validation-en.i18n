@@ -10,7 +10,11 @@
 
 acme.validation.flight.identifierNumber.message = The first two letters of the identifier number must correspond to the managers's name initials
 
-acme.validation.leg.flightNumber.message = The flight number is composed of the airline's IATA code followed by four digits (flight number letters have to be the same of airline's IATA code).
+acme.validation.leg.flightNumber.iataCode.message = The flight number is composed of the airline's IATA code followed by four digits (flight number letters have to be the same of airline's IATA code)
+
+acme.validation.leg.flightNumber.unique.message = The flight number must be unique, there cannot be two equal
+
+acme.validation.airline.iataCode.message = Airline iata code must be unique
 
 acme.validation.maintenance-record.nextInspection.message = Next inspection date must be a future date
 
@@ -29,9 +33,17 @@ acme.validation.flight-crew-member.employee-code-duplicated.message = The employ
 acme.validation.flight-crew-member.employee-code-invalid-format.message = The employee code must match the pattern ^[A-Z]{2,3}\\d{6}$
 acme.validation.flight-crew-member.employee-code-not-matching-initials.message = The first two letters of the employee code must match the initials of the member
 
-acme.validation.log.registration-moment.message = The log registration moment must occur after the leg finishes.
+acme.validation.flight-assignment.member-with-overlapping-legs.message = The selected member has overlapping legs
+acme.validation.flight-assignment.leg-has-copilot.message = The selected leg already has a copilot
+acme.validation.flight-assignment.leg-has-pilot.message = The selected leg already has a pilot
+acme.validation.flight-assignment.member-not-available.message = The selected member is not available
+acme.validation.flight-assignment.leg-has-occurred.message = The selected leg already has occurred 
+
+acme.validation.activity-log.flight-assignment-not-published.message = This log cannot be published as the selected flight assignment has not been published yet.
+acme.validation.log.registration-moment.message = The log registration moment must occur after the leg finishes
 
 acme.validation.airport.code-duplicated.message = The airport code is already in use
+
 
 acme.validation.trackingLog.resolPercentage.message = Resolution percentage must be between 0.0 and 100.0
 acme.validation.trackingLog.status.message = When resolution percentage is 100.0, status must be ACCEPTED or DENIED. Otherwise, status must be PENDING.
@@ -41,4 +53,12 @@ acme.validation.trackingLog.resolution.message = When resolution percentage is 1
 acme.validation.assistance-agent.employee-code-duplicated.message=Employee code must be unique
 acme.validation.assistance-agent.employee-code-invalid-format.message=Employee code must follow the pattern: 2-3 uppercase letters followed by 6 digits
 acme.validation.assistance-agent.employee-code-not-matching-initials.message=Employee code initials must match the initials of the name and surname
+
+
+acme.validation.assignedTo.booking.draftMode.message = Booking must be in draft mode to be assigned to a passenger
+acme.validation.assignedTo.passenger.draftMode.message = Passenger must be in draft mode to be assigned to a booking
+acme.validation.assignedTo.alreadyAssigned.message = This passenger is already assigned to this booking
+
+acme.validation.booking.lastNibble.message = Last nibble must be stored in order to publish this booking
+
 

@@ -17,19 +17,6 @@ user-account-customer-03,true,"UserIdentity{name: 'Emil', surname: 'Customer', e
 user-account-airline-manager-01,true,"UserIdentity{name: 'John', surname: 'Doe', email: 'john.doe@acme.com'}",manager1,manager1
 user-account-airline-manager-02,true,"UserIdentity{name: 'Jane', surname: 'Smith', email: 'jane.smith@acme.com'}",manager2,manager2
 user-account-airline-manager-03,true,"UserIdentity{name: 'Carlos', surname: 'García', email: 'carlos.garcia@acme.com'}",manager3,manager3
-user-account-airline-manager-06,true,"UserIdentity{name: 'Lars', surname: 'Müller', email: 'lars.mueller@acme.com'}",manager6,manager6
-user-account-airline-manager-07,true,"UserIdentity{name: 'Exper', surname: 'Validator', email: 'exper.validator@acme.com'}",manager7,manager7
-user-account-airline-manager-08,true,"UserIdentity{name: 'Exper2', surname: 'Validator', email: 'exper2.validator@acme.com'}",manager8,manager8
-user-account-airline-manager-09,true,"UserIdentity{name: 'Exper3', surname: 'Validator', email: 'exper3.validator@acme.com'}",manager9,manager9
-user-account-airline-manager-10,true,"UserIdentity{name: 'Exper4', surname: 'Validator', email: 'exper4.validator@acme.com'}",manager10,manager10
-user-account-airline-manager-11,true,"UserIdentity{name: 'Exper5', surname: 'Validator', email: 'exper5.validator@acme.com'}",manager11,manager11
-user-account-airline-manager-12,true,"UserIdentity{name: 'Exper6', surname: 'Validator', email: 'exper6.validator@acme.com'}",manager12,manager12
-user-account-airline-manager-13,true,"UserIdentity{name: 'Exper7', surname: 'Validator', email: 'exper7.validator@acme.com'}",manager13,manager13
-user-account-airline-manager-14,true,"UserIdentity{name: 'Lorena', surname: 'Alguien', email: 'lorena.ipsum@acme.com'}",manager14,manager14
-user-account-airline-manager-15,true,"UserIdentity{name: 'Martina', surname: 'Pepe', email: 'martina.alnajar@acme.com'}",manager15,manager15
-user-account-airline-manager-16,true,"UserIdentity{name: 'Sql', surname: 'Injection', email: 'sqlinjection@example.com'}",manager16,manager16
-user-account-airline-manager-17,true,"UserIdentity{name: 'Markup', surname: 'Injection', email: 'markupinjection@example.com'}",manager17,manager17
-user-account-airline-manager-18,true,"UserIdentity{name: 'Script', surname: 'Injection', email: 'scriptinjection@example.com'}",manager18,manager18
 user-account-technician-01,true,"UserIdentity{name: 'Alex', surname: 'Technician', email:'alex@acme.com'}",technician1,technician1
 user-account-technician-02,true,"UserIdentity{name: 'Mateo', surname: 'Technician', email:'mateo@acme.com'}",technician2,technician2
 user-account-technician-03,true,"UserIdentity{name: 'Shepard', surname: 'မြန်မာစာစမ်းသပ်မှု', email:'shepard@acme.com'}",technician3,technician3
