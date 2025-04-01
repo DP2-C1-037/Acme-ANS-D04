@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
-import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
@@ -59,22 +58,28 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 
 	@Override
 	public void validate(final MaintenanceRecord maintenanceRecord) {
-		int id, unpublishedTasks, tasks;
-		boolean status;
+		{
+			boolean status;
+			status = maintenanceRecord.getStatus().equals(MaintenanceStatus.COMPLETED);
 
-		id = super.getRequest().getData("id", int.class);
-		tasks = this.repository.findTasksByMaintenanceRecordId(id);
-		unpublishedTasks = this.repository.findNotPublishedTasksByMaintenanceRecordId(id);
+			super.state(status, "*", "technician.maintenance-record.publish.status");
+		}
+		{
+			int id, unpublishedTasks, tasks;
+			boolean status;
 
-		status = tasks - unpublishedTasks > 0;
+			id = super.getRequest().getData("id", int.class);
+			tasks = this.repository.findTasksByMaintenanceRecordId(id);
+			unpublishedTasks = this.repository.findNotPublishedTasksByMaintenanceRecordId(id);
 
-		super.state(status, "*", "technician.maintenance-record.delete.published-tasks");
+			status = tasks - unpublishedTasks > 0;
+
+			super.state(status, "*", "technician.maintenance-record.publish.published-tasks");
+		}
 	}
 
 	@Override
 	public void perform(final MaintenanceRecord maintenanceRecord) {
-		maintenanceRecord.setStatus(MaintenanceStatus.COMPLETED);
-		maintenanceRecord.setMaintenanceDate(MomentHelper.getCurrentMoment());
 		maintenanceRecord.setDraftMode(false);
 
 		this.repository.save(maintenanceRecord);
