@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
+import acme.client.helpers.StringHelper;
 import acme.entities.airports.Airport;
 import acme.entities.airports.AirportRepository;
 
@@ -35,7 +36,7 @@ public class AirportValidator extends AbstractValidator<ValidAirport, Airport> {
 			boolean uniqueAirport;
 			Airport existingAirport;
 
-			existingAirport = this.repository.findAirportByCode(airport.getIataCode());
+			existingAirport = StringHelper.matches(airport.getIataCode(), "^[A-Z]{3}$") ? this.repository.findAirportByCode(airport.getIataCode()) : null;
 			uniqueAirport = existingAirport == null || existingAirport.equals(airport);
 
 			super.state(context, uniqueAirport, "iataCode", "acme.validation.airport.code-duplicated.message");
