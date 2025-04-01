@@ -10,6 +10,7 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.booking.Booking;
 import acme.entities.mappings.AssignedTo;
+import acme.entities.passenger.Passenger;
 import acme.realms.Customer;
 
 @GuiService
@@ -55,7 +56,15 @@ public class CustomerAssignedToListService extends AbstractGuiService<Customer, 
 	public void unbind(final AssignedTo assignedTo) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(assignedTo, "passenger.fullName", "passenger.email", "passenger.passportNumber");
+		Passenger passenger = assignedTo.getPassenger();
+
+		String fullname = passenger.getFullName().length() > 50 ? passenger.getFullName().substring(0, 50) + "..." : passenger.getFullName();
+		String email = passenger.getEmail().length() > 50 ? passenger.getEmail().substring(0, 50) + "..." : passenger.getEmail();
+
+		dataset = super.unbindObject(assignedTo, "passenger.passportNumber");
+
+		dataset.put("passenger.fullName", fullname);
+		dataset.put("passenger.email", email);
 
 		super.getResponse().addData(dataset);
 	}
