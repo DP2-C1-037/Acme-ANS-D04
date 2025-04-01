@@ -11,9 +11,9 @@ import javax.validation.Payload;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = EmployeeCodeValidator.class)
+@Constraint(validatedBy = AssistanceAgentValidator.class)
 
-public @interface ValidEmployeeCode {
+public @interface ValidAssistanceAgent {
 
 	String message() default "";
 	Class<?>[] groups() default {};

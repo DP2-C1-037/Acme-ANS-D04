@@ -33,6 +33,10 @@ acme.validation.log.registration-moment.message = El momento de registro del log
 
 acme.validation.airport.code-duplicated.message = El código del aeropuerto ya está en uso
 
-acme.validation.trackingLog.resolPercentage.message=El porcentaje de resolución debe estar entre 0 y 100.
-acme.validation.trackingLog.status.message=El estado debe ser PENDIENTE si el porcentaje de resolución es menor que 100, y ACEPTADO o RECHAZADO si es 100.
-acme.validation.trackingLog.resolution.message=La resolución no debe estar vacía si el porcentaje de resolución es 100.
+acme.validation.trackingLog.resolPercentage.message = El porcentaje de resolución debe estar entre 0.0 y 100.0
+acme.validation.trackingLog.status.message = Cuando el porcentaje de resolución es 100.0, el estado debe ser ACCEPTED o DENIED. De lo contrario, el estado debe ser PENDING.
+acme.validation.trackingLog.resolution.message = Cuando el porcentaje de resolución es 100.0, la resolución no puede estar vacía
+
+acme.validation.assistance-agent.employee-code-duplicated.message=El código de empleado debe ser único
+acme.validation.assistance-agent.employee-code-invalid-format.message=El código de empleado debe seguir el patrón: 2-3 letras mayúsculas seguidas de 6 dígitos
+acme.validation.assistance-agent.employee-code-not-matching-initials.message=Las iniciales del código de empleado deben coincidir con las iniciales del nombre y apellido
