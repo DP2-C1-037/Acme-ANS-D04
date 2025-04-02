@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import acme.client.repositories.AbstractRepository;
 import acme.entities.airline.Flight;
 import acme.entities.booking.Booking;
+import acme.entities.mappings.AssignedTo;
 
 @Repository
 public interface CustomerBookingRepository extends AbstractRepository {
@@ -27,5 +28,8 @@ public interface CustomerBookingRepository extends AbstractRepository {
 
 	@Query("select b from Booking b where b.locatorCode = :locatorCode")
 	Booking findBookingByLocatorCode(final String locatorCode);
+
+	@Query("select at from AssignedTo at where at.booking.id = :bookingId")
+	Collection<AssignedTo> findAllAssignedToByBookingId(final int bookingId);
 
 }
