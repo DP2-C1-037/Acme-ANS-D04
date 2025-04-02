@@ -6,6 +6,7 @@ import java.util.Collection;
 import org.springframework.data.jpa.repository.Query;
 
 import acme.client.repositories.AbstractRepository;
+import acme.entities.airline.AirlineManager;
 import acme.entities.airline.Flight;
 
 public interface AirlineManagerFlightRepository extends AbstractRepository {
@@ -15,4 +16,7 @@ public interface AirlineManagerFlightRepository extends AbstractRepository {
 
 	@Query("SELECT f FROM Flight f WHERE f.id = :flightId")
 	Flight findFlightById(int flightId);
+
+	@Query("SELECT am FROM AirlineManager am")
+	Collection<AirlineManager> findAllManagers();
 }

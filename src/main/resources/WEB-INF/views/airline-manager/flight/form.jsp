@@ -5,7 +5,7 @@
 
 <acme:form>
 	<acme:input-textbox code="airline-manager.flight.form.label.tag" path="tag"/>	
-	<acme:input-textbox code="airline-manager.flight.form.label.requiresSelfTransfer" path="requiresSelfTransfer"/>
+	<acme:input-select code="airline-manager.flight.form.label.requiresSelfTransfer" path="requiresSelfTransfer" choices= "${selfTransfer}"/>
 	<acme:input-integer code="airline-manager.flight.form.label.cost" path="cost"/>
 	<acme:input-textbox code="airline-manager.flight.form.label.description" path="description"/>
 	
