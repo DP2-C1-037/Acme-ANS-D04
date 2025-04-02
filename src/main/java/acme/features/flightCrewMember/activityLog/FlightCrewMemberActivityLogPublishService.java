@@ -24,7 +24,17 @@ public class FlightCrewMemberActivityLogPublishService extends AbstractGuiServic
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int logId;
+		FlightCrewMember member;
+		ActivityLog log;
+
+		logId = super.getRequest().getData("id", int.class);
+		log = this.repository.findActivityLogById(logId);
+		member = log == null ? null : log.getFlightAssignment().getFlightCrewMember();
+		status = member != null && log.isDraftMode() && super.getRequest().getPrincipal().hasRealm(member);
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
