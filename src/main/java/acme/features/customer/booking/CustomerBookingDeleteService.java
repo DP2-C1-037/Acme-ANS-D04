@@ -76,7 +76,7 @@ public class CustomerBookingDeleteService extends AbstractGuiService<Customer, B
 		SelectChoices flightsChoices;
 		Dataset dataset;
 
-		flights = this.repository.findAllFlightsInDraftMode();
+		flights = this.repository.findAllFlightsPublished();
 
 		travelClassesChoices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 		flightsChoices = SelectChoices.from(flights, "id", booking.getFlight());
