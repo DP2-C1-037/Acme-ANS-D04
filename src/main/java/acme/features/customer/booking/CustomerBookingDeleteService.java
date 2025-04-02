@@ -12,10 +12,11 @@ import acme.client.services.GuiService;
 import acme.entities.airline.Flight;
 import acme.entities.booking.Booking;
 import acme.entities.booking.TravelClass;
+import acme.entities.mappings.AssignedTo;
 import acme.realms.Customer;
 
 @GuiService
-public class CustomerBookingPublishService extends AbstractGuiService<Customer, Booking> {
+public class CustomerBookingDeleteService extends AbstractGuiService<Customer, Booking> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -56,29 +57,16 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 
 	@Override
 	public void validate(final Booking booking) {
-		{
-			boolean lastNibbleStored;
-
-			lastNibbleStored = !(booking.getLastNibble().isBlank() || booking.getLastNibble() == null);
-			super.state(lastNibbleStored, "lastNibble", "acme.validation.booking.lastNibble.message");
-		}
-		{
-			boolean atLeastAPassengerAssigned;
-			Integer numberOfPassengersAssigned;
-
-			numberOfPassengersAssigned = this.repository.findNumberOfPassengersAssignedToBookingById(booking.getId());
-
-			atLeastAPassengerAssigned = numberOfPassengersAssigned != 0;
-
-			super.state(atLeastAPassengerAssigned, "*", "acme.validation.booking.passengers.message");
-		}
-
+		;
 	}
 
 	@Override
 	public void perform(final Booking booking) {
-		booking.setDraftMode(false);
-		this.repository.save(booking);
+		Collection<AssignedTo> bookingAssignedPassengers;
+		bookingAssignedPassengers = this.repository.findAllAssignedToByBookingId(booking.getId());
+
+		this.repository.deleteAll(bookingAssignedPassengers);
+		this.repository.delete(booking);
 	}
 
 	@Override

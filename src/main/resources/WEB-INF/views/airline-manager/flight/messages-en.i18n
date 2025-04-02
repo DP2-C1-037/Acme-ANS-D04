@@ -10,7 +10,7 @@ airline-manager.flight.form.button.create = Create
 airline-manager.flight.form.button.update = Update
 airline-manager.flight.form.button.delete = Delete
 airline-manager.flight.form.button.publish = Publish
-airline-manager.flight.form.label.confirmation = Confirm airline data is correcto.
+airline-manager.flight.form.label.confirmation = Confirm flight data is correct.
 
 airline-manager.flight.list.label.tag = Tag
 airline-manager.flight.list.label.requiresSelfTransfer = Requires self transfer

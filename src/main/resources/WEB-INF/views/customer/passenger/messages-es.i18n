@@ -9,6 +9,7 @@ customer.passenger.form.label.draft-mode = ¿Está en modo borrador?
 
 customer.passenger.form.button.create = Crear
 customer.passenger.form.button.update = Actualizar
+customer.passenger.form.button.delete = Eliminar
 customer.passenger.form.button.publish = Publicar
 
 customer.passenger.list.title = Lista de pasajeros
