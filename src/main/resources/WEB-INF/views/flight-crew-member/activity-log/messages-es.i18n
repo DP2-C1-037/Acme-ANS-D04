@@ -3,7 +3,7 @@ flight-crew-member.activity-log.list.title = Listado de registros de actividad
 
 flight-crew-member.activity-log.form.label.type-of-incident = Tipo de incidente:
 flight-crew-member.activity-log.form.label.severity-level = Nivel de gravedad:
-flight-crew-member.activity-log.form.label.flight-assignment = Asignación de vuelo:
+flight-crew-member.activity-log.form.label.flight-number = Número de vuelo:
 flight-crew-member.activity-log.form.label.description = Descripción:
 
 flight-crew-member.activity-log.form.button.create = Crear

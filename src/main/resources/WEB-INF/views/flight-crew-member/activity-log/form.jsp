@@ -4,7 +4,7 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form>
-	<acme:input-select code="flight-crew-member.activity-log.form.label.flight-assignment" path="assignment" choices="${assignments}"/>
+	<acme:input-select code="flight-crew-member.activity-log.form.label.flight-number" path="assignment" choices="${assignments}"/>
 	<acme:input-textbox code="flight-crew-member.activity-log.form.label.type-of-incident" path="typeOfIncident"/>
 	<acme:input-textarea code="flight-crew-member.activity-log.form.label.description" path="description"/>
 	<acme:input-integer code="flight-crew-member.activity-log.form.label.severity-level" path="severityLevel" />
