@@ -61,6 +61,7 @@ master.menu.technician.task-mine = Listar mis tareas
 # master.menu.airlineManager ##########################################################
 master.menu.airlineManager = Gestor
 master.menu.airlineManager.flight = Listar mis vuelos
+master.menu.airlineManager.flight = Listar mis escalas
 
 # master.menu.user-account ####################################################
 
