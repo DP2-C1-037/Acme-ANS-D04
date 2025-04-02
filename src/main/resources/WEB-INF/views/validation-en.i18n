@@ -58,5 +58,6 @@ acme.validation.assignedTo.passenger.draftMode.message = Passenger must be in pu
 acme.validation.assignedTo.alreadyAssigned.message = This passenger is already assigned to this booking
 
 acme.validation.booking.lastNibble.message = Last nibble must be stored in order to publish this booking
+acme.validation.booking.passengers.message = At least a passenger must be assigned to this booking in order to publish it
 
 
