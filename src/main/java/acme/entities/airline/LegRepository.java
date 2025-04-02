@@ -11,7 +11,6 @@ import acme.client.repositories.AbstractRepository;
 @Repository
 public interface LegRepository extends AbstractRepository {
 
-	// No se puede hacer todo en Java
 	@Query("SELECT MIN(l.scheduledDeparture) FROM Leg l where l.id = :legId")
 	public Date findScheduledDeparture(int legId);
 
