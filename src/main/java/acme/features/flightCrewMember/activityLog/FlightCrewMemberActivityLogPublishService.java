@@ -24,7 +24,17 @@ public class FlightCrewMemberActivityLogPublishService extends AbstractGuiServic
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int logId;
+		FlightCrewMember member;
+		ActivityLog log;
+
+		logId = super.getRequest().getData("id", int.class);
+		log = this.repository.findActivityLogById(logId);
+		member = log == null ? null : log.getFlightAssignment().getFlightCrewMember();
+		status = member != null && log.isDraftMode() && super.getRequest().getPrincipal().hasRealm(member);
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -56,8 +66,11 @@ public class FlightCrewMemberActivityLogPublishService extends AbstractGuiServic
 	@Override
 	public void validate(final ActivityLog log) {
 		FlightAssignment assignment = log.getFlightAssignment();
+		Date now = MomentHelper.getCurrentMoment();
 		if (assignment.isDraftMode())
 			super.state(false, "*", "acme.validation.activity-log.flight-assignment-not-published.message");
+		if (now.before(assignment.getLeg().getScheduledArrival()))
+			super.state(false, "*", "acme.validation.activity-log.leg-not-finished.message");
 	}
 
 	@Override
@@ -71,9 +84,11 @@ public class FlightCrewMemberActivityLogPublishService extends AbstractGuiServic
 		Dataset dataset;
 		SelectChoices selectedAssignments;
 		Collection<FlightAssignment> assignments;
+		FlightCrewMember member;
 
-		assignments = this.repository.findAllAssignments();
-		selectedAssignments = SelectChoices.from(assignments, "id", log.getFlightAssignment());
+		member = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
+		assignments = this.repository.findFlightAssignmentsByMemberIdAndPublished(member.getId());
+		selectedAssignments = SelectChoices.from(assignments, "leg.flightNumber", log.getFlightAssignment());
 
 		dataset = super.unbindObject(log, "registrationMoment", "typeOfIncident", "description", "severityLevel", "draftMode");
 		dataset.put("assignments", selectedAssignments);
