@@ -3,7 +3,6 @@ package acme.entities.booking;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
@@ -19,6 +18,7 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
 import acme.client.helpers.SpringHelper;
+import acme.constraints.ValidBooking;
 import acme.entities.airline.Flight;
 import acme.features.customer.booking.CustomerBookingRepository;
 import acme.realms.Customer;
@@ -28,6 +28,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@ValidBooking
 public class Booking extends AbstractEntity {
 
 	// Serialisation version -----------------------------------------------------------------------------------------
@@ -38,7 +39,6 @@ public class Booking extends AbstractEntity {
 
 	@Mandatory
 	@ValidString(pattern = "^[A-Z0-9]{6,8}$")
-	@Column(unique = true)
 	private String				locatorCode;
 
 	@Mandatory

@@ -25,4 +25,7 @@ public interface CustomerBookingRepository extends AbstractRepository {
 	@Query("select count(at) from AssignedTo at where at.booking.id = :bookingId")
 	Integer findNumberOfPassengersAssignedToBookingById(final int bookingId);
 
+	@Query("select b from Booking b where b.locatorCode = :locatorCode")
+	Booking findBookingByLocatorCode(final String locatorCode);
+
 }

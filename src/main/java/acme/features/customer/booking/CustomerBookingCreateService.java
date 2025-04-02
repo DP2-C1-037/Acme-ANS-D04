@@ -47,13 +47,14 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 		booking.setTravelClass(TravelClass.ECONOMY);
 		booking.setLastNibble(null);
 		booking.setCustomer(customer);
+		booking.setDraftMode(true);
 
 		super.getBuffer().addData(booking);
 	}
 
 	@Override
 	public void bind(final Booking booking) {
-		super.bindObject(booking, "locatorCode", "travelClass", "lastNibble", "flight", "draftMode");
+		super.bindObject(booking, "locatorCode", "travelClass", "lastNibble", "flight");
 	}
 
 	@Override
