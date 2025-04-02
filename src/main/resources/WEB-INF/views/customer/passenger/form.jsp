@@ -23,8 +23,9 @@
 	<acme:input-textbox code="customer.passenger.form.label.special-needs" path="specialNeeds"/>
 	
 	<jstl:choose>
-		<jstl:when test="${acme:anyOf(_command, 'show|update|publish') && draftMode == true}">
+		<jstl:when test="${acme:anyOf(_command, 'show|update|publish|delete') && draftMode == true}">
 			<acme:submit code="customer.passenger.form.button.update" action="/customer/passenger/update"/>
+			<acme:submit code="customer.passenger.form.button.delete" action="/customer/passenger/delete"/>
 			<acme:submit code="customer.passenger.form.button.publish" action="/customer/passenger/publish"/>
 		</jstl:when>
 		<jstl:when test="${_command == 'create'}">
