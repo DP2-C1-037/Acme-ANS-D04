@@ -9,7 +9,6 @@ import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.entities.booking.Booking;
 import acme.entities.mappings.AssignedTo;
 import acme.entities.passenger.Passenger;
 import acme.realms.Customer;
@@ -51,28 +50,24 @@ public class CustomerAssignedToShowService extends AbstractGuiService<Customer, 
 
 	@Override
 	public void unbind(final AssignedTo assignedTo) {
-		SelectChoices bookingChoices;
-		Collection<Booking> bookings;
-		SelectChoices passengerChoices;
+
 		Collection<Passenger> passengers;
+
+		SelectChoices passengerChoices;
 		Customer customer;
 
 		Dataset dataset;
 
 		customer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
-
-		bookings = this.repository.findAllBookingsFromCustomerId(customer.getId());
-		passengers = this.repository.findAllPassengersFromCustomerId(customer.getId());
-
-		bookingChoices = SelectChoices.from(bookings, "locatorCode", assignedTo.getBooking());
+		passengers = this.repository.findAllPublishedPassengersFromCustomerId(customer.getId());
 		passengerChoices = SelectChoices.from(passengers, "passportNumber", assignedTo.getPassenger());
 
-		dataset = super.unbindObject(assignedTo, "booking", "passenger");
-		dataset.put("booking", bookingChoices.getSelected().getKey());
-		dataset.put("bookings", bookingChoices);
+		dataset = super.unbindObject(assignedTo, "booking", "passenger", "passenger.fullName", "passenger.email", "passenger.passportNumber", "passenger.birthDate", "passenger.specialNeeds");
 		dataset.put("passenger", passengerChoices.getSelected().getKey());
 		dataset.put("passengers", passengerChoices);
+		dataset.put("draftMode", assignedTo.getBooking().isDraftMode());
 
 		super.getResponse().addData(dataset);
+
 	}
 }

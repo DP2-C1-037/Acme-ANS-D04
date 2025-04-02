@@ -28,50 +28,56 @@ public class CustomerAssignedToCreateService extends AbstractGuiService<Customer
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int masterId;
+		Booking booking;
+		Customer customer;
+
+		masterId = super.getRequest().getData("masterId", int.class);
+		booking = this.repository.findBookingById(masterId);
+		customer = booking == null ? null : booking.getCustomer();
+		status = booking != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
 
 		AssignedTo assignedTo;
+		Booking booking;
+		int masterId;
 
 		assignedTo = new AssignedTo();
+
+		masterId = super.getRequest().getData("masterId", int.class);
+		booking = this.repository.findBookingById(masterId);
+
+		assignedTo.setBooking(booking);
 
 		super.getBuffer().addData(assignedTo);
 	}
 
 	@Override
 	public void bind(final AssignedTo assignedTo) {
-		int bookingId;
 		int passengerId;
-		Booking booking;
 		Passenger passenger;
 
-		bookingId = super.getRequest().getData("booking", int.class);
 		passengerId = super.getRequest().getData("passenger", int.class);
-		booking = this.repository.findBookingById(bookingId);
 		passenger = this.repository.findPassengerById(passengerId);
 
-		super.bindObject(assignedTo, "booking", "passenger");
+		super.bindObject(assignedTo, "passenger");
 
-		assignedTo.setBooking(booking);
 		assignedTo.setPassenger(passenger);
 	}
 
 	@Override
 	public void validate(final AssignedTo assignedTo) {
 		{
-			boolean passengerInDraftMode;
+			boolean passengerPublished;
 
-			passengerInDraftMode = assignedTo.getPassenger().isDraftMode();
-			super.state(passengerInDraftMode, "passenger", "acme.validation.assignedTo.passenger.draftMode.message");
-		}
-		{
-			boolean bookingInDraftMode;
-
-			bookingInDraftMode = assignedTo.getBooking().isDraftMode();
-			super.state(bookingInDraftMode, "booking", "acme.validation.assignedTo.booking.draftMode.message");
+			passengerPublished = !assignedTo.getPassenger().isDraftMode();
+			super.state(passengerPublished, "passenger", "acme.validation.assignedTo.passenger.draftMode.message");
 		}
 		{
 			boolean alreadyAssigned;
@@ -91,27 +97,24 @@ public class CustomerAssignedToCreateService extends AbstractGuiService<Customer
 
 	@Override
 	public void unbind(final AssignedTo assignedTo) {
-		SelectChoices bookingChoices;
-		Collection<Booking> bookings;
-		SelectChoices passengerChoices;
 		Collection<Passenger> passengers;
+
+		SelectChoices passengerChoices;
 		Customer customer;
 
 		Dataset dataset;
 
 		customer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
 
-		bookings = this.repository.findAllNotPublishedBookingsFromCustomerId(customer.getId());
-		passengers = this.repository.findAllNotPublishedPassengersFromCustomerId(customer.getId());
+		passengers = this.repository.findAllPublishedPassengersFromCustomerId(customer.getId());
 
-		bookingChoices = SelectChoices.from(bookings, "locatorCode", assignedTo.getBooking());
 		passengerChoices = SelectChoices.from(passengers, "passportNumber", assignedTo.getPassenger());
 
 		dataset = super.unbindObject(assignedTo, "booking", "passenger");
-		dataset.put("booking", bookingChoices.getSelected().getKey());
-		dataset.put("bookings", bookingChoices);
 		dataset.put("passenger", passengerChoices.getSelected().getKey());
 		dataset.put("passengers", passengerChoices);
+
+		dataset.put("masterId", super.getRequest().getData("masterId", int.class));
 
 		super.getResponse().addData(dataset);
 	}

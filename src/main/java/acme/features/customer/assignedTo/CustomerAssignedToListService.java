@@ -8,18 +8,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.entities.booking.Booking;
 import acme.entities.mappings.AssignedTo;
+import acme.entities.passenger.Passenger;
 import acme.realms.Customer;
 
 @GuiService
 public class CustomerAssignedToListService extends AbstractGuiService<Customer, AssignedTo> {
 
-	// Internal state ---------------------------------------------------------
+	// Internal state ------------------------------------------------------------
 
 	@Autowired
 	private CustomerAssignedToRepository repository;
 
-	// AbstractGuiService interface -------------------------------------------
+	// AbstractGuiService interface ----------------------------------------------
 
 
 	@Override
@@ -30,19 +32,40 @@ public class CustomerAssignedToListService extends AbstractGuiService<Customer, 
 	@Override
 	public void load() {
 		Collection<AssignedTo> assignedTos;
-		int customerId;
+		int masterId;
 
-		customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		assignedTos = this.repository.findAssignedTosByCustomerId(customerId);
+		masterId = super.getRequest().getData("masterId", int.class);
+		assignedTos = this.repository.findAssignedTosByBookingId(masterId);
 
 		super.getBuffer().addData(assignedTos);
+	}
+
+	@Override
+	public void unbind(final Collection<AssignedTo> assignedTos) {
+		int masterId;
+		Booking booking;
+
+		masterId = super.getRequest().getData("masterId", int.class);
+		booking = this.repository.findBookingById(masterId);
+
+		super.getResponse().addGlobal("masterId", masterId);
+		super.getResponse().addGlobal("draftMode", booking.isDraftMode());
 	}
 
 	@Override
 	public void unbind(final AssignedTo assignedTo) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(assignedTo, "booking.locatorCode", "passenger.passportNumber");
+		Passenger passenger = assignedTo.getPassenger();
+
+		String fullname = passenger.getFullName().length() > 50 ? passenger.getFullName().substring(0, 50) + "..." : passenger.getFullName();
+		String email = passenger.getEmail().length() > 50 ? passenger.getEmail().substring(0, 50) + "..." : passenger.getEmail();
+
+		dataset = super.unbindObject(assignedTo, "passenger.passportNumber");
+
+		dataset.put("passenger.fullName", fullname);
+		dataset.put("passenger.email", email);
+
 		super.getResponse().addData(dataset);
 	}
 }
