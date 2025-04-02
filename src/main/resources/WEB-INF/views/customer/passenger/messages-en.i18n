@@ -9,6 +9,7 @@ customer.passenger.form.label.draft-mode = Is it in draft mode?
 
 customer.passenger.form.button.create = Create
 customer.passenger.form.button.update = Update
+customer.passenger.form.button.delete = Delete
 customer.passenger.form.button.publish = Publish
 
 customer.passenger.list.title = Listing of passengers
