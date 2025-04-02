@@ -89,7 +89,7 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		SelectChoices flightsChoices;
 		Dataset dataset;
 
-		flights = this.repository.findAllFlights();
+		flights = this.repository.findAllFlightsInDraftMode();
 
 		travelClassesChoices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 		flightsChoices = SelectChoices.from(flights, "id", booking.getFlight());
