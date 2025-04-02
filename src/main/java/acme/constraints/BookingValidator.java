@@ -48,13 +48,13 @@ public class BookingValidator extends AbstractValidator<ValidBooking, Booking> {
 				//				super.state(context, flightInFuture, "locatorCode", "acme.validation.booking.duplicated-booking.message");
 			}
 			{
-				boolean flightInDraftMode;
+				boolean flightPublished;
 				Flight flight;
 
 				flight = booking.getFlight();
-				flightInDraftMode = flight != null ? flight.isDraftMode() : true;
+				flightPublished = flight != null ? !flight.isDraftMode() : true;
 
-				super.state(context, flightInDraftMode, "flight", "acme.validation.booking.flight-in-draft-mode.message");
+				super.state(context, flightPublished, "flight", "acme.validation.booking.flight-published.message");
 			}
 
 		}
