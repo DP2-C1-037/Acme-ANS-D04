@@ -72,6 +72,7 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 
 			super.state(atLeastAPassengerAssigned, "*", "acme.validation.booking.passengers.message");
 		}
+		// Comprobar que los pasajeros estén publicados
 
 	}
 
