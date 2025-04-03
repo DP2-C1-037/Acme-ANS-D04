@@ -45,7 +45,9 @@ public class BookingValidator extends AbstractValidator<ValidBooking, Booking> {
 				//				flight = booking.getFlight();
 				//				flightInFuture = flight != null ? MomentHelper.isFuture(flight.getScheduledDeparture()) : true;
 				//
-				//				super.state(context, flightInFuture, "locatorCode", "acme.validation.booking.duplicated-booking.message");
+				//				super.state(context, flightInFuture, "*", "");
+				// TODO: A booking must be done for a flight which scheduled departure is in the future, to be implemented when flight derived attributes are fixed 
+
 			}
 			{
 				boolean flightPublished;

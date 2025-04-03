@@ -99,6 +99,11 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		dataset.put("travelClass", travelClassesChoices.getSelected().getKey());
 		dataset.put("flights", flightsChoices);
 		dataset.put("flight", flightsChoices.getSelected().getKey());
+		//dataset.put("originCity", booking.getFlight().getOriginCity());
+		//dataset.put("destinationCity", booking.getFlight().getDestinationCity());
+		//dataset.put("scheduledDeparture", booking.getFlight().getScheduledDeparture());
+		//dataset.put("scheduledArrival", booking.getFlight().getScheduledDeparture());
+		//TODO: When flight custom attributes are fixed
 
 		super.getResponse().addData(dataset);
 	}

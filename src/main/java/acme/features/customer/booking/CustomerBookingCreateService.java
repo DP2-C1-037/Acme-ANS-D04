@@ -77,7 +77,8 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 		flights = this.repository.findAllFlightsPublished();
 
 		travelClassesChoices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
-		flightsChoices = SelectChoices.from(flights, "id", null);
+		flightsChoices = SelectChoices.from(flights, "tag", null);
+		// TODO: Change choices display text from tag to the origin and destiny of the flight, to be implemented when flight derived attributes are fixed
 
 		dataset = super.unbindObject(booking, "locatorCode", "travelClass", "lastNibble", "flight", "draftMode");
 		dataset.put("travelClasses", travelClassesChoices);
