@@ -9,7 +9,6 @@ import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.entities.maintenanceRecords.MaintenanceRecord;
 import acme.entities.mappings.InvolvedIn;
 import acme.entities.tasks.Task;
 import acme.realms.technicians.Technician;
@@ -28,14 +27,14 @@ public class TechnicianInvolvedInDeleteService extends AbstractGuiService<Techni
 	@Override
 	public void authorise() {
 		boolean status;
-		int masterId;
-		MaintenanceRecord maintenanceRecord;
+		int id;
 		Technician technician;
+		InvolvedIn involvedIn;
 
-		masterId = super.getRequest().getData("masterId", int.class);
-		maintenanceRecord = this.repository.findMaintenanceRecordById(masterId);
-		technician = maintenanceRecord == null ? null : maintenanceRecord.getTechnician();
-		status = maintenanceRecord != null && maintenanceRecord.getDraftMode() && super.getRequest().getPrincipal().hasRealm(technician);
+		id = super.getRequest().getData("id", int.class);
+		involvedIn = this.repository.findInvolvedInById(id);
+		technician = involvedIn == null ? null : involvedIn.getMaintenanceRecord().getTechnician();
+		status = involvedIn != null && involvedIn.getMaintenanceRecord().getDraftMode() && super.getRequest().getPrincipal().hasRealm(technician);
 
 		super.getResponse().setAuthorised(status);
 	}

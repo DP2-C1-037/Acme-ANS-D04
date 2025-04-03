@@ -53,28 +53,34 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 
 	@Override
 	public void bind(final MaintenanceRecord maintenanceRecord) {
-		super.bindObject(maintenanceRecord, "nextInspectionDueDate", "notes");
+		super.bindObject(maintenanceRecord, "maintenanceDate", "nextInspectionDueDate", "status", "estimatedCost", "notes");
 	}
 
 	@Override
 	public void validate(final MaintenanceRecord maintenanceRecord) {
-		{
-			boolean status;
-			status = maintenanceRecord.getStatus().equals(MaintenanceStatus.COMPLETED);
+		boolean isNull;
 
-			super.state(status, "*", "technician.maintenance-record.publish.status");
-		}
-		{
-			int id, unpublishedTasks, tasks;
-			boolean status;
+		isNull = maintenanceRecord == null || maintenanceRecord.getStatus() == null;
 
-			id = super.getRequest().getData("id", int.class);
-			tasks = this.repository.findTasksByMaintenanceRecordId(id);
-			unpublishedTasks = this.repository.findNotPublishedTasksByMaintenanceRecordId(id);
+		if (!isNull) {
+			{
+				boolean status;
+				status = maintenanceRecord.getStatus().equals(MaintenanceStatus.COMPLETED);
 
-			status = tasks - unpublishedTasks > 0;
+				super.state(status, "*", "technician.maintenance-record.publish.status");
+			}
+			{
+				int id, unpublishedTasks, tasks;
+				boolean status;
 
-			super.state(status, "*", "technician.maintenance-record.publish.published-tasks");
+				id = super.getRequest().getData("id", int.class);
+				tasks = this.repository.findTasksByMaintenanceRecordId(id);
+				unpublishedTasks = this.repository.findNotPublishedTasksByMaintenanceRecordId(id);
+
+				status = tasks - unpublishedTasks > 0;
+
+				super.state(status, "*", "technician.maintenance-record.publish.published-tasks");
+			}
 		}
 	}
 
