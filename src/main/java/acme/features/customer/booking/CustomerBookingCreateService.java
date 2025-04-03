@@ -47,13 +47,14 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 		booking.setTravelClass(TravelClass.ECONOMY);
 		booking.setLastNibble(null);
 		booking.setCustomer(customer);
+		booking.setDraftMode(true);
 
 		super.getBuffer().addData(booking);
 	}
 
 	@Override
 	public void bind(final Booking booking) {
-		super.bindObject(booking, "locatorCode", "travelClass", "lastNibble", "flight", "draftMode");
+		super.bindObject(booking, "locatorCode", "travelClass", "lastNibble", "flight");
 	}
 
 	@Override
@@ -73,7 +74,7 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 		SelectChoices flightsChoices;
 		Dataset dataset;
 
-		flights = this.repository.findAllFlights();
+		flights = this.repository.findAllFlightsPublished();
 
 		travelClassesChoices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 		flightsChoices = SelectChoices.from(flights, "id", null);

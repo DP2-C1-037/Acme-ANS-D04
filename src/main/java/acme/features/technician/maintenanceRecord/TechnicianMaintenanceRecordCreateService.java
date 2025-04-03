@@ -60,7 +60,11 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 
 	@Override
 	public void validate(final MaintenanceRecord maintenanceRecord) {
-		{
+		boolean isNull;
+
+		isNull = maintenanceRecord == null || maintenanceRecord.getStatus() == null;
+
+		if (!isNull) {
 			boolean status;
 			status = !maintenanceRecord.getStatus().equals(MaintenanceStatus.COMPLETED);
 
@@ -75,18 +79,21 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 
 	@Override
 	public void unbind(final MaintenanceRecord maintenanceRecord) {
-		SelectChoices statuses;
+		SelectChoices possibleStatus;
 		Collection<Aircraft> aircrafts;
 		SelectChoices choices;
 		Dataset dataset;
 
-		statuses = SelectChoices.from(MaintenanceStatus.class, maintenanceRecord.getStatus());
+		possibleStatus = new SelectChoices();
+		possibleStatus.add("0", "----", maintenanceRecord.getStatus() == null);
+		possibleStatus.add("PENDING", "PENDING", maintenanceRecord.getStatus() == MaintenanceStatus.PENDING);
+		possibleStatus.add("IN_PROGRESS", "IN_PROGRESS", maintenanceRecord.getStatus() == MaintenanceStatus.IN_PROGRESS);
 
 		aircrafts = this.repository.findAvailableAircrafts();
 		choices = SelectChoices.from(aircrafts, "model", maintenanceRecord.getAircraft());
 
-		dataset = super.unbindObject(maintenanceRecord, "maintenanceDate", "nextInspectionDueDate", "estimatedCost", "notes");
-		dataset.put("statuses", statuses);
+		dataset = super.unbindObject(maintenanceRecord, "technician.identity.name", "maintenanceDate", "nextInspectionDueDate", "estimatedCost", "notes");
+		dataset.put("statuses", possibleStatus);
 		dataset.put("aircraft", choices.getSelected().getKey());
 		dataset.put("aircrafts", choices);
 

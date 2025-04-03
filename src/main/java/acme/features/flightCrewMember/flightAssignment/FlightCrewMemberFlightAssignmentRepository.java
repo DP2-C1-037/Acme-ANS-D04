@@ -22,11 +22,25 @@ public interface FlightCrewMemberFlightAssignmentRepository extends AbstractRepo
 	@Query("select fa from FlightAssignment fa where fa.id = :id")
 	FlightAssignment findFlightAssignmentById(int id);
 
-	@Query("select fa from FlightAssignment fa where fa.leg.scheduledArrival < :now and fa.flightCrewMember.id = :id")
-	Collection<FlightAssignment> findCompletedFlightAssignmentsByMemberId(Date now, int id);
+	@Query("""
+		SELECT fa
+		FROM FlightAssignment fa
+		WHERE
+		    (fa.draftMode = false AND fa.leg.scheduledArrival < :now AND (fa.flightCrewMember IS NULL OR fa.flightCrewMember.id != :memberId))
+		    OR
+		    (fa.leg.scheduledArrival < :now AND fa.flightCrewMember.id = :memberId)
+		""")
+	Collection<FlightAssignment> findCompletedPublishedOrMemberAssignments(int memberId, Date now);
 
-	@Query("select fa from FlightAssignment fa where fa.leg.scheduledDeparture > :now and fa.flightCrewMember.id = :id")
-	Collection<FlightAssignment> findPlannedFlightAssignmentsByMemberId(Date now, int id);
+	@Query("""
+		SELECT fa
+		FROM FlightAssignment fa
+		WHERE
+		    (fa.draftMode = false AND fa.leg.scheduledDeparture > :now AND (fa.flightCrewMember IS NULL OR fa.flightCrewMember.id != :memberId))
+		    OR
+		    (fa.leg.scheduledDeparture > :now AND fa.flightCrewMember.id = :memberId)
+		""")
+	Collection<FlightAssignment> findPlannedPublishedOrMemberAssignments(int memberId, Date now);
 
 	@Query("select l from Leg l")
 	Collection<Leg> findAllLegs();
@@ -48,4 +62,8 @@ public interface FlightCrewMemberFlightAssignmentRepository extends AbstractRepo
 
 	@Query("select fa from FlightAssignment fa where fa.leg.id = :legId")
 	Collection<FlightAssignment> findFlightAssignmentByLegId(int legId);
+
+	@Query("select fa from FlightAssignment fa where fa.draftMode = false and (fa.flightCrewMember is null or fa.flightCrewMember.id != :memberId)")
+	Collection<FlightAssignment> findPublishedAssignmentsExcludingMember(int memberId);
+
 }

@@ -9,6 +9,6 @@ import acme.client.repositories.AbstractRepository;
 @Repository
 public interface AirportRepository extends AbstractRepository {
 
-	@Query("select a from Airport a where a.iataCode = :code")
+	@Query("select a from Airport a where BINARY(a.iataCode) = :code")
 	Airport findAirportByCode(String code);
 }

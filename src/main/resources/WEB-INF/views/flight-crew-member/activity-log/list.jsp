@@ -4,7 +4,7 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:list>
-	<acme:list-column code="flight-crew-member.activity-log.list.label.registration-moment" path="registrationMoment" width="34%"/>
+	<acme:list-column code="flight-crew-member.activity-log.list.label.flight-number" path="flightNumber" width="34%"/>
 	<acme:list-column code="flight-crew-member.activity-log.form.label.type-of-incident" path="typeOfIncident" width="33%"/>
 	<acme:list-column code="flight-crew-member.activity-log.list.label.severity-level" path="severityLevel" width="33%"/>
 	<acme:list-payload path="payload"/>	
