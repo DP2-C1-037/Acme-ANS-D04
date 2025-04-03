@@ -64,6 +64,11 @@ master.menu.technician.task-mine = List my tasks
 master.menu.airlineManager = Manager
 master.menu.airlineManager.flight = List my flights
 
+# master.menu.assistance-agent #####################################
+master.menu.assistance-agent = Assistance agent
+master.menu.assistance-agent.claim.list-completed = Completed claims
+master.menu.assistance-agent.claim.list-undergoing = Undergoing claims
+
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Account
@@ -72,3 +77,6 @@ master.menu.user-account.become-provider = Become a provider
 master.menu.user-account.provider-profile = Provider profile
 master.menu.user-account.become-consumer = Become a consumer
 master.menu.user-account.consumer-profile = Consumer profile
+
+
+

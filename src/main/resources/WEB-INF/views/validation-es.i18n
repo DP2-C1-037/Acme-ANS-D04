@@ -57,6 +57,6 @@ acme.validation.assignedTo.passenger.draftMode.message = El pasajero debe estar 
 acme.validation.assignedTo.alreadyAssigned.message = Este pasajero ya está asignado a esta reserva
 
 acme.validation.booking.lastNibble.message = Los últimos cuatro dígitos de la tarjeta de crédito deben ser registrados para publicar esta reserva
+acme.validation.claim.registrationMoment.message = El momento de registro debe ser posterior a la fecha de inicio de trabajo del agente de asistencia.
 
-
-
+acme.validation.claim.leg.cancelled.message= La reclamación debe estar vinculada a un tramo que haya ocurrido

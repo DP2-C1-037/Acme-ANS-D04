@@ -60,5 +60,7 @@ acme.validation.assignedTo.passenger.draftMode.message = Passenger must be in dr
 acme.validation.assignedTo.alreadyAssigned.message = This passenger is already assigned to this booking
 
 acme.validation.booking.lastNibble.message = Last nibble must be stored in order to publish this booking
+acme.validation.claim.registrationMoment.message = The registration moment must be after the assistance agent's work start date.
 
+acme.validation.claim.leg.cancelled.message= Claim must be linked to a leg that occured
 
