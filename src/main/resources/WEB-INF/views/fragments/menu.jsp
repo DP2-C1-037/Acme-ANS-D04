@@ -74,7 +74,6 @@
 		<acme:menu-option code="master.menu.assistance-agent" access="hasRealm('AssistanceAgent')">
 			<acme:menu-suboption code="master.menu.assistance-agent.claim.list-completed" action="/assistance-agent/claim/list-completed"/>
 			<acme:menu-suboption code="master.menu.assistance-agent.claim.list-undergoing" action="/assistance-agent/claim/list-undergoing"/>
-			<acme:menu-suboption code="master.menu.assistance-agent.claim.assistance-agent-dashboard" action="/assistance-agent/assistance-agent-dashboard/show"/>
 		</acme:menu-option>
 	
 	</acme:menu-left>
