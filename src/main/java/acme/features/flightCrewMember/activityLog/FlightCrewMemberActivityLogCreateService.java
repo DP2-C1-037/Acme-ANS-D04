@@ -54,6 +54,9 @@ public class FlightCrewMemberActivityLogCreateService extends AbstractGuiService
 
 	@Override
 	public void validate(final ActivityLog log) {
+		Date now = MomentHelper.getCurrentMoment();
+		if (MomentHelper.isBefore(now, log.getFlightAssignment().getLeg().getScheduledArrival()))
+			super.state(false, "*", "El momento de registro del registro debe ocurrir después de que termine la escala");
 		;
 	}
 
