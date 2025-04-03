@@ -19,7 +19,7 @@
 	<acme:input-email code="assistance-agent.claim.form.label.passengerEmail" path="passengerEmail"/>
 	<acme:input-textarea code="assistance-agent.claim.form.label.description" path="description"/>
 	<acme:input-select code="assistance-agent.claim.form.label.type" path="type" choices="${types}"/>
-	<acme:input-select code="assistance-agent.claim.form.label.indicator" path="status" choices="${status}"/>
+	<acme:input-select code="assistance-agent.claim.form.label.status" path="status" choices="${status}"/>
 	<acme:input-select code="assistance-agent.claim.form.label.leg" path="leg" choices="${legs}"/>
 
 	
