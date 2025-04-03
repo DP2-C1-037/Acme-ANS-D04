@@ -1,6 +1,6 @@
-customer.assigned-to.form.title = Detalles de asignaciones de reservas 
+customer.assigned-to.form.title = Detalles de asignación de reserva 
 
-customer.assigned-to.list.title = Lista de asignaciones de reservas
+customer.assigned-to.list.title = Lista de asignaciones de reserva
 
 customer.assigned-to.list.label.passport-number = Número de pasaporte
 customer.assigned-to.list.label.full-name = Nombre completo
