@@ -45,7 +45,7 @@ public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, Tr
 			if (trackingLog.getResolPercentage() < highestTrackingLog.getResolPercentage()) {
 				String errorMessage = String.format("Resolution percentage %.2f must be higher than the highest resolution percentage %.2f for claim ID %d", trackingLog.getResolPercentage(), highestTrackingLog.getResolPercentage(), claim.getId());
 				context.disableDefaultConstraintViolation();
-				context.buildConstraintViolationWithTemplate(errorMessage).addPropertyNode("resolutionPercentage").addConstraintViolation();
+				context.buildConstraintViolationWithTemplate(errorMessage).addPropertyNode("resolPercentage").addConstraintViolation();
 				return false;
 			}
 		}

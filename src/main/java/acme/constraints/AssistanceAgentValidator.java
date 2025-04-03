@@ -9,8 +9,8 @@ import acme.client.components.principals.DefaultUserIdentity;
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
 import acme.client.helpers.StringHelper;
-import acme.features.assistanceAgent.AssistanceAgentRepository;
-import acme.realms.AssistanceAgent;
+import acme.realms.assistanceAgent.AssistanceAgent;
+import acme.realms.assistanceAgent.AssistanceAgentRepository;
 
 @Validator
 public class AssistanceAgentValidator extends AbstractValidator<ValidAssistanceAgent, AssistanceAgent> {
