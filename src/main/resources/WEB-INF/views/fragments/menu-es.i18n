@@ -49,7 +49,6 @@ master.menu.customer.passengers = Pasajeros
 master.menu.flightCrewMember = Miembro de la tripulación de vuelo
 master.menu.flightCrewMember.flightAssignmentCompleted = Ver asignaciones de vuelo completadas
 master.menu.flightCrewMember.flightAssignmentPlanned = Ver asignaciones de vuelo planificadas
-master.menu.flightCrewMember.activityLogs = Ver registros de actividad 
 
 # master.menu.technician ##########################################################
 master.menu.technician = Técnico
