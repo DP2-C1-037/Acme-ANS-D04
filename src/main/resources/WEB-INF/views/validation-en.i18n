@@ -60,5 +60,12 @@ acme.validation.assignedTo.alreadyAssigned.message = This passenger is already a
 
 acme.validation.booking.duplicated-booking.message = Booking locator code already in use
 acme.validation.booking.lastNibble.message = Last nibble must be stored in order to publish this booking
+
+acme.validation.claim.registrationMoment.message = The registration moment must be after the assistance agent's work start date.
+
+acme.validation.claim.leg.cancelled.message= Claim must be linked to a leg that occured
+
+
 acme.validation.booking.passengers.message = At least a passenger must be assigned to this booking in order to publish it
 acme.validation.booking.flight-published.message = Assigned flight must be published
+
