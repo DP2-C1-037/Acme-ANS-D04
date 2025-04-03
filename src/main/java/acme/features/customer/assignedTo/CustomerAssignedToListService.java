@@ -65,6 +65,7 @@ public class CustomerAssignedToListService extends AbstractGuiService<Customer, 
 
 		dataset.put("passenger.fullName", fullname);
 		dataset.put("passenger.email", email);
+		super.addPayload(dataset, assignedTo);
 
 		super.getResponse().addData(dataset);
 	}
