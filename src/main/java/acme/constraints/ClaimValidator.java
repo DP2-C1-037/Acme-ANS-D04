@@ -33,7 +33,8 @@ public class ClaimValidator extends AbstractValidator<ValidClaim, Claim> {
 		// Validation 2: Leg status check (new validation)
 		boolean validLegStatus = this.validateLegStatus(claim, context);
 
-		result = !super.hasErrors(context);
+		// Use both validation results in the final result calculation
+		result = consistentRegistrationMoment && validLegStatus && !super.hasErrors(context);
 
 		return result;
 	}
