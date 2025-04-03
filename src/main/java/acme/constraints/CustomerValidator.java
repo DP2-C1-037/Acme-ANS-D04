@@ -33,7 +33,7 @@ public class CustomerValidator extends AbstractValidator<ValidCustomer, Customer
 				existingCustomer = this.repository.findCustomerByIdentifier(customer.getIdentifier());
 				uniqueCustomerIdentifier = existingCustomer == null || existingCustomer.equals(customer);
 
-				super.state(context, uniqueCustomerIdentifier, "customers", "acme.validation.customer.identifier.unique.message");
+				super.state(context, uniqueCustomerIdentifier, "identifier", "acme.validation.customer.identifier.unique.message");
 			}
 			{
 				boolean identifierCorrectSyntax;
@@ -46,9 +46,9 @@ public class CustomerValidator extends AbstractValidator<ValidCustomer, Customer
 					String identifierPrefix = identifier.substring(0, initials.length());
 
 					identifierCorrectSyntax = initials.equals(identifierPrefix);
-					super.state(context, identifierCorrectSyntax, "customers", "acme.validation.customer.identifier.syntax.message");
+					super.state(context, identifierCorrectSyntax, "identifier", "acme.validation.customer.identifier.syntax.message");
 				} else
-					super.state(context, false, "customers", "acme.validation.customer.identifier.syntax.message");
+					super.state(context, false, "identifier", "acme.validation.customer.identifier.syntax.message");
 
 			}
 		}

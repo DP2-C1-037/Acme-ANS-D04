@@ -65,7 +65,6 @@ public class CustomerAssignedToShowService extends AbstractGuiService<Customer, 
 		dataset = super.unbindObject(assignedTo, "booking", "passenger", "passenger.fullName", "passenger.email", "passenger.passportNumber", "passenger.birthDate", "passenger.specialNeeds");
 		dataset.put("passenger", passengerChoices.getSelected().getKey());
 		dataset.put("passengers", passengerChoices);
-		dataset.put("draftMode", assignedTo.getBooking().isDraftMode());
 
 		super.getResponse().addData(dataset);
 

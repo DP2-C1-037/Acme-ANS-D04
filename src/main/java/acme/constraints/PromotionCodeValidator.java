@@ -25,11 +25,11 @@ public class PromotionCodeValidator extends AbstractValidator<ValidPromotionCode
 				String currentYearLastTwoDigits = sdf.format(MomentHelper.getCurrentMoment());
 
 				if (!promotionCodeLastTwoDigits.equals(currentYearLastTwoDigits) || !service.getPromotionCode().matches("^[A-Z]{4}-[0-9]{2}$")) {
-					super.state(context, false, "services", "acme.validation.service.promotionCode.message");
+					super.state(context, false, "promotionCode", "acme.validation.service.promotionCode.message");
 					result = false;
 				}
 			} else {
-				super.state(context, false, "services", "acme.validation.service.promotionCode.message");
+				super.state(context, false, "promotionCode", "acme.validation.service.promotionCode.message");
 				result = false;
 			}
 

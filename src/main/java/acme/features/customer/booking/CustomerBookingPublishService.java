@@ -59,7 +59,7 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		{
 			boolean lastNibbleStored;
 
-			lastNibbleStored = !(booking.getLastNibble().isBlank() || booking.getLastNibble() == null);
+			lastNibbleStored = !(booking.getLastNibble() == null || booking.getLastNibble().isBlank());
 			super.state(lastNibbleStored, "lastNibble", "acme.validation.booking.lastNibble.message");
 		}
 		{
