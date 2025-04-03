@@ -88,7 +88,7 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 		aircrafts = this.repository.findAvailableAircrafts();
 		choices = SelectChoices.from(aircrafts, "model", maintenanceRecord.getAircraft());
 
-		dataset = super.unbindObject(maintenanceRecord, "maintenanceDate", "nextInspectionDueDate", "estimatedCost", "notes");
+		dataset = super.unbindObject(maintenanceRecord, "technician.identity.name", "maintenanceDate", "nextInspectionDueDate", "estimatedCost", "notes");
 		dataset.put("statuses", possibleStatus);
 		dataset.put("aircraft", choices.getSelected().getKey());
 		dataset.put("aircrafts", choices);

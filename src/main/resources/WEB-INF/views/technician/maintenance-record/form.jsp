@@ -5,11 +5,7 @@
 
 <acme:form>
 	<acme:input-select code="technician.maintenance-record.form.label.aircraft" path="aircraft" choices= "${aircrafts}" readonly="${_command != 'create'}"/>
-	<jstl:choose>
-		<jstl:when test="${_command != 'create'}">
-			<acme:input-textbox code="technician.maintenance-record.form.label.technician" path="technician.identity.name" readonly="true"/>
-		</jstl:when>		
-	</jstl:choose>	
+	<acme:input-textbox code="technician.maintenance-record.form.label.technician" path="technician.identity.name" readonly="true"/>
 	<acme:input-moment code="technician.maintenance-record.form.label.maintenanceDate" path="maintenanceDate"/>
 	<acme:input-select code="technician.maintenance-record.form.label.status" path="status" choices= "${statuses}"/>
 	<acme:input-money code="technician.maintenance-record.form.label.estimatedCost" path="estimatedCost"/>
