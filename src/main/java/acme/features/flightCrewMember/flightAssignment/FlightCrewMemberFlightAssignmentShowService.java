@@ -32,9 +32,7 @@ public class FlightCrewMemberFlightAssignmentShowService extends AbstractGuiServ
 		masterId = super.getRequest().getData("id", int.class);
 		assignment = this.repository.findFlightAssignmentById(masterId);
 		member = assignment == null ? null : assignment.getFlightCrewMember();
-		status = assignment != null;
-
-		status = status && (!assignment.isDraftMode() || super.getRequest().getPrincipal().hasRealm(member));
+		status = super.getRequest().getPrincipal().hasRealm(member) || assignment != null && !assignment.isDraftMode();
 
 		super.getResponse().setAuthorised(status);
 	}

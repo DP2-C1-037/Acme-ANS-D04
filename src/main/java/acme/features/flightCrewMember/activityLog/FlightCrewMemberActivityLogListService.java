@@ -6,6 +6,7 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
+import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.activityLog.ActivityLog;
@@ -38,6 +39,24 @@ public class FlightCrewMemberActivityLogListService extends AbstractGuiService<F
 	@Override
 	public void unbind(final ActivityLog log) {
 		Dataset dataset;
+		SelectChoices selectedAssignments;
+		Collection<FlightAssignment> assignments;
+		FlightCrewMember member;
+
+		member = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
+		assignments = this.repository.findFlightAssignmentsByMemberIdAndPublished(member.getId());
+		selectedAssignments = SelectChoices.from(assignments, "leg.flightNumber", log.getFlightAssignment());
+
+		dataset = super.unbindObject(log, "registrationMoment", "typeOfIncident", "description", "severityLevel", "draftMode");
+		dataset.put("masterId", log.getFlightAssignment().getId());
+		dataset.put("assignments", selectedAssignments);
+		dataset.put("assignment", selectedAssignments.getSelected().getKey());
+
+		super.getResponse().addData(dataset);
+	}
+
+	@Override
+	public void unbind(final Collection<ActivityLog> log) {
 		int masterId;
 		FlightAssignment assignment;
 		boolean showingCreate;
@@ -53,13 +72,8 @@ public class FlightCrewMemberActivityLogListService extends AbstractGuiService<F
 		correctFlightCrewMember = memberId == userId;
 		showingCreate = !assignment.isDraftMode() && correctFlightCrewMember;
 
-		dataset = super.unbindObject(log, "typeOfIncident", "severityLevel", "registrationMoment");
-		dataset.put("flightNumber", log.getFlightAssignment().getLeg().getFlightNumber());
-
 		super.getResponse().addGlobal("masterId", masterId);
 		super.getResponse().addGlobal("showingCreate", showingCreate);
-		super.addPayload(dataset, log, "description");
-		super.getResponse().addData(dataset);
 
 	}
 
