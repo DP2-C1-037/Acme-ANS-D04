@@ -63,7 +63,7 @@ public class FlightCrewMemberActivityLogCreateService extends AbstractGuiService
 	public void validate(final ActivityLog log) {
 		Date now = MomentHelper.getCurrentMoment();
 		if (MomentHelper.isBefore(now, log.getFlightAssignment().getLeg().getScheduledArrival()))
-			super.state(false, "*", "El momento de registro del registro debe ocurrir después de que termine la escala");
+			super.state(false, "*", "acme.validation.log.registration-moment.message");
 		;
 	}
 
@@ -83,9 +83,10 @@ public class FlightCrewMemberActivityLogCreateService extends AbstractGuiService
 		assignments = this.repository.findFlightAssignmentsByMemberId(member.getId());
 		selectedAssignments = SelectChoices.from(assignments, "leg.flightNumber", log.getFlightAssignment());
 
-		dataset = super.unbindObject(log, "registrationMoment", "typeOfIncident", "description", "severityLevel", "draftMode");
+		dataset = super.unbindObject(log, "typeOfIncident", "description", "severityLevel", "draftMode");
 		dataset.put("assignments", selectedAssignments);
 		dataset.put("assignment", selectedAssignments.getSelected().getKey());
+		dataset.put("registrationMoment", log.getRegistrationMoment());
 		dataset.put("masterId", super.getRequest().getData("masterId", int.class));
 
 		super.getResponse().addData(dataset);
