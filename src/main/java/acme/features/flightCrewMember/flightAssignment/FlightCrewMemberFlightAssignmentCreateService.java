@@ -81,7 +81,11 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 		selectedLegs = SelectChoices.from(legs, "flightNumber", assignment.getLeg());
 
 		dataset = super.unbindObject(assignment, "flightCrewDuty", "lastUpdateMoment", "status", "remarks", "draftMode");
-		dataset.put("member", member);
+		try {
+			dataset.put("employeeCode", member.getEmployeeCode());
+		} catch (Exception e) {
+			;
+		}
 		dataset.put("statuses", statuses);
 		dataset.put("duties", duties);
 		dataset.put("leg", selectedLegs.getSelected().getKey());

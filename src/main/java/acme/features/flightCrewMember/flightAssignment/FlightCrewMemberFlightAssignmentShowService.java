@@ -55,17 +55,17 @@ public class FlightCrewMemberFlightAssignmentShowService extends AbstractGuiServ
 		SelectChoices duties;
 		Collection<Leg> legs;
 		SelectChoices selectedLegs;
-		String memberCode;
+		String employeeCode;
 
 		legs = this.repository.findAllLegs();
-		memberCode = assignment.getFlightCrewMember().getEmployeeCode();
+		employeeCode = assignment.getFlightCrewMember().getEmployeeCode();
 		statuses = SelectChoices.from(AssignmentStatus.class, assignment.getStatus());
 		duties = SelectChoices.from(FlightCrewDuty.class, assignment.getFlightCrewDuty());
 		selectedLegs = SelectChoices.from(legs, "flightNumber", assignment.getLeg());
 
 		dataset = super.unbindObject(assignment, "flightCrewDuty", "lastUpdateMoment", "status", "remarks", "draftMode");
 		dataset.put("statuses", statuses);
-		dataset.put("member", memberCode);
+		dataset.put("employeeCode", employeeCode);
 		dataset.put("duties", duties);
 		dataset.put("leg", selectedLegs.getSelected().getKey());
 		dataset.put("legs", selectedLegs);
