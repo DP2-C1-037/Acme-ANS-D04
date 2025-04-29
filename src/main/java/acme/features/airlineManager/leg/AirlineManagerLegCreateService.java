@@ -40,7 +40,7 @@ public class AirlineManagerLegCreateService extends AbstractGuiService<AirlineMa
 	@Override
 	public void bind(final Leg leg) {
 
-		super.bindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "status", "draftMode");
+		super.bindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "status", "flight", "departureAirport", "arrivalAirport", "deployedAircraft");
 	}
 
 	@Override
@@ -67,14 +67,16 @@ public class AirlineManagerLegCreateService extends AbstractGuiService<AirlineMa
 		SelectChoices aircrafts = SelectChoices.from(aircraftsList, "registrationNumber", leg.getDeployedAircraft());
 		SelectChoices airports = SelectChoices.from(airportsList, "name", leg.getDepartureAirport());
 
-		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "status");
+		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "status", "duration");
 		dataset.put("confirmation", false);
-		dataset.put("status", status);
+		dataset.put("status", status.getSelected().getKey());
+		dataset.put("statuses", status);
+		dataset.put("flight", flights.getSelected().getKey());
 		dataset.put("flights", flights);
+		dataset.put("aircraft", aircrafts.getSelected().getKey());
 		dataset.put("aircrafts", aircrafts);
+		dataset.put("airport", airports.getSelected().getKey());
 		dataset.put("airports", airports);
-		dataset.put("duration", leg.getDuration());
-		dataset.put("draftMode", leg.isDraftMode());
 		super.getResponse().addData(dataset);
 	}
 }
