@@ -87,6 +87,6 @@ public class Leg extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private Aircraft	deployedAircraft;
+	private Aircraft	aircraft;
 
 }

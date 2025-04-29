@@ -6,6 +6,7 @@ airline-manager.flight.form.label.requiresSelfTransfer = Requiere transferencia 
 airline-manager.flight.form.label.cost = Coste:
 airline-manager.flight.form.label.description = Descripción: (Opcional)
 
+airlineManager.flight.form.button.legs = Escalas
 airline-manager.flight.form.button.create = Crear
 airline-manager.flight.form.button.update = Actualizar
 airline-manager.flight.form.button.delete = Borrar

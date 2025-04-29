@@ -20,12 +20,12 @@ airline-manager-07,JD123462,0,2025/01/01 00:00,http://lorem.com/ipsum,user-accou
 airline-manager-08,JD123463,1,2024/12/31 23:59,http://lorem.com/ipsum,user-account-airline-manager-01,airline-01
 
 # pictureLink - standard variations
-airline-manager-11,JD123466,50,2022/09/01 10:00,ftp://a,user-account-airline-manager-01,airline-01
-airline-manager-12,JD123467,50,2022/09/01 10:00,ftp://a.b,user-account-airline-manager-01,airline-01
+airline-manager-11,JD123466,50,2022/09/01 10:00,http://a.b,user-account-airline-manager-01,airline-01
+airline-manager-12,JD123467,50,2022/09/01 10:00,http://www.lorem-ipsum.org/dolor/sit/amet/consectetur/adipiscing/elit/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/,user-account-airline-manager-01,airline-01
 airline-manager-13,JD123468,50,2022/09/01 10:00,http://www.lorem-ipsum.org/dolor/sit/amet/consectetur/adipiscing/elit/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/,user-account-airline-manager-01,airline-01
 airline-manager-14,JD123469,50,2022/09/01 10:00,http://www.lorem-ipsum.org/dolor/sit/amet/consectetur/adipiscing/elit/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/X,user-account-airline-manager-01,airline-01
 airline-manager-15,JD123470,50,2022/09/01 10:00,https://www.lorem-ipsum.org,user-account-airline-manager-01,airline-01
-airline-manager-16,JD123471,50,2022/09/01 10:00,ftp://www.lorem-ipsum.org,user-account-airline-manager-01,airline-01
+airline-manager-16,JD123471,50,2022/09/01 10:00,http://www.lorem-ipsum.org,user-account-airline-manager-01,airline-01
 airline-manager-17,JD123472,50,2022/09/01 10:00,http://www.lorem-ipsum.org/dolor/sit.html,user-account-airline-manager-01,airline-01
 airline-manager-18,JD123473,50,2022/09/01 10:00,http://www.lorem-ipsum.org/dolor/sit.html#dolor,user-account-airline-manager-01,airline-01
 airline-manager-19,JD123474,50,2022/09/01 10:00,http://example.org?a=1&b=2,user-account-airline-manager-01,airline-01

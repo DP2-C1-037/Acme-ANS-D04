@@ -1,4 +1,4 @@
-key,flightNumber,scheduledDeparture,scheduledArrival,status,draftMode,key:flight,key:departureAirport,key:arrivalAirport,key:deployedAircraft
+key,flightNumber,scheduledDeparture,scheduledArrival,status,draftMode,key:flight,key:departureAirport,key:arrivalAirport,key:aircraft
 # Base entity
 leg-00,SHX4321,2100/07/02 00:00,2100/07/02 00:10,ON_TIME,true,flight-01,airport-01,airport-02,aircraft-01
 leg-01,SHX1234,2100/07/02 00:00,2100/07/02 00:01,ON_TIME,true,flight-01,airport-01,airport-02,aircraft-01
