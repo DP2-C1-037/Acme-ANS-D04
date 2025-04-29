@@ -2,8 +2,8 @@
 # base entity,,,,,,
 activityLog-00,2001/07/03 10:00,Lorem ipsum dolor sit amet,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",5,true,flight-assignment-00
 # registrationMoment - standard variations,,,,,,
-activityLog-01,2000/01/01 00:01,Lorem ipsum dolor sit amet,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",5,true,flight-assignment-00
-activityLog-02,2000/01/01 00:02,Lorem ipsum dolor sit amet,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",5,true,flight-assignment-00
+activityLog-01,2000/01/01 00:02,Lorem ipsum dolor sit amet,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",5,true,flight-assignment-00
+activityLog-02,2000/01/01 00:03,Lorem ipsum dolor sit amet,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",5,true,flight-assignment-00
 activityLog-03,2001/12/31 23:58,Lorem ipsum dolor sit amet,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",5,true,flight-assignment-00
 activityLog-04,2001/12/31 23:59,Lorem ipsum dolor sit amet,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",5,true,flight-assignment-00
 # typeOfIncident - standard variations,,,,,,

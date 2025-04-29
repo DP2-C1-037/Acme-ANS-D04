@@ -19,7 +19,7 @@ public class AirlineValidator extends AbstractValidator<ValidAirline, Airline> {
 			// IataCode uniqueness
 			Airline existingAirline = airlineRepository.findAirlineByIataCode(airlineToValidate.getIataCode());
 			result = existingAirline == null || existingAirline.equals(airlineToValidate);
-			super.state(context, result, "flightNumber", "acme.validation.airline.iataCode.message");
+			super.state(context, result, "iataCode", "acme.validation.airline.iataCode.message");
 		}
 		return result;
 	}
