@@ -14,6 +14,10 @@ acme.validation.leg.flightNumber.iataCode.message = El número de vuelo está co
 
 acme.validation.leg.flightNumber.unique.message = El número de vuelo debe ser único, no puede haber dos iguales
 
+acme.validation.leg.departureAirport.equals.message = El aeropuerto de salida y llegada deben ser diferentes
+
+acme.validation.leg.scheduledArrival.equals.message = La fecha de llegada debe ser al menos 1 minuto posterior a la fecha de salida 
+
 acme.validation.airline.iataCode.message = El código iata de la aerolínea debe ser único
 
 acme.validation.maintenance-record.nextInspection.message = La fecha asociada a la próxima inspección debe ser en el futuro
