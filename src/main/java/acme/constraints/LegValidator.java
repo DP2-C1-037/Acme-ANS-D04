@@ -31,7 +31,7 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 	@Override
 	public boolean isValid(final Leg legToValidate, final ConstraintValidatorContext context) {
 		boolean result = false;
-		if (legToValidate != null && legToValidate.getFlightNumber() != null && Integer.valueOf(legToValidate.getId()) != null) {
+		if (legToValidate != null && legToValidate.getFlightNumber() != null && Integer.valueOf(legToValidate.getId()) != null && legToValidate.getAircraft() != null) {
 
 			// flightNumber uniqueness
 			Leg existingLeg = this.legRepository.findLegByFlightNumber(legToValidate.getFlightNumber());
@@ -39,7 +39,7 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 			super.state(context, result, "flightNumber", "acme.validation.leg.flightNumber.unique.message");
 
 			// flightNumber letters correspond to airline's iataCode
-			String airlineIataCode = this.legRepository.getIataCodeFromLegId(legToValidate.getId());
+			String airlineIataCode = this.legRepository.getIataCodeFromAircraftId(legToValidate.getAircraft().getId());
 			result = StringHelper.startsWith(legToValidate.getFlightNumber(), airlineIataCode, true);
 			super.state(context, result, "flightNumber", "acme.validation.leg.flightNumber.iataCode.message");
 

@@ -25,26 +25,26 @@ public class AirlineManagerFlightCreateService extends AbstractGuiService<Airlin
 
 	@Override
 	public void load() {
-		AirlineManager manager = (AirlineManager) super.getRequest().getPrincipal().getActiveRealm();
+
+		AirlineManager airlineManager = (AirlineManager) super.getRequest().getPrincipal().getActiveRealm();
 
 		Flight flight = new Flight();
 		flight.setDraftMode(true);
-		flight.setAirlineManager(manager);
+		flight.setAirlineManager(airlineManager);
 
 		super.getBuffer().addData(flight);
 	}
 
 	@Override
 	public void bind(final Flight flight) {
-
 		super.bindObject(flight, "tag", "requiresSelfTransfer", "cost", "description");
 	}
 
 	@Override
 	public void validate(final Flight flight) {
 
-		boolean confirmation = super.getRequest().getData("confirmation", boolean.class);
-		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
+		if (!flight.isDraftMode())
+			super.state(false, "*", "acme.validation.flight.create.NoDraftMode");
 	}
 
 	@Override
@@ -58,7 +58,7 @@ public class AirlineManagerFlightCreateService extends AbstractGuiService<Airlin
 
 		SelectChoices selfTransfer = SelectChoices.from(FlightSelfTransfer.class, flight.getRequiresSelfTransfer());
 
-		dataset = super.unbindObject(flight, "tag", "requiresSelfTransfer", "cost", "description");
+		dataset = super.unbindObject(flight, "tag", "requiresSelfTransfer", "cost", "description", "draftMode");
 		dataset.put("confirmation", false);
 		dataset.put("selfTransfer", selfTransfer);
 		super.getResponse().addData(dataset);

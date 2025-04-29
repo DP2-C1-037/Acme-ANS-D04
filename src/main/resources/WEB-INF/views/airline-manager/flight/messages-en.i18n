@@ -6,10 +6,11 @@ airline-manager.flight.form.label.requiresSelfTransfer = Requires self transfer:
 airline-manager.flight.form.label.cost = Cost:
 airline-manager.flight.form.label.description = Description: (Optional)
 
-airline-manager.flight.form.button.create = Create
-airline-manager.flight.form.button.update = Update
-airline-manager.flight.form.button.delete = Delete
-airline-manager.flight.form.button.publish = Publish
+airlineManager.flight.form.button.legs = Legs
+airlineManager.flight.form.button.update = Update
+airlineManager.flight.form.button.delete = Delete
+airlineManager.flight.form.button.publish = Publish
+airlineManager.flight.form.button.create = Create
 airline-manager.flight.form.label.confirmation = Confirm flight data is correct.
 
 airline-manager.flight.list.label.tag = Tag
