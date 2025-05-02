@@ -8,38 +8,46 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.controllers.AbstractGuiController;
 import acme.client.controllers.GuiController;
 import acme.entities.airline.AirlineManager;
-import acme.entities.airline.Leg;
+import acme.entities.leg.Leg;
 
 @GuiController
 public class AirlineManagerLegController extends AbstractGuiController<AirlineManager, Leg> {
 
 	@Autowired
-	private AirlineManagerLegListService	listService;
+	private AirlineManagerLegListService				listService;
 
 	@Autowired
-	private AirlineManagerLegShowService	showService;
+	private AirlineManagerLegListByFlightService		listByFlightService;
 
 	@Autowired
-	private AirlineManagerLegCreateService	createService;
+	private AirlineManagerLegShowService				showService;
 
 	@Autowired
-	private AirlineManagerLegUpdateService	updateService;
+	private AirlineManagerLegCreateService				createService;
 
 	@Autowired
-	private AirlineManagerLegDeleteService	deleteService;
+	private AirlineManagerLegCreateFromFlightService	createFromFlightService;
 
 	@Autowired
-	private AirlineManagerLegPublishService	publishService;
+	private AirlineManagerLegUpdateService				updateService;
+
+	@Autowired
+	private AirlineManagerLegDeleteService				deleteService;
+
+	@Autowired
+	private AirlineManagerLegPublishService				publishService;
 
 
 	@PostConstruct
 	protected void initialise() {
-		super.addBasicCommand("list", this.listService);
+		super.addBasicCommand("list", this.listByFlightService);
 		super.addBasicCommand("show", this.showService);
-		super.addBasicCommand("create", this.createService);
+		super.addBasicCommand("create", this.createFromFlightService);
 		super.addBasicCommand("update", this.updateService);
 		super.addBasicCommand("delete", this.deleteService);
 		super.addCustomCommand("publish", "update", this.publishService);
+		super.addCustomCommand("list-all-mine", "list", this.listService);
+		super.addCustomCommand("create-from-all-mine", "create", this.createService);
 	}
 
 }

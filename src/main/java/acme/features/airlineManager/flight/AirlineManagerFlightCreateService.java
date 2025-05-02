@@ -9,7 +9,7 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.datatypes.FlightSelfTransfer;
 import acme.entities.airline.AirlineManager;
-import acme.entities.airline.Flight;
+import acme.entities.flight.Flight;
 
 @GuiService
 public class AirlineManagerFlightCreateService extends AbstractGuiService<AirlineManager, Flight> {
@@ -20,7 +20,8 @@ public class AirlineManagerFlightCreateService extends AbstractGuiService<Airlin
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status = super.getRequest().getPrincipal().hasRealmOfType(AirlineManager.class);
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -43,8 +44,8 @@ public class AirlineManagerFlightCreateService extends AbstractGuiService<Airlin
 	@Override
 	public void validate(final Flight flight) {
 
-		if (!flight.isDraftMode())
-			super.state(false, "*", "acme.validation.flight.create.NoDraftMode");
+		boolean confirmation = super.getRequest().getData("confirmation", boolean.class) && flight.isDraftMode();
+		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
 	}
 
 	@Override
@@ -59,7 +60,7 @@ public class AirlineManagerFlightCreateService extends AbstractGuiService<Airlin
 		SelectChoices selfTransfer = SelectChoices.from(FlightSelfTransfer.class, flight.getRequiresSelfTransfer());
 
 		dataset = super.unbindObject(flight, "tag", "requiresSelfTransfer", "cost", "description", "draftMode");
-		dataset.put("confirmation", false);
+		dataset.put("confirmation", true);
 		dataset.put("selfTransfer", selfTransfer);
 		super.getResponse().addData(dataset);
 	}

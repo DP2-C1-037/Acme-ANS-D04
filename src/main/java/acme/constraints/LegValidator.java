@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.validation.AbstractValidator;
 import acme.client.helpers.StringHelper;
-import acme.entities.airline.Leg;
-import acme.entities.airline.LegRepository;
+import acme.entities.leg.Leg;
+import acme.entities.leg.LegRepository;
 
 public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 
@@ -35,22 +35,23 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 
 			// flightNumber uniqueness
 			Leg existingLeg = this.legRepository.findLegByFlightNumber(legToValidate.getFlightNumber());
-			result = existingLeg == null || existingLeg.equals(legToValidate);
-			super.state(context, result, "flightNumber", "acme.validation.leg.flightNumber.unique.message");
+			boolean uniqueness = existingLeg == null || existingLeg.getId() == legToValidate.getId();
+			super.state(context, uniqueness, "flightNumber", "acme.validation.leg.flightNumber.unique.message");
 
 			// flightNumber letters correspond to airline's iataCode
 			String airlineIataCode = this.legRepository.getIataCodeFromAircraftId(legToValidate.getAircraft().getId());
-			result = StringHelper.startsWith(legToValidate.getFlightNumber(), airlineIataCode, true);
-			super.state(context, result, "flightNumber", "acme.validation.leg.flightNumber.iataCode.message");
+			boolean flightNumberIataCode = StringHelper.startsWith(legToValidate.getFlightNumber(), airlineIataCode, true);
+			super.state(context, flightNumberIataCode, "flightNumber", "acme.validation.leg.flightNumber.iataCode.message");
 
 			// departureAirport different than arrivalAirport
-			result = legToValidate.getDepartureAirport().getId() != legToValidate.getArrivalAirport().getId();
-			super.state(context, result, "departureAirport", "acme.validation.leg.departureAirport.equals.message");
+			boolean differentAirports = legToValidate.getDepartureAirport().getId() != legToValidate.getArrivalAirport().getId();
+			super.state(context, differentAirports, "departureAirport", "acme.validation.leg.departureAirport.equals.message");
 
 			// Diferencia de al menos 1 minuto entre scheduledDeparture y scheduledArrival
-			result = legToValidate.getScheduledArrival().getTime() - legToValidate.getScheduledDeparture().getTime() >= 60 * 1000;
-			super.state(context, result, "scheduledArrival", "acme.validation.leg.scheduledArrival.equals.message");
+			boolean differentSchedules = legToValidate.getScheduledArrival().getTime() - legToValidate.getScheduledDeparture().getTime() >= 60 * 1000;
+			super.state(context, differentSchedules, "scheduledArrival", "acme.validation.leg.scheduledArrival.equals.message");
 
+			result = !super.hasErrors(context);
 		}
 		return result;
 	}

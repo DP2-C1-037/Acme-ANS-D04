@@ -12,9 +12,9 @@ import acme.client.services.GuiService;
 import acme.datatypes.LegStatus;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.airline.AirlineManager;
-import acme.entities.airline.Flight;
-import acme.entities.airline.Leg;
 import acme.entities.airports.Airport;
+import acme.entities.flight.Flight;
+import acme.entities.leg.Leg;
 
 @GuiService
 public class AirlineManagerLegShowService extends AbstractGuiService<AirlineManager, Leg> {

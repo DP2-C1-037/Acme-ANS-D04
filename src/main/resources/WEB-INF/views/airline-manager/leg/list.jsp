@@ -11,6 +11,9 @@
 	<acme:list-payload path="payload"/>	
 </acme:list>
 
-<jstl:if test="${_command == 'list'}">
-	<acme:button code="airline-manager.leg.list.button.create" action="/airline-manager/leg/create"/>
-</jstl:if>	
+<jstl:if test="${_command == 'list-all-mine'}">
+    <acme:button code="airline-manager.leg.list.button.create-from-all-mine" action="/airline-manager/leg/create-from-all-mine"/>
+</jstl:if>
+<jstl:if test="${_command == 'list' && masterId != null}">
+    <acme:button code="airline-manager.leg.list.button.create" action="/airline-manager/leg/create?masterId=${masterId}"/>
+</jstl:if>

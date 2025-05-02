@@ -12,9 +12,9 @@ import acme.client.services.GuiService;
 import acme.datatypes.LegStatus;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.airline.AirlineManager;
-import acme.entities.airline.Flight;
-import acme.entities.airline.Leg;
 import acme.entities.airports.Airport;
+import acme.entities.flight.Flight;
+import acme.entities.leg.Leg;
 
 @GuiService
 public class AirlineManagerLegCreateService extends AbstractGuiService<AirlineManager, Leg> {
@@ -27,12 +27,12 @@ public class AirlineManagerLegCreateService extends AbstractGuiService<AirlineMa
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status = super.getRequest().getPrincipal().hasRealmOfType(AirlineManager.class);
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
-
 		Leg leg = new Leg();
 		leg.setDraftMode(true);
 		super.getBuffer().addData(leg);
@@ -45,7 +45,9 @@ public class AirlineManagerLegCreateService extends AbstractGuiService<AirlineMa
 
 	@Override
 	public void validate(final Leg leg) {
-		;
+
+		boolean confirmation = super.getRequest().getData("confirmation", boolean.class) && leg.isDraftMode();
+		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
 	}
 
 	@Override
@@ -68,6 +70,7 @@ public class AirlineManagerLegCreateService extends AbstractGuiService<AirlineMa
 		SelectChoices status = SelectChoices.from(LegStatus.class, leg.getStatus());
 
 		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "status", "draftMode", "flight", "arrivalAirport", "departureAirport", "aircraft");
+		dataset.put("confirmation", false);
 		dataset.put("flight", flights.getSelected().getKey());
 		dataset.put("flights", flights);
 		dataset.put("arrivalAirport", arrivalAiports.getSelected().getKey());

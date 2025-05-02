@@ -17,12 +17,17 @@
 	
 	<jstl:choose>	 
 		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
+			<acme:input-checkbox code="airline-manager.leg.form.label.confirmation" path="confirmation"/>
 			<acme:submit code="airline-manager.leg.form.button.update" action="/airline-manager/leg/update"/>
 			<acme:submit code="airline-manager.leg.form.button.delete" action="/airline-manager/leg/delete"/>
 			<acme:submit code="airline-manager.leg.form.button.publish" action="/airline-manager/leg/publish"/>
 		</jstl:when>
-		<jstl:when test="${_command == 'create'}">
-			<acme:submit code="airline-manager.leg.form.button.create" action="/airline-manager/leg/create"/>
+		<jstl:when test="${_command == 'create-from-all-mine'}">
+			<acme:input-checkbox code="airline-manager.leg.form.label.confirmation" path="confirmation"/>
+			<acme:submit code="airline-manager.leg.form.button.create-from-all-mine" action="/airline-manager/leg/create-from-all-mine"/>
+		</jstl:when>
+		<jstl:when test="${_command == 'create' && masterId != null}">
+    		<acme:submit code="airline-manager.leg.list.button.create" action="/airline-manager/leg/create?masterId=${masterId}"/>
 		</jstl:when>		
 	</jstl:choose>
 </acme:form>

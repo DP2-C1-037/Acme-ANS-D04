@@ -8,7 +8,7 @@ import javax.validation.ConstraintValidatorContext;
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
 import acme.entities.activityLog.ActivityLog;
-import acme.entities.airline.Leg;
+import acme.entities.leg.Leg;
 
 @Validator
 public class ActivityLogValidator extends AbstractValidator<ValidActivityLog, ActivityLog> {

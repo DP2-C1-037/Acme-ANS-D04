@@ -7,8 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
-import acme.entities.airline.Leg;
 import acme.entities.claim.Claim;
+import acme.entities.leg.Leg;
 import acme.entities.trackingLog.TrackingLog;
 import acme.realms.assistanceAgent.AssistanceAgent;
 
