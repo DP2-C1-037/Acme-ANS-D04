@@ -14,8 +14,8 @@ import acme.client.services.GuiService;
 import acme.datatypes.AssignmentStatus;
 import acme.datatypes.AvailabilityStatus;
 import acme.datatypes.FlightCrewDuty;
-import acme.entities.airline.Leg;
 import acme.entities.flightAssignment.FlightAssignment;
+import acme.entities.leg.Leg;
 import acme.realms.flightCrewMember.FlightCrewMember;
 
 @GuiService

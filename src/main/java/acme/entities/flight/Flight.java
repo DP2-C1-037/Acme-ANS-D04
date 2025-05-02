@@ -1,5 +1,5 @@
 
-package acme.entities.airline;
+package acme.entities.flight;
 
 import java.util.Date;
 
@@ -17,6 +17,8 @@ import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidString;
 import acme.client.helpers.SpringHelper;
 import acme.datatypes.FlightSelfTransfer;
+import acme.entities.airline.AirlineManager;
+import acme.entities.leg.LegRepository;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -49,7 +51,7 @@ public class Flight extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	private boolean				draftMode			= true;
+	private boolean				draftMode;
 
 	// Derived attributes
 

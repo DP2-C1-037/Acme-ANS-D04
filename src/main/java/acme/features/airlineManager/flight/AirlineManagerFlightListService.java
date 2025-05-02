@@ -9,7 +9,7 @@ import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.airline.AirlineManager;
-import acme.entities.airline.Flight;
+import acme.entities.flight.Flight;
 
 @GuiService
 public class AirlineManagerFlightListService extends AbstractGuiService<AirlineManager, Flight> {
@@ -17,17 +17,26 @@ public class AirlineManagerFlightListService extends AbstractGuiService<AirlineM
 	@Autowired
 	private AirlineManagerFlightRepository repository;
 
+	// AbstractGuiService interface -------------------------------------------
+
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+
+		status = super.getRequest().getPrincipal().hasRealmOfType(AirlineManager.class);
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
-		AirlineManager manager = (AirlineManager) super.getRequest().getPrincipal().getActiveRealm();
+		Collection<Flight> flights;
+		int managerId;
 
-		Collection<Flight> flights = this.repository.findAllFlightsByAirlineManagerId(manager.getId());
+		managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+
+		flights = this.repository.findAllFlightsByAirlineManagerId(managerId);
 
 		super.getBuffer().addData(flights);
 	}
@@ -38,8 +47,13 @@ public class AirlineManagerFlightListService extends AbstractGuiService<AirlineM
 
 		dataset = super.unbindObject(flight, "tag", "requiresSelfTransfer", "cost");
 		super.addPayload(dataset, flight, "description");
+
+		dataset.put("departure", flight.getScheduledDeparture());
+		dataset.put("arrival", flight.getScheduledArrival());
+		dataset.put("departureCity", flight.getOriginCity());
+		dataset.put("arrivalCity", flight.getDestinationCity());
+		dataset.put("numberOfLayovers", flight.getLayoversNumber());
+		dataset.put("published", !flight.isDraftMode());
 		super.getResponse().addData(dataset);
-
 	}
-
 }

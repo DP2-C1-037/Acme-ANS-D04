@@ -9,7 +9,7 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.datatypes.FlightSelfTransfer;
 import acme.entities.airline.AirlineManager;
-import acme.entities.airline.Flight;
+import acme.entities.flight.Flight;
 
 @GuiService
 public class AirlineManagerFlightShowService extends AbstractGuiService<AirlineManager, Flight> {
@@ -44,7 +44,7 @@ public class AirlineManagerFlightShowService extends AbstractGuiService<AirlineM
 
 		SelectChoices selfTransfer = SelectChoices.from(FlightSelfTransfer.class, flight.getRequiresSelfTransfer());
 
-		dataset = super.unbindObject(flight, "tag", "requiresSelfTransfer", "cost", "description");
+		dataset = super.unbindObject(flight, "tag", "requiresSelfTransfer", "cost", "description", "draftMode");
 		dataset.put("confirmation", false);
 		dataset.put("selfTransfer", selfTransfer);
 		super.getResponse().addData(dataset);

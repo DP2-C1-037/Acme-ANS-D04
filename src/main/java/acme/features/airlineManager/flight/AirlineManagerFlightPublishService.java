@@ -7,7 +7,7 @@ import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.airline.AirlineManager;
-import acme.entities.airline.Flight;
+import acme.entities.flight.Flight;
 
 @GuiService
 public class AirlineManagerFlightPublishService extends AbstractGuiService<AirlineManager, Flight> {
@@ -39,7 +39,10 @@ public class AirlineManagerFlightPublishService extends AbstractGuiService<Airli
 	@Override
 	public void validate(final Flight flight) {
 
-		boolean status = flight.isDraftMode();
+		int flightId = super.getRequest().getData("id", int.class);
+		int publishedLegsSize = this.repository.findPublishedLegsByFlightId(flightId).size();
+		int legsSize = this.repository.findLegsByFlightId(flightId).size();
+		boolean status = flight.isDraftMode() && publishedLegsSize > 0 && legsSize > 0 && publishedLegsSize == legsSize;
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -54,7 +57,7 @@ public class AirlineManagerFlightPublishService extends AbstractGuiService<Airli
 	public void unbind(final Flight flight) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(flight, "tag", "requiresSelfTransfer", "cost", "description");
+		dataset = super.unbindObject(flight, "tag", "requiresSelfTransfer", "cost", "description", "draftMode");
 		super.addPayload(dataset, flight, "description");
 		super.getResponse().addData(dataset);
 	}

@@ -9,7 +9,7 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.datatypes.FlightSelfTransfer;
 import acme.entities.airline.AirlineManager;
-import acme.entities.airline.Flight;
+import acme.entities.flight.Flight;
 
 @GuiService
 public class AirlineManagerFlightUpdateService extends AbstractGuiService<AirlineManager, Flight> {
@@ -23,8 +23,9 @@ public class AirlineManagerFlightUpdateService extends AbstractGuiService<Airlin
 
 		int flightId = super.getRequest().getData("id", int.class);
 		Flight flight = this.repository.findFlightById(flightId);
+		AirlineManager manager = flight == null ? null : flight.getAirlineManager();
+		boolean status = manager != null && super.getRequest().getPrincipal().hasRealm(manager) && flight.isDraftMode();
 
-		boolean status = flight.isDraftMode();
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -45,8 +46,14 @@ public class AirlineManagerFlightUpdateService extends AbstractGuiService<Airlin
 	@Override
 	public void validate(final Flight flight) {
 
-		boolean confirmation = super.getRequest().getData("confirmation", boolean.class);
-		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
+		/*
+		 * boolean confirmation = super.getRequest().getData("confirmation", boolean.class);
+		 * super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
+		 * boolean status = flight.isDraftMode();
+		 * boolean res = confirmation && status;
+		 * super.getResponse().setAuthorised(status);
+		 */
+		;
 	}
 
 	@Override
@@ -60,9 +67,10 @@ public class AirlineManagerFlightUpdateService extends AbstractGuiService<Airlin
 
 		SelectChoices selfTransfer = SelectChoices.from(FlightSelfTransfer.class, flight.getRequiresSelfTransfer());
 
-		dataset = super.unbindObject(flight, "tag", "requiresSelfTransfer", "cost", "description");
+		dataset = super.unbindObject(flight, "tag", "requiresSelfTransfer", "cost", "description", "draftMode");
 		dataset.put("confirmation", false);
 		dataset.put("selfTransfer", selfTransfer);
+		super.addPayload(dataset, flight, "description");
 		super.getResponse().addData(dataset);
 	}
 }

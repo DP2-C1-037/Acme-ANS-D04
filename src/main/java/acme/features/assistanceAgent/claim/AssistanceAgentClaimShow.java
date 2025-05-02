@@ -11,9 +11,9 @@ import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.datatypes.ClaimType;
-import acme.entities.airline.Leg;
 import acme.entities.claim.Claim;
 import acme.entities.claim.ClaimStatus;
+import acme.entities.leg.Leg;
 import acme.realms.assistanceAgent.AssistanceAgent;
 
 @GuiService

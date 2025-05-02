@@ -13,8 +13,8 @@ import acme.client.services.GuiService;
 import acme.datatypes.AssignmentStatus;
 import acme.datatypes.FlightCrewDuty;
 import acme.entities.activityLog.ActivityLog;
-import acme.entities.airline.Leg;
 import acme.entities.flightAssignment.FlightAssignment;
+import acme.entities.leg.Leg;
 import acme.realms.flightCrewMember.FlightCrewMember;
 
 @GuiService

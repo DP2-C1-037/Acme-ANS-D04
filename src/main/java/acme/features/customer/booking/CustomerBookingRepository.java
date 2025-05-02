@@ -7,8 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
-import acme.entities.airline.Flight;
 import acme.entities.booking.Booking;
+import acme.entities.flight.Flight;
 import acme.entities.mappings.AssignedTo;
 
 @Repository

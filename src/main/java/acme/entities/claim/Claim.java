@@ -17,7 +17,7 @@ import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
 import acme.constraints.ValidClaim;
 import acme.datatypes.ClaimType;
-import acme.entities.airline.Leg;
+import acme.entities.leg.Leg;
 import acme.realms.assistanceAgent.AssistanceAgent;
 import lombok.Getter;
 import lombok.Setter;

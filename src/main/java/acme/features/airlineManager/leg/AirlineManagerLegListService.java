@@ -9,7 +9,7 @@ import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.airline.AirlineManager;
-import acme.entities.airline.Leg;
+import acme.entities.leg.Leg;
 
 @GuiService
 public class AirlineManagerLegListService extends AbstractGuiService<AirlineManager, Leg> {
@@ -26,9 +26,11 @@ public class AirlineManagerLegListService extends AbstractGuiService<AirlineMana
 	// ORDERED BY DATE
 	@Override
 	public void load() {
-		AirlineManager manager = (AirlineManager) super.getRequest().getPrincipal().getActiveRealm();
 
-		Collection<Leg> legs = this.repository.findAllLegsByAirlineManagerId(manager.getId());
+		super.getResponse().addGlobal("masterId", null); // Necesario para poder tener 2 create diferentes en función de masterId
+
+		int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		Collection<Leg> legs = this.repository.findAllLegsByAirlineManagerId(managerId);
 
 		super.getBuffer().addData(legs);
 	}
@@ -37,10 +39,9 @@ public class AirlineManagerLegListService extends AbstractGuiService<AirlineMana
 	public void unbind(final Leg leg) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(leg, "status", "scheduledDeparture", "arrivalAirport");
-		super.addPayload(dataset, leg, "flight");
-		super.addPayload(dataset, leg, "departureAirport");
-		super.addPayload(dataset, leg, "scheduledArrival");
+		dataset = super.unbindObject(leg, "flightNumber", "status", "scheduledDeparture");
+		super.addPayload(dataset, leg);
+		super.getResponse().addGlobal("masterId", null);
 		super.getResponse().addData(dataset);
 
 	}

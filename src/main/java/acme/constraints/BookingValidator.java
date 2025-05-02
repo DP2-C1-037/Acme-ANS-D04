@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.validation.AbstractValidator;
 import acme.client.helpers.StringHelper;
-import acme.entities.airline.Flight;
 import acme.entities.booking.Booking;
+import acme.entities.flight.Flight;
 import acme.features.customer.booking.CustomerBookingRepository;
 
 public class BookingValidator extends AbstractValidator<ValidBooking, Booking> {

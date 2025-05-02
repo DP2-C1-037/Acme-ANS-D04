@@ -1,5 +1,5 @@
 
-package acme.entities.airline;
+package acme.entities.leg;
 
 import java.util.Date;
 
@@ -19,6 +19,7 @@ import acme.constraints.ValidLeg;
 import acme.datatypes.LegStatus;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.airports.Airport;
+import acme.entities.flight.Flight;
 import lombok.Getter;
 import lombok.Setter;
 
