@@ -44,7 +44,7 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 			super.state(context, result, "flightNumber", "acme.validation.leg.flightNumber.iataCode.message");
 
 			// departureAirport different than arrivalAirport
-			result = !legToValidate.getDepartureAirport().equals(legToValidate.getArrivalAirport());
+			result = legToValidate.getDepartureAirport().getId() != legToValidate.getArrivalAirport().getId();
 			super.state(context, result, "departureAirport", "acme.validation.leg.departureAirport.equals.message");
 
 			// Diferencia de al menos 1 minuto entre scheduledDeparture y scheduledArrival

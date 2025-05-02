@@ -50,8 +50,6 @@ public class AirlineManagerLegCreateService extends AbstractGuiService<AirlineMa
 
 	@Override
 	public void perform(final Leg leg) {
-		assert leg != null;
-
 		this.repository.save(leg);
 	}
 

@@ -45,7 +45,7 @@ public class AirlineManagerLegUpdateService extends AbstractGuiService<AirlineMa
 	@Override
 	public void bind(final Leg leg) {
 
-		super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "status", "departureAirport", "arrivalAirport", "aircraft", "flight");
+		super.bindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "status", "departureAirport", "arrivalAirport", "aircraft", "flight");
 	}
 
 	@Override
@@ -61,7 +61,8 @@ public class AirlineManagerLegUpdateService extends AbstractGuiService<AirlineMa
 	@Override
 	public void unbind(final Leg leg) {
 		Dataset dataset;
-		Collection<Flight> flightsList = this.repository.findAllFlights();
+		int airlineManagerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		Collection<Flight> flightsList = this.repository.findFlightsByAirlineManagerId(airlineManagerId);
 		Collection<Aircraft> aircraftsList = this.repository.findAllAircrafts();
 		Collection<Airport> airportsList = this.repository.findAllAirports();
 
