@@ -25,12 +25,13 @@ public class AirlineManagerLegShowService extends AbstractGuiService<AirlineMana
 
 	@Override
 	public void authorise() {
-
-		int flightId = super.getRequest().getData("id", int.class);
-		Leg leg = this.repository.findLegById(flightId);
+		boolean status = false;
+		int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		int legId = super.getRequest().getData("id", int.class);
+		Leg leg = this.repository.findLegById(legId);
 		AirlineManager manager = leg == null ? null : leg.getFlight().getAirlineManager();
-		boolean status = manager != null && super.getRequest().getPrincipal().hasRealm(manager);
-
+		if (manager != null)
+			status = super.getRequest().getPrincipal().hasRealm(manager) && managerId == manager.getId();
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -53,15 +54,24 @@ public class AirlineManagerLegShowService extends AbstractGuiService<AirlineMana
 		SelectChoices status = SelectChoices.from(LegStatus.class, leg.getStatus());
 		SelectChoices flights = SelectChoices.from(flightsList, "tag", leg.getFlight());
 		SelectChoices aircrafts = SelectChoices.from(aircraftsList, "registrationNumber", leg.getAircraft());
-		SelectChoices airports = SelectChoices.from(airportsList, "name", leg.getDepartureAirport());
+		SelectChoices arrivalAirports = SelectChoices.from(airportsList, "iataCode", leg.getArrivalAirport());
+		SelectChoices departureAirports = SelectChoices.from(airportsList, "iataCode", leg.getDepartureAirport());
 
-		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "status");
+		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "status", "draftMode", "duration", "departureAirport", "arrivalAirport", "aircraft", "flight");
 		dataset.put("confirmation", false);
-		dataset.put("status", status);
+		dataset.put("flight", flights.getSelected().getKey());
 		dataset.put("flights", flights);
+		dataset.put("arrivalAirport", arrivalAirports.getSelected().getKey());
+		dataset.put("arrivalAirports", arrivalAirports);
+		dataset.put("departureAirport", departureAirports.getSelected().getKey());
+		dataset.put("departureAirports", departureAirports);
+		dataset.put("aircraft", aircrafts.getSelected().getKey());
 		dataset.put("aircrafts", aircrafts);
-		dataset.put("airports", airports);
-		dataset.put("duration", leg.getDuration());
+		dataset.put("status", status.getSelected().getKey());
+		dataset.put("statuses", status);
+
+		super.addPayload(dataset, leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "status", "draftMode", "flight", "arrivalAirport", "departureAirport", "aircraft");
+
 		super.getResponse().addData(dataset);
 	}
 

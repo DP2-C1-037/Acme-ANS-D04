@@ -27,7 +27,7 @@ public class AirlineManagerFlightListService extends AbstractGuiService<AirlineM
 	public void load() {
 		AirlineManager manager = (AirlineManager) super.getRequest().getPrincipal().getActiveRealm();
 
-		Collection<Flight> flights = this.repository.findAllFlightsByAirlineManagerId(manager.getId());
+		Collection<Flight> flights = this.repository.findFlightsByAirlineManagerId(manager.getId());
 
 		super.getBuffer().addData(flights);
 	}

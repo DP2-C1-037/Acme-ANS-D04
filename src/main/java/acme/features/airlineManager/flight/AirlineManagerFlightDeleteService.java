@@ -60,7 +60,7 @@ public class AirlineManagerFlightDeleteService extends AbstractGuiService<Airlin
 
 		SelectChoices selfTransfer = SelectChoices.from(FlightSelfTransfer.class, flight.getRequiresSelfTransfer());
 
-		dataset = super.unbindObject(flight, "tag", "requiresSelfTransfer", "cost", "description");
+		dataset = super.unbindObject(flight, "tag", "requiresSelfTransfer", "cost", "description", "draftMode");
 		dataset.put("confirmation", false);
 		dataset.put("selfTransfer", selfTransfer);
 		super.getResponse().addData(dataset);

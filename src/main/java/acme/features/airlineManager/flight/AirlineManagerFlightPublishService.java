@@ -39,7 +39,8 @@ public class AirlineManagerFlightPublishService extends AbstractGuiService<Airli
 	@Override
 	public void validate(final Flight flight) {
 
-		boolean status = flight.isDraftMode();
+		int flightId = super.getRequest().getData("id", int.class);
+		boolean status = flight.isDraftMode() && !this.repository.findPublishedLegsByFlightId(flightId).isEmpty();
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -54,7 +55,7 @@ public class AirlineManagerFlightPublishService extends AbstractGuiService<Airli
 	public void unbind(final Flight flight) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(flight, "tag", "requiresSelfTransfer", "cost", "description");
+		dataset = super.unbindObject(flight, "tag", "requiresSelfTransfer", "cost", "description", "draftMode");
 		super.addPayload(dataset, flight, "description");
 		super.getResponse().addData(dataset);
 	}
