@@ -51,11 +51,14 @@ public class AirlineManagerLegPublishService extends AbstractGuiService<AirlineM
 	@Override
 	public void validate(final Leg leg) {
 
-		boolean confirmation = super.getRequest().getData("confirmation", boolean.class);
-		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
-		boolean status = leg.isDraftMode();
-		boolean res = confirmation && status;
-		super.getResponse().setAuthorised(res);
+		/*
+		 * boolean confirmation = super.getRequest().getData("confirmation", boolean.class);
+		 * super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
+		 * boolean status = leg.isDraftMode();
+		 * boolean res = confirmation && status;
+		 * super.getResponse().setAuthorised(status);
+		 */
+		super.getResponse().setAuthorised(leg.isDraftMode());
 	}
 
 	@Override

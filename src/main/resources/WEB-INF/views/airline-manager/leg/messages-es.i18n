@@ -19,6 +19,6 @@ airline-manager.leg.form.label.confirmation = Confirmar que los datos de la esca
 
 airline-manager.leg.list.label.status = Estado
 airline-manager.leg.list.label.scheduledDeparture = Fecha de salida
-airline-manager.leg.list.label.arrivalAirport = Aeropuerto de llegada
+airline-manager.leg.list.label.departureAirport = Aeropuerto de salida
 
 airline-manager.leg.list.button.create = Crear

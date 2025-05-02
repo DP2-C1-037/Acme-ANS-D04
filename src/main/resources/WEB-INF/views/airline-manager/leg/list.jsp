@@ -6,7 +6,7 @@
 <acme:list>
 	<acme:list-column code="airline-manager.leg.list.label.status" path="status" width="33%"/>	
 	<acme:list-column code="airline-manager.leg.list.label.scheduledDeparture" path="scheduledDeparture" width="34%"/>
-	<acme:list-column code="airline-manager.leg.list.label.arrivalAirport" path="arrivalAirport" width="33%"/>
+	<acme:list-column code="airline-manager.leg.list.label.departureAirport" path="departureAirport" width="33%"/>
 	
 	<acme:list-payload path="payload"/>	
 </acme:list>
