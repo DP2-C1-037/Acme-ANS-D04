@@ -31,7 +31,8 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 	@Override
 	public boolean isValid(final Leg legToValidate, final ConstraintValidatorContext context) {
 		boolean result = false;
-		if (legToValidate != null && legToValidate.getFlightNumber() != null && Integer.valueOf(legToValidate.getId()) != null && legToValidate.getAircraft() != null) {
+		if (legToValidate != null && legToValidate.getFlightNumber() != null && Integer.valueOf(legToValidate.getId()) != null && legToValidate.getAircraft() != null && legToValidate.getScheduledArrival() != null
+			&& legToValidate.getScheduledDeparture() != null && legToValidate.getDepartureAirport() != null && legToValidate.getDepartureAirport() != null) {
 
 			// flightNumber uniqueness
 			Leg existingLeg = this.legRepository.findLegByFlightNumber(legToValidate.getFlightNumber());
@@ -53,6 +54,7 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 
 			result = !super.hasErrors(context);
 		}
+
 		return result;
 	}
 }

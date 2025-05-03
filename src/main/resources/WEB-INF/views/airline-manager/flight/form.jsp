@@ -21,6 +21,7 @@
 			<acme:submit code="airlineManager.flight.form.button.publish" action="/airline-manager/flight/publish"/>
 		</jstl:when>
 		<jstl:when test="${_command == 'create'}">
+			<acme:input-checkbox code="airline-manager.flight.form.label.confirmation" path="confirmation"/>
 			<acme:submit code="airline-manager.flight.form.button.create" action="/airline-manager/flight/create"/>
 		</jstl:when>		
 	</jstl:choose>
