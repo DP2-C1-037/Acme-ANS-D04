@@ -10,6 +10,15 @@
 
 acme.validation.flight.identifierNumber.message = Las dos primeras letras del número de identificación deben corresponder a las iniciales del nombre del gerente
 
+acme.validation.leg.flightNumber.notNull.message = El número de vuelo no debe ser nulo.
+acme.validation.leg.scheduledDeparture.notNull.message = La salida programada no debe ser nula.
+acme.validation.leg.scheduledArrival.notNull.message = La llegada programada no debe ser nula.
+acme.validation.leg.status.notNull.message = El estado del tramo no debe ser nulo.
+acme.validation.leg.flight.notNull.message = El vuelo no debe ser nulo.
+acme.validation.leg.departureAirport.notNull.message = El aeropuerto de salida no debe ser nulo.
+acme.validation.leg.arrivalAirport.notNull.message = El aeropuerto de llegada no debe ser nulo.
+acme.validation.leg.aircraft.notNull.message = La aeronave no debe ser nula.
+
 acme.validation.leg.flightNumber.iataCode.message = El número de vuelo está compuesto por el código IATA de la aerolínea seguido de cuatro dígitos (las letras del número de vuelo tienen que ser las mismas que las del código IATA de la aerolínea)
 
 acme.validation.leg.flightNumber.unique.message = El número de vuelo debe ser único, no puede haber dos iguales

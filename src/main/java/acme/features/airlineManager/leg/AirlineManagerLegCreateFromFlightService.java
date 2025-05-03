@@ -65,9 +65,7 @@ public class AirlineManagerLegCreateFromFlightService extends AbstractGuiService
 
 	@Override
 	public void validate(final Leg leg) {
-
-		boolean confirmation = super.getRequest().getData("confirmation", boolean.class);
-		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
+		;
 	}
 
 	@Override
@@ -89,7 +87,6 @@ public class AirlineManagerLegCreateFromFlightService extends AbstractGuiService
 		SelectChoices status = SelectChoices.from(LegStatus.class, leg.getStatus());
 
 		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "status", "draftMode", "flight", "arrivalAirport", "departureAirport", "aircraft");
-		dataset.put("confirmation", false);
 		dataset.put("flight", flights.getSelected().getKey());
 		dataset.put("flights", flights);
 		dataset.put("arrivalAirport", arrivalAiports.getSelected().getKey());

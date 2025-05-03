@@ -61,7 +61,7 @@ master.menu.technician.task-mine = List my tasks
 # master.menu.airlineManager ##########################################################
 master.menu.airlineManager = Manager
 master.menu.airlineManager.flight = List my flights
-master.menu.airlineManager.leg = List my legs
+master.menu.airlineManager.leg = List all my legs
 
 # master.menu.assistance-agent #####################################
 master.menu.assistance-agent = Assistance agent
