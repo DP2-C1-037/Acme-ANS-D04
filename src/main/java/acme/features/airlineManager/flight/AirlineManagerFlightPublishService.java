@@ -4,8 +4,10 @@ package acme.features.airlineManager.flight;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
+import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.datatypes.FlightSelfTransfer;
 import acme.entities.airline.AirlineManager;
 import acme.entities.flight.Flight;
 
@@ -18,7 +20,13 @@ public class AirlineManagerFlightPublishService extends AbstractGuiService<Airli
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		int flightId = super.getRequest().getData("id", int.class);
+		Flight flight = this.repository.findFlightById(flightId);
+		AirlineManager manager = flight == null ? null : flight.getAirlineManager();
+
+		boolean status = manager != null && super.getRequest().getPrincipal().getActiveRealm().getId() == manager.getId() && flight.isDraftMode();
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -44,7 +52,7 @@ public class AirlineManagerFlightPublishService extends AbstractGuiService<Airli
 		int legsSize = this.repository.findLegsByFlightId(flightId).size();
 		boolean status = flight.isDraftMode() && publishedLegsSize > 0 && legsSize > 0 && publishedLegsSize == legsSize;
 
-		super.getResponse().setAuthorised(status);
+		super.state(status, "*", "acme.validation.flight.*.notAllLegsPublishedOrNoLegs.message");
 	}
 
 	@Override
@@ -57,8 +65,10 @@ public class AirlineManagerFlightPublishService extends AbstractGuiService<Airli
 	public void unbind(final Flight flight) {
 		Dataset dataset;
 
+		SelectChoices selfTransfer = SelectChoices.from(FlightSelfTransfer.class, flight.getRequiresSelfTransfer());
+
 		dataset = super.unbindObject(flight, "tag", "requiresSelfTransfer", "cost", "description", "draftMode");
-		super.addPayload(dataset, flight, "description");
+		dataset.put("selfTransfer", selfTransfer);
 		super.getResponse().addData(dataset);
 	}
 }

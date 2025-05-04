@@ -29,17 +29,39 @@ public class AirlineManagerLegCreateFromFlightService extends AbstractGuiService
 
 	@Override
 	public void authorise() {
-		boolean status;
 
-		int flightId = super.getRequest().getData("masterId", int.class);
-		Flight flight = this.repository.findFlightById(flightId);
+		int masterId = super.getRequest().getData("masterId", int.class);
+		super.getResponse().addGlobal("masterId", masterId);
+		Flight flight = this.repository.findFlightById(masterId);
+		int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		boolean managerOwnsFlight = flight != null && flight.getAirlineManager().getId() == managerId && flight.isDraftMode();
 
-		if (flight != null) {
-			int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-			status = flight.getAirlineManager().getId() == managerId && flight.isDraftMode();
-		} else
-			status = false;
+		boolean validFlight = true;
+		boolean validDepartureAirport = true;
+		boolean validArrivalAirport = true;
+		boolean validAircraft = true;
 
+		if (super.getRequest().hasData("flight", int.class)) {
+			int flightId = super.getRequest().getData("flight", int.class);
+			validFlight = this.repository.findFlightById(flightId) != null;
+		}
+
+		if (super.getRequest().hasData("departureAirport", int.class)) {
+			int departureAirportId = super.getRequest().getData("departureAirport", int.class);
+			validDepartureAirport = this.repository.findAirportById(departureAirportId) != null;
+		}
+
+		if (super.getRequest().hasData("departureAirport", int.class)) {
+			int arrivalAirportId = super.getRequest().getData("arrivalAirport", int.class);
+			validArrivalAirport = this.repository.findAirportById(arrivalAirportId) != null;
+		}
+
+		if (super.getRequest().hasData("aircraft", int.class)) {
+			int aircraftId = super.getRequest().getData("aircraft", int.class);
+			validAircraft = this.repository.findAircraftById(aircraftId) != null;
+		}
+
+		boolean status = managerOwnsFlight && validFlight && validDepartureAirport && validArrivalAirport && validAircraft;
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -99,7 +121,8 @@ public class AirlineManagerLegCreateFromFlightService extends AbstractGuiService
 		dataset.put("statuses", status);
 		super.addPayload(dataset, leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "status", "draftMode", "flight", "arrivalAirport", "departureAirport", "aircraft");
 
-		super.getResponse().addGlobal("masterId", leg.getFlight().getId());
+		if (leg.getFlight() != null && Integer.valueOf(leg.getFlight().getId()) != null)
+			super.getResponse().addGlobal("masterId", leg.getFlight().getId());
 		super.getResponse().addData(dataset);
 	}
 

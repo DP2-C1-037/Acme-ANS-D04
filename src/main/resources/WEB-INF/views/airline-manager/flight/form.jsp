@@ -8,6 +8,11 @@
 	<acme:input-select code="airline-manager.flight.form.label.requiresSelfTransfer" path="requiresSelfTransfer" choices= "${selfTransfer}"/>
 	<acme:input-integer code="airline-manager.flight.form.label.cost" path="cost"/>
 	<acme:input-textbox code="airline-manager.flight.form.label.description" path="description"/>
+    <acme:input-moment code="airline-manager.flight.form.label.scheduledDeparture" path="scheduledDeparture" readonly="true"/>
+    <acme:input-moment code="airline-manager.flight.form.label.scheduledArrival" path="scheduledArrival" readonly="true"/>
+    <acme:input-textbox code="airline-manager.flight.form.label.originCity" path="originCity" readonly="true"/>
+    <acme:input-textbox code="airline-manager.flight.form.label.destinationCity" path="destinationCity" readonly="true"/>
+    <acme:input-textbox code="airline-manager.flight.form.label.layovers" path="layovers" readonly="true"/>
 	
 	<jstl:choose>	 
 		<jstl:when test="${_command == 'show' && draftMode == false}">
@@ -24,5 +29,5 @@
 			<acme:input-checkbox code="airline-manager.flight.form.label.confirmation" path="confirmation"/>
 			<acme:submit code="airline-manager.flight.form.button.create" action="/airline-manager/flight/create"/>
 		</jstl:when>		
-	</jstl:choose>
+	</jstl:choose> 
 </acme:form>

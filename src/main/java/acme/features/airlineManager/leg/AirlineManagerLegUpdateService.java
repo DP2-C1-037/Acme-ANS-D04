@@ -26,10 +26,27 @@ public class AirlineManagerLegUpdateService extends AbstractGuiService<AirlineMa
 	@Override
 	public void authorise() {
 
+		int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
 		int legId = super.getRequest().getData("id", int.class);
 		Leg leg = this.repository.findLegById(legId);
 		AirlineManager manager = leg == null ? null : leg.getFlight().getAirlineManager();
-		boolean status = leg != null && leg.isDraftMode() && super.getRequest().getPrincipal().hasRealm(manager);
+		boolean validLeg = leg != null && leg.isDraftMode();
+
+		boolean managerOwnsLeg = manager != null && managerId == manager.getId();
+
+		int flightId = super.getRequest().getData("flight", int.class);
+		boolean validFlight = this.repository.findFlightById(flightId) != null;
+
+		int departureAirportId = super.getRequest().getData("departureAirport", int.class);
+		boolean validDepartureAirport = this.repository.findAirportById(departureAirportId) != null;
+
+		int arrivalAirportId = super.getRequest().getData("arrivalAirport", int.class);
+		boolean validArrivalAirport = this.repository.findAirportById(arrivalAirportId) != null;
+
+		int aircraftId = super.getRequest().getData("aircraft", int.class);
+		boolean validAircraft = this.repository.findAircraftById(aircraftId) != null;
+
+		boolean status = validLeg && managerOwnsLeg && validFlight && validDepartureAirport && validArrivalAirport && validAircraft;
 
 		super.getResponse().setAuthorised(status);
 	}

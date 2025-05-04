@@ -27,7 +27,7 @@ public class AirlineManagerFlightShowService extends AbstractGuiService<AirlineM
 		int flightId = super.getRequest().getData("id", int.class);
 		Flight flight = this.repository.findFlightById(flightId);
 		AirlineManager manager = flight == null ? null : flight.getAirlineManager();
-		boolean status = manager != null && super.getRequest().getPrincipal().hasRealm(manager);
+		boolean status = manager != null && super.getRequest().getPrincipal().getActiveRealm().getId() == manager.getId();
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -58,7 +58,6 @@ public class AirlineManagerFlightShowService extends AbstractGuiService<AirlineM
 			dataset.put("scheduledDeparture", flight.getScheduledDeparture());
 			dataset.put("scheduledArrival", flight.getScheduledArrival());
 			dataset.put("layovers", flight.getLayoversNumber());
-			dataset.put("flightId", flight.getId());
 		} else {
 			dataset.put("originCity", null);
 			dataset.put("destinationCity", null);

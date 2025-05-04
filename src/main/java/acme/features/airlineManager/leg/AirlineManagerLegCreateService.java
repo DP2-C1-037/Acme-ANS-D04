@@ -27,7 +27,33 @@ public class AirlineManagerLegCreateService extends AbstractGuiService<AirlineMa
 
 	@Override
 	public void authorise() {
-		boolean status = super.getRequest().getPrincipal().hasRealmOfType(AirlineManager.class);
+		boolean isManager = super.getRequest().getPrincipal().hasRealmOfType(AirlineManager.class);
+		boolean validFlight = true;
+		boolean validDepartureAirport = true;
+		boolean validArrivalAirport = true;
+		boolean validAircraft = true;
+
+		if (super.getRequest().hasData("flight", int.class)) {
+			int flightId = super.getRequest().getData("flight", int.class);
+			validFlight = this.repository.findFlightById(flightId) != null;
+		}
+
+		if (super.getRequest().hasData("departureAirport", int.class)) {
+			int departureAirportId = super.getRequest().getData("departureAirport", int.class);
+			validDepartureAirport = this.repository.findAirportById(departureAirportId) != null;
+		}
+
+		if (super.getRequest().hasData("departureAirport", int.class)) {
+			int arrivalAirportId = super.getRequest().getData("arrivalAirport", int.class);
+			validArrivalAirport = this.repository.findAirportById(arrivalAirportId) != null;
+		}
+
+		if (super.getRequest().hasData("aircraft", int.class)) {
+			int aircraftId = super.getRequest().getData("aircraft", int.class);
+			validAircraft = this.repository.findAircraftById(aircraftId) != null;
+		}
+
+		boolean status = isManager && validFlight && validDepartureAirport && validArrivalAirport && validAircraft;
 		super.getResponse().setAuthorised(status);
 	}
 
