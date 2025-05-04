@@ -10,6 +10,15 @@
 
 acme.validation.flight.identifierNumber.message = The first two letters of the identifier number must correspond to the managers's name initials
 
+acme.validation.leg.flightNumber.notNull.message = The flight number must not be null
+acme.validation.leg.scheduledDeparture.notNull.message = The scheduled departure must not be null
+acme.validation.leg.scheduledArrival.notNull.message = The scheduled arrival must not be null
+acme.validation.leg.status.notNull.message = The leg status must not be null
+acme.validation.leg.flight.notNull.message = The flight must not be null
+acme.validation.leg.departureAirport.notNull.message = The departure airport must not be null
+acme.validation.leg.arrivalAirport.notNull.message = The arrival airport must not be null
+acme.validation.leg.aircraft.notNull.message = The aircraft must not be null
+
 acme.validation.leg.flightNumber.iataCode.message = The flight number is composed of the airline's IATA code followed by four digits (flight number letters have to be the same of airline's IATA code)
 
 acme.validation.leg.flightNumber.unique.message = The flight number must be unique, there cannot be two equal
@@ -17,6 +26,12 @@ acme.validation.leg.flightNumber.unique.message = The flight number must be uniq
 acme.validation.leg.departureAirport.equals.message = Leg departure and arrival airport must be different
 
 acme.validation.leg.scheduledArrival.equals.message = Scheduled arrival must be at least 1 minute after scheduled departure 
+
+acme.validation.leg.scheduledDepartureAnotherLeg.equals.message = Two legs from the same flight can't have the same scheduled departure
+
+acme.validation.leg.scheduledArrivalAnotherLeg.equals.message = Two legs from the same flight can't have the same scheduled arrival
+
+acme.validation.flight.*.notAllLegsPublishedOrNoLegs.message = The flight must have at least 1 published leg to be published, and all its legs must have been published before publishing the flight
 
 acme.validation.airline.iataCode.message = Airline iata code must be unique
 

@@ -16,6 +16,7 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidString;
 import acme.client.helpers.SpringHelper;
+import acme.constraints.ValidFlight;
 import acme.datatypes.FlightSelfTransfer;
 import acme.entities.airline.AirlineManager;
 import acme.entities.leg.LegRepository;
@@ -25,6 +26,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@ValidFlight
 public class Flight extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
@@ -83,7 +85,7 @@ public class Flight extends AbstractEntity {
 	@Transient
 	public int getLayoversNumber() {
 		LegRepository legRepository = SpringHelper.getBean(LegRepository.class);
-		return legRepository.legsNumberFromFlightId(this.getId());
+		return legRepository.findLegsFromFlightId(this.getId()).size();
 	}
 
 	// Relationships

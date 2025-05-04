@@ -31,7 +31,33 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 	@Override
 	public boolean isValid(final Leg legToValidate, final ConstraintValidatorContext context) {
 		boolean result = false;
-		if (legToValidate != null && legToValidate.getFlightNumber() != null && Integer.valueOf(legToValidate.getId()) != null && legToValidate.getAircraft() != null) {
+		boolean flightNumberNotNull = legToValidate.getFlightNumber() != null;
+		super.state(context, flightNumberNotNull, "flightNumber", "acme.validation.leg.flightNumber.notNull.message");
+
+		boolean scheduledDepartureNotNull = legToValidate.getScheduledDeparture() != null;
+		super.state(context, scheduledDepartureNotNull, "scheduledDeparture", "acme.validation.leg.scheduledDeparture.notNull.message");
+
+		boolean scheduledArrivalNotNull = legToValidate.getScheduledArrival() != null;
+		super.state(context, scheduledArrivalNotNull, "scheduledArrival", "acme.validation.leg.scheduledArrival.notNull.message");
+
+		boolean statusNotNull = legToValidate.getStatus() != null;
+		super.state(context, statusNotNull, "status", "acme.validation.leg.status.notNull.message");
+
+		boolean flightNotNull = legToValidate.getFlight() != null;
+		super.state(context, flightNotNull, "flight", "acme.validation.leg.flight.notNull.message");
+
+		boolean departureAirportNotNull = legToValidate.getDepartureAirport() != null;
+		super.state(context, departureAirportNotNull, "departureAirport", "acme.validation.leg.departureAirport.notNull.message");
+
+		boolean arrivalAirportNotNull = legToValidate.getArrivalAirport() != null;
+		super.state(context, arrivalAirportNotNull, "arrivalAirport", "acme.validation.leg.arrivalAirport.notNull.message");
+
+		boolean aircraftNotNull = legToValidate.getAircraft() != null;
+		super.state(context, aircraftNotNull, "aircraft", "acme.validation.leg.aircraft.notNull.message");
+
+		result = !super.hasErrors(context);
+
+		if (result && Integer.valueOf(legToValidate.getId()) != null) {
 
 			// flightNumber uniqueness
 			Leg existingLeg = this.legRepository.findLegByFlightNumber(legToValidate.getFlightNumber());
@@ -51,8 +77,17 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 			boolean differentSchedules = legToValidate.getScheduledArrival().getTime() - legToValidate.getScheduledDeparture().getTime() >= 60 * 1000;
 			super.state(context, differentSchedules, "scheduledArrival", "acme.validation.leg.scheduledArrival.equals.message");
 
+			// No hay 2 legs asociadas al mismo vuelo con misma fecha de salida
+			boolean differentScheduledDeparture = this.legRepository.findLegByFlightByScheduledDeparture(legToValidate.getFlight().getId(), legToValidate.getId(), legToValidate.getScheduledDeparture()) == null;
+			super.state(context, differentScheduledDeparture, "scheduledDeparture", "acme.validation.leg.scheduledDepartureAnotherLeg.equals.message");
+
+			// No hay 2 legs asociadas al mismo vuelo con misma fecha de llegada
+			boolean differentScheduledArrival = this.legRepository.findLegByFlightByScheduledArrival(legToValidate.getFlight().getId(), legToValidate.getId(), legToValidate.getScheduledArrival()) == null;
+			super.state(context, differentScheduledArrival, "scheduledArrival", "acme.validation.leg.scheduledArrivalAnotherLeg.equals.message");
+
 			result = !super.hasErrors(context);
 		}
+
 		return result;
 	}
 }

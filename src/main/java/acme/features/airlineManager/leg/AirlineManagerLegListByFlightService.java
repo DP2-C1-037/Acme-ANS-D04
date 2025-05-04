@@ -31,7 +31,7 @@ public class AirlineManagerLegListByFlightService extends AbstractGuiService<Air
 
 		Flight flight = this.repository.findFlightById(masterId);
 
-		boolean status = super.getRequest().getPrincipal().hasRealmOfType(AirlineManager.class) && flight.getAirlineManager().getId() == managerId;
+		boolean status = flight.getAirlineManager().getId() == managerId;
 
 		super.getResponse().setAuthorised(status);
 	}
