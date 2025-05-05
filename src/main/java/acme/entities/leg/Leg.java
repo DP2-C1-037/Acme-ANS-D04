@@ -4,7 +4,9 @@ package acme.entities.leg;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
@@ -27,6 +29,16 @@ import lombok.Setter;
 @Getter
 @Setter
 @ValidLeg
+@Table(indexes = {
+	@Index(columnList = "flight_id, scheduledDeparture"), // findScheduledDeparture y findLegByFlightByScheduledDeparture
+	@Index(columnList = "flight_id, scheduledArrival"), // findScheduledArrival y findLegByFlightByScheduledArrival
+	@Index(columnList = "flight_id, scheduledDeparture, departure_airport_id"), // findOriginCity
+	@Index(columnList = "flight_id, scheduledArrival, arrival_airport_id"), // findDestinationCity
+	@Index(columnList = "flight_id"), // findLegsFromFlightId (x4)
+	@Index(columnList = "flightNumber"), // findLegByFlightNumber
+	@Index(columnList = "flight_id, draftMode"), // findPublishedLegsByFlightId (x2)
+// findAllLegsByAirlineManagerId
+})
 public class Leg extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;

@@ -12,11 +12,11 @@ import acme.entities.leg.Leg;
 
 public interface AirlineManagerFlightRepository extends AbstractRepository {
 
-	@Query("select f from Flight f where f.airlineManager.id = :managerId")
-	Collection<Flight> findAllFlightsByAirlineManagerId(int managerId);
-
 	@Query("SELECT f FROM Flight f WHERE f.id = :flightId")
 	Flight findFlightById(int flightId);
+
+	@Query("select f from Flight f where f.airlineManager.id = :managerId")
+	Collection<Flight> findAllFlightsByAirlineManagerId(int managerId);
 
 	@Query("SELECT am FROM AirlineManager am")
 	Collection<AirlineManager> findAllManagers();
