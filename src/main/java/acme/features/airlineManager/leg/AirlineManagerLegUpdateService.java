@@ -79,7 +79,7 @@ public class AirlineManagerLegUpdateService extends AbstractGuiService<AirlineMa
 	public void unbind(final Leg leg) {
 		Dataset dataset;
 		int airlineManagerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		Collection<Flight> flightsList = this.repository.findFlightsByAirlineManagerId(airlineManagerId);
+		Collection<Flight> flightsList = this.repository.findAllFlightsByAirlineManagerId(airlineManagerId);
 		Collection<Aircraft> aircraftsList = this.repository.findAllAircrafts();
 		Collection<Airport> airportsList = this.repository.findAllAirports();
 

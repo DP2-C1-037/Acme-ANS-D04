@@ -99,7 +99,7 @@ public class AirlineManagerLegCreateFromFlightService extends AbstractGuiService
 	public void unbind(final Leg leg) {
 		Dataset dataset;
 		int airlineManagerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		Collection<Flight> flightsList = this.repository.findFlightsByAirlineManagerId(airlineManagerId);
+		Collection<Flight> flightsList = this.repository.findAllFlightsByAirlineManagerId(airlineManagerId);
 		Collection<Airport> airportsList = this.repository.findAllAirports();
 		Collection<Aircraft> aircraftsList = this.repository.findAllAircrafts();
 		SelectChoices flights = SelectChoices.from(flightsList, "tag", leg.getFlight());

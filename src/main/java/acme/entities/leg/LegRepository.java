@@ -30,13 +30,13 @@ public interface LegRepository extends AbstractRepository {
 	@Query("SELECT l FROM Leg l WHERE l.flightNumber = :flightNumber")
 	public Leg findLegByFlightNumber(String flightNumber);
 
-	@Query("SELECT a.airline.iataCode FROM Aircraft a WHERE a.id = :aircraftId")
-	public String getIataCodeFromAircraftId(int aircraftId);
+	@Query("SELECT a.airline.iataCode FROM Aircraft a WHERE a.id = :aircrafId")
+	public String getIataCodeFromAircraftId(int aircrafId);
 
 	@Query("SELECT l FROM Leg l WHERE l.scheduledDeparture = :scheduledDeparture AND l.flight.id = :flightId AND l.id <> :legId")
-	Leg findLegByFlightByScheduledDeparture(int flightId, int legId, Date scheduledDeparture);
+	public Leg findLegByFlightByScheduledDeparture(int flightId, int legId, Date scheduledDeparture);
 
 	@Query("SELECT l FROM Leg l WHERE l.scheduledArrival = :scheduledArrival AND l.flight.id = :flightId AND l.id <> :legId")
-	Leg findLegByFlightByScheduledArrival(int flightId, int legId, Date scheduledArrival);
+	public Leg findLegByFlightByScheduledArrival(int flightId, int legId, Date scheduledArrival);
 
 }
