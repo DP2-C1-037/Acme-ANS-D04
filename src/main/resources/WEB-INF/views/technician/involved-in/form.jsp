@@ -7,6 +7,15 @@
 	<acme:input-select code="technician.involved-in.form.label.task" path="task" choices="${tasks}" readonly="${_command != 'create'}"/>
 	
 	<jstl:choose>	
+		<jstl:when test="${acme:anyOf(_command, 'show|delete')}">
+			<acme:input-textbox code="technician.involved-in.form.label.technician" path="task.technician.identity.name" readonly="true"/>	
+			<acme:input-select code="technician.involved-in.form.label.type" path="task.type" choices="${types}" readonly="true"/>
+			<acme:input-integer code="technician.involved-in.form.label.priority" path="task.priority" readonly="true"/>
+			<acme:input-double code="technician.involved-in.form.label.estimated-duration" path="task.estimatedDuration" readonly="true"/>
+		</jstl:when>		
+	</jstl:choose>	
+	
+	<jstl:choose>	
 		<jstl:when test="${acme:anyOf(_command, 'show|delete') && draftMode == true}">
 			<acme:submit code="technician.involved-in.form.button.delete" action="/technician/involved-in/delete"/>
 		</jstl:when>

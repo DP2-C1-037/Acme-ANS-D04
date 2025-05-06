@@ -37,6 +37,16 @@ public class TechnicianInvolvedInCreateService extends AbstractGuiService<Techni
 		technician = maintenanceRecord == null ? null : maintenanceRecord.getTechnician();
 		status = maintenanceRecord != null && maintenanceRecord.getDraftMode() && super.getRequest().getPrincipal().hasRealm(technician);
 
+		if (!super.getRequest().getMethod().equals("GET")) {
+			Task task;
+			int taskId;
+
+			taskId = super.getRequest().getData("task", int.class);
+			task = this.repository.findTaskByTaskId(taskId);
+			technician = task == null ? null : task.getTechnician();
+			status = status && task != null && (!task.getDraftMode() || super.getRequest().getPrincipal().hasRealm(technician));
+		}
+
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -70,7 +80,19 @@ public class TechnicianInvolvedInCreateService extends AbstractGuiService<Techni
 
 	@Override
 	public void validate(final InvolvedIn involvedIn) {
-		;
+		boolean isNull;
+
+		isNull = involvedIn == null || involvedIn.getTask() == null || involvedIn.getMaintenanceRecord() == null;
+
+		if (!isNull) {
+			boolean isNotDuplicated;
+			InvolvedIn existingInvolvedIn;
+
+			existingInvolvedIn = this.repository.findInvolvedInByMaintenanceRecordIdAndTaskId(involvedIn.getMaintenanceRecord().getId(), involvedIn.getTask().getId());
+			isNotDuplicated = existingInvolvedIn == null;
+
+			super.state(isNotDuplicated, "*", "technician.involved-in.create.duplicated");
+		}
 	}
 
 	@Override
@@ -83,8 +105,11 @@ public class TechnicianInvolvedInCreateService extends AbstractGuiService<Techni
 		Collection<Task> tasks;
 		SelectChoices choices;
 		Dataset dataset;
+		int id;
 
-		tasks = this.repository.findAllAvailableTasks();
+		id = super.getRequest().getPrincipal().getActiveRealm().getId();
+
+		tasks = this.repository.findAllAvailableTasks(id);
 		choices = SelectChoices.from(tasks, "description", involvedIn.getTask());
 
 		dataset = super.unbindObject(involvedIn);

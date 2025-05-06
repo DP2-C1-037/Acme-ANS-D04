@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
-import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
@@ -28,7 +27,20 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int aircraftId;
+		Aircraft aircraft;
+
+		if (super.getRequest().getMethod().equals("GET"))
+			status = true;
+		else {
+			aircraftId = super.getRequest().getData("aircraft", int.class);
+			aircraft = this.repository.findAircraftById(aircraftId);
+
+			status = aircraft != null;
+		}
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -40,7 +52,6 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 
 		maintenanceRecord = new MaintenanceRecord();
 		maintenanceRecord.setTechnician(technician);
-		maintenanceRecord.setMaintenanceDate(MomentHelper.getCurrentMoment());
 		maintenanceRecord.setDraftMode(true);
 
 		super.getBuffer().addData(maintenanceRecord);

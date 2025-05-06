@@ -77,7 +77,7 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 				tasks = this.repository.findTasksByMaintenanceRecordId(id);
 				unpublishedTasks = this.repository.findNotPublishedTasksByMaintenanceRecordId(id);
 
-				status = tasks - unpublishedTasks > 0;
+				status = tasks != 0 && unpublishedTasks == 0;
 
 				super.state(status, "*", "technician.maintenance-record.publish.published-tasks");
 			}
