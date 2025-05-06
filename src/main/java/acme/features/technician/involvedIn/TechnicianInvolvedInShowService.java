@@ -11,6 +11,7 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.mappings.InvolvedIn;
 import acme.entities.tasks.Task;
+import acme.entities.tasks.TaskType;
 import acme.realms.technicians.Technician;
 
 @GuiService
@@ -44,14 +45,18 @@ public class TechnicianInvolvedInShowService extends AbstractGuiService<Technici
 	public void unbind(final InvolvedIn involvedIn) {
 		Collection<Task> tasks;
 		SelectChoices choices;
+		SelectChoices types;
 		Dataset dataset;
 
 		tasks = this.repository.findAllAvailableTasks();
 		choices = SelectChoices.from(tasks, "description", involvedIn.getTask());
 
-		dataset = super.unbindObject(involvedIn);
+		types = SelectChoices.from(TaskType.class, involvedIn.getTask().getType());
+
+		dataset = super.unbindObject(involvedIn, "task.technician.identity.name", "task.type", "task.description", "task.priority", "task.estimatedDuration");
 		dataset.put("task", choices.getSelected().getKey());
 		dataset.put("tasks", choices);
+		dataset.put("types", types);
 		dataset.put("draftMode", involvedIn.getMaintenanceRecord().getDraftMode());
 
 		super.getResponse().addData(dataset);

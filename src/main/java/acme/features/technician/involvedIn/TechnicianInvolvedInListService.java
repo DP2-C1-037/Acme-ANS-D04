@@ -55,8 +55,7 @@ public class TechnicianInvolvedInListService extends AbstractGuiService<Technici
 	public void unbind(final InvolvedIn involvedIn) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(involvedIn);
-		dataset.put("task", involvedIn.getTask().getDescription());
+		dataset = super.unbindObject(involvedIn, "task.description", "task.type", "task.priority");
 
 		super.getResponse().addData(dataset);
 	}

@@ -4,7 +4,9 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:list>
-	<acme:list-column code="technician.involved-in.list.label.task" path="task" width="100%"/>
+	<acme:list-column code="technician.task.list.label.description" path="task.description" width="50%"/>
+	<acme:list-column code="technician.task.list.label.type" path="task.type" width="35%"/>
+	<acme:list-column code="technician.task.list.label.priority" path="task.priority" width="15%"/>
 
 	<acme:list-payload path="payload"/>	
 </acme:list>
