@@ -80,8 +80,11 @@ public class TechnicianInvolvedInDeleteService extends AbstractGuiService<Techni
 		SelectChoices choices;
 		SelectChoices types;
 		Dataset dataset;
+		int id;
 
-		tasks = this.repository.findAllAvailableTasks();
+		id = super.getRequest().getPrincipal().getActiveRealm().getId();
+
+		tasks = this.repository.findAllAvailableTasks(id);
 		choices = SelectChoices.from(tasks, "description", involvedIn.getTask());
 
 		types = SelectChoices.from(TaskType.class, involvedIn.getTask().getType());

@@ -83,8 +83,11 @@ public class TechnicianInvolvedInCreateService extends AbstractGuiService<Techni
 		Collection<Task> tasks;
 		SelectChoices choices;
 		Dataset dataset;
+		int id;
 
-		tasks = this.repository.findAllAvailableTasks();
+		id = super.getRequest().getPrincipal().getActiveRealm().getId();
+
+		tasks = this.repository.findAllAvailableTasks(id);
 		choices = SelectChoices.from(tasks, "description", involvedIn.getTask());
 
 		dataset = super.unbindObject(involvedIn);

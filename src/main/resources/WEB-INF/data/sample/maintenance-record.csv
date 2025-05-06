@@ -33,7 +33,7 @@ maintenance-record-25,2012/02/07 0:00,PENDING,2025/01/09 10:00,EUR 5000.00,"<mar
 maintenance-record-26,2012/02/07 0:00,PENDING,2025/01/09 10:00,EUR 5000.00,"<script>alert(‘Hacked!’);</script>",true,technician-01,aircraft-01
 maintenance-record-27,2012/02/07 0:00,PENDING,2025/01/09 10:00,EUR 5000.00,"' or 'A' = 'A ",true,technician-01,aircraft-01
 # draftMode - standard variations - standard variations
-maintenance-record-28,2012/02/07 0:00,COMPLETED,2025/01/09 10:00,EUR 5000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",true,technician-01,aircraft-01
+maintenance-record-28,2012/02/07 0:00,COMPLETED,2025/01/09 10:00,EUR 5000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",false,technician-01,aircraft-01
 # key:technician - standard variations
 maintenance-record-29,2012/02/07 0:00,PENDING,2025/01/09 10:00,EUR 5000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",true,technician-02,aircraft-01
 #key:aircraft - standard variations
