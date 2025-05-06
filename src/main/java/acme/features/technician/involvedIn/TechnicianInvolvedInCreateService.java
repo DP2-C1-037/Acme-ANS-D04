@@ -70,7 +70,19 @@ public class TechnicianInvolvedInCreateService extends AbstractGuiService<Techni
 
 	@Override
 	public void validate(final InvolvedIn involvedIn) {
-		;
+		boolean isNull;
+
+		isNull = involvedIn == null || involvedIn.getTask() == null || involvedIn.getMaintenanceRecord() == null;
+
+		if (!isNull) {
+			boolean isNotDuplicated;
+			InvolvedIn existingInvolvedIn;
+
+			existingInvolvedIn = this.repository.findInvolvedInByMaintenanceRecordIdAndTaskId(involvedIn.getMaintenanceRecord().getId(), involvedIn.getTask().getId());
+			isNotDuplicated = existingInvolvedIn == null;
+
+			super.state(isNotDuplicated, "*", "technician.involved-in.create.duplicated");
+		}
 	}
 
 	@Override
