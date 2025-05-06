@@ -89,7 +89,7 @@ public class TechnicianInvolvedInDeleteService extends AbstractGuiService<Techni
 
 		types = SelectChoices.from(TaskType.class, involvedIn.getTask().getType());
 
-		dataset = super.unbindObject(involvedIn, "task.technician.identity.name", "task.type", "task.description", "task.priority", "task.estimatedDuration");
+		dataset = super.unbindObject(involvedIn, "task.technician.identity.name", "task.description", "task.priority", "task.estimatedDuration");
 		dataset.put("task", choices.getSelected().getKey());
 		dataset.put("tasks", choices);
 		dataset.put("types", types);
