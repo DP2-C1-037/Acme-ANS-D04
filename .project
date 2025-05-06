@@ -40,11 +40,6 @@
 			<type>2</type>
 			<locationURI>WORKSPACE_LOC/Frameworks/Acme-Framework-25.5.0/target/classes</locationURI>
 		</link>
-		<link>
-			<name>target/classes</name>
-			<type>2</type>
-			<location>//C:/Users/ignacio/Desktop/3 Carrera/Segundo Cuatrimestre/Disenio y Pruebas 2 (DP2)/Practicas/Workspace-25/Projects/Acme-ANS-D04/target/classes/</location>
-		</link>
 	</linkedResources>
 	<filteredResources>
 		<filter>
