@@ -34,17 +34,34 @@ public class AirlineManagerLegUpdateService extends AbstractGuiService<AirlineMa
 
 		boolean managerOwnsLeg = manager != null && managerId == manager.getId();
 
-		int flightId = super.getRequest().getData("flight", int.class);
-		boolean validFlight = this.repository.findFlightById(flightId) != null;
+		boolean validFlight = true;
+		boolean validDepartureAirport = true;
+		boolean validArrivalAirport = true;
+		boolean validAircraft = true;
 
-		int departureAirportId = super.getRequest().getData("departureAirport", int.class);
-		boolean validDepartureAirport = this.repository.findAirportById(departureAirportId) != null;
+		if (super.getRequest().hasData("flight", int.class)) {
+			int flightId = super.getRequest().getData("flight", int.class);
+			if (flightId != 0)
+				validFlight = this.repository.findFlightById(flightId) != null;
+		}
 
-		int arrivalAirportId = super.getRequest().getData("arrivalAirport", int.class);
-		boolean validArrivalAirport = this.repository.findAirportById(arrivalAirportId) != null;
+		if (super.getRequest().hasData("departureAirport", int.class)) {
+			int departureAirportId = super.getRequest().getData("departureAirport", int.class);
+			if (departureAirportId != 0)
+				validDepartureAirport = this.repository.findAirportById(departureAirportId) != null;
+		}
 
-		int aircraftId = super.getRequest().getData("aircraft", int.class);
-		boolean validAircraft = this.repository.findAircraftById(aircraftId) != null;
+		if (super.getRequest().hasData("arrivalAirport", int.class)) {
+			int arrivalAirportId = super.getRequest().getData("arrivalAirport", int.class);
+			if (arrivalAirportId != 0)
+				validArrivalAirport = this.repository.findAirportById(arrivalAirportId) != null;
+		}
+
+		if (super.getRequest().hasData("aircraft", int.class)) {
+			int aircraftId = super.getRequest().getData("aircraft", int.class);
+			if (aircraftId != 0)
+				validAircraft = this.repository.findAircraftById(aircraftId) != null;
+		}
 
 		boolean status = validLeg && managerOwnsLeg && validFlight && validDepartureAirport && validArrivalAirport && validAircraft;
 
