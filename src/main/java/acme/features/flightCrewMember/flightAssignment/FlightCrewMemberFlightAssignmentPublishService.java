@@ -35,7 +35,9 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 		masterId = super.getRequest().getData("id", int.class);
 		assignment = this.repository.findFlightAssignmentById(masterId);
 		member = assignment == null ? null : assignment.getFlightCrewMember();
-		status = assignment != null && assignment.isDraftMode() && super.getRequest().getPrincipal().hasRealm(member);
+		status = assignment != null;
+
+		status = status && (assignment.isDraftMode() || super.getRequest().getPrincipal().hasRealm(member));
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -67,10 +69,12 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 
 	@Override
 	public void validate(final FlightAssignment assignment) {
-		this.validateLegCompatibility(assignment);
-		this.validateDutyAssignment(assignment);
-		this.validateStatusAvailability(assignment.getFlightCrewMember());
-		this.validateLegHasNotOccurred(assignment.getLeg());
+		if (assignment.getLeg() != null && assignment.getFlightCrewDuty() != null) {
+			this.validateLegCompatibility(assignment);
+			this.validateDutyAssignment(assignment);
+			this.validateStatusAvailability(assignment.getFlightCrewMember());
+			this.validateLegHasNotOccurred(assignment.getLeg());
+		}
 	}
 
 	private void validateLegHasNotOccurred(final Leg leg) {
@@ -135,8 +139,10 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 		statuses = SelectChoices.from(AssignmentStatus.class, assignment.getStatus());
 		duties = SelectChoices.from(FlightCrewDuty.class, assignment.getFlightCrewDuty());
 		selectedLegs = SelectChoices.from(legs, "flightNumber", assignment.getLeg());
-		employeeCode = assignment.getFlightCrewMember().getEmployeeCode();
-
+		if (assignment.getFlightCrewMember() != null)
+			employeeCode = assignment.getFlightCrewMember().getEmployeeCode();
+		else
+			employeeCode = null;
 		dataset = super.unbindObject(assignment, "flightCrewDuty", "lastUpdateMoment", "status", "remarks", "draftMode");
 		dataset.put("employeeCode", employeeCode);
 		dataset.put("statuses", statuses);
