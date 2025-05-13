@@ -4,6 +4,7 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form>
+	<acme:input-moment code="flight-crew-member.activity-log.form.label.registration-moment" path="registrationMoment" readonly="true"/>
 	<acme:input-textbox code="flight-crew-member.activity-log.form.label.type-of-incident" path="typeOfIncident"/>
 	<acme:input-textarea code="flight-crew-member.activity-log.form.label.description" path="description"/>
 	<acme:input-integer code="flight-crew-member.activity-log.form.label.severity-level" path="severityLevel" />

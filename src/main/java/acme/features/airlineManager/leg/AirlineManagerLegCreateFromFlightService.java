@@ -29,36 +29,41 @@ public class AirlineManagerLegCreateFromFlightService extends AbstractGuiService
 
 	@Override
 	public void authorise() {
-
-		int masterId = super.getRequest().getData("masterId", int.class);
-		super.getResponse().addGlobal("masterId", masterId);
-		Flight flight = this.repository.findFlightById(masterId);
-		int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		boolean managerOwnsFlight = flight != null && flight.getAirlineManager().getId() == managerId && flight.isDraftMode();
-
+		boolean managerOwnsFlight = true;
 		boolean validFlight = true;
 		boolean validDepartureAirport = true;
 		boolean validArrivalAirport = true;
 		boolean validAircraft = true;
 
 		if (super.getRequest().hasData("flight", int.class)) {
+			int masterId = super.getRequest().getData("masterId", int.class);
+			Flight flight = this.repository.findFlightById(masterId);
+			int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+			managerOwnsFlight = flight != null && flight.getAirlineManager().getId() == managerId && flight.isDraftMode();
+		}
+
+		if (super.getRequest().hasData("flight", int.class)) {
 			int flightId = super.getRequest().getData("flight", int.class);
-			validFlight = this.repository.findFlightById(flightId) != null;
+			if (flightId != 0)
+				validFlight = this.repository.findFlightById(flightId) != null;
 		}
 
 		if (super.getRequest().hasData("departureAirport", int.class)) {
 			int departureAirportId = super.getRequest().getData("departureAirport", int.class);
-			validDepartureAirport = this.repository.findAirportById(departureAirportId) != null;
+			if (departureAirportId != 0)
+				validDepartureAirport = this.repository.findAirportById(departureAirportId) != null;
 		}
 
-		if (super.getRequest().hasData("departureAirport", int.class)) {
+		if (super.getRequest().hasData("arrivalAirport", int.class)) {
 			int arrivalAirportId = super.getRequest().getData("arrivalAirport", int.class);
-			validArrivalAirport = this.repository.findAirportById(arrivalAirportId) != null;
+			if (arrivalAirportId != 0)
+				validArrivalAirport = this.repository.findAirportById(arrivalAirportId) != null;
 		}
 
 		if (super.getRequest().hasData("aircraft", int.class)) {
 			int aircraftId = super.getRequest().getData("aircraft", int.class);
-			validAircraft = this.repository.findAircraftById(aircraftId) != null;
+			if (aircraftId != 0)
+				validAircraft = this.repository.findAircraftById(aircraftId) != null;
 		}
 
 		boolean status = managerOwnsFlight && validFlight && validDepartureAirport && validArrivalAirport && validAircraft;
