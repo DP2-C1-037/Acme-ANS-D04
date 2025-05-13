@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
-import acme.datatypes.AssignmentStatus;
 import acme.entities.activityLog.ActivityLog;
 import acme.entities.flightAssignment.FlightAssignment;
 import acme.entities.leg.Leg;
@@ -66,8 +65,5 @@ public interface FlightCrewMemberFlightAssignmentRepository extends AbstractRepo
 
 	@Query("select fa from FlightAssignment fa where fa.draftMode = false and (fa.flightCrewMember is null or fa.flightCrewMember.id != :memberId)")
 	Collection<FlightAssignment> findPublishedAssignmentsExcludingMember(int memberId);
-
-	@Query("select as from AssignmentStatus as where as.id = statusId")
-	AssignmentStatus findStatusById(int statusId);
 
 }
