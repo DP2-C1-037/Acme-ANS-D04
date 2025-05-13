@@ -2,11 +2,14 @@
 package acme.features.customer.booking;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.booking.Booking;
@@ -53,13 +56,15 @@ public class CustomerBookingShowService extends AbstractGuiService<Customer, Boo
 	public void unbind(final Booking booking) {
 		SelectChoices travelClassesChoices;
 		Collection<Flight> flights;
+		List<Flight> flightsInFuture;
 		SelectChoices flightsChoices;
 		Dataset dataset;
 
 		flights = this.repository.findAllFlightsPublished();
+		flightsInFuture = flights.stream().filter(f -> MomentHelper.isFuture(f.getScheduledDeparture())).collect(Collectors.toList());
 
 		travelClassesChoices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
-		flightsChoices = SelectChoices.from(flights, "tag", booking.getFlight());
+		flightsChoices = SelectChoices.from(flightsInFuture, "tag", booking.getFlight());
 		// TODO: Change choices display text from tag to the origin and destiny of the flight, to be implemented when flight derived attributes are fixed
 
 		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "lastNibble", "draftMode");
