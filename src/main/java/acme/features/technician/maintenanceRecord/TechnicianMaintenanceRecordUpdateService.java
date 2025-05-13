@@ -37,6 +37,23 @@ public class TechnicianMaintenanceRecordUpdateService extends AbstractGuiService
 		technician = maintenanceRecord == null ? null : maintenanceRecord.getTechnician();
 		status = maintenanceRecord != null && maintenanceRecord.getDraftMode() && super.getRequest().getPrincipal().hasRealm(technician);
 
+		if (status) {
+			String method;
+			int aircraftId;
+			Aircraft aircraft;
+
+			method = super.getRequest().getMethod();
+
+			if (method.equals("GET"))
+				status = true;
+			else {
+				aircraftId = super.getRequest().getData("aircraft", int.class);
+				aircraft = this.repository.findAircraftById(aircraftId);
+
+				status = aircraftId == 0 || aircraft != null;
+			}
+		}
+
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -53,7 +70,14 @@ public class TechnicianMaintenanceRecordUpdateService extends AbstractGuiService
 
 	@Override
 	public void bind(final MaintenanceRecord maintenanceRecord) {
-		super.bindObject(maintenanceRecord, "maintenanceDate", "nextInspectionDueDate", "status", "estimatedCost", "notes");
+		int aircraftId;
+		Aircraft aircraft;
+
+		aircraftId = super.getRequest().getData("aircraft", int.class);
+		aircraft = this.repository.findAircraftById(aircraftId);
+
+		super.bindObject(maintenanceRecord, "maintenanceDate", "status", "nextInspectionDueDate", "estimatedCost", "notes");
+		maintenanceRecord.setAircraft(aircraft);
 	}
 
 	@Override
