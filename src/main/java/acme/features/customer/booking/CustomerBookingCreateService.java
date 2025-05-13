@@ -29,7 +29,20 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+
+		boolean status = true;
+		Flight flight;
+		int flightId;
+
+		if (super.getRequest().getMethod().equals("GET"))
+			status = true;
+		else {
+			flightId = super.getRequest().getData("flight", int.class);
+			flight = this.repository.findFlightById(flightId);
+			status = flightId == 0 || flight != null;
+		}
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
