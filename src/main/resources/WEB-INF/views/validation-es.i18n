@@ -84,6 +84,8 @@ acme.validation.claim.leg.cancelled.message= La reclamación debe estar vinculad
 
 acme.validation.booking.passengers.message = Al menos un pasajero debe asignarse a esta reserva para poder publicarla
 acme.validation.booking.flight-published.message = El vuelo asignado debe estar publicado
+acme.validation.booking.flightInFuture.message = El vuelo seleccionado debe estar en el futuro
+
 
 
 

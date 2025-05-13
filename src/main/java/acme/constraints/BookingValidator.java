@@ -6,6 +6,7 @@ import javax.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.validation.AbstractValidator;
+import acme.client.helpers.MomentHelper;
 import acme.client.helpers.StringHelper;
 import acme.entities.booking.Booking;
 import acme.entities.flight.Flight;
@@ -39,14 +40,13 @@ public class BookingValidator extends AbstractValidator<ValidBooking, Booking> {
 				}
 			}
 			{
-				//				boolean flightInFuture;
-				//				Flight flight;
-				//
-				//				flight = booking.getFlight();
-				//				flightInFuture = flight != null ? MomentHelper.isFuture(flight.getScheduledDeparture()) : true;
-				//
-				//				super.state(context, flightInFuture, "*", "");
-				// TODO: A booking must be done for a flight which scheduled departure is in the future, to be implemented when flight derived attributes are fixed 
+				boolean flightInFuture;
+				Flight flight;
+
+				flight = booking.getFlight();
+				flightInFuture = flight != null ? MomentHelper.isFuture(flight.getScheduledDeparture()) : true;
+
+				super.state(context, flightInFuture, "flight", "acme.validation.booking.flightInFuture.message");
 
 			}
 			{

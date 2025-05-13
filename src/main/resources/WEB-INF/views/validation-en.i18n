@@ -87,4 +87,6 @@ acme.validation.claim.leg.cancelled.message= Claim must be linked to a leg that 
 
 acme.validation.booking.passengers.message = At least a passenger must be assigned to this booking in order to publish it
 acme.validation.booking.flight-published.message = Assigned flight must be published
+acme.validation.booking.flightInFuture.message = Selected flight must be in future
+
 
