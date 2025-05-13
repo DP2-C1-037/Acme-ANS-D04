@@ -4,8 +4,8 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form>
-	<acme:input-select code="technician.maintenance-record.form.label.aircraft" path="aircraft" choices= "${aircrafts}" readonly="${_command != 'create'}"/>
 	<acme:input-textbox code="technician.maintenance-record.form.label.technician" path="technician.identity.name" readonly="true"/>
+	<acme:input-select code="technician.maintenance-record.form.label.aircraft" path="aircraft" choices= "${aircrafts}"/>
 	<acme:input-moment code="technician.maintenance-record.form.label.maintenanceDate" path="maintenanceDate"/>
 	<acme:input-select code="technician.maintenance-record.form.label.status" path="status" choices= "${statuses}"/>
 	<acme:input-money code="technician.maintenance-record.form.label.estimatedCost" path="estimatedCost"/>
