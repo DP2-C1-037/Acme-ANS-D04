@@ -71,16 +71,7 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 
 	@Override
 	public void validate(final MaintenanceRecord maintenanceRecord) {
-		boolean isNull;
-
-		isNull = maintenanceRecord == null || maintenanceRecord.getStatus() == null;
-
-		if (!isNull) {
-			boolean status;
-			status = !maintenanceRecord.getStatus().equals(MaintenanceStatus.COMPLETED);
-
-			super.state(status, "*", "technician.maintenance-record.create.status");
-		}
+		;
 	}
 
 	@Override
