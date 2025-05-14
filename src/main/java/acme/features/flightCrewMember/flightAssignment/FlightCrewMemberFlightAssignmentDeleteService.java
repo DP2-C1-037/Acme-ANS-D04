@@ -34,9 +34,7 @@ public class FlightCrewMemberFlightAssignmentDeleteService extends AbstractGuiSe
 		masterId = super.getRequest().getData("id", int.class);
 		assignment = this.repository.findFlightAssignmentById(masterId);
 		member = assignment == null ? null : assignment.getFlightCrewMember();
-		status = assignment != null;
-
-		status = status && (assignment.isDraftMode() || super.getRequest().getPrincipal().hasRealm(member));
+		status = assignment != null && assignment.isDraftMode() && super.getRequest().getPrincipal().hasRealm(member);
 
 		super.getResponse().setAuthorised(status);
 	}

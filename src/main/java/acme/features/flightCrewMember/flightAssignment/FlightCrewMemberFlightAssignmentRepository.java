@@ -36,9 +36,9 @@ public interface FlightCrewMemberFlightAssignmentRepository extends AbstractRepo
 		SELECT fa
 		FROM FlightAssignment fa
 		WHERE
-		    (fa.draftMode = false AND fa.leg.scheduledDeparture > :now AND (fa.flightCrewMember IS NULL OR fa.flightCrewMember.id != :memberId))
+		    (fa.draftMode = false AND fa.leg.scheduledArrival > :now AND (fa.flightCrewMember IS NULL OR fa.flightCrewMember.id != :memberId))
 		    OR
-		    (fa.leg.scheduledDeparture > :now AND fa.flightCrewMember.id = :memberId)
+		    (fa.leg.scheduledArrival > :now AND fa.flightCrewMember.id = :memberId)
 		""")
 	Collection<FlightAssignment> findPlannedPublishedOrMemberAssignments(int memberId, Date now);
 

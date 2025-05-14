@@ -32,7 +32,7 @@ public class FlightCrewMemberActivityLogShowService extends AbstractGuiService<F
 		member = log == null ? null : log.getFlightAssignment().getFlightCrewMember();
 		status = log != null;
 
-		status = status && (log.isDraftMode() || super.getRequest().getPrincipal().hasRealm(member));
+		status = status && (!log.isDraftMode() || super.getRequest().getPrincipal().hasRealm(member));
 
 		super.getResponse().setAuthorised(status);
 	}
