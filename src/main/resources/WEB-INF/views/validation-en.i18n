@@ -27,11 +27,21 @@ acme.validation.leg.departureAirport.equals.message = Leg departure and arrival 
 
 acme.validation.leg.scheduledArrival.equals.message = Scheduled arrival must be at least 1 minute after scheduled departure 
 
-acme.validation.leg.scheduledDepartureAnotherLeg.equals.message = Two legs from the same flight can't have the same scheduled departure
+acme.validation.leg.scheduledDeparture.noOverlappingLegs.message = There cannot be overlapping legs for the same flight!
 
-acme.validation.leg.scheduledArrivalAnotherLeg.equals.message = Two legs from the same flight can't have the same scheduled arrival
+acme.validation.leg.aircraft.noSameAircraft.message = That aircraft is already flying!
+
+acme.validation.leg.departureAirport.noDepartureAirportOverlap.message = There is already a flight going out from that airport! 
+
+acme.validation.leg.arrivalAirport.noArrivalAirportOverlap.message = There is already a flight arriving at that airport!
+
+acme.validation.leg.scheduledDepartureIsFuture.message = You cannot program flights for the past
+
+acme.validation.leg.scheduledArrivalIsFuture.message = You cannot program flights for the past
 
 acme.validation.flight.*.notAllLegsPublishedOrNoLegs.message = The flight must have at least 1 published leg to be published, and all its legs must have been published before publishing the flight
+
+acme.validation.flight.*.flightDifferentAirports.message = The flight cannot have same departure and arrival airports
 
 acme.validation.airline.iataCode.message = Airline iata code must be unique
 
