@@ -32,12 +32,15 @@ import lombok.Setter;
 @Table(indexes = {
 	@Index(columnList = "flight_id, scheduledDeparture"), // findScheduledDeparture y findLegByFlightByScheduledDeparture
 	@Index(columnList = "flight_id, scheduledArrival"), // findScheduledArrival y findLegByFlightByScheduledArrival
-	@Index(columnList = "flight_id, scheduledDeparture, departure_airport_id"), // findOriginCity
-	@Index(columnList = "flight_id, scheduledArrival, arrival_airport_id"), // findDestinationCity
+	@Index(columnList = "flight_id, scheduledDeparture, departure_airport_id"), // findDepartureAirport
+	@Index(columnList = "flight_id, scheduledArrival, arrival_airport_id"), // findDestinationAirport
 	@Index(columnList = "flight_id"), // findLegsFromFlightId (x4)
 	@Index(columnList = "flightNumber"), // findLegByFlightNumber
 	@Index(columnList = "flight_id, draftMode"), // findPublishedLegsByFlightId (x2)
-	@Index(columnList = "aircraft_id") // findLegByAircraftId
+	@Index(columnList = "flight_id, scheduledDeparture, scheduledArrival"), // findOverlappingLegs
+	@Index(columnList = "aircraft_id, scheduledDeparture, scheduledArrival"), // findLegByAircraftIdSameTime
+	@Index(columnList = "departure_airport_id, scheduledDeparture"), // findLegByAirportIdSameDeparture
+	@Index(columnList = "arrival_airport_id, scheduledArrival") // findLegByAirportIdSameArrival
 // findAllLegsByAirlineManagerId
 })
 public class Leg extends AbstractEntity {
