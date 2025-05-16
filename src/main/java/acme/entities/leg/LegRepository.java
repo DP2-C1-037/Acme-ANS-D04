@@ -18,11 +18,11 @@ public interface LegRepository extends AbstractRepository {
 	@Query("SELECT MAX(l.scheduledArrival) FROM Leg l where l.flight.id = :flightId")
 	public Date findScheduledArrival(int flightId);
 
-	@Query("SELECT l.departureAirport.city FROM Leg l WHERE l.flight.id = :flightId AND l.scheduledDeparture = (SELECT MIN(l2.scheduledDeparture) FROM Leg l2 WHERE l2.flight.id = :flightId)")
-	public String findOriginCity(int flightId);
+	@Query("SELECT l.departureAirport.iataCode FROM Leg l WHERE l.flight.id = :flightId ORDER BY l.scheduledDeparture ASC")
+	Collection<String> findDepartureAirport(int flightId);
 
-	@Query("SELECT l.arrivalAirport.city FROM Leg l WHERE l.flight.id = :flightId AND l.scheduledArrival = (SELECT MAX(l2.scheduledArrival) FROM Leg l2 WHERE l2.flight.id = :flightId)")
-	public String findDestinationCity(int flightId);
+	@Query("SELECT l.arrivalAirport.iataCode FROM Leg l WHERE l.flight.id = :flightId ORDER BY l.scheduledArrival DESC")
+	Collection<String> findDestinationAirport(int flightId);
 
 	@Query("SELECT l FROM Leg l WHERE l.flight.id = :flightId")
 	public Collection<Leg> findLegsFromFlightId(int flightId);
@@ -33,10 +33,22 @@ public interface LegRepository extends AbstractRepository {
 	@Query("SELECT a.airline.iataCode FROM Aircraft a WHERE a.id = :aircrafId")
 	public String getIataCodeFromAircraftId(int aircrafId);
 
-	@Query("SELECT l FROM Leg l WHERE l.scheduledDeparture = :scheduledDeparture AND l.flight.id = :flightId AND l.id <> :legId")
-	public Leg findLegByFlightByScheduledDeparture(int flightId, int legId, Date scheduledDeparture);
+	@Query("select l from Leg l where l.flight.id = :flightId")
+	Collection<Leg> findLegsByFlightId(int flightId);
 
-	@Query("SELECT l FROM Leg l WHERE l.scheduledArrival = :scheduledArrival AND l.flight.id = :flightId AND l.id <> :legId")
-	public Leg findLegByFlightByScheduledArrival(int flightId, int legId, Date scheduledArrival);
+	@Query("select l from Leg l where l.flight.id = :flightId and l.draftMode = false")
+	Collection<Leg> findPublishedLegsByFlightId(int flightId);
+
+	@Query("SELECT l FROM Leg l WHERE l.flight.id = :flightId AND l.id <> :legId AND (:scheduledDeparture BETWEEN l.scheduledDeparture AND l.scheduledArrival OR l.scheduledDeparture BETWEEN :scheduledDeparture AND :scheduledArrival)")
+	Collection<Leg> findOverlappingLegs(int flightId, int legId, Date scheduledDeparture, Date scheduledArrival);
+
+	@Query("select l from Leg l where l.aircraft.id = :aircraftId and l.id <> :legId and (:scheduledDeparture BETWEEN l.scheduledDeparture AND l.scheduledArrival OR l.scheduledDeparture BETWEEN :scheduledDeparture AND :scheduledArrival)")
+	Collection<Leg> findLegByAircraftIdSameTime(int aircraftId, int legId, Date scheduledDeparture, Date scheduledArrival);
+
+	@Query("select l from Leg l where l.departureAirport.id = :airportId and l.id <> :legId and l.scheduledDeparture = :scheduledDeparture")
+	Collection<Leg> findLegByAirportIdSameDeparture(int airportId, int legId, Date scheduledDeparture);
+
+	@Query("select l from Leg l where l.arrivalAirport.id = :airportId and l.id <> :legId and l.scheduledArrival = :scheduledArrival")
+	Collection<Leg> findLegByAirportIdSameArrival(int airportId, int legId, Date scheduledArrival);
 
 }

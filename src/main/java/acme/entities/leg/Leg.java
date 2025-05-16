@@ -37,6 +37,7 @@ import lombok.Setter;
 	@Index(columnList = "flight_id"), // findLegsFromFlightId (x4)
 	@Index(columnList = "flightNumber"), // findLegByFlightNumber
 	@Index(columnList = "flight_id, draftMode"), // findPublishedLegsByFlightId (x2)
+	@Index(columnList = "aircraft_id") // findLegByAircraftId
 // findAllLegsByAirlineManagerId
 })
 public class Leg extends AbstractEntity {
