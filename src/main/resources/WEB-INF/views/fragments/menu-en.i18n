@@ -50,6 +50,8 @@ master.menu.customer.passengers = Passengers
 master.menu.flightCrewMember = Flight Crew Member
 master.menu.flightCrewMember.flightAssignmentCompleted = List completed flight assignments 
 master.menu.flightCrewMember.flightAssignmentPlanned = List planned flight assignments 
+master.menu.flightCrewMember.flightAssignmentMinePlanned = List my planned flight assignments
+master.menu.flightCrewMember.flightAssignmentMineCompleted = List my completed flight assignments
 
 # master.menu.technician ##########################################################
 master.menu.technician = Technician

@@ -32,9 +32,7 @@ public class FlightCrewMemberActivityLogPublishService extends AbstractGuiServic
 		logId = super.getRequest().getData("id", int.class);
 		log = this.repository.findActivityLogById(logId);
 		member = log == null ? null : log.getFlightAssignment().getFlightCrewMember();
-		status = log != null;
-
-		status = status && (log.isDraftMode() || super.getRequest().getPrincipal().hasRealm(member));
+		status = log != null && log.isDraftMode() && super.getRequest().getPrincipal().hasRealm(member);
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -62,7 +60,7 @@ public class FlightCrewMemberActivityLogPublishService extends AbstractGuiServic
 		Date now = MomentHelper.getCurrentMoment();
 		if (assignment.isDraftMode())
 			super.state(false, "*", "acme.validation.activity-log.flight-assignment-not-published.message");
-		if (now.before(assignment.getLeg().getScheduledArrival()))
+		if (MomentHelper.isBefore(now, assignment.getLeg().getScheduledArrival()))
 			super.state(false, "*", "acme.validation.activity-log.leg-not-finished.message");
 	}
 

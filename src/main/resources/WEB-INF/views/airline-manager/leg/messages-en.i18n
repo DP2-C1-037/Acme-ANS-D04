@@ -16,7 +16,6 @@ airline-manager.leg.form.button.create-from-all-mine = Create
 airline-manager.leg.form.button.update = Update
 airline-manager.leg.form.button.delete = Delete
 airline-manager.leg.form.button.publish = Publish
-airline-manager.leg.form.label.confirmation = Confirm leg data is correct.
 
 airline-manager.leg.list.label.flightNumber = Flight number
 airline-manager.leg.list.label.status = Status

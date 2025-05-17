@@ -25,7 +25,25 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		boolean validLeg;
+		boolean isMember;
+
+		isMember = super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMember.class);
+
+		status = isMember;
+
+		if (super.getRequest().getMethod().equals("POST")) {
+			int legId = super.getRequest().getData("leg", int.class);
+			Leg leg = this.repository.findLegById(legId);
+
+			validLeg = legId == 0 || leg != null;
+			if (validLeg && leg != null)
+				validLeg = !leg.isDraftMode();
+			status = status && validLeg;
+		}
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -74,7 +92,8 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 		SelectChoices selectedLegs;
 		FlightCrewMember member;
 
-		legs = this.repository.findAllLegs();
+		legs = this.repository.findPublishedLegs();
+
 		member = assignment.getFlightCrewMember();
 		statuses = SelectChoices.from(AssignmentStatus.class, assignment.getStatus());
 		duties = SelectChoices.from(FlightCrewDuty.class, assignment.getFlightCrewDuty());

@@ -30,6 +30,7 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 		boolean status;
 		int aircraftId;
 		Aircraft aircraft;
+		MaintenanceStatus maintenanceRecordStatus;
 
 		if (super.getRequest().getMethod().equals("GET"))
 			status = true;
@@ -38,6 +39,10 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 			aircraft = this.repository.findAircraftById(aircraftId);
 
 			status = aircraftId == 0 || aircraft != null;
+
+			maintenanceRecordStatus = super.getRequest().getData("status", MaintenanceStatus.class);
+			if (maintenanceRecordStatus != null)
+				status = status && !maintenanceRecordStatus.equals(MaintenanceStatus.COMPLETED);
 		}
 
 		super.getResponse().setAuthorised(status);
