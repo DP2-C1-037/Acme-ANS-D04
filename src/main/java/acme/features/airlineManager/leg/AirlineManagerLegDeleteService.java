@@ -74,7 +74,6 @@ public class AirlineManagerLegDeleteService extends AbstractGuiService<AirlineMa
 		SelectChoices departureAirports = SelectChoices.from(airportsList, "iataCode", leg.getDepartureAirport());
 
 		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "status", "draftMode", "duration", "departureAirport", "arrivalAirport", "aircraft", "flight");
-		dataset.put("confirmation", false);
 		dataset.put("flight", flights.getSelected().getKey());
 		dataset.put("flights", flights);
 		dataset.put("arrivalAirport", arrivalAirports.getSelected().getKey());

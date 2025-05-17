@@ -43,9 +43,7 @@ public class AirlineManagerFlightCreateService extends AbstractGuiService<Airlin
 
 	@Override
 	public void validate(final Flight flight) {
-
-		boolean confirmation = super.getRequest().getData("confirmation", boolean.class) && flight.isDraftMode();
-		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
+		;
 	}
 
 	@Override
@@ -60,7 +58,6 @@ public class AirlineManagerFlightCreateService extends AbstractGuiService<Airlin
 		SelectChoices selfTransfer = SelectChoices.from(FlightSelfTransfer.class, flight.getRequiresSelfTransfer());
 
 		dataset = super.unbindObject(flight, "tag", "requiresSelfTransfer", "cost", "description", "draftMode");
-		dataset.put("confirmation", false);
 		dataset.put("selfTransfer", selfTransfer);
 		super.getResponse().addData(dataset);
 	}

@@ -1,6 +1,8 @@
 
 package acme.features.airlineManager.leg;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,24 +28,27 @@ public class AirlineManagerLegUpdateService extends AbstractGuiService<AirlineMa
 	@Override
 	public void authorise() {
 
-		int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		int legId = super.getRequest().getData("id", int.class);
-		Leg leg = this.repository.findLegById(legId);
-		AirlineManager manager = leg == null ? null : leg.getFlight().getAirlineManager();
-		boolean validLeg = leg != null && leg.isDraftMode();
-
-		boolean managerOwnsLeg = manager != null && managerId == manager.getId();
-
 		boolean validFlight = true;
 		boolean validDepartureAirport = true;
 		boolean validArrivalAirport = true;
 		boolean validAircraft = true;
+		boolean managerOwnsLeg = true;
 
+		int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		int legId = super.getRequest().getData("id", int.class);
+		Leg leg = this.repository.findLegById(legId);
+		boolean validLeg = leg != null && leg.isDraftMode();
+
+		Flight flightFromForm = null;
 		if (super.getRequest().hasData("flight", int.class)) {
 			int flightId = super.getRequest().getData("flight", int.class);
 			if (flightId != 0)
-				validFlight = this.repository.findFlightById(flightId) != null;
+				flightFromForm = this.repository.findFlightById(flightId);
+			validFlight = flightFromForm != null;
 		}
+		AirlineManager manager = flightFromForm == null ? null : flightFromForm.getAirlineManager();
+		if (manager != null)
+			managerOwnsLeg = managerId == manager.getId();
 
 		if (super.getRequest().hasData("departureAirport", int.class)) {
 			int departureAirportId = super.getRequest().getData("departureAirport", int.class);
@@ -84,7 +89,19 @@ public class AirlineManagerLegUpdateService extends AbstractGuiService<AirlineMa
 
 	@Override
 	public void validate(final Leg leg) {
-		;
+		boolean scheduledDepartureIsFuture = false;
+		try {
+			scheduledDepartureIsFuture = leg.getScheduledDeparture().after(new SimpleDateFormat("yyyy/MM/dd HH:mm").parse("2025/01/01 00:00"));
+		} catch (ParseException e) {
+		}
+		super.state(scheduledDepartureIsFuture, "scheduledDeparture", "acme.validation.leg.scheduledDepartureIsFuture.message");
+
+		boolean scheduledArrivalIsFuture = false;
+		try {
+			scheduledArrivalIsFuture = leg.getScheduledArrival().after(new SimpleDateFormat("yyyy/MM/dd HH:mm").parse("2025/01/01 00:01"));
+		} catch (ParseException e) {
+		}
+		super.state(scheduledArrivalIsFuture, "scheduledArrival", "acme.validation.leg.scheduledArrivalIsFuture.message");
 	}
 
 	@Override
@@ -107,7 +124,6 @@ public class AirlineManagerLegUpdateService extends AbstractGuiService<AirlineMa
 		SelectChoices departureAirports = SelectChoices.from(airportsList, "iataCode", leg.getDepartureAirport());
 
 		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "status", "draftMode", "duration", "departureAirport", "arrivalAirport", "aircraft", "flight");
-		dataset.put("confirmation", false);
 		dataset.put("flight", flights.getSelected().getKey());
 		dataset.put("flights", flights);
 		dataset.put("arrivalAirport", arrivalAirports.getSelected().getKey());

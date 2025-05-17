@@ -1,6 +1,8 @@
 
 package acme.features.airlineManager.leg;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,17 +29,27 @@ public class AirlineManagerLegCreateService extends AbstractGuiService<AirlineMa
 
 	@Override
 	public void authorise() {
-		boolean isManager = super.getRequest().getPrincipal().hasRealmOfType(AirlineManager.class);
 		boolean validFlight = true;
 		boolean validDepartureAirport = true;
 		boolean validArrivalAirport = true;
 		boolean validAircraft = true;
+		boolean managerOwnsLeg = true;
 
+		int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		int legId = super.getRequest().getData("id", int.class);
+		Leg leg = this.repository.findLegById(legId);
+		boolean validLeg = leg != null && leg.isDraftMode();
+
+		Flight flightFromForm = null;
 		if (super.getRequest().hasData("flight", int.class)) {
 			int flightId = super.getRequest().getData("flight", int.class);
 			if (flightId != 0)
-				validFlight = this.repository.findFlightById(flightId) != null;
+				flightFromForm = this.repository.findFlightById(flightId);
+			validFlight = flightFromForm != null;
 		}
+		AirlineManager manager = flightFromForm == null ? null : flightFromForm.getAirlineManager();
+		if (manager != null)
+			managerOwnsLeg = managerId == manager.getId();
 
 		if (super.getRequest().hasData("departureAirport", int.class)) {
 			int departureAirportId = super.getRequest().getData("departureAirport", int.class);
@@ -57,7 +69,8 @@ public class AirlineManagerLegCreateService extends AbstractGuiService<AirlineMa
 				validAircraft = this.repository.findAircraftById(aircraftId) != null;
 		}
 
-		boolean status = isManager && validFlight && validDepartureAirport && validArrivalAirport && validAircraft;
+		boolean status = validLeg && managerOwnsLeg && validFlight && validDepartureAirport && validArrivalAirport && validAircraft;
+
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -77,13 +90,23 @@ public class AirlineManagerLegCreateService extends AbstractGuiService<AirlineMa
 
 	@Override
 	public void validate(final Leg leg) {
-		;
+		boolean scheduledDepartureIsFuture = false;
+		try {
+			scheduledDepartureIsFuture = leg.getScheduledDeparture().after(new SimpleDateFormat("yyyy/MM/dd HH:mm").parse("2025/01/01 00:00"));
+		} catch (ParseException e) {
+		}
+		super.state(scheduledDepartureIsFuture, "scheduledDeparture", "acme.validation.leg.scheduledDepartureIsFuture.message");
+
+		boolean scheduledArrivalIsFuture = false;
+		try {
+			scheduledArrivalIsFuture = leg.getScheduledArrival().after(new SimpleDateFormat("yyyy/MM/dd HH:mm").parse("2025/01/01 00:01"));
+		} catch (ParseException e) {
+		}
+		super.state(scheduledArrivalIsFuture, "scheduledArrival", "acme.validation.leg.scheduledArrivalIsFuture.message");
 	}
 
 	@Override
 	public void perform(final Leg leg) {
-		assert leg != null;
-
 		this.repository.save(leg);
 	}
 
