@@ -41,6 +41,10 @@ acme.validation.leg.scheduledDepartureIsFuture.message = No puede programar vuel
 
 acme.validation.leg.scheduledArrivalIsFuture.message = No puede programar vuelos para el pasado
 
+acme.validation.leg.arrivalAirport.consecutiveLegsDepartureAirportEqualsArrivalAirport.message = El aeropuerto de llegada debe coincidir con el de salida de la siguiente escala del vuelo
+
+acme.validation.leg.departureAirport.consecutiveLegsDepartureAirportEqualsArrivalAirport.message = El aeropuerto de llegada debe coincidir con el de salida de la siguiente escala del vuelo
+
 acme.validation.flight.*.notAllLegsPublishedOrNoLegs.message = El vuelo debe tener al menos 1 escala publicada para poder ser publicada, y todas sus escalas deben haber sido publicadas antes de publicar el vuelo
 
 acme.validation.flight.*.flightDifferentAirports.message = El vuelo no puede tener el mismo aeropuerto de llegada y salida

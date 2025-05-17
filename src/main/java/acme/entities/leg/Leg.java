@@ -40,7 +40,9 @@ import lombok.Setter;
 	@Index(columnList = "flight_id, scheduledDeparture, scheduledArrival"), // findOverlappingLegs
 	@Index(columnList = "aircraft_id, scheduledDeparture, scheduledArrival"), // findLegByAircraftIdSameTime
 	@Index(columnList = "departure_airport_id, scheduledDeparture"), // findLegByAirportIdSameDeparture
-	@Index(columnList = "arrival_airport_id, scheduledArrival") // findLegByAirportIdSameArrival
+	@Index(columnList = "arrival_airport_id, scheduledArrival"), // findLegByAirportIdSameArrival
+	@Index(columnList = "flight_id, departure_airport_id, scheduledDeparture"), // findNextLegWithWrongDeparture
+	@Index(columnList = "flight_id, arrival_airport_id, scheduledArrival") // findPreviousLegWithWrongArrival
 // findAllLegsByAirlineManagerId
 })
 public class Leg extends AbstractEntity {
