@@ -27,11 +27,23 @@ acme.validation.leg.departureAirport.equals.message = El aeropuerto de salida y 
 
 acme.validation.leg.scheduledArrival.equals.message = La fecha de llegada debe ser al menos 1 minuto posterior a la fecha de salida 
 
-acme.validation.leg.scheduledDepartureAnotherLeg.equals.message = Dos escalas del mismo vuelo no pueden tener la misma fecha de salida
+acme.validation.leg.scheduledDeparture.noOverlappingLegs.message = ¡No puede haber escalas solapadas para el mismo vuelo!
 
-acme.validation.leg.scheduledArrivalAnotherLeg.equals.message = Dos escalas del mismo vuelo no pueden tener la misma fecha de llegada
+acme.validation.leg.scheduledDeparture.noOverlappingLegs.message = ¡No puede haber escalas solapadas para el mismo vuelo!
+
+acme.validation.leg.aircraft.noSameAircraft.message = ¡Esa aeronave ya está en uso!
+
+acme.validation.leg.departureAirport.noDepartureAirportOverlap.message = ¡Ya hay un vuelo saliendo de ese aeropuerto!
+
+acme.validation.leg.arrivalAirport.noArrivalAirportOverlap.message = ¡Ya hay un vuelo llegando a ese aeropuerto!
+
+acme.validation.leg.scheduledDepartureIsFuture.message = No puede programar vuelos para el pasado
+
+acme.validation.leg.scheduledArrivalIsFuture.message = No puede programar vuelos para el pasado
 
 acme.validation.flight.*.notAllLegsPublishedOrNoLegs.message = El vuelo debe tener al menos 1 escala publicada para poder ser publicada, y todas sus escalas deben haber sido publicadas antes de publicar el vuelo
+
+acme.validation.flight.*.flightDifferentAirports.message = El vuelo no puede tener el mismo aeropuerto de llegada y salida
 
 acme.validation.airline.iataCode.message = El código iata de la aerolínea debe ser único
 
@@ -84,6 +96,8 @@ acme.validation.claim.leg.cancelled.message= La reclamación debe estar vinculad
 
 acme.validation.booking.passengers.message = Al menos un pasajero debe asignarse a esta reserva para poder publicarla
 acme.validation.booking.flight-published.message = El vuelo asignado debe estar publicado
+acme.validation.booking.flightInFuture.message = El vuelo seleccionado debe estar en el futuro
+
 
 
 

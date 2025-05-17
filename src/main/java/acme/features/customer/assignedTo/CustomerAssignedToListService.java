@@ -26,7 +26,17 @@ public class CustomerAssignedToListService extends AbstractGuiService<Customer, 
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		int masterId;
+		boolean status;
+		Booking booking;
+		Customer customer;
+
+		masterId = super.getRequest().getData("masterId", int.class);
+		booking = this.repository.findBookingById(masterId);
+		customer = booking == null ? null : booking.getCustomer();
+		status = booking != null && super.getRequest().getPrincipal().hasRealm(customer);
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override

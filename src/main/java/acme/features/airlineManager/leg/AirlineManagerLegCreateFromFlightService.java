@@ -1,6 +1,8 @@
 
 package acme.features.airlineManager.leg;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,15 +39,15 @@ public class AirlineManagerLegCreateFromFlightService extends AbstractGuiService
 
 		if (super.getRequest().hasData("flight", int.class)) {
 			int masterId = super.getRequest().getData("masterId", int.class);
-			Flight flight = this.repository.findFlightById(masterId);
-			int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-			managerOwnsFlight = flight != null && flight.getAirlineManager().getId() == managerId && flight.isDraftMode();
-		}
-
-		if (super.getRequest().hasData("flight", int.class)) {
+			Flight flightParentLeg = this.repository.findFlightById(masterId);
 			int flightId = super.getRequest().getData("flight", int.class);
+			Flight flightFromForm = null;
 			if (flightId != 0)
-				validFlight = this.repository.findFlightById(flightId) != null;
+				flightFromForm = this.repository.findFlightById(flightId);
+			int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+			boolean flightParentLegEqualsflightFromForm = flightParentLeg != null && flightFromForm != null && masterId == flightId && flightParentLeg.getAirlineManager().getId() == flightFromForm.getAirlineManager().getId()
+				&& flightParentLeg.getAirlineManager().getId() == managerId && flightFromForm.getAirlineManager().getId() == managerId;
+			managerOwnsFlight = super.getRequest().getPrincipal().hasRealmOfType(AirlineManager.class) && flightParentLegEqualsflightFromForm && flightParentLeg.isDraftMode();
 		}
 
 		if (super.getRequest().hasData("departureAirport", int.class)) {
@@ -92,7 +94,21 @@ public class AirlineManagerLegCreateFromFlightService extends AbstractGuiService
 
 	@Override
 	public void validate(final Leg leg) {
-		;
+		boolean scheduledDepartureIsFuture = false;
+		if (leg.getScheduledDeparture() != null && leg.getScheduledArrival() != null) {
+			try {
+				scheduledDepartureIsFuture = leg.getScheduledDeparture().after(new SimpleDateFormat("yyyy/MM/dd HH:mm").parse("2025/01/01 00:00"));
+			} catch (ParseException e) {
+			}
+			super.state(scheduledDepartureIsFuture, "scheduledDeparture", "acme.validation.leg.scheduledDepartureIsFuture.message");
+
+			boolean scheduledArrivalIsFuture = false;
+			try {
+				scheduledArrivalIsFuture = leg.getScheduledArrival().after(new SimpleDateFormat("yyyy/MM/dd HH:mm").parse("2025/01/01 00:01"));
+			} catch (ParseException e) {
+			}
+			super.state(scheduledArrivalIsFuture, "scheduledArrival", "acme.validation.leg.scheduledArrivalIsFuture.message");
+		}
 	}
 
 	@Override

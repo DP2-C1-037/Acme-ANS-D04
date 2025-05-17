@@ -27,7 +27,17 @@ public class TechnicianInvolvedInShowService extends AbstractGuiService<Technici
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int id;
+		Technician technician;
+		InvolvedIn involvedIn;
+
+		id = super.getRequest().getData("id", int.class);
+		involvedIn = this.repository.findInvolvedInById(id);
+		technician = involvedIn == null ? null : involvedIn.getMaintenanceRecord().getTechnician();
+		status = involvedIn != null && (!involvedIn.getMaintenanceRecord().getDraftMode() || super.getRequest().getPrincipal().hasRealm(technician));
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override

@@ -1,6 +1,8 @@
 
 package acme.features.airlineManager.flight;
 
+import java.util.Objects;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
@@ -43,9 +45,10 @@ public class AirlineManagerFlightCreateService extends AbstractGuiService<Airlin
 
 	@Override
 	public void validate(final Flight flight) {
-
-		boolean confirmation = super.getRequest().getData("confirmation", boolean.class) && flight.isDraftMode();
-		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
+		if (flight.getDestinationCity() != null && flight.getOriginCity() != null) {
+			boolean flightDifferentAirports = !Objects.equals(flight.getOriginCity(), flight.getDestinationCity());
+			super.state(flightDifferentAirports, "*", "acme.validation.flight.*.flightDifferentAirports.message");
+		}
 	}
 
 	@Override
@@ -60,7 +63,6 @@ public class AirlineManagerFlightCreateService extends AbstractGuiService<Airlin
 		SelectChoices selfTransfer = SelectChoices.from(FlightSelfTransfer.class, flight.getRequiresSelfTransfer());
 
 		dataset = super.unbindObject(flight, "tag", "requiresSelfTransfer", "cost", "description", "draftMode");
-		dataset.put("confirmation", false);
 		dataset.put("selfTransfer", selfTransfer);
 		super.getResponse().addData(dataset);
 	}

@@ -16,7 +16,6 @@ airline-manager.leg.form.button.create-from-all-mine = Crear
 airline-manager.leg.form.button.update = Actualizar
 airline-manager.leg.form.button.delete = Borrar
 airline-manager.leg.form.button.publish = Publicar
-airline-manager.leg.form.label.confirmation = Confirmar que los datos de la escala son correctos.
 
 airline-manager.leg.list.label.flightNumber = Número de vuelo
 airline-manager.leg.list.label.status = Estado

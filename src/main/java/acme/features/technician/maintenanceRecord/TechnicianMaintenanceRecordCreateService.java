@@ -30,6 +30,7 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 		boolean status;
 		int aircraftId;
 		Aircraft aircraft;
+		MaintenanceStatus maintenanceRecordStatus;
 
 		if (super.getRequest().getMethod().equals("GET"))
 			status = true;
@@ -37,7 +38,11 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 			aircraftId = super.getRequest().getData("aircraft", int.class);
 			aircraft = this.repository.findAircraftById(aircraftId);
 
-			status = aircraft != null;
+			status = aircraftId == 0 || aircraft != null;
+
+			maintenanceRecordStatus = super.getRequest().getData("status", MaintenanceStatus.class);
+			if (maintenanceRecordStatus != null)
+				status = status && !maintenanceRecordStatus.equals(MaintenanceStatus.COMPLETED);
 		}
 
 		super.getResponse().setAuthorised(status);
@@ -71,16 +76,7 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 
 	@Override
 	public void validate(final MaintenanceRecord maintenanceRecord) {
-		boolean isNull;
-
-		isNull = maintenanceRecord == null || maintenanceRecord.getStatus() == null;
-
-		if (!isNull) {
-			boolean status;
-			status = !maintenanceRecord.getStatus().equals(MaintenanceStatus.COMPLETED);
-
-			super.state(status, "*", "technician.maintenance-record.create.status");
-		}
+		;
 	}
 
 	@Override
@@ -96,7 +92,7 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 		Dataset dataset;
 
 		possibleStatus = new SelectChoices();
-		possibleStatus.add("0", "----", maintenanceRecord.getStatus() == null);
+		possibleStatus.add("----", "----", maintenanceRecord.getStatus() == null);
 		possibleStatus.add("PENDING", "PENDING", maintenanceRecord.getStatus() == MaintenanceStatus.PENDING);
 		possibleStatus.add("IN_PROGRESS", "IN_PROGRESS", maintenanceRecord.getStatus() == MaintenanceStatus.IN_PROGRESS);
 
