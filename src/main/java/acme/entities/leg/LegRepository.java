@@ -45,10 +45,16 @@ public interface LegRepository extends AbstractRepository {
 	@Query("select l from Leg l where l.aircraft.id = :aircraftId and l.id <> :legId and (:scheduledDeparture BETWEEN l.scheduledDeparture AND l.scheduledArrival OR l.scheduledDeparture BETWEEN :scheduledDeparture AND :scheduledArrival)")
 	Collection<Leg> findLegByAircraftIdSameTime(int aircraftId, int legId, Date scheduledDeparture, Date scheduledArrival);
 
-	@Query("select l from Leg l where l.departureAirport.id = :airportId and l.id <> :legId and l.scheduledDeparture = :scheduledDeparture")
-	Collection<Leg> findLegByAirportIdSameDeparture(int airportId, int legId, Date scheduledDeparture);
+	@Query("select l from Leg l where l.departureAirport.id = :departureAirportId and l.id <> :legId and l.scheduledDeparture = :scheduledDeparture")
+	Collection<Leg> findLegByAirportIdSameDeparture(int departureAirportId, int legId, Date scheduledDeparture);
 
-	@Query("select l from Leg l where l.arrivalAirport.id = :airportId and l.id <> :legId and l.scheduledArrival = :scheduledArrival")
-	Collection<Leg> findLegByAirportIdSameArrival(int airportId, int legId, Date scheduledArrival);
+	@Query("select l from Leg l where l.arrivalAirport.id = :arrivalAirportId and l.id <> :legId and l.scheduledArrival = :scheduledArrival")
+	Collection<Leg> findLegByAirportIdSameArrival(int arrivalAirportId, int legId, Date scheduledArrival);
+
+	@Query("SELECT l FROM Leg l WHERE l.flight.id = :flightId AND l.scheduledDeparture >= :scheduledArrival AND l.departureAirport.id <> :arrivalAirportId ORDER BY l.scheduledDeparture ASC")
+	Collection<Leg> findNextLegWithWrongDeparture(int flightId, int arrivalAirportId, Date scheduledArrival);
+
+	@Query("SELECT l FROM Leg l WHERE l.flight.id = :flightId AND l.scheduledArrival <= :scheduledDeparture AND l.arrivalAirport.id <> :departureAirportId ORDER BY l.scheduledArrival DESC")
+	Collection<Leg> findPreviousLegWithWrongArrival(int flightId, int departureAirportId, Date scheduledDeparture);
 
 }

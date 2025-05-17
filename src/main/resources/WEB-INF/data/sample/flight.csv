@@ -28,5 +28,9 @@ flight-15,Lorem ipsum dolor sit ame,SELF_TRANSFER,EUR 500000.00,Lorem ipsum dolo
 flight-16,Lorem ipsum dolor sit ame,SELF_TRANSFER,EUR 500000.00,Lorem ipsum dolor sit amet consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,false,airline-manager-01
 
 # extra para pruebas
-flight-17,A Probar,SELF_TRANSFER,EUR 120.00,Me gusta probar,true,airline-manager-01
-
+flight-17,A Probar (1 leg publicada y otra no),SELF_TRANSFER,EUR 120.00,Me gusta probar,true,airline-manager-01
+flight-18,A Probar 2 (1 leg publicada),SELF_TRANSFER,EUR 120.00,Me gusta probar,true,airline-manager-01
+flight-19,A Probar 3 (sin legs),SELF_TRANSFER,EUR 120.00,Me gusta probar,true,airline-manager-01
+flight-20,A Probar 2 (2 legs sin publicar),SELF_TRANSFER,EUR 120.00,Me gusta probar,true,airline-manager-01
+flight-21,A Probar 2 (2 legs publicadas),SELF_TRANSFER,EUR 120.00,Me gusta probar,true,airline-manager-01
+flight-22,A Probar 3 (1 leg publicada),SELF_TRANSFER,EUR 120.00,Me gusta probar,false,airline-manager-01

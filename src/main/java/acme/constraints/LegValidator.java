@@ -91,6 +91,13 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 			boolean noArrivalAirportOverlap = this.legRepository.findLegByAirportIdSameArrival(legToValidate.getArrivalAirport().getId(), legToValidate.getId(), legToValidate.getScheduledArrival()).isEmpty();
 			super.state(context, noArrivalAirportOverlap, "arrivalAirport", "acme.validation.leg.arrivalAirport.noArrivalAirportOverlap.message");
 
+			// Coherencia entre departureAirport y arrivalAirport con la leg i y la i+1
+			boolean consecutiveLegsDepartureAirportEqualsArrivalAirport = this.legRepository.findNextLegWithWrongDeparture(legToValidate.getFlight().getId(), legToValidate.getArrivalAirport().getId(), legToValidate.getScheduledArrival()).isEmpty();
+			super.state(context, consecutiveLegsDepartureAirportEqualsArrivalAirport, "arrivalAirport", "acme.validation.leg.arrivalAirport.consecutiveLegsDepartureAirportEqualsArrivalAirport.message");
+			// El de llegada
+			boolean consecutiveLegsArrivalAirportEqualsDepartureAirport = this.legRepository.findPreviousLegWithWrongArrival(legToValidate.getFlight().getId(), legToValidate.getDepartureAirport().getId(), legToValidate.getScheduledDeparture()).isEmpty();
+			super.state(context, consecutiveLegsArrivalAirportEqualsDepartureAirport, "departureAirport", "acme.validation.leg.departureAirport.consecutiveLegsDepartureAirportEqualsArrivalAirport.message");
+
 			result = !super.hasErrors(context);
 		}
 

@@ -39,6 +39,10 @@ acme.validation.leg.scheduledDepartureIsFuture.message = You cannot program flig
 
 acme.validation.leg.scheduledArrivalIsFuture.message = You cannot program flights for the past
 
+acme.validation.leg.arrivalAirport.consecutiveLegsDepartureAirportEqualsArrivalAirport.message = A flight's leg arrival airport must be the same than the next leg departure airport
+
+acme.validation.leg.departureAirport.consecutiveLegsDepartureAirportEqualsArrivalAirport.message = A flight's leg arrival airport must be the same than the next leg departure airport
+
 acme.validation.flight.*.notAllLegsPublishedOrNoLegs.message = The flight must have at least 1 published leg to be published, and all its legs must have been published before publishing the flight
 
 acme.validation.flight.*.flightDifferentAirports.message = The flight cannot have same departure and arrival airports
