@@ -15,6 +15,7 @@ import acme.client.services.GuiService;
 import acme.entities.booking.Booking;
 import acme.entities.booking.TravelClass;
 import acme.entities.flight.Flight;
+import acme.entities.passenger.Passenger;
 import acme.realms.Customer;
 
 @GuiService
@@ -74,6 +75,17 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 			atLeastAPassengerAssigned = numberOfPassengersAssigned != 0;
 
 			super.state(atLeastAPassengerAssigned, "*", "acme.validation.booking.passengers.message");
+		}
+		{
+			boolean allPassengersPublished;
+			Collection<Passenger> bookingDraftModePassengers;
+
+			bookingDraftModePassengers = this.repository.findAllDraftModePassengersFromBookingById(booking.getId());
+
+			allPassengersPublished = bookingDraftModePassengers.size() == 0;
+
+			super.state(allPassengersPublished, "*", "acme.validation.booking.passengersPublished.message");
+
 		}
 
 	}
