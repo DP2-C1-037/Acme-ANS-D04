@@ -36,13 +36,15 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 		masterId = super.getRequest().getData("id", int.class);
 		assignment = this.repository.findFlightAssignmentById(masterId);
 		member = assignment == null ? null : assignment.getFlightCrewMember();
-		status = assignment != null;
+		status = assignment != null && assignment.isDraftMode() && super.getRequest().getPrincipal().hasRealm(member);
 
-		status = status && (assignment.isDraftMode() || super.getRequest().getPrincipal().hasRealm(member));
-
-		if (super.getRequest().hasData("leg", int.class)) {
+		if (super.getRequest().getMethod().equals("POST")) {
 			int legId = super.getRequest().getData("leg", int.class);
-			validLeg = this.repository.findLegById(legId) != null;
+			Leg leg = this.repository.findLegById(legId);
+
+			validLeg = legId == 0 || leg != null;
+			if (validLeg && leg != null)
+				validLeg = !leg.isDraftMode();
 			status = status && validLeg;
 		}
 
@@ -87,7 +89,7 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 	private void validateLegHasNotOccurred(final Leg leg) {
 		Date scheduledArrival = leg.getScheduledArrival();
 		Date now = MomentHelper.getCurrentMoment();
-		boolean hasOccurred = now.after(scheduledArrival);
+		boolean hasOccurred = MomentHelper.isAfter(now, scheduledArrival);
 		if (hasOccurred)
 			super.state(false, "*", "acme.validation.flight-assignment.leg-has-occurred.message");
 
@@ -141,7 +143,7 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 		SelectChoices selectedLegs;
 		String employeeCode;
 
-		legs = this.repository.findAllLegs();
+		legs = this.repository.findPublishedLegs();
 
 		statuses = SelectChoices.from(AssignmentStatus.class, assignment.getStatus());
 		duties = SelectChoices.from(FlightCrewDuty.class, assignment.getFlightCrewDuty());
