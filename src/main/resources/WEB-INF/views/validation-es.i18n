@@ -72,11 +72,11 @@ acme.validation.assistance-agent.employee-code-duplicated.message=El código de 
 acme.validation.assistance-agent.employee-code-invalid-format.message=El código de empleado debe seguir el patrón: 2-3 letras mayúsculas seguidas de 6 dígitos
 acme.validation.assistance-agent.employee-code-not-matching-initials.message=Las iniciales del código de empleado deben coincidir con las iniciales del nombre y apellido
 
-acme.validation.assignedTo.passenger.draftMode.message = El pasajero debe estar publicado para ser asignado a una reserva
 acme.validation.assignedTo.alreadyAssigned.message = Este pasajero ya está asignado a esta reserva
 
 acme.validation.booking.duplicated-booking.message = Código localizador de la reserva ya en uso
 acme.validation.booking.lastNibble.message = Los últimos cuatro dígitos de la tarjeta de crédito deben ser registrados para publicar esta reserva
+acme.validation.booking.passengersPublished.message = Todos los pasajeros asignados deben estar publicados para publicar la reserva
 
 acme.validation.claim.registrationMoment.message = El momento de registro debe ser posterior a la fecha de inicio de trabajo del agente de asistencia.
 
