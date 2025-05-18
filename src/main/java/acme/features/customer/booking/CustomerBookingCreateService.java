@@ -41,7 +41,7 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 		else {
 			flightId = super.getRequest().getData("flight", int.class);
 			flight = this.repository.findFlightById(flightId);
-			status = flightId == 0 || flight != null;
+			status = (flightId == 0 || flight != null) && !flight.isDraftMode();
 		}
 
 		super.getResponse().setAuthorised(status);
@@ -94,8 +94,7 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 		flightsInFuture = flights.stream().filter(f -> MomentHelper.isFuture(f.getScheduledDeparture())).collect(Collectors.toList());
 
 		travelClassesChoices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
-		flightsChoices = SelectChoices.from(flightsInFuture, "tag", null);
-		// TODO: Change choices display text from tag to the origin and destiny of the flight, to be implemented when flight derived attributes are fixed
+		flightsChoices = SelectChoices.from(flightsInFuture, "originDestinationTag", null);
 
 		dataset = super.unbindObject(booking, "locatorCode", "travelClass", "lastNibble", "flight", "draftMode");
 		dataset.put("travelClasses", travelClassesChoices);

@@ -34,10 +34,18 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		boolean status;
 		int bookingId;
 		Booking booking;
+		int flightId;
+		Flight flight;
 
 		bookingId = super.getRequest().getData("id", int.class);
 		booking = this.repository.findBookingById(bookingId);
 		status = booking != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(booking.getCustomer());
+
+		if (status && !super.getRequest().getMethod().equals("GET")) {
+			flightId = super.getRequest().getData("flight", int.class);
+			flight = this.repository.findFlightById(flightId);
+			status = (flightId == 0 || flight != null) && !flight.isDraftMode();
+		}
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -82,7 +90,7 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 
 			bookingDraftModePassengers = this.repository.findAllDraftModePassengersFromBookingById(booking.getId());
 
-			allPassengersPublished = bookingDraftModePassengers.size() == 0;
+			allPassengersPublished = bookingDraftModePassengers.isEmpty();
 
 			super.state(allPassengersPublished, "*", "acme.validation.booking.passengersPublished.message");
 
@@ -108,7 +116,7 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		flightsInFuture = flights.stream().filter(f -> MomentHelper.isFuture(f.getScheduledDeparture())).collect(Collectors.toList());
 
 		travelClassesChoices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
-		flightsChoices = SelectChoices.from(flightsInFuture, "tag", booking.getFlight());
+		flightsChoices = SelectChoices.from(flightsInFuture, "originDestinationTag", booking.getFlight());
 
 		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "lastNibble", "draftMode");
 		dataset.put("price", booking.getPrice());
@@ -116,11 +124,6 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		dataset.put("travelClass", travelClassesChoices.getSelected().getKey());
 		dataset.put("flights", flightsChoices);
 		dataset.put("flight", flightsChoices.getSelected().getKey());
-		//dataset.put("originCity", booking.getFlight().getOriginCity());
-		//dataset.put("destinationCity", booking.getFlight().getDestinationCity());
-		//dataset.put("scheduledDeparture", booking.getFlight().getScheduledDeparture());
-		//dataset.put("scheduledArrival", booking.getFlight().getScheduledDeparture());
-		//TODO: When flight custom attributes are fixed
 
 		super.getResponse().addData(dataset);
 	}
