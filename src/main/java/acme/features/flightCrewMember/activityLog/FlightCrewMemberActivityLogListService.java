@@ -78,7 +78,6 @@ public class FlightCrewMemberActivityLogListService extends AbstractGuiService<F
 	public void unbind(final Collection<ActivityLog> log) {
 		int masterId;
 		FlightAssignment assignment;
-		boolean showingCreate;
 		boolean correctFlightCrewMember;
 		int memberId;
 		int userId;
@@ -89,10 +88,9 @@ public class FlightCrewMemberActivityLogListService extends AbstractGuiService<F
 		memberId = assignment.getFlightCrewMember().getId();
 
 		correctFlightCrewMember = memberId == userId;
-		showingCreate = !assignment.isDraftMode() && correctFlightCrewMember;
 
 		super.getResponse().addGlobal("masterId", masterId);
-		super.getResponse().addGlobal("showingCreate", showingCreate);
+		super.getResponse().addGlobal("showingCreate", correctFlightCrewMember);
 
 	}
 
