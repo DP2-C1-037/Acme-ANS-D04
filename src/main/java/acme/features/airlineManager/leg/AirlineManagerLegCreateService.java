@@ -34,11 +34,12 @@ public class AirlineManagerLegCreateService extends AbstractGuiService<AirlineMa
 		boolean validArrivalAirport = true;
 		boolean validAircraft = true;
 		boolean managerOwnsLeg = true;
+		boolean idNotTampered = true;
+
+		if (super.getRequest().hasData("id", int.class))
+			idNotTampered = super.getRequest().getData("id", int.class) == 0;
 
 		int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		int legId = super.getRequest().getData("id", int.class);
-		Leg leg = this.repository.findLegById(legId);
-		boolean validLeg = leg != null && leg.isDraftMode();
 
 		Flight flightFromForm = null;
 		if (super.getRequest().hasData("flight", int.class)) {
@@ -69,7 +70,7 @@ public class AirlineManagerLegCreateService extends AbstractGuiService<AirlineMa
 				validAircraft = this.repository.findAircraftById(aircraftId) != null;
 		}
 
-		boolean status = validLeg && managerOwnsLeg && validFlight && validDepartureAirport && validArrivalAirport && validAircraft;
+		boolean status = idNotTampered && managerOwnsLeg && validFlight && validDepartureAirport && validArrivalAirport && validAircraft;
 
 		super.getResponse().setAuthorised(status);
 	}

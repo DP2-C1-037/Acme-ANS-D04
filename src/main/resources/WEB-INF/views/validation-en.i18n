@@ -45,6 +45,8 @@ acme.validation.leg.departureAirport.consecutiveLegsDepartureAirportEqualsArriva
 
 acme.validation.flight.*.notAllLegsPublishedOrNoLegs.message = The flight must have at least 1 published leg to be published, and all its legs must have been published before publishing the flight
 
+acme.validation.flight.*.noPublishedLegs.message = If the flight has published legs it cannot be deleted
+
 acme.validation.flight.*.flightDifferentAirports.message = The flight cannot have same departure and arrival airports
 
 acme.validation.airline.iataCode.message = Airline iata code must be unique

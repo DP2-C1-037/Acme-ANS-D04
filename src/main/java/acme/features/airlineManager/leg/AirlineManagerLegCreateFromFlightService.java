@@ -4,6 +4,7 @@ package acme.features.airlineManager.leg;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -28,26 +29,24 @@ public class AirlineManagerLegCreateFromFlightService extends AbstractGuiService
 
 	// AbstractGuiService interface -------------------------------------------
 
+	// MIRAR SI HACEN FALTA LOS ID != 0.
+
 
 	@Override
 	public void authorise() {
-		boolean managerOwnsFlight = true;
 		boolean validFlight = true;
 		boolean validDepartureAirport = true;
 		boolean validArrivalAirport = true;
 		boolean validAircraft = true;
+		boolean idNotTampered = true;
+
+		if (super.getRequest().hasData("id", int.class))
+			idNotTampered = super.getRequest().getData("id", int.class) == 0;
 
 		if (super.getRequest().hasData("flight", int.class)) {
 			int masterId = super.getRequest().getData("masterId", int.class);
-			Flight flightParentLeg = this.repository.findFlightById(masterId);
 			int flightId = super.getRequest().getData("flight", int.class);
-			Flight flightFromForm = null;
-			if (flightId != 0)
-				flightFromForm = this.repository.findFlightById(flightId);
-			int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-			boolean flightParentLegEqualsflightFromForm = flightParentLeg != null && flightFromForm != null && masterId == flightId && flightParentLeg.getAirlineManager().getId() == flightFromForm.getAirlineManager().getId()
-				&& flightParentLeg.getAirlineManager().getId() == managerId && flightFromForm.getAirlineManager().getId() == managerId;
-			managerOwnsFlight = super.getRequest().getPrincipal().hasRealmOfType(AirlineManager.class) && flightParentLegEqualsflightFromForm && flightParentLeg.isDraftMode();
+			validFlight = masterId == flightId;
 		}
 
 		if (super.getRequest().hasData("departureAirport", int.class)) {
@@ -68,7 +67,7 @@ public class AirlineManagerLegCreateFromFlightService extends AbstractGuiService
 				validAircraft = this.repository.findAircraftById(aircraftId) != null;
 		}
 
-		boolean status = managerOwnsFlight && validFlight && validDepartureAirport && validArrivalAirport && validAircraft;
+		boolean status = idNotTampered && validFlight && validDepartureAirport && validArrivalAirport && validAircraft;
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -119,8 +118,8 @@ public class AirlineManagerLegCreateFromFlightService extends AbstractGuiService
 	@Override
 	public void unbind(final Leg leg) {
 		Dataset dataset;
-		int airlineManagerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		Collection<Flight> flightsList = this.repository.findAllFlightsByAirlineManagerId(airlineManagerId);
+		int flightId = super.getRequest().getData("masterId", int.class);
+		Collection<Flight> flightsList = List.of(this.repository.findFlightById(flightId));
 		Collection<Airport> airportsList = this.repository.findAllAirports();
 		Collection<Aircraft> aircraftsList = this.repository.findAllAircrafts();
 		SelectChoices flights = SelectChoices.from(flightsList, "tag", leg.getFlight());
