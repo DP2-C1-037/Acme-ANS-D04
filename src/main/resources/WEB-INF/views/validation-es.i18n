@@ -47,6 +47,8 @@ acme.validation.leg.departureAirport.consecutiveLegsDepartureAirportEqualsArriva
 
 acme.validation.flight.*.notAllLegsPublishedOrNoLegs.message = El vuelo debe tener al menos 1 escala publicada para poder ser publicada, y todas sus escalas deben haber sido publicadas antes de publicar el vuelo
 
+acme.validation.flight.*.noPublishedLegs.message = Si el vuelo tiene escalas publicadas no se puede publicar
+
 acme.validation.flight.*.flightDifferentAirports.message = El vuelo no puede tener el mismo aeropuerto de llegada y salida
 
 acme.validation.airline.iataCode.message = El código iata de la aerolínea debe ser único

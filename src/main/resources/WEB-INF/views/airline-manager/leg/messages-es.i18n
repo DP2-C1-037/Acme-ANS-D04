@@ -18,8 +18,8 @@ airline-manager.leg.form.button.delete = Borrar
 airline-manager.leg.form.button.publish = Publicar
 
 airline-manager.leg.list.label.flightNumber = Número de vuelo
-airline-manager.leg.list.label.status = Estado
 airline-manager.leg.list.label.scheduledDeparture = Fecha de salida
+airline-manager.leg.list.label.scheduledArrival = Fecha de llegada
 
 airline-manager.leg.list.button.create = Crear
 airline-manager.leg.list.button.create-from-all-mine = Crear

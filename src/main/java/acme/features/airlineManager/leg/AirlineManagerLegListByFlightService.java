@@ -53,7 +53,7 @@ public class AirlineManagerLegListByFlightService extends AbstractGuiService<Air
 
 		int masterId = super.getRequest().getData("masterId", int.class);
 
-		dataset = super.unbindObject(leg, "flightNumber", "status", "scheduledDeparture");
+		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival");
 		super.addPayload(dataset, leg);
 
 		super.getResponse().addGlobal("masterId", masterId);

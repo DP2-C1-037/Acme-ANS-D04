@@ -20,8 +20,7 @@ public class AirlineManagerLegListService extends AbstractGuiService<AirlineMana
 
 	@Override
 	public void authorise() {
-		boolean status = super.getRequest().getPrincipal().hasRealmOfType(AirlineManager.class);
-		super.getResponse().setAuthorised(status);
+		super.getResponse().setAuthorised(true);
 	}
 
 	// ORDERED BY DATE
@@ -40,9 +39,8 @@ public class AirlineManagerLegListService extends AbstractGuiService<AirlineMana
 	public void unbind(final Leg leg) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(leg, "flightNumber", "status", "scheduledDeparture");
+		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival");
 		super.addPayload(dataset, leg);
-		super.getResponse().addGlobal("masterId", null);
 		super.getResponse().addData(dataset);
 
 	}
