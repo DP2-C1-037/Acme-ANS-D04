@@ -61,7 +61,8 @@ public class TechnicianInvolvedInShowService extends AbstractGuiService<Technici
 
 		id = super.getRequest().getPrincipal().getActiveRealm().getId();
 
-		tasks = this.repository.findAllAvailableTasks(id);
+		tasks = this.repository.findAllAvailableTasksForInvolvedIn(id, involvedIn.getMaintenanceRecord().getId());
+		tasks.add(involvedIn.getTask());
 		choices = SelectChoices.from(tasks, "description", involvedIn.getTask());
 
 		types = SelectChoices.from(TaskType.class, involvedIn.getTask().getType());
