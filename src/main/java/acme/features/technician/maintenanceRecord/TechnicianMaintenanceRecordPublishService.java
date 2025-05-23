@@ -84,7 +84,7 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 				boolean status;
 				status = maintenanceRecord.getStatus().equals(MaintenanceStatus.COMPLETED);
 
-				super.state(status, "*", "technician.maintenance-record.publish.status");
+				super.state(status, "status", "technician.maintenance-record.publish.status");
 			}
 			{
 				int id, unpublishedTasks, tasks;
