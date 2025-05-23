@@ -76,7 +76,7 @@ public class FlightCrewMemberActivityLogDeleteService extends AbstractGuiService
 		dataset = super.unbindObject(log, "registrationMoment", "typeOfIncident", "description", "severityLevel", "draftMode");
 		dataset.put("assignments", selectedAssignments);
 		dataset.put("assignment", selectedAssignments.getSelected().getKey());
-		dataset.put("masterId", super.getRequest().getData("masterId", int.class));
+		dataset.put("masterId", log.getFlightAssignment().getId());
 
 		super.getResponse().addData(dataset);
 	}

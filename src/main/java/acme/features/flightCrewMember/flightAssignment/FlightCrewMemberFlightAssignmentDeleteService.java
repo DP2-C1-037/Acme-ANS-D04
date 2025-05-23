@@ -68,6 +68,7 @@ public class FlightCrewMemberFlightAssignmentDeleteService extends AbstractGuiSe
 
 	@Override
 	public void validate(final FlightAssignment assignment) {
+		// aqui una restriccion de que si tiene logs publicados no se puede borrar
 		;
 	}
 
