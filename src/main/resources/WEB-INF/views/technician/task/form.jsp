@@ -4,7 +4,7 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form>
-	<acme:input-textbox code="technician.task.form.label.technician" path="technician.identity.name" readonly="true"/>	
+	<acme:input-select code="technician.task.form.label.technician" path="technician" choices= "${technicians}" readonly="true"/>	
 	<acme:input-select code="technician.task.form.label.type" path="type" choices="${types}"/>
 	<acme:input-textarea code="technician.task.form.label.description" path="description"/>
 	<acme:input-integer code="technician.task.form.label.priority" path="priority"/>

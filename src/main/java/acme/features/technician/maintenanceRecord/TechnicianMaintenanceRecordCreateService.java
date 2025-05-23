@@ -89,6 +89,8 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 		SelectChoices possibleStatus;
 		Collection<Aircraft> aircrafts;
 		SelectChoices choices;
+		Collection<Technician> technicians;
+		SelectChoices possibleTechnicians;
 		Dataset dataset;
 
 		possibleStatus = new SelectChoices();
@@ -96,13 +98,18 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 		possibleStatus.add("PENDING", "PENDING", maintenanceRecord.getStatus() == MaintenanceStatus.PENDING);
 		possibleStatus.add("IN_PROGRESS", "IN_PROGRESS", maintenanceRecord.getStatus() == MaintenanceStatus.IN_PROGRESS);
 
+		technicians = this.repository.findAllTechnicians();
+		possibleTechnicians = SelectChoices.from(technicians, "identity.name", maintenanceRecord.getTechnician());
+
 		aircrafts = this.repository.findAvailableAircrafts();
 		choices = SelectChoices.from(aircrafts, "model", maintenanceRecord.getAircraft());
 
-		dataset = super.unbindObject(maintenanceRecord, "technician.identity.name", "maintenanceDate", "nextInspectionDueDate", "estimatedCost", "notes");
+		dataset = super.unbindObject(maintenanceRecord, "maintenanceDate", "status", "nextInspectionDueDate", "estimatedCost", "notes");
 		dataset.put("statuses", possibleStatus);
 		dataset.put("aircraft", choices.getSelected().getKey());
 		dataset.put("aircrafts", choices);
+		dataset.put("technician", possibleTechnicians.getSelected().getKey());
+		dataset.put("technicians", possibleTechnicians);
 
 		super.getResponse().addData(dataset);
 	}
