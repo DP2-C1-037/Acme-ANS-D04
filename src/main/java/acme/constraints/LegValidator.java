@@ -1,6 +1,9 @@
 
 package acme.constraints;
 
+import java.util.Date;
+import java.util.List;
+
 import javax.validation.ConstraintValidatorContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +29,8 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 
 	@Override
 	public boolean isValid(final Leg legToValidate, final ConstraintValidatorContext context) {
+		boolean result = true;
+
 		boolean flightNumberNotNull = legToValidate.getFlightNumber() != null;
 		super.state(context, flightNumberNotNull, "flightNumber", "acme.validation.leg.flightNumber.notNull.message");
 
@@ -50,14 +55,14 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 		boolean aircraftNotNull = legToValidate.getAircraft() != null;
 		super.state(context, aircraftNotNull, "aircraft", "acme.validation.leg.aircraft.notNull.message");
 
-		boolean result = !super.hasErrors(context);
+		boolean notNull = !super.hasErrors(context);
 
-		if (result && Integer.valueOf(legToValidate.getId()) != null) {
+		if (notNull && Integer.valueOf(legToValidate.getId()) != null) {
 
 			// flightNumber uniqueness
 			Leg existingLeg = this.legRepository.findLegByFlightNumber(legToValidate.getFlightNumber());
-			boolean uniqueness = existingLeg == null || existingLeg.getId() == legToValidate.getId();
-			super.state(context, uniqueness, "flightNumber", "acme.validation.leg.flightNumber.unique.message");
+			boolean flightNumberuniqueness = existingLeg == null || existingLeg.getId() == legToValidate.getId();
+			super.state(context, flightNumberuniqueness, "flightNumber", "acme.validation.leg.flightNumber.unique.message");
 
 			// flightNumber letters correspond to airline's iataCode
 			String airlineIataCode = this.legRepository.getIataCodeFromAircraftId(legToValidate.getAircraft().getId());
@@ -76,11 +81,14 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 			boolean noOverlappingLegs = this.legRepository.findOverlappingLegs(legToValidate.getFlight().getId(), legToValidate.getId(), legToValidate.getScheduledDeparture(), legToValidate.getScheduledArrival()).isEmpty();
 			super.state(context, noOverlappingLegs, "scheduledDeparture", "acme.validation.leg.scheduledDeparture.noOverlappingLegs.message");
 
-			// Diferencia máxima de 24 horas con la última escala
-			//boolean noMoreThan1DayWithPreviousLeg = this.legRepository.findScheduledArrival(legToValidate.getFlight().getId()).getTime() - legToValidate.getScheduledDeparture().getTime() <= 60 * 60 * 24 * 1000;
-			//super.state(context, noMoreThan1DayWithPreviousLeg, "scheduledDeparture", "acme.validation.leg.scheduledDeparture.noMoreThan1DayWithPreviousLeg.message");
+			// Diferencia máxima de 24 horas y mínima de 1 minuto con la última escala
+			List<Date> previousDates = (List<Date>) this.legRepository.findPreviousLeg(legToValidate.getFlight().getId(), legToValidate.getScheduledDeparture());
+			boolean noMoreThan1DayWithPreviousLeg = true;
+			if (!previousDates.isEmpty())
+				noMoreThan1DayWithPreviousLeg = previousDates.get(0).getTime() - legToValidate.getScheduledDeparture().getTime() <= 60 * 60 * 60 * 1000;
+			super.state(context, noMoreThan1DayWithPreviousLeg, "scheduledDeparture", "acme.validation.leg.scheduledDeparture.noMoreThan1DayWithPreviousLeg.message");
 
-			// No se usa la misma aeronave en diferentes escalas
+			// No se usa la misma aeronave en diferentes escalas que son a la vez
 			boolean noSameAircraft = this.legRepository.findLegByAircraftIdSameTime(legToValidate.getAircraft().getId(), legToValidate.getId(), legToValidate.getScheduledDeparture(), legToValidate.getScheduledArrival()).isEmpty();
 			super.state(context, noSameAircraft, "aircraft", "acme.validation.leg.aircraft.noSameAircraft.message");
 

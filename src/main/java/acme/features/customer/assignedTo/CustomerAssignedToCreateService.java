@@ -45,7 +45,7 @@ public class CustomerAssignedToCreateService extends AbstractGuiService<Customer
 			passenger = this.repository.findPassengerById(passengerId);
 			status = passengerId == 0 || passenger != null;
 			if (status)
-				status = !passenger.isDraftMode() && super.getRequest().getPrincipal().hasRealm(passenger.getCustomer());
+				status = super.getRequest().getPrincipal().hasRealm(passenger.getCustomer());
 		}
 
 		super.getResponse().setAuthorised(status);
@@ -84,12 +84,6 @@ public class CustomerAssignedToCreateService extends AbstractGuiService<Customer
 	@Override
 	public void validate(final AssignedTo assignedTo) {
 		{
-			boolean passengerPublished;
-
-			passengerPublished = !assignedTo.getPassenger().isDraftMode();
-			super.state(passengerPublished, "passenger", "acme.validation.assignedTo.passenger.draftMode.message");
-		}
-		{
 			boolean alreadyAssigned;
 
 			List<AssignedTo> assignedTos = this.repository.findAssignationFromBookingIdAndPassengerId(assignedTo.getBooking().getId(), assignedTo.getPassenger().getId()).stream().toList();
@@ -116,7 +110,7 @@ public class CustomerAssignedToCreateService extends AbstractGuiService<Customer
 
 		customer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
 
-		passengers = this.repository.findAllPublishedPassengersFromCustomerId(customer.getId());
+		passengers = this.repository.findAllPassengersFromCustomerId(customer.getId());
 
 		passengerChoices = SelectChoices.from(passengers, "passportNumber", assignedTo.getPassenger());
 

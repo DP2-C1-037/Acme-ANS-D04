@@ -1,8 +1,6 @@
 
 package acme.features.airlineManager.flight;
 
-import java.util.Objects;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
@@ -47,10 +45,7 @@ public class AirlineManagerFlightUpdateService extends AbstractGuiService<Airlin
 
 	@Override
 	public void validate(final Flight flight) {
-		if (flight.getDestinationCity() != null && flight.getOriginCity() != null) {
-			boolean flightDifferentAirports = !Objects.equals(flight.getOriginCity(), flight.getDestinationCity());
-			super.state(flightDifferentAirports, "*", "acme.validation.flight.*.flightDifferentAirports.message");
-		}
+		;
 	}
 
 	@Override

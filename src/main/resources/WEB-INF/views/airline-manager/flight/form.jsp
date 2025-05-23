@@ -20,9 +20,9 @@
 		</jstl:when>
 		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
 			<acme:button code="airlineManager.flight.form.button.legs" action="/airline-manager/leg/list?masterId=${id}"/>
-			<acme:submit code="airlineManager.flight.form.button.update" action="/airline-manager/flight/update"/>
-			<acme:submit code="airlineManager.flight.form.button.delete" action="/airline-manager/flight/delete"/>
-			<acme:submit code="airlineManager.flight.form.button.publish" action="/airline-manager/flight/publish"/>
+			<acme:submit code="airlineManager.flight.form.button.update" action="/airline-manager/flight/update?id=${id}"/>
+			<acme:submit code="airlineManager.flight.form.button.delete" action="/airline-manager/flight/delete?id=${id}"/>
+			<acme:submit code="airlineManager.flight.form.button.publish" action="/airline-manager/flight/publish?id=${id}"/>
 		</jstl:when>
 		<jstl:when test="${_command == 'create'}">
 			<acme:submit code="airline-manager.flight.form.button.create" action="/airline-manager/flight/create"/>

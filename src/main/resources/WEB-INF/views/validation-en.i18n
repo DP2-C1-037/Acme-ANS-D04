@@ -45,6 +45,8 @@ acme.validation.leg.departureAirport.consecutiveLegsDepartureAirportEqualsArriva
 
 acme.validation.flight.*.notAllLegsPublishedOrNoLegs.message = The flight must have at least 1 published leg to be published, and all its legs must have been published before publishing the flight
 
+acme.validation.flight.*.noPublishedLegs.message = If the flight has published legs it cannot be deleted
+
 acme.validation.flight.*.flightDifferentAirports.message = The flight cannot have same departure and arrival airports
 
 acme.validation.airline.iataCode.message = Airline iata code must be unique
@@ -88,11 +90,11 @@ acme.validation.assistance-agent.employee-code-duplicated.message=Employee code 
 acme.validation.assistance-agent.employee-code-invalid-format.message=Employee code must follow the pattern: 2-3 uppercase letters followed by 6 digits
 acme.validation.assistance-agent.employee-code-not-matching-initials.message=Employee code initials must match the initials of the name and surname
 
-acme.validation.assignedTo.passenger.draftMode.message = Passenger must be in published to be assigned to a booking
 acme.validation.assignedTo.alreadyAssigned.message = This passenger is already assigned to this booking
 
 acme.validation.booking.duplicated-booking.message = Booking locator code already in use
 acme.validation.booking.lastNibble.message = Last nibble must be stored in order to publish this booking
+acme.validation.booking.passengersPublished.message = All assigned passengers must be published to publish the booking
 
 acme.validation.claim.registrationMoment.message = The registration moment must be after the assistance agent's work start date.
 

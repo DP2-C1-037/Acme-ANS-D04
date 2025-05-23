@@ -93,6 +93,11 @@ public class Flight extends AbstractEntity {
 		return legRepository.findLegsFromFlightId(this.getId()).size();
 	}
 
+	@Transient
+	public String getOriginDestinationTag() {
+		return this.getOriginCity().concat(" --> ").concat(this.getDestinationCity());
+	}
+
 	// Relationships
 
 

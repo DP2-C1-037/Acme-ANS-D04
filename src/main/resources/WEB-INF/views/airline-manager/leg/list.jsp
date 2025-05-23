@@ -4,9 +4,9 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:list>
-	<acme:list-column code="airline-manager.leg.list.label.flightNumber" path="flightNumber" width="33%"/>
-	<acme:list-column code="airline-manager.leg.list.label.status" path="status" width="33%"/>	
+	<acme:list-column code="airline-manager.leg.list.label.flightNumber" path="flightNumber" width="33%" sortable="false"/>	
 	<acme:list-column code="airline-manager.leg.list.label.scheduledDeparture" path="scheduledDeparture" width="34%"/>
+	<acme:list-column code="airline-manager.leg.list.label.scheduledArrival" path="scheduledArrival" width="33%"/>
 	
 	<acme:list-payload path="payload"/>	
 </acme:list>

@@ -59,7 +59,7 @@ public class CustomerAssignedToShowService extends AbstractGuiService<Customer, 
 		Dataset dataset;
 
 		customer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
-		passengers = this.repository.findAllPublishedPassengersFromCustomerId(customer.getId());
+		passengers = this.repository.findAllPassengersFromCustomerId(customer.getId());
 		passengerChoices = SelectChoices.from(passengers, "passportNumber", assignedTo.getPassenger());
 
 		dataset = super.unbindObject(assignedTo, "booking", "passenger", "passenger.fullName", "passenger.email", "passenger.passportNumber", "passenger.birthDate", "passenger.specialNeeds");

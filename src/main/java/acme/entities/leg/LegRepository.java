@@ -57,4 +57,6 @@ public interface LegRepository extends AbstractRepository {
 	@Query("SELECT l FROM Leg l WHERE l.flight.id = :flightId AND l.scheduledArrival <= :scheduledDeparture AND l.arrivalAirport.id <> :departureAirportId ORDER BY l.scheduledArrival DESC")
 	Collection<Leg> findPreviousLegWithWrongArrival(int flightId, int departureAirportId, Date scheduledDeparture);
 
+	@Query("SELECT l.scheduledArrival FROM Leg l WHERE l.flight.id = :flightId AND l.scheduledArrival <= :scheduledDeparture ORDER BY l.scheduledArrival DESC")
+	Collection<Date> findPreviousLeg(int flightId, Date scheduledDeparture);
 }

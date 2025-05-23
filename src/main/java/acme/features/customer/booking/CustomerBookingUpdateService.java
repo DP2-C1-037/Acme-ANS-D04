@@ -43,7 +43,7 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 		if (status && !super.getRequest().getMethod().equals("GET")) {
 			flightId = super.getRequest().getData("flight", int.class);
 			flight = this.repository.findFlightById(flightId);
-			status = flightId == 0 || flight != null;
+			status = (flightId == 0 || flight != null) && !flight.isDraftMode();
 		}
 
 		super.getResponse().setAuthorised(status);
@@ -89,8 +89,7 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 		flightsInFuture = flights.stream().filter(f -> MomentHelper.isFuture(f.getScheduledDeparture())).collect(Collectors.toList());
 
 		travelClassesChoices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
-		flightsChoices = SelectChoices.from(flightsInFuture, "tag", booking.getFlight());
-		// TODO: Change choices display text from tag to the origin and destiny of the flight, to be implemented when flight derived attributes are fixed
+		flightsChoices = SelectChoices.from(flightsInFuture, "originDestinationTag", booking.getFlight());
 
 		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "lastNibble", "draftMode");
 		dataset.put("price", booking.getPrice());
@@ -98,11 +97,6 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 		dataset.put("travelClass", travelClassesChoices.getSelected().getKey());
 		dataset.put("flights", flightsChoices);
 		dataset.put("flight", flightsChoices.getSelected().getKey());
-		//dataset.put("originCity", booking.getFlight().getOriginCity());
-		//dataset.put("destinationCity", booking.getFlight().getDestinationCity());
-		//dataset.put("scheduledDeparture", booking.getFlight().getScheduledDeparture());
-		//dataset.put("scheduledArrival", booking.getFlight().getScheduledDeparture());
-		//TODO: When flight custom attributes are fixed
 
 		super.getResponse().addData(dataset);
 	}
