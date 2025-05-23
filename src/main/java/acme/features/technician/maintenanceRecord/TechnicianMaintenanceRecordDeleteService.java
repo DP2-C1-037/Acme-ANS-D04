@@ -5,8 +5,6 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import acme.client.components.models.Dataset;
-import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
@@ -31,11 +29,18 @@ public class TechnicianMaintenanceRecordDeleteService extends AbstractGuiService
 		int masterId;
 		MaintenanceRecord maintenanceRecord;
 		Technician technician;
+		String method;
 
-		masterId = super.getRequest().getData("id", int.class);
-		maintenanceRecord = this.repository.findMaintenanceRecordById(masterId);
-		technician = maintenanceRecord == null ? null : maintenanceRecord.getTechnician();
-		status = maintenanceRecord != null && maintenanceRecord.getDraftMode() && super.getRequest().getPrincipal().hasRealm(technician);
+		method = super.getRequest().getMethod();
+
+		status = !method.equals("GET");
+
+		if (status) {
+			masterId = super.getRequest().getData("id", int.class);
+			maintenanceRecord = this.repository.findMaintenanceRecordById(masterId);
+			technician = maintenanceRecord == null ? null : maintenanceRecord.getTechnician();
+			status = maintenanceRecord != null && maintenanceRecord.getDraftMode() && super.getRequest().getPrincipal().hasRealm(technician);
+		}
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -80,17 +85,6 @@ public class TechnicianMaintenanceRecordDeleteService extends AbstractGuiService
 
 	@Override
 	public void unbind(final MaintenanceRecord maintenanceRecord) {
-		Collection<Aircraft> aircrafts;
-		SelectChoices choices;
-		Dataset dataset;
-
-		aircrafts = this.repository.findAvailableAircrafts();
-		choices = SelectChoices.from(aircrafts, "model", maintenanceRecord.getAircraft());
-
-		dataset = super.unbindObject(maintenanceRecord, "technician.identity.name", "maintenanceDate", "nextInspectionDueDate", "status", "estimatedCost", "notes", "draftMode");
-		dataset.put("aircraft", choices.getSelected().getKey());
-		dataset.put("aircrafts", choices);
-
-		super.getResponse().addData(dataset);
+		;
 	}
 }

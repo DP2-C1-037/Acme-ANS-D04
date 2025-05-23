@@ -92,7 +92,7 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 		Dataset dataset;
 
 		possibleStatus = new SelectChoices();
-		possibleStatus.add("----", "----", maintenanceRecord.getStatus() == null);
+		possibleStatus.add("0", "----", maintenanceRecord.getStatus() == null);
 		possibleStatus.add("PENDING", "PENDING", maintenanceRecord.getStatus() == MaintenanceStatus.PENDING);
 		possibleStatus.add("IN_PROGRESS", "IN_PROGRESS", maintenanceRecord.getStatus() == MaintenanceStatus.IN_PROGRESS);
 

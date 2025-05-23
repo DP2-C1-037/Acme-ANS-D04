@@ -16,5 +16,3 @@ technician.involved-in.list.label.description = Description
 technician.involved-in.list.label.priority = Priority
 
 technician.involved-in.list.button.add = Add
-
-technician.involved-in.create.duplicated = This task is already involved in the maintenance record
