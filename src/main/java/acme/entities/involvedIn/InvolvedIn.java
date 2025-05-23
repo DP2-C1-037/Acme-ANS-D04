@@ -1,5 +1,5 @@
 
-package acme.entities.mappings;
+package acme.entities.involvedIn;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
