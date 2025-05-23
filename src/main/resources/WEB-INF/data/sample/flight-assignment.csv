@@ -14,8 +14,8 @@ flight-assignment-07,CABIN_ATTENDANT,2025/01/01 00:00,CONFIRMED,"Lorem ipsum dol
 flight-assignment-08,CABIN_ATTENDANT,2012/07/02 00:00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",true,flight-crew-member-01,leg-22
 flight-assignment-09,CABIN_ATTENDANT,2012/07/02 00:00,CANCELLED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",true,flight-crew-member-01,leg-22
 # remarks - standard variations,,,,,,,
-flight-assignment-10,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,,true,flight-crew-member-01,leg-07
-flight-assignment-11,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,L,true,flight-crew-member-01,leg-07
+flight-assignment-10,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,,true,flight-crew-member-01,leg-22
+flight-assignment-11,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,L,true,flight-crew-member-01,leg-22
 flight-assignment-12,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",true,flight-crew-member-01,leg-22
 flight-assignment-13,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*",true,flight-crew-member-01,leg-22
 flight-assignment-14,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,โลเร็ม อิปซัม,true,flight-crew-member-01,leg-22
@@ -27,7 +27,7 @@ flight-assignment-19,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,' or 'A' = 'A,tr
 # draft mode - standard variations,,,,,,,
 flight-assignment-20,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",false,flight-crew-member-01,leg-22
 # leg - standard variations,,,,,,,
-flight-assignment-21,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",true,flight-crew-member-01,leg-08
+flight-assignment-21,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",true,flight-crew-member-01,leg-02
 # flight crew member - standard variations,,,,,,,
 flight-assignment-22,PILOT,2012/07/02 00:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",true,flight-crew-member-01,leg-22
 flight-assignment-23,COPILOT,2012/07/02 00:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",true,flight-crew-member-02,leg-22
