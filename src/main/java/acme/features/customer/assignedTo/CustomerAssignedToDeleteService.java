@@ -9,7 +9,7 @@ import acme.client.services.GuiService;
 import acme.entities.booking.Booking;
 import acme.entities.mappings.AssignedTo;
 import acme.entities.passenger.Passenger;
-import acme.realms.Customer;
+import acme.realms.customer.Customer;
 
 @GuiService
 public class CustomerAssignedToDeleteService extends AbstractGuiService<Customer, AssignedTo> {
