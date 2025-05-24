@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
+import acme.entities.involvedIn.InvolvedIn;
 import acme.entities.maintenanceRecords.MaintenanceRecord;
-import acme.entities.mappings.InvolvedIn;
 import acme.realms.technicians.Technician;
 
 @GuiService

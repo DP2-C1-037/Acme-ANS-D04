@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.controllers.AbstractGuiController;
 import acme.client.controllers.GuiController;
-import acme.entities.mappings.InvolvedIn;
+import acme.entities.involvedIn.InvolvedIn;
 import acme.realms.technicians.Technician;
 
 @GuiController
