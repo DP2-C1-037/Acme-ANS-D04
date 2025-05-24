@@ -16,7 +16,7 @@ import acme.entities.booking.Booking;
 import acme.entities.booking.TravelClass;
 import acme.entities.flight.Flight;
 import acme.entities.mappings.AssignedTo;
-import acme.realms.Customer;
+import acme.realms.customer.Customer;
 
 @GuiService
 public class CustomerBookingDeleteService extends AbstractGuiService<Customer, Booking> {

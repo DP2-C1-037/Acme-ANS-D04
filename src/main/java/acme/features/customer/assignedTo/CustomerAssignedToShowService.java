@@ -11,7 +11,7 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.mappings.AssignedTo;
 import acme.entities.passenger.Passenger;
-import acme.realms.Customer;
+import acme.realms.customer.Customer;
 
 @GuiService
 public class CustomerAssignedToShowService extends AbstractGuiService<Customer, AssignedTo> {
