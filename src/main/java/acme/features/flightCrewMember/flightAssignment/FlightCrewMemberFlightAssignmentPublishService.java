@@ -43,8 +43,12 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 			Leg leg = this.repository.findLegById(legId);
 
 			validLeg = legId == 0 || leg != null;
-			if (validLeg && leg != null)
-				validLeg = !leg.isDraftMode();
+			if (validLeg && leg != null) {
+				boolean isSameAsAssigned = assignment.getLeg() != null && leg.getId() == assignment.getLeg().getId();
+				boolean isFuture = MomentHelper.isBefore(MomentHelper.getCurrentMoment(), leg.getScheduledArrival());
+				boolean isMyAirline = leg.getAircraft().getAirline().getId() == member.getAirline().getId();
+				validLeg = !leg.isDraftMode() && isMyAirline && (isFuture || isSameAsAssigned);
+			}
 			status = status && validLeg;
 		}
 
@@ -54,8 +58,10 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 	@Override
 	public void load() {
 		FlightAssignment assignment;
+		int id;
 
-		assignment = new FlightAssignment();
+		id = super.getRequest().getData("id", int.class);
+		assignment = this.repository.findFlightAssignmentById(id);
 
 		super.getBuffer().addData(assignment);
 	}
@@ -142,9 +148,14 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 		Collection<Leg> legs;
 		SelectChoices selectedLegs;
 		String employeeCode;
+		FlightCrewMember member;
 
-		legs = this.repository.findPublishedLegs();
+		member = assignment.getFlightCrewMember();
 
+		legs = this.repository.findPublishedFutureOwnedLegs(MomentHelper.getCurrentMoment(), member.getAirline());
+		Leg currentLeg = assignment.getLeg();
+		if (currentLeg != null && !legs.contains(currentLeg))
+			legs.add(currentLeg);
 		statuses = SelectChoices.from(AssignmentStatus.class, assignment.getStatus());
 		duties = SelectChoices.from(FlightCrewDuty.class, assignment.getFlightCrewDuty());
 		selectedLegs = SelectChoices.from(legs, "flightNumber", assignment.getLeg());

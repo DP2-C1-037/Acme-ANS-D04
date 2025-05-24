@@ -28,6 +28,7 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 		boolean status;
 		boolean validLeg;
 		boolean isMember;
+		FlightCrewMember member;
 
 		isMember = super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMember.class);
 
@@ -38,9 +39,13 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 			Leg leg = this.repository.findLegById(legId);
 
 			validLeg = legId == 0 || leg != null;
-			if (validLeg && leg != null)
-				validLeg = !leg.isDraftMode();
-			status = status && validLeg;
+			if (validLeg && leg != null) {
+				member = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
+				boolean isFuture = MomentHelper.isBefore(MomentHelper.getCurrentMoment(), leg.getScheduledArrival());
+				boolean isMyAirline = leg.getAircraft().getAirline().getId() == member.getAirline().getId();
+				validLeg = !leg.isDraftMode() && isFuture && isMyAirline;
+				status = validLeg;
+			}
 		}
 
 		super.getResponse().setAuthorised(status);
@@ -52,6 +57,7 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 
 		assignment = new FlightAssignment();
 		assignment.setDraftMode(true);
+		assignment.setLastUpdateMoment(MomentHelper.getCurrentMoment());
 
 		super.getBuffer().addData(assignment);
 	}
@@ -92,14 +98,15 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 		SelectChoices selectedLegs;
 		FlightCrewMember member;
 
-		legs = this.repository.findPublishedLegs();
+		member = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
 
-		member = assignment.getFlightCrewMember();
+		legs = this.repository.findPublishedFutureOwnedLegs(MomentHelper.getCurrentMoment(), member.getAirline());
+
 		statuses = SelectChoices.from(AssignmentStatus.class, assignment.getStatus());
 		duties = SelectChoices.from(FlightCrewDuty.class, assignment.getFlightCrewDuty());
 		selectedLegs = SelectChoices.from(legs, "flightNumber", assignment.getLeg());
 
-		dataset = super.unbindObject(assignment, "flightCrewDuty", "lastUpdateMoment", "status", "remarks", "draftMode");
+		dataset = super.unbindObject(assignment, "flightCrewDuty", "status", "remarks", "draftMode");
 		try {
 			dataset.put("employeeCode", member.getEmployeeCode());
 		} catch (Exception e) {

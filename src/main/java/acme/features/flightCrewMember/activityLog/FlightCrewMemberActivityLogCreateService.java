@@ -2,7 +2,6 @@
 package acme.features.flightCrewMember.activityLog;
 
 import java.util.Collection;
-import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -30,7 +29,7 @@ public class FlightCrewMemberActivityLogCreateService extends AbstractGuiService
 
 		masterId = super.getRequest().getData("masterId", int.class);
 		assignment = this.repository.findFlightAssignmentById(masterId);
-		status = assignment != null && !assignment.isDraftMode() && super.getRequest().getPrincipal().hasRealm(assignment.getFlightCrewMember());
+		status = assignment != null && super.getRequest().getPrincipal().hasRealm(assignment.getFlightCrewMember());
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -54,16 +53,14 @@ public class FlightCrewMemberActivityLogCreateService extends AbstractGuiService
 
 	@Override
 	public void bind(final ActivityLog log) {
-		Date now;
 		int assignmentId;
 		FlightAssignment assignment;
 
 		assignmentId = super.getRequest().getData("masterId", int.class);
 		assignment = this.repository.findFlightAssignmentById(assignmentId);
-		now = MomentHelper.getCurrentMoment();
 
 		super.bindObject(log, "typeOfIncident", "description", "severityLevel");
-		log.setRegistrationMoment(now);
+		log.setRegistrationMoment(MomentHelper.getCurrentMoment());
 		log.setFlightAssignment(assignment);
 	}
 
