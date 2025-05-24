@@ -43,6 +43,12 @@ acme.validation.leg.arrivalAirport.consecutiveLegsDepartureAirportEqualsArrivalA
 
 acme.validation.leg.departureAirport.consecutiveLegsDepartureAirportEqualsArrivalAirport.message = A flight's leg arrival airport must be the same than the next leg departure airport
 
+acme.validation.leg.scheduledDeparture.future.message = Scheduled departure cannot be in the past!
+
+acme.validation.leg.scheduledArrival.future.message = Scheduled arrival cannot be in the past!
+
+acme.validation.leg.scheduledDeparture.noMoreThan1DayWithPreviousLeg.message = The next leg must be between 1 minute and 1 day after the previous one landing 
+
 acme.validation.flight.*.notAllLegsPublishedOrNoLegs.message = The flight must have at least 1 published leg to be published, and all its legs must have been published before publishing the flight
 
 acme.validation.flight.*.noPublishedLegs.message = If the flight has published legs it cannot be deleted

@@ -40,14 +40,13 @@ public class AirlineManagerFlightListService extends AbstractGuiService<AirlineM
 		Dataset dataset;
 
 		dataset = super.unbindObject(flight, "tag", "requiresSelfTransfer", "cost");
-		super.addPayload(dataset, flight, "description");
-
 		dataset.put("departure", flight.getScheduledDeparture());
 		dataset.put("arrival", flight.getScheduledArrival());
 		dataset.put("departureCity", flight.getOriginCity());
 		dataset.put("arrivalCity", flight.getDestinationCity());
 		dataset.put("numberOfLayovers", flight.getLayoversNumber());
 		dataset.put("published", !flight.isDraftMode());
+		super.addPayload(dataset, flight, "description");
 		super.getResponse().addData(dataset);
 	}
 }

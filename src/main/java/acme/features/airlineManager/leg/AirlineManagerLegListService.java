@@ -9,29 +9,41 @@ import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.airline.AirlineManager;
+import acme.entities.flight.Flight;
 import acme.entities.leg.Leg;
 
 @GuiService
 public class AirlineManagerLegListService extends AbstractGuiService<AirlineManager, Leg> {
 
+	// Internal state ---------------------------------------------------------
+
 	@Autowired
 	private AirlineManagerLegRepository repository;
+
+	// AbstractGuiService interface -------------------------------------------
 
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+
+		int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		int masterId = super.getRequest().getData("masterId", int.class);
+
+		Flight flight = this.repository.findFlightById(masterId);
+
+		boolean status = flight.getAirlineManager().getId() == managerId;
+
+		super.getResponse().setAuthorised(status);
 	}
 
-	// ORDERED BY DATE
 	@Override
 	public void load() {
 
-		super.getResponse().addGlobal("masterId", null); // Necesario para poder tener 2 create diferentes en función de masterId
+		int masterId = super.getRequest().getData("masterId", int.class);
 
-		int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		Collection<Leg> legs = this.repository.findAllLegsByAirlineManagerId(managerId);
+		Collection<Leg> legs = this.repository.findAllLegsByFlightId(masterId);
 
+		super.getResponse().addGlobal("masterId", masterId);
 		super.getBuffer().addData(legs);
 	}
 
@@ -39,10 +51,13 @@ public class AirlineManagerLegListService extends AbstractGuiService<AirlineMana
 	public void unbind(final Leg leg) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival");
-		super.addPayload(dataset, leg);
-		super.getResponse().addData(dataset);
+		int masterId = super.getRequest().getData("masterId", int.class);
 
+		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival");
+		super.addPayload(dataset, leg, "status", "draftMode", "duration");
+
+		super.getResponse().addGlobal("masterId", masterId);
+		super.getResponse().addData(dataset);
 	}
 
 }

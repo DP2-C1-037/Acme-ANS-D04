@@ -45,7 +45,6 @@ public class AirlineManagerFlightShowService extends AbstractGuiService<AirlineM
 		SelectChoices selfTransfer = SelectChoices.from(FlightSelfTransfer.class, flight.getRequiresSelfTransfer());
 
 		dataset = super.unbindObject(flight, "tag", "requiresSelfTransfer", "cost", "description", "draftMode");
-		dataset.put("confirmation", false);
 		dataset.put("selfTransfer", selfTransfer);
 		dataset.put("originCity", flight.getOriginCity());
 		dataset.put("destinationCity", flight.getDestinationCity());

@@ -13,7 +13,6 @@ import acme.datatypes.LegStatus;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.airline.AirlineManager;
 import acme.entities.airports.Airport;
-import acme.entities.flight.Flight;
 import acme.entities.leg.Leg;
 
 @GuiService
@@ -46,20 +45,16 @@ public class AirlineManagerLegShowService extends AbstractGuiService<AirlineMana
 	@Override
 	public void unbind(final Leg leg) {
 		Dataset dataset;
-		Collection<Flight> flightsList = this.repository.findAllFlights();
 		Collection<Aircraft> aircraftsList = this.repository.findAllAircrafts();
 		Collection<Airport> airportsList = this.repository.findAllAirports();
 
 		SelectChoices status = SelectChoices.from(LegStatus.class, leg.getStatus());
-		SelectChoices flights = SelectChoices.from(flightsList, "tag", leg.getFlight());
 		SelectChoices aircrafts = SelectChoices.from(aircraftsList, "registrationNumber", leg.getAircraft());
 		SelectChoices arrivalAirports = SelectChoices.from(airportsList, "iataCode", leg.getArrivalAirport());
 		SelectChoices departureAirports = SelectChoices.from(airportsList, "iataCode", leg.getDepartureAirport());
 
-		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "status", "draftMode", "duration", "departureAirport", "arrivalAirport", "aircraft", "flight");
-		dataset.put("confirmation", false);
-		dataset.put("flight", flights.getSelected().getKey());
-		dataset.put("flights", flights);
+		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "status", "draftMode", "duration", "departureAirport", "arrivalAirport", "aircraft");
+		dataset.put("flight", leg.getFlight().getTag());
 		dataset.put("arrivalAirport", arrivalAirports.getSelected().getKey());
 		dataset.put("arrivalAirports", arrivalAirports);
 		dataset.put("departureAirport", departureAirports.getSelected().getKey());
@@ -68,8 +63,6 @@ public class AirlineManagerLegShowService extends AbstractGuiService<AirlineMana
 		dataset.put("aircrafts", aircrafts);
 		dataset.put("status", status.getSelected().getKey());
 		dataset.put("statuses", status);
-
-		super.addPayload(dataset, leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "status", "draftMode", "flight", "arrivalAirport", "departureAirport", "aircraft");
 
 		super.getResponse().addData(dataset);
 	}
