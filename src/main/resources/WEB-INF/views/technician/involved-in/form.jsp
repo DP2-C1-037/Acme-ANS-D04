@@ -10,6 +10,7 @@
 		<jstl:when test="${acme:anyOf(_command, 'show|delete')}">
 			<acme:input-select code="technician.involved-in.form.label.technician" path="technician" choices= "${technicians}" readonly="true"/>	
 			<acme:input-select code="technician.involved-in.form.label.type" path="task.type" choices="${types}" readonly="true"/>
+			<acme:input-textarea code="technician.involved-in.form.label.description" path="task.description" readonly="true"/>
 			<acme:input-integer code="technician.involved-in.form.label.priority" path="task.priority" readonly="true"/>
 			<acme:input-double code="technician.involved-in.form.label.estimated-duration" path="task.estimatedDuration" readonly="true"/>
 		</jstl:when>		
