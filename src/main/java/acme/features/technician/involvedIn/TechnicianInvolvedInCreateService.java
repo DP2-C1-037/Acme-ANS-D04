@@ -100,8 +100,6 @@ public class TechnicianInvolvedInCreateService extends AbstractGuiService<Techni
 	public void unbind(final InvolvedIn involvedIn) {
 		Collection<Task> tasks;
 		SelectChoices choices;
-		Collection<Technician> technicians;
-		SelectChoices possibleTechnicians;
 		Dataset dataset;
 		int id;
 
@@ -110,14 +108,9 @@ public class TechnicianInvolvedInCreateService extends AbstractGuiService<Techni
 		tasks = this.repository.findAllAvailableTasksForInvolvedIn(id, involvedIn.getMaintenanceRecord().getId());
 		choices = SelectChoices.from(tasks, "description", involvedIn.getTask());
 
-		technicians = this.repository.findAllTechnicians();
-		possibleTechnicians = SelectChoices.from(technicians, "identity.name", involvedIn.getTask().getTechnician());
-
 		dataset = super.unbindObject(involvedIn);
 		dataset.put("task", choices.getSelected().getKey());
 		dataset.put("tasks", choices);
-		dataset.put("technician", possibleTechnicians.getSelected().getKey());
-		dataset.put("technicians", possibleTechnicians);
 
 		dataset.put("masterId", super.getRequest().getData("masterId", int.class));
 
