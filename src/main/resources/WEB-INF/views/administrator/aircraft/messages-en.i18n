@@ -11,14 +11,10 @@ administrator.aircraft.form.label.details = Details: (Optional)
 
 administrator.aircraft.form.button.create = Create
 administrator.aircraft.form.button.update = Update
-administrator.aircraft.form.button.delete = Delete
-administrator.aircraft.form.button.publish = Publish
 administrator.aircraft.form.label.confirmation = Confirm that the aircraft is correct.
 
 administrator.aircraft.list.label.model = Model
-administrator.aircraft.list.label.registrationNumber = Registration number
 administrator.aircraft.list.label.capacity = Capacity
-administrator.aircraft.list.label.cargoWeight = Cargo weight
 administrator.aircraft.list.label.status = Status
 
 administrator.aircraft.list.button.create = Create
