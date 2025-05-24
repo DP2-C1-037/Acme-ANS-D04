@@ -30,19 +30,14 @@ import lombok.Setter;
 @Setter
 @ValidLeg
 @Table(indexes = {
-	@Index(columnList = "flight_id, scheduledDeparture"), // findScheduledDeparture y findLegByFlightByScheduledDeparture
-	@Index(columnList = "flight_id, scheduledArrival"), // findScheduledArrival y findLegByFlightByScheduledArrival
-	@Index(columnList = "flight_id, scheduledDeparture, departure_airport_id"), // findDepartureAirport
-	@Index(columnList = "flight_id, scheduledArrival, arrival_airport_id"), // findDestinationAirport
-	@Index(columnList = "flight_id"), // findLegsFromFlightId (x4)
 	@Index(columnList = "flightNumber"), // findLegByFlightNumber
-	@Index(columnList = "flight_id, draftMode"), // findPublishedLegsByFlightId (x2)
 	@Index(columnList = "flight_id, scheduledDeparture, scheduledArrival"), // findOverlappingLegs
 	@Index(columnList = "aircraft_id, scheduledDeparture, scheduledArrival"), // findLegByAircraftIdSameTime
 	@Index(columnList = "departure_airport_id, scheduledDeparture"), // findLegByAirportIdSameDeparture
 	@Index(columnList = "arrival_airport_id, scheduledArrival"), // findLegByAirportIdSameArrival
-	@Index(columnList = "flight_id, departure_airport_id, scheduledDeparture"), // findNextLegWithWrongDeparture
-	@Index(columnList = "flight_id, arrival_airport_id, scheduledArrival") // findPreviousLegWithWrongArrival
+	// legId no se pone en estad 4 id se filtra por <> y no ordena ni agrupa.
+	@Index(columnList = "flight_id, scheduledArrival"), // findNextLeg
+	@Index(columnList = "flight_id, scheduledDeparture"), // findPreviousLeg
 // findAllLegsByAirlineManagerId
 })
 public class Leg extends AbstractEntity {

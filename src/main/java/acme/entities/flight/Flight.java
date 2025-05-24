@@ -4,9 +4,7 @@ package acme.entities.flight;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.Index;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.Valid;
 
@@ -29,9 +27,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @ValidFlight
-@Table(indexes = {
-	@Index(columnList = "airline_manager_id") // findAllFlightsByAirlineManagerId (x2)
-})
+// No tiene índices ya que los pone el framework
 public class Flight extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
