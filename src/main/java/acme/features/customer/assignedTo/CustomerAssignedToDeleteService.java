@@ -29,10 +29,16 @@ public class CustomerAssignedToDeleteService extends AbstractGuiService<Customer
 		AssignedTo assignedTo;
 		Booking booking;
 
-		id = super.getRequest().getData("id", int.class);
-		assignedTo = this.repository.findAssignedToById(id);
-		booking = assignedTo == null ? null : assignedTo.getBooking();
-		status = assignedTo != null && booking != null && assignedTo.getBooking().isDraftMode() && super.getRequest().getPrincipal().hasRealm(booking.getCustomer());
+		status = !super.getRequest().getMethod().equals("GET");
+
+		if (status) {
+
+			id = super.getRequest().getData("id", int.class);
+			assignedTo = this.repository.findAssignedToById(id);
+			booking = assignedTo == null ? null : assignedTo.getBooking();
+			status = assignedTo != null && booking != null && assignedTo.getBooking().isDraftMode() && super.getRequest().getPrincipal().hasRealm(booking.getCustomer());
+
+		}
 
 		super.getResponse().setAuthorised(status);
 	}
