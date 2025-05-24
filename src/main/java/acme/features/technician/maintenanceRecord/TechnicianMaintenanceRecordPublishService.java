@@ -91,7 +91,7 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 				boolean status;
 				status = maintenanceRecord.getStatus().equals(MaintenanceStatus.COMPLETED);
 
-				super.state(status, "*", "technician.maintenance-record.publish.status");
+				super.state(status, "status", "technician.maintenance-record.publish.status");
 			}
 			{
 				int id, unpublishedTasks, tasks;
@@ -120,6 +120,8 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 		SelectChoices statuses;
 		Collection<Aircraft> aircrafts;
 		SelectChoices choices;
+		Collection<Technician> technicians;
+		SelectChoices possibleTechnicians;
 		Dataset dataset;
 
 		statuses = SelectChoices.from(MaintenanceStatus.class, maintenanceRecord.getStatus());
@@ -127,10 +129,15 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 		aircrafts = this.repository.findAvailableAircrafts();
 		choices = SelectChoices.from(aircrafts, "model", maintenanceRecord.getAircraft());
 
-		dataset = super.unbindObject(maintenanceRecord, "technician.identity.name", "maintenanceDate", "nextInspectionDueDate", "status", "estimatedCost", "notes", "draftMode");
+		technicians = this.repository.findAllTechnicians();
+		possibleTechnicians = SelectChoices.from(technicians, "identity.name", maintenanceRecord.getTechnician());
+
+		dataset = super.unbindObject(maintenanceRecord, "maintenanceDate", "nextInspectionDueDate", "status", "estimatedCost", "notes", "draftMode");
 		dataset.put("statuses", statuses);
 		dataset.put("aircraft", choices.getSelected().getKey());
 		dataset.put("aircrafts", choices);
+		dataset.put("technician", possibleTechnicians.getSelected().getKey());
+		dataset.put("technicians", possibleTechnicians);
 
 		super.getResponse().addData(dataset);
 	}

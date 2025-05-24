@@ -36,6 +36,6 @@ leg-18,SHX0018,2025/02/01 11:00,2025/02/01 14:00,ON_TIME,true,flight-20,airport-
 leg-19,SHX0019,2025/02/01 04:00,2025/02/01 10:00,ON_TIME,false,flight-21,airport-15,airport-17,aircraft-06
 leg-20,SHX0020,2025/02/01 11:00,2025/02/01 14:00,ON_TIME,false,flight-21,airport-17,airport-25,aircraft-06
 
-leg-21,SHX0021,2025/02/01 04:00,2025/02/01 10:00,ON_TIME,false,flight-22,airport-05,airport-02,aircraft-07
+leg-21,SHX0021,2025/02/01 04:00,2025/02/01 10:00,ON_TIME,false,flight-22,airport-05,airport-02,aircraft-42
 
 leg-22,SHX0022,2000/01/01 00:03,2000/01/01 00:04,ON_TIME,false,flight-01,airport-02,airport-01,aircraft-01

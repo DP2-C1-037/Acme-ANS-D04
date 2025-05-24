@@ -21,7 +21,7 @@ import acme.client.helpers.SpringHelper;
 import acme.constraints.ValidBooking;
 import acme.entities.flight.Flight;
 import acme.features.customer.booking.CustomerBookingRepository;
-import acme.realms.Customer;
+import acme.realms.customer.Customer;
 import lombok.Getter;
 import lombok.Setter;
 

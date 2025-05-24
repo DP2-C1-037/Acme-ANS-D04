@@ -16,7 +16,7 @@ import acme.entities.booking.Booking;
 import acme.entities.booking.TravelClass;
 import acme.entities.flight.Flight;
 import acme.entities.mappings.AssignedTo;
-import acme.realms.Customer;
+import acme.realms.customer.Customer;
 
 @GuiService
 public class CustomerBookingDeleteService extends AbstractGuiService<Customer, Booking> {
@@ -35,9 +35,14 @@ public class CustomerBookingDeleteService extends AbstractGuiService<Customer, B
 		int bookingId;
 		Booking booking;
 
-		bookingId = super.getRequest().getData("id", int.class);
-		booking = this.repository.findBookingById(bookingId);
-		status = booking != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(booking.getCustomer());
+		status = !super.getRequest().getMethod().equals("GET");
+
+		if (status) {
+
+			bookingId = super.getRequest().getData("id", int.class);
+			booking = this.repository.findBookingById(bookingId);
+			status = booking != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(booking.getCustomer());
+		}
 
 		super.getResponse().setAuthorised(status);
 	}

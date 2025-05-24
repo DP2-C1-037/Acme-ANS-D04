@@ -13,7 +13,7 @@ import acme.client.services.GuiService;
 import acme.entities.booking.Booking;
 import acme.entities.mappings.AssignedTo;
 import acme.entities.passenger.Passenger;
-import acme.realms.Customer;
+import acme.realms.customer.Customer;
 
 @GuiService
 public class CustomerAssignedToCreateService extends AbstractGuiService<Customer, AssignedTo> {
@@ -44,7 +44,7 @@ public class CustomerAssignedToCreateService extends AbstractGuiService<Customer
 			passengerId = super.getRequest().getData("passenger", int.class);
 			passenger = this.repository.findPassengerById(passengerId);
 			status = passengerId == 0 || passenger != null;
-			if (status)
+			if (status && passenger != null)
 				status = super.getRequest().getPrincipal().hasRealm(passenger.getCustomer());
 		}
 
@@ -86,11 +86,13 @@ public class CustomerAssignedToCreateService extends AbstractGuiService<Customer
 		{
 			boolean alreadyAssigned;
 
-			List<AssignedTo> assignedTos = this.repository.findAssignationFromBookingIdAndPassengerId(assignedTo.getBooking().getId(), assignedTo.getPassenger().getId()).stream().toList();
+			if (assignedTo.getPassenger() != null) {
+				List<AssignedTo> assignedTos = this.repository.findAssignationFromBookingIdAndPassengerId(assignedTo.getBooking().getId(), assignedTo.getPassenger().getId()).stream().toList();
 
-			alreadyAssigned = assignedTos.isEmpty();
+				alreadyAssigned = assignedTos.isEmpty();
 
-			super.state(alreadyAssigned, "passenger", "acme.validation.assignedTo.alreadyAssigned.message");
+				super.state(alreadyAssigned, "passenger", "acme.validation.assignedTo.alreadyAssigned.message");
+			}
 		}
 	}
 

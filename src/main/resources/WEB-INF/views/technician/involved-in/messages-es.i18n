@@ -16,5 +16,3 @@ technician.involved-in.list.label.description = Descripción
 technician.involved-in.list.label.priority = Prioridad
 
 technician.involved-in.list.button.add = Añadir
-
-technician.involved-in.create.duplicated = Esta tarea ya forma parte del registro de mantenimiento

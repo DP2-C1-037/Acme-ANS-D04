@@ -56,20 +56,28 @@ public class TechnicianInvolvedInShowService extends AbstractGuiService<Technici
 		Collection<Task> tasks;
 		SelectChoices choices;
 		SelectChoices types;
+		Collection<Technician> technicians;
+		SelectChoices possibleTechnicians;
 		Dataset dataset;
 		int id;
 
 		id = super.getRequest().getPrincipal().getActiveRealm().getId();
 
-		tasks = this.repository.findAllAvailableTasks(id);
+		tasks = this.repository.findAllAvailableTasksForInvolvedIn(id, involvedIn.getMaintenanceRecord().getId());
+		tasks.add(involvedIn.getTask());
 		choices = SelectChoices.from(tasks, "description", involvedIn.getTask());
 
 		types = SelectChoices.from(TaskType.class, involvedIn.getTask().getType());
 
-		dataset = super.unbindObject(involvedIn, "task.technician.identity.name", "task.description", "task.priority", "task.estimatedDuration");
+		technicians = this.repository.findAllTechnicians();
+		possibleTechnicians = SelectChoices.from(technicians, "identity.name", involvedIn.getTask().getTechnician());
+
+		dataset = super.unbindObject(involvedIn, "task.description", "task.priority", "task.estimatedDuration");
 		dataset.put("task", choices.getSelected().getKey());
 		dataset.put("tasks", choices);
 		dataset.put("types", types);
+		dataset.put("technician", possibleTechnicians.getSelected().getKey());
+		dataset.put("technicians", possibleTechnicians);
 		dataset.put("draftMode", involvedIn.getMaintenanceRecord().getDraftMode());
 
 		super.getResponse().addData(dataset);

@@ -10,6 +10,7 @@ import acme.client.repositories.AbstractRepository;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.maintenanceRecords.MaintenanceRecord;
 import acme.entities.mappings.InvolvedIn;
+import acme.realms.technicians.Technician;
 
 @Repository
 public interface TechnicianMaintenanceRecordRepository extends AbstractRepository {
@@ -37,4 +38,7 @@ public interface TechnicianMaintenanceRecordRepository extends AbstractRepositor
 
 	@Query("select count(ii.task) from InvolvedIn ii where ii.maintenanceRecord.id = :maintenanceRecordId and ii.task.draftMode = true")
 	int findNotPublishedTasksByMaintenanceRecordId(int maintenanceRecordId);
+
+	@Query("select t from Technician t")
+	Collection<Technician> findAllTechnicians();
 }

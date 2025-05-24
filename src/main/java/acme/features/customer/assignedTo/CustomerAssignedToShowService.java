@@ -11,7 +11,7 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.mappings.AssignedTo;
 import acme.entities.passenger.Passenger;
-import acme.realms.Customer;
+import acme.realms.customer.Customer;
 
 @GuiService
 public class CustomerAssignedToShowService extends AbstractGuiService<Customer, AssignedTo> {
@@ -65,6 +65,7 @@ public class CustomerAssignedToShowService extends AbstractGuiService<Customer, 
 		dataset = super.unbindObject(assignedTo, "booking", "passenger", "passenger.fullName", "passenger.email", "passenger.passportNumber", "passenger.birthDate", "passenger.specialNeeds");
 		dataset.put("passenger", passengerChoices.getSelected().getKey());
 		dataset.put("passengers", passengerChoices);
+		dataset.put("draftMode", assignedTo.getBooking().isDraftMode());
 
 		super.getResponse().addData(dataset);
 

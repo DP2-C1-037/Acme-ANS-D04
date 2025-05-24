@@ -7,7 +7,7 @@ import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.passenger.Passenger;
-import acme.realms.Customer;
+import acme.realms.customer.Customer;
 
 @GuiService
 public class CustomerPassengerDeleteService extends AbstractGuiService<Customer, Passenger> {
@@ -26,9 +26,13 @@ public class CustomerPassengerDeleteService extends AbstractGuiService<Customer,
 		int passengerId;
 		Passenger passenger;
 
-		passengerId = super.getRequest().getData("id", int.class);
-		passenger = this.repository.findPassengerById(passengerId);
-		status = passenger != null && passenger.isDraftMode() && super.getRequest().getPrincipal().hasRealm(passenger.getCustomer());
+		status = !super.getRequest().getMethod().equals("GET");
+
+		if (status) {
+			passengerId = super.getRequest().getData("id", int.class);
+			passenger = this.repository.findPassengerById(passengerId);
+			status = passenger != null && passenger.isDraftMode() && super.getRequest().getPrincipal().hasRealm(passenger.getCustomer());
+		}
 
 		super.getResponse().setAuthorised(status);
 	}
