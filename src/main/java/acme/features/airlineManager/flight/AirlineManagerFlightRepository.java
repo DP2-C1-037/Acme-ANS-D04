@@ -3,7 +3,6 @@ package acme.features.airlineManager.flight;
 
 import java.util.Collection;
 
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import acme.client.repositories.AbstractRepository;
@@ -27,8 +26,4 @@ public interface AirlineManagerFlightRepository extends AbstractRepository {
 
 	@Query("select l from Leg l where l.flight.id = :flightId and l.draftMode = false")
 	Collection<Leg> findPublishedLegsByFlightId(int flightId);
-
-	@Modifying
-	@Query("delete from Leg l where l.flight.id = :flightId")
-	void deleteLegsByFlightId(int flightId);
 }
