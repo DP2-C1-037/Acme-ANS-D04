@@ -31,10 +31,13 @@ public class FlightCrewMemberFlightAssignmentDeleteService extends AbstractGuiSe
 		FlightAssignment assignment;
 		FlightCrewMember member;
 
-		masterId = super.getRequest().getData("id", int.class);
-		assignment = this.repository.findFlightAssignmentById(masterId);
-		member = assignment == null ? null : assignment.getFlightCrewMember();
-		status = assignment != null && assignment.isDraftMode() && super.getRequest().getPrincipal().hasRealm(member);
+		if (super.getRequest().getMethod().equals("POST")) {
+			masterId = super.getRequest().getData("id", int.class);
+			assignment = this.repository.findFlightAssignmentById(masterId);
+			member = assignment == null ? null : assignment.getFlightCrewMember();
+			status = assignment != null && assignment.isDraftMode() && super.getRequest().getPrincipal().hasRealm(member);
+		} else
+			status = false;
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -52,24 +55,23 @@ public class FlightCrewMemberFlightAssignmentDeleteService extends AbstractGuiSe
 
 	@Override
 	public void bind(final FlightAssignment assignment) {
-		Integer legId;
-		Leg leg;
-		FlightCrewMember member;
-
-		legId = super.getRequest().getData("leg", int.class);
-		leg = this.repository.findLegById(legId);
-		member = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
-
-		super.bindObject(assignment, "flightCrewDuty", "status", "remarks");
-		assignment.setLeg(leg);
-		assignment.setFlightCrewMember(member);
-		assignment.setLastUpdateMoment(MomentHelper.getCurrentMoment());
+		;
 	}
 
 	@Override
 	public void validate(final FlightAssignment assignment) {
-		// aqui una restriccion de que si tiene logs publicados no se puede borrar
-		;
+		Collection<ActivityLog> logs;
+		int assignmentId;
+
+		assignmentId = assignment.getId();
+		logs = this.repository.findActivityLogsByAssignmentId(assignmentId);
+
+		for (ActivityLog log : logs)
+			if (!log.isDraftMode()) {
+				super.state(false, "*", "acme.validation.flight-assignment.has-published-logs.message");
+				break;
+			}
+
 	}
 
 	@Override
@@ -92,8 +94,14 @@ public class FlightCrewMemberFlightAssignmentDeleteService extends AbstractGuiSe
 		Collection<Leg> legs;
 		SelectChoices selectedLegs;
 		String employeeCode;
+		FlightCrewMember member;
 
-		legs = this.repository.findPublishedLegs();
+		member = assignment.getFlightCrewMember();
+
+		legs = this.repository.findPublishedFutureOwnedLegs(MomentHelper.getCurrentMoment(), member.getAirline());
+		Leg currentLeg = assignment.getLeg();
+		if (currentLeg != null && !legs.contains(currentLeg))
+			legs.add(currentLeg);
 
 		statuses = SelectChoices.from(AssignmentStatus.class, assignment.getStatus());
 		duties = SelectChoices.from(FlightCrewDuty.class, assignment.getFlightCrewDuty());

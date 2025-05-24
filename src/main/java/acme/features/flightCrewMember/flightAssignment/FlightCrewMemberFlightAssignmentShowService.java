@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.datatypes.AssignmentStatus;
@@ -58,8 +59,19 @@ public class FlightCrewMemberFlightAssignmentShowService extends AbstractGuiServ
 		Collection<Leg> legs;
 		SelectChoices selectedLegs;
 		String employeeCode;
+		FlightCrewMember member;
 
-		legs = this.repository.findPublishedLegs();
+		member = assignment.getFlightCrewMember();
+
+		if (assignment.isDraftMode()) {
+			legs = this.repository.findPublishedFutureOwnedLegs(MomentHelper.getCurrentMoment(), member.getAirline());
+
+			Leg currentLeg = assignment.getLeg();
+			if (currentLeg != null && !legs.contains(currentLeg))
+				legs.add(currentLeg);
+		} else
+			legs = this.repository.findPublishedLegs();
+
 		employeeCode = assignment.getFlightCrewMember().getEmployeeCode();
 		statuses = SelectChoices.from(AssignmentStatus.class, assignment.getStatus());
 		duties = SelectChoices.from(FlightCrewDuty.class, assignment.getFlightCrewDuty());
