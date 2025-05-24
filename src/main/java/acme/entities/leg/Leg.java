@@ -39,7 +39,7 @@ import lombok.Setter;
 	@Index(columnList = "flight_id, scheduledArrival"), // findNextLeg
 	@Index(columnList = "flight_id, scheduledDeparture"), // findPreviousLeg
 	@Index(columnList = "draftMode"), // findPublishedLegs
-	@Index(columnList = "draftMode, scheduledArrival, aircraft_airline_id") // findPublishedFutureOwnedLegs
+	@Index(columnList = "draftMode, scheduledArrival") // findPublishedFutureOwnedLegs
 // findAllLegsByAirlineManagerId
 })
 public class Leg extends AbstractEntity {

@@ -28,9 +28,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(indexes = {
-	@Index(columnList = "draftMode, leg_scheduledArrival"), // findCompletedPublishedAssignments, findPlannedPublishedAssignments
-	@Index(columnList = "flightCrewMember_id, leg_scheduledArrival"), // findMyCompletedAssignments, findMyPlannedAssignments
-	@Index(columnList = "draftMode") // findFlightAssignmentsByMemberIdOrPublished
+	@Index(columnList = "draftMode"), // findCompletedPublishedAssignments, findPlannedPublishedAssignments, findFlightAssignmentsByMemberIdOrPublished
 })
 public class FlightAssignment extends AbstractEntity {
 

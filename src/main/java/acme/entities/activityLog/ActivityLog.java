@@ -27,7 +27,7 @@ import lombok.Setter;
 @Setter
 @ValidActivityLog
 @Table(indexes = {
-	@Index(columnList = "flightAssignment_id, draftMode") // findFlightAssignmentsByMemberIdOrPublished
+	@Index(columnList = "flight_assignment_id, draftMode") // findFlightAssignmentsByMemberIdOrPublished
 })
 public class ActivityLog extends AbstractEntity {
 
