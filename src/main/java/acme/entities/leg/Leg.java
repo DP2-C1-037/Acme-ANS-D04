@@ -38,6 +38,8 @@ import lombok.Setter;
 	// legId no se pone en estad 4 id se filtra por <> y no ordena ni agrupa.
 	@Index(columnList = "flight_id, scheduledArrival"), // findNextLeg
 	@Index(columnList = "flight_id, scheduledDeparture"), // findPreviousLeg
+	@Index(columnList = "draftMode"), // findPublishedLegs
+	@Index(columnList = "draftMode, scheduledArrival, aircraft_airline_id") // findPublishedFutureOwnedLegs
 // findAllLegsByAirlineManagerId
 })
 public class Leg extends AbstractEntity {
