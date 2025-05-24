@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
-import acme.entities.mappings.InvolvedIn;
+import acme.entities.involvedIn.InvolvedIn;
 import acme.entities.tasks.Task;
 import acme.realms.technicians.Technician;
 
