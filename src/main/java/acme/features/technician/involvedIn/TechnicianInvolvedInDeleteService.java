@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.involvedIn.InvolvedIn;
-import acme.entities.tasks.Task;
 import acme.realms.technicians.Technician;
 
 @GuiService
@@ -55,15 +54,7 @@ public class TechnicianInvolvedInDeleteService extends AbstractGuiService<Techni
 
 	@Override
 	public void bind(final InvolvedIn involvedIn) {
-		Task task;
-		int taskId;
-
-		taskId = super.getRequest().getData("task", int.class);
-
-		super.bindObject(involvedIn);
-
-		task = this.repository.findTaskByTaskId(taskId);
-		involvedIn.setTask(task);
+		;
 	}
 
 	@Override
