@@ -39,9 +39,9 @@ acme.validation.leg.scheduledDepartureIsFuture.message = You cannot program flig
 
 acme.validation.leg.scheduledArrivalIsFuture.message = You cannot program flights for the past
 
-acme.validation.leg.arrivalAirport.consecutiveLegsDepartureAirportEqualsArrivalAirport.message = A flight's leg arrival airport must be the same than the next leg departure airport
+acme.validation.leg.departureAirport.consecutiveLegsMyDepartureAirportEqualsPreviousArrivalAirport.message = A flight's leg departure airport must be the previous leg arrival airport
 
-acme.validation.leg.departureAirport.consecutiveLegsDepartureAirportEqualsArrivalAirport.message = A flight's leg arrival airport must be the same than the next leg departure airport
+acme.validation.leg.arrivalAirport.consecutiveLegsMyArrivalAirportEqualsNextDepartureAirport.message = A flight's leg arrival airport must be the next leg departure airport
 
 acme.validation.leg.scheduledDeparture.future.message = Scheduled departure cannot be in the past!
 

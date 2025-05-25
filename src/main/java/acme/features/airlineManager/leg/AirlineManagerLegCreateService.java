@@ -28,8 +28,6 @@ public class AirlineManagerLegCreateService extends AbstractGuiService<AirlineMa
 
 	// AbstractGuiService interface -------------------------------------------
 
-	// MIRAR SI HACEN FALTA LOS ID != 0.
-
 
 	@Override
 	public void authorise() {
@@ -89,12 +87,12 @@ public class AirlineManagerLegCreateService extends AbstractGuiService<AirlineMa
 		Date now = MomentHelper.getCurrentMoment();
 		if (leg.getScheduledDeparture() != null) {
 			// Validar que scheduledDeparture sea futura
-			boolean isFutureDeparture = leg.getScheduledDeparture().after(now);
+			boolean isFutureDeparture = !leg.getScheduledDeparture().before(now);
 			super.state(isFutureDeparture, "scheduledDeparture", "acme.validation.leg.scheduledDeparture.future.message");
 		}
 		if (leg.getScheduledArrival() != null) {
 			// Validar que scheduledArrival sea futura
-			boolean isFutureArrival = leg.getScheduledArrival().after(now);
+			boolean isFutureArrival = !leg.getScheduledArrival().before(now);
 			super.state(isFutureArrival, "scheduledArrival", "acme.validation.leg.scheduledArrival.future.message");
 		}
 	}

@@ -47,7 +47,9 @@ acme.validation.leg.scheduledDeparture.future.message = La fecha de salida no pu
 
 acme.validation.leg.scheduledArrival.future.message = La fecha de llegada no puede estar en el pasado!
 
-acme.validation.leg.departureAirport.consecutiveLegsDepartureAirportEqualsArrivalAirport.message = El aeropuerto de llegada debe coincidir con el de salida de la siguiente escala del vuelo
+acme.validation.leg.departureAirport.consecutiveLegsMyDepartureAirportEqualsPreviousArrivalAirport.message = El aeropuerto de llegada de una escala de un vuelo ha de ser el de salida de la anterior
+
+acme.validation.leg.arrivalAirport.consecutiveLegsMyArrivalAirportEqualsNextDepartureAirport.message = El aeropuerto de salida de una escala de un vuelo ha de ser el de llegada de la anterior
 
 acme.validation.leg.scheduledDeparture.noMoreThan1DayWithPreviousLeg.message = La próxima escala debe estar entre 1 minuto y 1 día después del atterizaje de la previa 
 
