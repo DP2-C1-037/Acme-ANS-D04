@@ -82,25 +82,27 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 
 	@Override
 	public void validate(final MaintenanceRecord maintenanceRecord) {
-		{
-			if (maintenanceRecord.getStatus() != null) {
-				boolean status;
-				status = maintenanceRecord.getStatus().equals(MaintenanceStatus.COMPLETED);
+		if (maintenanceRecord != null) {
+			{
+				if (maintenanceRecord.getStatus() != null) {
+					boolean status;
+					status = maintenanceRecord.getStatus().equals(MaintenanceStatus.COMPLETED);
 
-				super.state(status, "status", "technician.maintenance-record.publish.status");
+					super.state(status, "status", "technician.maintenance-record.publish.status");
+				}
 			}
-		}
-		{
-			int id, unpublishedTasks, tasks;
-			boolean status;
+			{
+				int id, unpublishedTasks, tasks;
+				boolean status;
 
-			id = super.getRequest().getData("id", int.class);
-			tasks = this.repository.findTasksByMaintenanceRecordId(id);
-			unpublishedTasks = this.repository.findNotPublishedTasksByMaintenanceRecordId(id);
+				id = super.getRequest().getData("id", int.class);
+				tasks = this.repository.findTasksByMaintenanceRecordId(id);
+				unpublishedTasks = this.repository.findNotPublishedTasksByMaintenanceRecordId(id);
 
-			status = tasks != 0 && unpublishedTasks == 0;
+				status = tasks != 0 && unpublishedTasks == 0;
 
-			super.state(status, "*", "technician.maintenance-record.publish.published-tasks");
+				super.state(status, "*", "technician.maintenance-record.publish.published-tasks");
+			}
 		}
 	}
 
