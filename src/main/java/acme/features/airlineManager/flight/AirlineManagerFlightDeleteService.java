@@ -49,6 +49,8 @@ public class AirlineManagerFlightDeleteService extends AbstractGuiService<Airlin
 		int flightId = super.getRequest().getData("id", int.class);
 		boolean noPublishedLegs = this.repository.findPublishedLegsByFlightId(flightId).isEmpty();
 		super.state(noPublishedLegs, "*", "acme.validation.flight.*.noPublishedLegs.message");
+		if (noPublishedLegs)
+			this.repository.deleteUnpublishedLegsByFlightId(flightId);
 	}
 
 	@Override
