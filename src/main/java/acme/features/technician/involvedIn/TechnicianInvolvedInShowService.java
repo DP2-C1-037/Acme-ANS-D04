@@ -9,7 +9,7 @@ import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.entities.mappings.InvolvedIn;
+import acme.entities.involvedIn.InvolvedIn;
 import acme.entities.tasks.Task;
 import acme.entities.tasks.TaskType;
 import acme.realms.technicians.Technician;

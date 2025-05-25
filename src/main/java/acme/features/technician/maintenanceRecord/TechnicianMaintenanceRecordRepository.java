@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
 import acme.entities.aircraft.Aircraft;
+import acme.entities.involvedIn.InvolvedIn;
 import acme.entities.maintenanceRecords.MaintenanceRecord;
-import acme.entities.mappings.InvolvedIn;
 import acme.realms.technicians.Technician;
 
 @Repository

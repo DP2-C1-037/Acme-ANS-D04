@@ -20,7 +20,7 @@ public interface FlightCrewMemberActivityLogRepository extends AbstractRepositor
 	ActivityLog findActivityLogById(int logId);
 
 	@Query("select fa from FlightAssignment fa where fa.flightCrewMember.id = :memberId or fa.draftMode = false")
-	Collection<FlightAssignment> findFlightAssignmentsByMemberIdAndPublished(int memberId);
+	Collection<FlightAssignment> findFlightAssignmentsByMemberIdOrPublished(int memberId);
 
 	@Query("select fa from FlightAssignment fa where fa.id = :assignmentId")
 	FlightAssignment findFlightAssignmentById(Integer assignmentId);

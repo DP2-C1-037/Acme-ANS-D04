@@ -23,20 +23,8 @@ public interface CustomerAssignedToRepository extends AbstractRepository {
 	@Query("select at from AssignedTo at where at.id = :assignedToId")
 	AssignedTo findAssignedToById(final int assignedToId);
 
-	@Query("select at from AssignedTo at where at.booking.customer.id = :customerId")
-	Collection<AssignedTo> findAssignedTosByCustomerId(final int customerId);
-
 	@Query("select at from AssignedTo at where at.booking.id = :bookingId")
 	Collection<AssignedTo> findAssignedTosByBookingId(final int bookingId);
-
-	@Query("select b from Booking b where b.draftMode = true and b.customer.id = :customerId")
-	Collection<Booking> findAllNotPublishedBookingsFromCustomerId(final int customerId);
-
-	@Query("select b from Booking b where b.customer.id = :customerId")
-	Collection<Booking> findAllBookingsFromCustomerId(final int customerId);
-
-	@Query("select p from Passenger p where p.draftMode = false and p.customer.id = :customerId")
-	Collection<Passenger> findAllPublishedPassengersFromCustomerId(final int customerId);
 
 	@Query("select p from Passenger p where p.customer.id = :customerId")
 	Collection<Passenger> findAllPassengersFromCustomerId(final int customerId);

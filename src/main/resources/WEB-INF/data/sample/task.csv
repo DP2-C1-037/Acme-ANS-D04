@@ -29,6 +29,6 @@ task-22,MAINTENANCE,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Se
 # draftmode - standard variations
 task-23,MAINTENANCE,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",5,500,false,technician-01
 # key:technician - standard variations
-task-24,MAINTENANCE,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",5,500,true,technician-02
+task-24,MAINTENANCE,"Lorem ipsum dolor sit amet.",5,500,true,technician-02
 
 
