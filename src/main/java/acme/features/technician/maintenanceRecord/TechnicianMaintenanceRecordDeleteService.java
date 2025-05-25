@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.entities.aircraft.Aircraft;
 import acme.entities.involvedIn.InvolvedIn;
 import acme.entities.maintenanceRecords.MaintenanceRecord;
 import acme.realms.technicians.Technician;
@@ -58,14 +57,7 @@ public class TechnicianMaintenanceRecordDeleteService extends AbstractGuiService
 
 	@Override
 	public void bind(final MaintenanceRecord maintenanceRecord) {
-		int aircraftId;
-		Aircraft aircraft;
-
-		aircraftId = super.getRequest().getData("aircraft", int.class);
-		aircraft = this.repository.findAircraftById(aircraftId);
-
-		super.bindObject(maintenanceRecord, "nextInspectionDueDate", "estimatedCost", "notes");
-		maintenanceRecord.setAircraft(aircraft);
+		;
 	}
 
 	@Override

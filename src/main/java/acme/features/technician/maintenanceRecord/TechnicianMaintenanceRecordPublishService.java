@@ -82,16 +82,14 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 
 	@Override
 	public void validate(final MaintenanceRecord maintenanceRecord) {
-		boolean isNull;
-
-		isNull = maintenanceRecord == null || maintenanceRecord.getStatus() == null;
-
-		if (!isNull) {
+		if (maintenanceRecord != null) {
 			{
-				boolean status;
-				status = maintenanceRecord.getStatus().equals(MaintenanceStatus.COMPLETED);
+				if (maintenanceRecord.getStatus() != null) {
+					boolean status;
+					status = maintenanceRecord.getStatus().equals(MaintenanceStatus.COMPLETED);
 
-				super.state(status, "status", "technician.maintenance-record.publish.status");
+					super.state(status, "status", "technician.maintenance-record.publish.status");
+				}
 			}
 			{
 				int id, unpublishedTasks, tasks;
