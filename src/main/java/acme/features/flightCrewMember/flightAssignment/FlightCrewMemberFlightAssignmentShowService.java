@@ -67,7 +67,7 @@ public class FlightCrewMemberFlightAssignmentShowService extends AbstractGuiServ
 			legs = this.repository.findPublishedFutureOwnedLegs(MomentHelper.getCurrentMoment(), member.getAirline());
 
 			Leg currentLeg = assignment.getLeg();
-			if (currentLeg != null && !legs.contains(currentLeg))
+			if (!legs.contains(currentLeg))
 				legs.add(currentLeg);
 		} else
 			legs = this.repository.findPublishedLegs();

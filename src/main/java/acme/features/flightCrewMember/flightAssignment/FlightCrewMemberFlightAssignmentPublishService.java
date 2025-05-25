@@ -159,10 +159,7 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 		statuses = SelectChoices.from(AssignmentStatus.class, assignment.getStatus());
 		duties = SelectChoices.from(FlightCrewDuty.class, assignment.getFlightCrewDuty());
 		selectedLegs = SelectChoices.from(legs, "flightNumber", assignment.getLeg());
-		if (assignment.getFlightCrewMember() != null)
-			employeeCode = assignment.getFlightCrewMember().getEmployeeCode();
-		else
-			employeeCode = null;
+		employeeCode = assignment.getFlightCrewMember().getEmployeeCode();
 		dataset = super.unbindObject(assignment, "flightCrewDuty", "lastUpdateMoment", "status", "remarks", "draftMode");
 		dataset.put("employeeCode", employeeCode);
 		dataset.put("statuses", statuses);
