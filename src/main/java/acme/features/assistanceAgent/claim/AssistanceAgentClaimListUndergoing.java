@@ -2,7 +2,6 @@
 package acme.features.assistanceAgent.claim;
 
 import java.util.Collection;
-import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -51,13 +50,8 @@ public class AssistanceAgentClaimListUndergoing extends AbstractGuiService<Assis
 		Dataset dataset;
 
 		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "type", "status");
+		dataset.put("draftMode", claim.isDraftMode() ? "Yes" : "No");
 
-		if (claim.isDraftMode()) {
-			final Locale local = super.getRequest().getLocale();
-
-			dataset.put("draftMode", local.equals(Locale.ENGLISH) ? "Yes" : "Sí");
-		} else
-			dataset.put("draftMode", "No");
 		super.getResponse().addData(dataset);
 	}
 
