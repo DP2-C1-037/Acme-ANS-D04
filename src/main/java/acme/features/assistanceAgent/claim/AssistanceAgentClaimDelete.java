@@ -5,14 +5,10 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import acme.client.components.models.Dataset;
 import acme.client.components.principals.Principal;
-import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.datatypes.ClaimType;
 import acme.entities.claim.Claim;
-import acme.entities.claim.ClaimStatus;
 import acme.entities.leg.Leg;
 import acme.entities.trackingLog.TrackingLog;
 import acme.realms.assistanceAgent.AssistanceAgent;
@@ -85,29 +81,6 @@ public class AssistanceAgentClaimDelete extends AbstractGuiService<AssistanceAge
 
 		this.repository.deleteAll(trackingLogs);
 		this.repository.delete(claim);
-	}
-
-	@Override
-	public void unbind(final Claim claim) {
-		Dataset dataset;
-		SelectChoices types;
-		SelectChoices indicators;
-		SelectChoices legsChoices;
-
-		Collection<Leg> legs;
-		legs = this.repository.findOccuredLegs();
-
-		types = SelectChoices.from(ClaimType.class, claim.getType());
-		indicators = SelectChoices.from(ClaimStatus.class, claim.getStatus());
-		legsChoices = SelectChoices.from(legs, "flightNumber", claim.getLeg());
-
-		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "type", "indicator");
-		dataset.put("types", types);
-		dataset.put("indicators", indicators);
-		dataset.put("legs", legsChoices);
-		dataset.put("leg", legsChoices.getSelected().getKey());
-
-		super.getResponse().addData(dataset);
 	}
 
 }
