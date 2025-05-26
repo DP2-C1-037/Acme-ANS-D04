@@ -30,20 +30,20 @@ public class AssistanceAgentClaimDelete extends AbstractGuiService<AssistanceAge
 
 	@Override
 	public void authorise() {
-		boolean status;
+		boolean status = false;
 		int currentAssistanceAgentId;
 		int claimId;
 		Claim selectedClaim;
 		Principal principal;
+		if (super.getRequest().getMethod().equals("POST")) {
+			principal = super.getRequest().getPrincipal();
+			currentAssistanceAgentId = principal.getActiveRealm().getId();
+			claimId = super.getRequest().getData("id", int.class);
+			selectedClaim = this.repository.findClaimById(claimId);
 
-		principal = super.getRequest().getPrincipal();
-
-		currentAssistanceAgentId = principal.getActiveRealm().getId();
-
-		claimId = super.getRequest().getData("id", int.class);
-		selectedClaim = this.repository.findClaimById(claimId);
-
-		status = principal.hasRealmOfType(AssistanceAgent.class) && selectedClaim.getAssistanceAgent().getId() == currentAssistanceAgentId;
+			status = principal.hasRealmOfType(AssistanceAgent.class) && selectedClaim.getAssistanceAgent().getId() == currentAssistanceAgentId && selectedClaim.isDraftMode(); // Esto bloquea el acceso a claims publicados
+		} else
+			status = false;
 
 		super.getResponse().setAuthorised(status);
 	}

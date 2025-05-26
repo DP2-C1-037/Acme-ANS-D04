@@ -29,7 +29,7 @@ public class AssistanceAgentClaimUpdate extends AbstractGuiService<AssistanceAge
 
 	@Override
 	public void authorise() {
-		boolean status;
+		boolean status = false;
 		int currentAssistanceAgentId;
 		int claimId;
 		Claim selectedClaim;
@@ -37,11 +37,23 @@ public class AssistanceAgentClaimUpdate extends AbstractGuiService<AssistanceAge
 
 		principal = super.getRequest().getPrincipal();
 
-		currentAssistanceAgentId = principal.getActiveRealm().getId();
-		claimId = super.getRequest().getData("id", int.class);
-		selectedClaim = this.repository.findClaimById(claimId);
+		if (principal.hasRealmOfType(AssistanceAgent.class)) {
+			currentAssistanceAgentId = principal.getActiveRealm().getId();
+			claimId = super.getRequest().getData("id", int.class);
+			selectedClaim = this.repository.findClaimById(claimId);
 
-		status = principal.hasRealmOfType(AssistanceAgent.class) && selectedClaim.getAssistanceAgent().getId() == currentAssistanceAgentId;
+			status = selectedClaim != null && selectedClaim.getAssistanceAgent().getId() == currentAssistanceAgentId && selectedClaim.isDraftMode();
+
+			if (status && super.getRequest().getMethod().equals("POST"))
+				try {
+					int legId = super.getRequest().getData("leg", int.class);
+					Leg leg = this.repository.findLegById(legId);
+					if (!(legId == 0 || leg != null))
+						status = false;
+				} catch (Exception e) {
+					status = false;
+				}
+		}
 
 		super.getResponse().setAuthorised(status);
 	}
