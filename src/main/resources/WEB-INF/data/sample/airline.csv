@@ -7,13 +7,13 @@ airline-01,Lorem ipsum dolor sit amet,SHX,http://lorem.com/ipsum,LUXURY,2012/07/
 airline-02,L,ABC,http://lorem.com/ipsum,LUXURY,2012/07/02 00:00,acme@lorem-ipsum.org,34640103529
 airline-03,Lo,DEF,http://lorem.com/ipsum,LUXURY,2012/07/02 00:00,acme@lorem-ipsum.org,34640103529
 airline-04,Lorem ipsum dolor sit amet consectetur adipiscin,GHI,http://lorem.com/ipsum,LUXURY,2012/07/02 00:00,acme@lorem-ipsum.org,34640103529
-airline-05,Lorem ipsum dolor sit amet consectetur adipiscing,JKL,http://lorem.com/ipsum,LUXURY,2012/07/02 00:00,acme@lorem-ipsum.org,34640103529
+airline-05,Lorem ipsum dolor sit amet consectetur adipiscing ,JKL,http://lorem.com/ipsum,LUXURY,2012/07/02 00:00,acme@lorem-ipsum.org,34640103529
 airline-06,โลเร็ม อิปซัม,MNQ,http://lorem.com/ipsum,LUXURY,2012/07/02 00:00,acme@lorem-ipsum.org,34640103529
 airline-07,لوريم إيبسوم,OPQ,http://lorem.com/ipsum,LUXURY,2012/07/02 00:00,acme@lorem-ipsum.org,34640103529
 airline-08,洛伦·伊普森,RST,http://lorem.com/ipsum,LUXURY,2012/07/02 00:00,acme@lorem-ipsum.org,34640103529
 airline-09,<marquee>Hacked</marquee>,UWX,http://lorem.com/ipsum,LUXURY,2012/07/02 00:00,acme@lorem-ipsum.org,34640103529
 airline-10,<script>alert(‘Hacked!’);</script>,YZX,http://lorem.com/ipsum,LUXURY,2012/07/02 00:00,acme@lorem-ipsum.org,34640103529
-airline-11,' or 'A' = 'A ,QWX,http://lorem.com/ipsum,LUXURY,2012/07/02 00:00,acme@lorem-ipsum.org,34640103529
+airline-11,' or 'A' = 'A,QWX,http://lorem.com/ipsum,LUXURY,2012/07/02 00:00,acme@lorem-ipsum.org,34640103529
 
 # iataCode - standard variations
 airline-12,Lorem ipsum dolor sit amet,AAA,http://lorem.com/ipsum,LUXURY,2012/07/02 00:00,acme@lorem-ipsum.org,34640103529

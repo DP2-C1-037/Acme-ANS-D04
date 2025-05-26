@@ -25,7 +25,7 @@ flight-assignment-17,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,<marquee>Hacked<
 flight-assignment-18,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,<script>alert(‘Hacked!’);</script>,true,flight-crew-member-01,leg-22
 flight-assignment-19,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,' or 'A' = 'A,true,flight-crew-member-01,leg-22
 # draft mode - standard variations,,,,,,,
-flight-assignment-20,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",false,flight-crew-member-01,leg-06
+flight-assignment-20,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",false,flight-crew-member-01,leg-22
 # leg - standard variations,,,,,,,
 flight-assignment-21,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",true,flight-crew-member-01,leg-02
 # flight crew member - standard variations,,,,,,,
