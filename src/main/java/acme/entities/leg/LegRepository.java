@@ -56,4 +56,10 @@ public interface LegRepository extends AbstractRepository {
 
 	@Query("SELECT l FROM Leg l WHERE l.flight.id = :flightId AND l.scheduledArrival <= :scheduledDeparture ORDER BY l.scheduledArrival DESC")
 	Collection<Leg> findPreviousLeg(int flightId, Date scheduledDeparture);
+
+	@Query("SELECT l FROM Leg l WHERE l.flight.id = :flightId AND l.id <> :legId AND (:scheduledArrival BETWEEN l.scheduledDeparture AND l.scheduledArrival)")
+	Collection<Leg> findOverlappingLegSa(int flightId, int legId, Date scheduledArrival);
+
+	@Query("SELECT l FROM Leg l WHERE l.flight.id = :flightId AND l.id <> :legId AND (:scheduledDeparture BETWEEN l.scheduledDeparture AND l.scheduledArrival)")
+	Collection<Leg> findOverlappingLegSd(int flightId, int legId, Date scheduledDeparture);
 }

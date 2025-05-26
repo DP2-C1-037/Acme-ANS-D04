@@ -35,6 +35,12 @@ public class AirlineManagerLegCreateService extends AbstractGuiService<AirlineMa
 		boolean validArrivalAirport = true;
 		boolean validAircraft = true;
 		boolean idNotTampered = true;
+		boolean managerOwnsFlight = true;
+
+		int flightId = super.getRequest().getData("masterId", int.class);
+		int userManagerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		Flight flight = this.repository.findFlightById(flightId);
+		managerOwnsFlight = flight != null && flight.getAirlineManager().getId() == userManagerId;
 
 		if (super.getRequest().hasData("id", int.class))
 			idNotTampered = super.getRequest().getData("id", int.class) == 0;
@@ -57,7 +63,7 @@ public class AirlineManagerLegCreateService extends AbstractGuiService<AirlineMa
 				validAircraft = this.repository.findAircraftById(aircraftId) != null;
 		}
 
-		boolean status = idNotTampered && validDepartureAirport && validArrivalAirport && validAircraft;
+		boolean status = idNotTampered && managerOwnsFlight && validDepartureAirport && validArrivalAirport && validAircraft;
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -95,6 +101,10 @@ public class AirlineManagerLegCreateService extends AbstractGuiService<AirlineMa
 			boolean isFutureArrival = !leg.getScheduledArrival().before(now);
 			super.state(isFutureArrival, "scheduledArrival", "acme.validation.leg.scheduledArrival.future.message");
 		}
+		if (leg.getScheduledDeparture() != null && leg.getScheduledArrival() != null) {
+			boolean lessThan24HoursLeg = Math.abs(leg.getScheduledArrival().getTime() - leg.getScheduledDeparture().getTime()) <= 24 * 60 * 60 * 1000;
+			super.state(lessThan24HoursLeg, "scheduledArrival", "acme.validation.leg.scheduledArrival.lessThan24HoursLeg.message");
+		}
 	}
 
 	@Override
@@ -124,8 +134,7 @@ public class AirlineManagerLegCreateService extends AbstractGuiService<AirlineMa
 		dataset.put("status", status.getSelected().getKey());
 		dataset.put("statuses", status);
 
-		if (leg.getFlight() != null && Integer.valueOf(leg.getFlight().getId()) != null)
-			super.getResponse().addGlobal("masterId", leg.getFlight().getId());
+		super.getResponse().addGlobal("masterId", leg.getFlight().getId());
 		super.getResponse().addData(dataset);
 	}
 

@@ -30,11 +30,12 @@ public class AirlineManagerLegUpdateService extends AbstractGuiService<AirlineMa
 		boolean validDepartureAirport = true;
 		boolean validArrivalAirport = true;
 		boolean validAircraft = true;
-		boolean managerOwnsLeg = true;
 
+		int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
 		int legId = super.getRequest().getData("id", int.class);
 		Leg leg = this.repository.findLegById(legId);
 		boolean validLeg = leg != null && leg.isDraftMode();
+		boolean managerOwnsLeg = leg != null && leg.getFlight().getAirlineManager().getId() == managerId;
 
 		if (super.getRequest().hasData("departureAirport", int.class)) {
 			int departureAirportId = super.getRequest().getData("departureAirport", int.class);
@@ -75,18 +76,21 @@ public class AirlineManagerLegUpdateService extends AbstractGuiService<AirlineMa
 
 	@Override
 	public void validate(final Leg leg) {
-		boolean scheduledDepartureNotNull = leg.getScheduledDeparture() != null;
-		super.state(scheduledDepartureNotNull, "scheduledDeparture", "acme.validation.leg.scheduledDeparture.notNull.message");
-		// Validar que scheduledDeparture sea futura
 		Date now = MomentHelper.getCurrentMoment();
-		boolean isFutureDeparture = leg.getScheduledDeparture().after(now);
-		super.state(isFutureDeparture, "scheduledDeparture", "acme.validation.leg.scheduledDeparture.future.message");
-
-		boolean scheduledArrivalNotNull = leg.getScheduledArrival() != null;
-		super.state(scheduledArrivalNotNull, "scheduledArrival", "acme.validation.leg.scheduledArrival.notNull.message");
-		// Validar que scheduledArrival sea futura
-		boolean isFutureArrival = leg.getScheduledArrival().after(now);
-		super.state(isFutureArrival, "scheduledArrival", "acme.validation.leg.scheduledArrival.future.message");
+		if (leg.getScheduledDeparture() != null) {
+			// Validar que scheduledDeparture sea futura
+			boolean isFutureDeparture = !leg.getScheduledDeparture().before(now);
+			super.state(isFutureDeparture, "scheduledDeparture", "acme.validation.leg.scheduledDeparture.future.message");
+		}
+		if (leg.getScheduledArrival() != null) {
+			// Validar que scheduledArrival sea futura
+			boolean isFutureArrival = !leg.getScheduledArrival().before(now);
+			super.state(isFutureArrival, "scheduledArrival", "acme.validation.leg.scheduledArrival.future.message");
+		}
+		if (leg.getScheduledDeparture() != null && leg.getScheduledArrival() != null) {
+			boolean lessThan24HoursLeg = Math.abs(leg.getScheduledArrival().getTime() - leg.getScheduledDeparture().getTime()) <= 24 * 60 * 60 * 1000;
+			super.state(lessThan24HoursLeg, "scheduledArrival", "acme.validation.leg.scheduledArrival.lessThan24HoursLeg.message");
+		}
 	}
 
 	@Override

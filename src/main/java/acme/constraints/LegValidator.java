@@ -35,7 +35,7 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 		boolean statusNotNull = legToValidate.getStatus() != null;
 		super.state(context, statusNotNull, "status", "acme.validation.leg.status.notNull.message");
 
-		boolean flightNumberNotNull = legToValidate.getFlightNumber() != null;
+		boolean flightNumberNotNull = !legToValidate.getFlightNumber().isBlank();
 		super.state(context, flightNumberNotNull, "flightNumber", "acme.validation.leg.flightNumber.notNull.message");
 		if (flightNumberNotNull) {
 			// flightNumber uniqueness
@@ -78,33 +78,40 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 		}
 
 		if (scheduledDepartureNotNull) {
-			// Diferencia máxima de 24 horas y mínima de 1 minuto con la última escala
-			List<Leg> previousDates = (List<Leg>) this.legRepository.findPreviousLeg(legToValidate.getFlight().getId(), legToValidate.getScheduledDeparture());
-			long diff = !previousDates.isEmpty() ? legToValidate.getScheduledDeparture().getTime() - previousDates.get(0).getScheduledArrival().getTime() : 0L;
-			boolean noMoreThan1DayWithPreviousLeg = !previousDates.isEmpty() ? diff >= Duration.ofMinutes(1).toMillis() && diff <= Duration.ofHours(24).toMillis() : true;
+			// Diferencia máxima de 24 horas y mínima de 1 minuto con la escala anterior
+			List<Leg> previousLegs = (List<Leg>) this.legRepository.findPreviousLeg(legToValidate.getFlight().getId(), legToValidate.getScheduledDeparture());
+			long diff = !previousLegs.isEmpty() ? legToValidate.getScheduledDeparture().getTime() - previousLegs.get(0).getScheduledArrival().getTime() : 0L;
+			boolean noMoreThan1DayWithPreviousLeg = !previousLegs.isEmpty() ? diff >= Duration.ofMinutes(1).toMillis() && diff <= Duration.ofHours(24).toMillis() : true;
 			super.state(context, noMoreThan1DayWithPreviousLeg, "scheduledDeparture", "acme.validation.leg.scheduledDeparture.noMoreThan1DayWithPreviousLeg.message");
-
+			boolean noOverlappingLegs = this.legRepository.findOverlappingLegSd(legToValidate.getFlight().getId(), legToValidate.getId(), legToValidate.getScheduledDeparture()).isEmpty();
+			super.state(context, noOverlappingLegs, "scheduledDeparture", "acme.validation.leg.scheduledDeparture.noOverlappingLegs.message");
 			if (departureAirportNotNull) {
 				// No hay 2 escalas saliendo del mismo aeropuerto de salida en el mismo momento (tienen una entrada y una salida)
 				boolean noDepartureAirportOverlap = this.legRepository.findLegByAirportIdSameDeparture(legToValidate.getDepartureAirport().getId(), legToValidate.getId(), legToValidate.getScheduledDeparture()).isEmpty();
 				super.state(context, noDepartureAirportOverlap, "departureAirport", "acme.validation.leg.departureAirport.noDepartureAirportOverlap.message");
-				// El aeropuerto de llegada nuevo es igual al de salida anterior.
-				List<Leg> previousLegs = (List<Leg>) this.legRepository.findPreviousLeg(legToValidate.getFlight().getId(), legToValidate.getScheduledDeparture());
+				// El aeropuerto de salida nuevo es igual al de llegada anterior.
 				boolean consecutiveLegsArrivalAirportEqualsDepartureAirport = !previousLegs.isEmpty() ? previousLegs.get(0).getArrivalAirport().getId() == legToValidate.getDepartureAirport().getId() : true;
 				super.state(context, consecutiveLegsArrivalAirportEqualsDepartureAirport, "departureAirport", "acme.validation.leg.departureAirport.consecutiveLegsMyDepartureAirportEqualsPreviousArrivalAirport.message");
 			}
 		}
 
-		if (scheduledArrivalNotNull)
+		if (scheduledArrivalNotNull) {
+			// Diferencia máxima de 24 horas y mínima de 1 minuto con la escala siguiente
+			List<Leg> nextLegs = (List<Leg>) this.legRepository.findNextLeg(legToValidate.getFlight().getId(), legToValidate.getScheduledArrival());
+			long diff = !nextLegs.isEmpty() ? nextLegs.get(0).getScheduledDeparture().getTime() - legToValidate.getScheduledArrival().getTime() : 0L;
+			boolean noMoreThan1DayWithPreviousLeg = !nextLegs.isEmpty() ? diff >= Duration.ofMinutes(1).toMillis() && diff <= Duration.ofHours(24).toMillis() : true;
+			super.state(context, noMoreThan1DayWithPreviousLeg, "scheduledArrival", "acme.validation.leg.scheduledArrival.noMoreThan1DayWithNextLeg.message");
+			boolean noOverlappingLegs = this.legRepository.findOverlappingLegSa(legToValidate.getFlight().getId(), legToValidate.getId(), legToValidate.getScheduledArrival()).isEmpty();
+			super.state(context, noOverlappingLegs, "scheduledArrival", "acme.validation.leg.scheduledDeparture.noOverlappingLegs.message");
 			if (arrivalAirportNotNull) {
 				// No hay 2 escalas aterrizando en el mismo aeropuerto de llegada en el mismo momento (tienen una entrada y una salida)
 				boolean noArrivalAirportOverlap = this.legRepository.findLegByAirportIdSameArrival(legToValidate.getArrivalAirport().getId(), legToValidate.getId(), legToValidate.getScheduledArrival()).isEmpty();
 				super.state(context, noArrivalAirportOverlap, "arrivalAirport", "acme.validation.leg.arrivalAirport.noArrivalAirportOverlap.message");
 				// Coherencia entre departureAirport y arrivalAirport con la leg i y la i+1 (con la anterior)
-				List<Leg> nextLegs = (List<Leg>) this.legRepository.findNextLeg(legToValidate.getFlight().getId(), legToValidate.getScheduledArrival());
 				boolean consecutiveLegsDepartureAirportEqualsArrivalAirport = !nextLegs.isEmpty() ? nextLegs.get(0).getDepartureAirport().getId() == legToValidate.getArrivalAirport().getId() : true;
 				super.state(context, consecutiveLegsDepartureAirportEqualsArrivalAirport, "arrivalAirport", "acme.validation.leg.arrivalAirport.consecutiveLegsMyArrivalAirportEqualsNextDepartureAirport.message");
 			}
+		}
 
 		if (departureAirportNotNull && arrivalAirportNotNull) {
 			// departureAirport different than arrivalAirport

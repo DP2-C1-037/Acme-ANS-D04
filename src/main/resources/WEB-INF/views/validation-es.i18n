@@ -10,11 +10,10 @@
 
 acme.validation.flight.identifierNumber.message = Las dos primeras letras del número de identificación deben corresponder a las iniciales del nombre del gerente
 
-acme.validation.leg.flightNumber.notNull.message = El número de vuelo no debe ser nulo
-acme.validation.leg.scheduledDeparture.notNull.message = ¡Seleciona una fecha!
-acme.validation.leg.scheduledArrival.notNull.message = ¡Seleciona una fecha!
+acme.validation.leg.flightNumber.notNull.message = ¡Elige un número de vuelo!
+acme.validation.leg.scheduledDeparture.notNull.message = ¡Elige una fecha!
+acme.validation.leg.scheduledArrival.notNull.message = ¡Elige una fecha!
 acme.validation.leg.status.notNull.message = ¡Seleciona un estado!
-acme.validation.leg.flight.notNull.message = ¡Seleciona un vuelo!
 acme.validation.leg.departureAirport.notNull.message = ¡Seleciona un aeropuerto!
 acme.validation.leg.arrivalAirport.notNull.message = ¡Seleciona un aeropuerto!
 acme.validation.leg.aircraft.notNull.message = ¡Seleciona una aeronave!
@@ -51,7 +50,15 @@ acme.validation.leg.departureAirport.consecutiveLegsMyDepartureAirportEqualsPrev
 
 acme.validation.leg.arrivalAirport.consecutiveLegsMyArrivalAirportEqualsNextDepartureAirport.message = El aeropuerto de salida de una escala de un vuelo ha de ser el de llegada de la anterior
 
-acme.validation.leg.scheduledDeparture.noMoreThan1DayWithPreviousLeg.message = La próxima escala debe estar entre 1 minuto y 1 día después del atterizaje de la previa 
+acme.validation.leg.scheduledDeparture.noMoreThan1DayWithPreviousLeg.message = La salida de la próxima escala debe estar entre 1 minuto y 1 día después del atterizaje de la previa 
+
+acme.validation.leg.scheduledArrival.noMoreThan1DayWithNextLeg.message = El tiempo entre el atterizaje de una escala y la salida de la siguiente ha de estar entre 1 minuto y 1 día.
+
+acme.validation.leg.scheduledDeparture.noMoreThan2DaysWithNextLeg.message = La salida de la siguiente escala ha de ser entre 2 minutos y 2 días posterior a la salida de la anterior 
+
+acme.validation.leg.scheduledArrival.noMoreThan2DaysWithPreviousLeg.message = The time between the previous leg landing and the next one landing must be between 2 minutes and 2 days El tiempo entre el atterizaje de la escala enterior y la siguiente debe estar entre 2 minutos y 2 días
+
+acme.validation.leg.scheduledArrival.lessThan24HoursLeg.message = Una escala no puede durar más de 24 horas
 
 acme.validation.flight.*.notAllLegsPublishedOrNoLegs.message = El vuelo debe tener al menos 1 escala publicada para poder ser publicada, y todas sus escalas deben haber sido publicadas antes de publicar el vuelo
 
