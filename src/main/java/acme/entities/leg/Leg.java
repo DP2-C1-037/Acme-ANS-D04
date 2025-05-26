@@ -4,7 +4,9 @@ package acme.entities.leg;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
@@ -27,6 +29,18 @@ import lombok.Setter;
 @Getter
 @Setter
 @ValidLeg
+@Table(indexes = {
+	@Index(columnList = "flightNumber"), @Index(columnList = "flight_id, draftMode"),// findLegByFlightNumber
+	@Index(columnList = "flight_id, id, scheduledDeparture, scheduledArrival"), // findOverlappingLegs
+	@Index(columnList = "aircraft_id, id, scheduledDeparture, scheduledArrival"), // findLegByAircraftIdSameTime
+	@Index(columnList = "departure_airport_id, id, scheduledDeparture"), // findLegByAirportIdSameDeparture
+	@Index(columnList = "arrival_airport_id, id, scheduledArrival"), // findLegByAirportIdSameArrival
+	@Index(columnList = "flight_id, scheduledArrival"), // findNextLegx
+	@Index(columnList = "flight_id, scheduledDeparture"), // findPreviousLeg
+	@Index(columnList = "flight_id, id, scheduledArrival"), // findOverlappingLegSa
+	@Index(columnList = "flight_id, id, scheduledDeparture"), // findOverlappingLegSd (corregido 'Deparure')
+	@Index(columnList = "scheduledArrival"), @Index(columnList = "scheduledArrival, draftMode")
+})
 public class Leg extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
