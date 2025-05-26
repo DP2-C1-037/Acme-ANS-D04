@@ -20,7 +20,9 @@ public class AdministratorAirlineShowService extends AbstractGuiService<Administ
 
 	@Override
 	public void authorise() {
-		boolean status = super.getRequest().getPrincipal().hasRealmOfType(Administrator.class);
+		int airlineId = super.getRequest().getData("id", int.class);
+		Airline airline = this.repository.findAirlineById(airlineId);
+		boolean status = airline != null;
 		super.getResponse().setAuthorised(status);
 	}
 
