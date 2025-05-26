@@ -20,12 +20,11 @@ public class AirportValidator extends AbstractValidator<ValidAirport, Airport> {
 
 	@Override
 	protected void initialise(final ValidAirport constraintAnnotation) {
-		assert constraintAnnotation != null;
+		;
 	}
 
 	@Override
 	public boolean isValid(final Airport airport, final ConstraintValidatorContext context) {
-		assert context != null;
 
 		boolean result;
 		boolean isNull;

@@ -10,11 +10,10 @@
 
 acme.validation.flight.identifierNumber.message = The first two letters of the identifier number must correspond to the managers's name initials
 
-acme.validation.leg.flightNumber.notNull.message = The flight number must not be null
-acme.validation.leg.scheduledDeparture.notNull.message = Select a date!
-acme.validation.leg.scheduledArrival.notNull.message = Select a date!
+acme.validation.leg.flightNumber.notNull.message = Choose a flight number!
+acme.validation.leg.scheduledDeparture.notNull.message = Choose a date!
+acme.validation.leg.scheduledArrival.notNull.message = Choose a date!
 acme.validation.leg.status.notNull.message = Select a status!
-acme.validation.leg.flight.notNull.message = Select a flight!
 acme.validation.leg.departureAirport.notNull.message = Select an airport!
 acme.validation.leg.arrivalAirport.notNull.message = Select an airport!
 acme.validation.leg.aircraft.notNull.message = Select an aircraft!
@@ -39,15 +38,23 @@ acme.validation.leg.scheduledDepartureIsFuture.message = You cannot program flig
 
 acme.validation.leg.scheduledArrivalIsFuture.message = You cannot program flights for the past
 
-acme.validation.leg.arrivalAirport.consecutiveLegsDepartureAirportEqualsArrivalAirport.message = A flight's leg arrival airport must be the same than the next leg departure airport
+acme.validation.leg.departureAirport.consecutiveLegsMyDepartureAirportEqualsPreviousArrivalAirport.message = A flight's leg departure airport must be the previous leg arrival airport
 
-acme.validation.leg.departureAirport.consecutiveLegsDepartureAirportEqualsArrivalAirport.message = A flight's leg arrival airport must be the same than the next leg departure airport
+acme.validation.leg.arrivalAirport.consecutiveLegsMyArrivalAirportEqualsNextDepartureAirport.message = A flight's leg arrival airport must be the next leg departure airport
 
 acme.validation.leg.scheduledDeparture.future.message = Scheduled departure cannot be in the past!
 
 acme.validation.leg.scheduledArrival.future.message = Scheduled arrival cannot be in the past!
 
-acme.validation.leg.scheduledDeparture.noMoreThan1DayWithPreviousLeg.message = The next leg must be between 1 minute and 1 day after the previous one landing 
+acme.validation.leg.scheduledDeparture.noMoreThan1DayWithPreviousLeg.message = The next leg departure must be between 1 minute and 1 day after the previous one landing 
+
+acme.validation.leg.scheduledArrival.noMoreThan1DayWithNextLeg.message = The time between the previous leg landing and the next one departure must be between 1 minute and 1 day
+
+acme.validation.leg.scheduledDeparture.noMoreThan2DaysWithNextLeg.message = The next leg departure must be between 2 minutes and 2 days after the previous one departure 
+
+acme.validation.leg.scheduledArrival.noMoreThan2DaysWithPreviousLeg.message = The time between the previous leg landing and the next one landing must be between 2 minutes and 2 days
+
+acme.validation.leg.scheduledArrival.lessThan24HoursLeg.message = A leg cannot last more than 24 hours
 
 acme.validation.flight.*.notAllLegsPublishedOrNoLegs.message = The flight must have at least 1 published leg to be published, and all its legs must have been published before publishing the flight
 

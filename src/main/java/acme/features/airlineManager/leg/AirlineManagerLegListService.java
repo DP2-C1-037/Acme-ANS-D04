@@ -31,7 +31,7 @@ public class AirlineManagerLegListService extends AbstractGuiService<AirlineMana
 
 		Flight flight = this.repository.findFlightById(masterId);
 
-		boolean status = flight.getAirlineManager().getId() == managerId;
+		boolean status = flight != null && flight.getAirlineManager().getId() == managerId;
 
 		super.getResponse().setAuthorised(status);
 	}

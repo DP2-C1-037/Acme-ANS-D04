@@ -17,7 +17,7 @@
 	<jstl:choose>	 
 		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
 			<acme:submit code="airline-manager.leg.form.button.update" action="/airline-manager/leg/update?id=${id}"/>
-			<acme:submit code="airline-manager.leg.form.button.delete" action="/airline-manager/leg/delete?id=${id}"/>
+			<acme:submit code="airline-manager.leg.form.button.delete" action="/airline-manager/leg/delete"/>
 			<acme:submit code="airline-manager.leg.form.button.publish" action="/airline-manager/leg/publish?id=${id}"/>
 		</jstl:when>
 		<jstl:when test="${_command == 'create' && masterId != null}">

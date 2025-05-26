@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Index;
 import javax.persistence.JoinColumn;
+
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -31,6 +32,7 @@ import lombok.Setter;
 @ValidClaim
 @Table(indexes = {
 	@Index(columnList = "status"), @Index(columnList = "assistance_agent_id"), @Index(columnList = "leg_id")
+
 })
 public class Claim extends AbstractEntity {
 	// Serialisation version -----------------------------------------------------------------------------------------
