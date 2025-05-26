@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Index;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -29,7 +30,7 @@ import lombok.Setter;
 @Setter
 @ValidClaim
 @Table(indexes = {
-	@Index(columnList = "status"), @Index(columnList = "assistanceAgent_id"), @Index(columnList = "leg_id")
+	@Index(columnList = "status"), @Index(columnList = "assistance_agent_id"), @Index(columnList = "leg_id")
 })
 public class Claim extends AbstractEntity {
 	// Serialisation version -----------------------------------------------------------------------------------------
@@ -71,10 +72,14 @@ public class Claim extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
+	@JoinColumn(name = "assistance_agent_id")
+
 	private AssistanceAgent		assistanceAgent;
 
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
+	@JoinColumn(name = "leg_id")
+
 	private Leg					leg;
 }
