@@ -43,9 +43,7 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 		if (status) {
 			flightId = super.getRequest().getData("flight", int.class);
 			flight = this.repository.findFlightById(flightId);
-			status = flightId == 0 || flight != null;
-			if (status && flight != null)
-				status = status && !flight.isDraftMode();
+			status = flightId == 0 || flight != null && !flight.isDraftMode();
 		}
 
 		super.getResponse().setAuthorised(status);

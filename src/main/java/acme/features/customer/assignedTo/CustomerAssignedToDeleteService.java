@@ -3,7 +3,6 @@ package acme.features.customer.assignedTo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.booking.Booking;
@@ -29,16 +28,10 @@ public class CustomerAssignedToDeleteService extends AbstractGuiService<Customer
 		AssignedTo assignedTo;
 		Booking booking;
 
-		status = !super.getRequest().getMethod().equals("GET");
-
-		if (status) {
-
-			id = super.getRequest().getData("id", int.class);
-			assignedTo = this.repository.findAssignedToById(id);
-			booking = assignedTo == null ? null : assignedTo.getBooking();
-			status = assignedTo != null && booking != null && assignedTo.getBooking().isDraftMode() && super.getRequest().getPrincipal().hasRealm(booking.getCustomer());
-
-		}
+		id = super.getRequest().getData("id", int.class);
+		assignedTo = this.repository.findAssignedToById(id);
+		booking = assignedTo == null ? null : assignedTo.getBooking();
+		status = booking != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(booking.getCustomer()) && !super.getRequest().getMethod().equals("GET");
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -79,13 +72,7 @@ public class CustomerAssignedToDeleteService extends AbstractGuiService<Customer
 
 	@Override
 	public void unbind(final AssignedTo assignedTo) {
-		Dataset dataset;
-
-		dataset = super.unbindObject(assignedTo, "passenger", "passenger.fullName", "passenger.email", "passenger.passportNumber", "passenger.birthDate", "passenger.specialNeeds");
-		dataset.put("passenger", assignedTo.getPassenger().getId());
-		dataset.put("draftMode", assignedTo.getBooking().isDraftMode());
-
-		super.getResponse().addData(dataset);
+		;
 	}
 
 }
