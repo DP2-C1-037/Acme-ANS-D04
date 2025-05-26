@@ -3,7 +3,6 @@ package acme.features.customer.passenger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.passenger.Passenger;
@@ -26,13 +25,9 @@ public class CustomerPassengerDeleteService extends AbstractGuiService<Customer,
 		int passengerId;
 		Passenger passenger;
 
-		status = !super.getRequest().getMethod().equals("GET");
-
-		if (status) {
-			passengerId = super.getRequest().getData("id", int.class);
-			passenger = this.repository.findPassengerById(passengerId);
-			status = passenger != null && passenger.isDraftMode() && super.getRequest().getPrincipal().hasRealm(passenger.getCustomer());
-		}
+		passengerId = super.getRequest().getData("id", int.class);
+		passenger = this.repository.findPassengerById(passengerId);
+		status = passenger != null && passenger.isDraftMode() && super.getRequest().getPrincipal().hasRealm(passenger.getCustomer()) && !super.getRequest().getMethod().equals("GET");
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -65,11 +60,7 @@ public class CustomerPassengerDeleteService extends AbstractGuiService<Customer,
 
 	@Override
 	public void unbind(final Passenger passenger) {
-		Dataset dataset;
-
-		dataset = super.unbindObject(passenger, "fullName", "email", "passportNumber", "birthDate", "specialNeeds", "draftMode");
-
-		super.getResponse().addData(dataset);
+		;
 	}
 
 }

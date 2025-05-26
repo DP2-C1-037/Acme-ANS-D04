@@ -43,7 +43,7 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 			flight = this.repository.findFlightById(flightId);
 			status = flightId == 0 || flight != null;
 			if (status && flight != null)
-				status = status && !flight.isDraftMode();
+				status = !flight.isDraftMode();
 		}
 
 		super.getResponse().setAuthorised(status);
