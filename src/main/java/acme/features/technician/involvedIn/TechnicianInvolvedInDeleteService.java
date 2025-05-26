@@ -25,17 +25,17 @@ public class TechnicianInvolvedInDeleteService extends AbstractGuiService<Techni
 		int id;
 		Technician technician;
 		InvolvedIn involvedIn;
-		String method;
 
-		method = super.getRequest().getMethod();
-
-		status = !method.equals("GET");
+		id = super.getRequest().getData("id", int.class);
+		involvedIn = this.repository.findInvolvedInById(id);
+		technician = involvedIn == null ? null : involvedIn.getMaintenanceRecord().getTechnician();
+		status = involvedIn != null && involvedIn.getMaintenanceRecord().getDraftMode() && super.getRequest().getPrincipal().hasRealm(technician);
 
 		if (status) {
-			id = super.getRequest().getData("id", int.class);
-			involvedIn = this.repository.findInvolvedInById(id);
-			technician = involvedIn == null ? null : involvedIn.getMaintenanceRecord().getTechnician();
-			status = involvedIn != null && involvedIn.getMaintenanceRecord().getDraftMode() && super.getRequest().getPrincipal().hasRealm(technician);
+			String method;
+
+			method = super.getRequest().getMethod();
+			status = !method.equals("GET");
 		}
 
 		super.getResponse().setAuthorised(status);
