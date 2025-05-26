@@ -37,6 +37,17 @@ public class AssistanceAgentClaimCreate extends AbstractGuiService<AssistanceAge
 		principal = super.getRequest().getPrincipal();
 		status = principal.hasRealmOfType(AssistanceAgent.class);
 
+		if (status && super.getRequest().getMethod().equals("POST"))
+			try {
+				int legId = super.getRequest().getData("leg", int.class);
+				Leg leg = this.repository.findLegById(legId);
+				// Sólo permitimos continuar si legId es 0 o el leg existe
+				if (!(legId == 0 || leg != null))
+					status = false;
+			} catch (Exception e) {
+				status = false; // Si hay problema al leer el legId o buscar el leg
+			}
+
 		super.getResponse().setAuthorised(status);
 	}
 

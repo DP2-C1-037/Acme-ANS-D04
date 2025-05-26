@@ -24,5 +24,5 @@ assistance-agent.claim.form.button.delete = Eliminar
 assistance-agent.claim.form.button.publish = Publicar
 assistance-agent.claim.form.button.tracking-logs = Registros de seguimiento
 
-assistance-agent.claim.form.error.emptyLeg = Debes seleccionar el tramo
-assistance-agent.claim.form.error.draftMode = No puedes realizar esta acción porque la reclamación está publicada
+assistanceAgent.claim.form.error.emptyLeg = Debes seleccionar el tramo
+assistanceAgent.claim.form.error.draftMode = No puedes realizar esta acción porque la reclamación está publicada

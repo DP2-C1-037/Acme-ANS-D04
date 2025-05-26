@@ -41,8 +41,7 @@ public class AssistanceAgentClaimPublish extends AbstractGuiService<AssistanceAg
 		claimId = super.getRequest().getData("id", int.class);
 		selectedClaim = this.repository.findClaimById(claimId);
 
-		status = principal.hasRealmOfType(AssistanceAgent.class) && selectedClaim.getAssistanceAgent().getId() == currentAssistanceAgentId;
-
+		status = principal.hasRealmOfType(AssistanceAgent.class) && selectedClaim.getAssistanceAgent().getId() == currentAssistanceAgentId && selectedClaim.isDraftMode();
 		super.getResponse().setAuthorised(status);
 	}
 

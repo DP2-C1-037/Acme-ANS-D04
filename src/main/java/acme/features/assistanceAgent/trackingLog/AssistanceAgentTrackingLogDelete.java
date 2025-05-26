@@ -27,19 +27,22 @@ public class AssistanceAgentTrackingLogDelete extends AbstractGuiService<Assista
 
 	@Override
 	public void authorise() {
-		boolean status;
+		boolean status = false;
 		int trackingLogId;
 		int currentAssistanceAgentId;
 		TrackingLog trackingLog;
 		Principal principal;
 
 		principal = super.getRequest().getPrincipal();
-		currentAssistanceAgentId = principal.getActiveRealm().getId();
 
-		trackingLogId = super.getRequest().getData("id", int.class);
-		trackingLog = this.repository.findTrackingLogById(trackingLogId);
+		if (super.getRequest().getMethod().equals("POST")) {
+			currentAssistanceAgentId = principal.getActiveRealm().getId();
+			trackingLogId = super.getRequest().getData("id", int.class);
+			trackingLog = this.repository.findTrackingLogById(trackingLogId);
 
-		status = principal.hasRealmOfType(AssistanceAgent.class) && trackingLog.getClaim().getAssistanceAgent().getId() == currentAssistanceAgentId;
+			status = principal.hasRealmOfType(AssistanceAgent.class) && trackingLog.getClaim().getAssistanceAgent().getId() == currentAssistanceAgentId && trackingLog.isDraftMode();
+		} else
+			status = false;
 
 		super.getResponse().setAuthorised(status);
 	}
