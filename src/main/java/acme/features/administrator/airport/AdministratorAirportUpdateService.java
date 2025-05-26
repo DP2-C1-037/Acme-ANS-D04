@@ -24,7 +24,15 @@ public class AdministratorAirportUpdateService extends AbstractGuiService<Admini
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int airportId;
+		Airport airport;
+
+		airportId = super.getRequest().getData("id", int.class);
+		airport = this.repository.findAirportById(airportId);
+		status = airport != null && !super.getRequest().getMethod().equals("GET");
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
