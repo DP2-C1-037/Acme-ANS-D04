@@ -4,9 +4,7 @@ package acme.entities.leg;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.Index;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
@@ -29,19 +27,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @ValidLeg
-@Table(indexes = {
-	@Index(columnList = "flightNumber"), // findLegByFlightNumber
-	@Index(columnList = "flight_id, scheduledDeparture, scheduledArrival"), // findOverlappingLegs
-	@Index(columnList = "aircraft_id, scheduledDeparture, scheduledArrival"), // findLegByAircraftIdSameTime
-	@Index(columnList = "departure_airport_id, scheduledDeparture"), // findLegByAirportIdSameDeparture
-	@Index(columnList = "arrival_airport_id, scheduledArrival"), // findLegByAirportIdSameArrival
-	// legId no se pone en estad 4 id se filtra por <> y no ordena ni agrupa.
-	@Index(columnList = "flight_id, scheduledArrival"), // findNextLeg
-	@Index(columnList = "flight_id, scheduledDeparture"), // findPreviousLeg
-	@Index(columnList = "draftMode"), // findPublishedLegs
-	@Index(columnList = "draftMode, scheduledArrival") // findPublishedFutureOwnedLegs
-// findAllLegsByAirlineManagerId
-})
 public class Leg extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;

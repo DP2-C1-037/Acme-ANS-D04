@@ -21,8 +21,8 @@ flight-10,Lorem ipsum dolor sit ame,SELF_TRANSFER,EUR 1000000.00,Lorem ipsum dol
 # description - standard variations
 flight-11,Lorem ipsum dolor sit ame,SELF_TRANSFER,EUR 500000.00,,true,airline-manager-01
 flight-12,Lorem ipsum dolor sit ame,SELF_TRANSFER,EUR 500000.00,L,true,airline-manager-02
-flight-13,Lorem ipsum dolor sit ame,SELF_TRANSFER,EUR 500000.00,Lorem ipsum dolor sit amet consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor,true,airline-manager-01
-flight-15,Lorem ipsum dolor sit ame,SELF_TRANSFER,EUR 500000.00,Lorem ipsum dolor sit amet consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*,true,airline-manager-02
+flight-13,Lorem ipsum dolor sit ame,SELF_TRANSFER,EUR 500000.00,Lorem ipsum dolor sit amet consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*,true,airline-manager-01
+flight-15,Lorem ipsum dolor sit ame,SELF_TRANSFER,EUR 500000.00,Lorem ipsum dolor sit amet consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor* ,true,airline-manager-02
 
 # draftMode - standard variations
 flight-16,Lorem ipsum dolor sit ame,SELF_TRANSFER,EUR 500000.00,Lorem ipsum dolor sit amet consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*,false,airline-manager-01

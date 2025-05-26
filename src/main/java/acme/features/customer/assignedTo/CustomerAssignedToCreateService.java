@@ -40,12 +40,10 @@ public class CustomerAssignedToCreateService extends AbstractGuiService<Customer
 		customer = booking == null ? null : booking.getCustomer();
 		status = booking != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
 
-		if (status && !super.getRequest().getMethod().equals("GET")) {
+		if (status && super.getRequest().hasData("passenger", int.class)) {
 			passengerId = super.getRequest().getData("passenger", int.class);
 			passenger = this.repository.findPassengerById(passengerId);
-			status = passengerId == 0 || passenger != null;
-			if (status && passenger != null)
-				status = super.getRequest().getPrincipal().hasRealm(passenger.getCustomer());
+			status = passengerId == 0 || passenger != null && super.getRequest().getPrincipal().hasRealm(passenger.getCustomer());
 		}
 
 		super.getResponse().setAuthorised(status);
