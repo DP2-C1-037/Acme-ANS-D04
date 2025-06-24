@@ -18,12 +18,14 @@ public class CustomerDashboard extends AbstractForm {
 
 	// Attributes -------------------------------------------------------------
 
+	// TODO: REPLACE MONEY VALUES FROM DOUBLE TO MONEY DATATYPE
+
 	List<String>				lastFiveDestinations;
 	Double						lastYearMoneySpentInBookings;
 	Map<String, Integer>		numberOfBookingsByTravelClass;
 	Double						lastFiveYearsBookingCostsCount;
 	Double						lastFiveYearsBookingCostsAverage;
-	Double						lastFiveYearsBookingCostsMinimun;
+	Double						lastFiveYearsBookingCostsMinimum;
 	Double						lastFiveYearsBookingCostsMaximum;
 	Double						lastFiveYearsBookingCostsStandardDeviation;
 	Integer						bookingsNumberOfPassengersCount;
