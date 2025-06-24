@@ -1,10 +1,13 @@
 
 package acme.features.customer.passenger;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.entities.mappings.AssignedTo;
 import acme.entities.passenger.Passenger;
 import acme.realms.customer.Customer;
 
@@ -55,6 +58,10 @@ public class CustomerPassengerDeleteService extends AbstractGuiService<Customer,
 
 	@Override
 	public void perform(final Passenger passenger) {
+		Collection<AssignedTo> passengerAssignedBookings;
+		passengerAssignedBookings = this.repository.findAllAssignedToByPassengerId(passenger.getId());
+
+		this.repository.deleteAll(passengerAssignedBookings);
 		this.repository.delete(passenger);
 	}
 
