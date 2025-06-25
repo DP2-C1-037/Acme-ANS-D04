@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import acme.client.components.basis.AbstractForm;
+import acme.client.components.datatypes.Money;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,15 +19,13 @@ public class CustomerDashboard extends AbstractForm {
 
 	// Attributes -------------------------------------------------------------
 
-	// TODO: REPLACE MONEY VALUES FROM DOUBLE TO MONEY DATATYPE
-
 	List<String>				lastFiveDestinations;
-	Double						lastYearMoneySpentInBookings;
+	Money						lastYearMoneySpentInBookings;
 	Map<String, Integer>		numberOfBookingsByTravelClass;
-	Double						lastFiveYearsBookingCostsCount;
-	Double						lastFiveYearsBookingCostsAverage;
-	Double						lastFiveYearsBookingCostsMinimum;
-	Double						lastFiveYearsBookingCostsMaximum;
+	Money						lastFiveYearsBookingCostsCount;
+	Money						lastFiveYearsBookingCostsAverage;
+	Money						lastFiveYearsBookingCostsMinimum;
+	Money						lastFiveYearsBookingCostsMaximum;
 	Double						lastFiveYearsBookingCostsStandardDeviation;
 	Integer						bookingsNumberOfPassengersCount;
 	Double						bookingsNumberOfPassengersAverage;
