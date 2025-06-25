@@ -110,6 +110,8 @@ acme.validation.booking.duplicated-booking.message = Booking locator code alread
 acme.validation.booking.lastNibble.message = Last nibble must be stored in order to publish this booking
 acme.validation.booking.passengersPublished.message = All assigned passengers must be published to publish the booking
 
+acme.validation.passenger.duplicated-passport-number.message = You've already assigned this passport number to another passenger
+
 acme.validation.claim.registrationMoment.message = The registration moment must be after the assistance agent's work start date.
 
 acme.validation.claim.leg.cancelled.message= Claim must be linked to a leg that occured

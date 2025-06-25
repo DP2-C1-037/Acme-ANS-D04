@@ -18,6 +18,7 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidEmail;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
+import acme.constraints.ValidPassenger;
 import acme.realms.customer.Customer;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,6 +26,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@ValidPassenger
 @Table(indexes = {
 	@Index(columnList = "id"), @Index(columnList = "customer_id")
 })
