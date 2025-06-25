@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
+import acme.client.components.datatypes.Money;
 import acme.client.components.models.Dataset;
 import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
@@ -36,20 +37,20 @@ public class CustomerDashboardShowService extends AbstractGuiService<Customer, C
 	@Override
 	public void authorise() {
 		super.getResponse().setAuthorised(true);
-		// TODO: ADD HACKING SECURITY
 	}
 
 	@Override
 	public void load() {
 		int id = super.getRequest().getPrincipal().getActiveRealm().getId();
 		CustomerDashboard dashboard;
+		String currencyUsed;
 		List<String> lastFiveDestinations;
-		Double lastYearMoneySpentInBookings;
+		Money lastYearMoneySpentInBookings = new Money();
 		Map<String, Integer> numberOfBookingsByTravelClass;
-		Double lastFiveYearsBookingCostsCount;
-		Double lastFiveYearsBookingCostsAverage;
-		Double lastFiveYearsBookingCostsMinimum;
-		Double lastFiveYearsBookingCostsMaximum;
+		Money lastFiveYearsBookingCostsCount = new Money();
+		Money lastFiveYearsBookingCostsAverage = new Money();
+		Money lastFiveYearsBookingCostsMinimum = new Money();
+		Money lastFiveYearsBookingCostsMaximum = new Money();
 		Double lastFiveYearsBookingCostsStandardDeviation;
 		Integer bookingsNumberOfPassengersCount;
 		Double bookingsNumberOfPassengersAverage;
@@ -63,7 +64,10 @@ public class CustomerDashboardShowService extends AbstractGuiService<Customer, C
 
 		Date lastYear = MomentHelper.deltaFromCurrentMoment(-1L, ChronoUnit.YEARS);
 		List<Booking> lastYearBookings = this.repository.findDeltaYearBookings(id, lastYear);
-		lastYearMoneySpentInBookings = lastYearBookings.stream().mapToDouble(b -> b.getPrice().getAmount()).sum();
+		currencyUsed = lastYearBookings.isEmpty() ? "EUR" : lastYearBookings.stream().findFirst().get().getPrice().getCurrency();
+		Double lastYearMoneySpentInBookingsValue = lastYearBookings.stream().mapToDouble(b -> b.getPrice().getAmount()).sum();
+		lastYearMoneySpentInBookings.setAmount(lastYearMoneySpentInBookingsValue);
+		lastYearMoneySpentInBookings.setCurrency(currencyUsed);
 
 		List<Object[]> numberOfBookingsAndTravelClasses = this.repository.findNumberOfBookingsByTravelClass(id);
 		if (!numberOfBookingsAndTravelClasses.isEmpty()) {
@@ -78,20 +82,26 @@ public class CustomerDashboardShowService extends AbstractGuiService<Customer, C
 
 		Date lastFiveYears = MomentHelper.deltaFromCurrentMoment(-5L, ChronoUnit.YEARS);
 		List<Booking> lastFiveYearBookings = this.repository.findDeltaYearBookings(id, lastFiveYears);
+		lastFiveYearsBookingCostsCount.setCurrency(currencyUsed);
+		lastFiveYearsBookingCostsAverage.setCurrency(currencyUsed);
+		lastFiveYearsBookingCostsMinimum.setCurrency(currencyUsed);
+		lastFiveYearsBookingCostsMaximum.setCurrency(currencyUsed);
 		if (!lastFiveYearBookings.isEmpty()) {
 			List<Double> lastFiveYearBookingsPrices = lastFiveYearBookings.stream().map(b -> b.getPrice().getAmount()).collect(Collectors.toList());
-			lastFiveYearsBookingCostsCount = lastFiveYearBookingsPrices.stream().mapToDouble(p -> p).sum();
-			lastFiveYearsBookingCostsAverage = lastFiveYearBookingsPrices.stream().mapToDouble(p -> p).average().getAsDouble();
-			lastFiveYearsBookingCostsMinimum = lastFiveYearBookingsPrices.stream().mapToDouble(p -> p).min().getAsDouble();
-			lastFiveYearsBookingCostsMaximum = lastFiveYearBookingsPrices.stream().mapToDouble(p -> p).max().getAsDouble();
-			Double lastFiveYearBookingsSquaredSum = lastFiveYearBookingsPrices.stream().mapToDouble(p -> Math.pow(p - lastFiveYearsBookingCostsAverage, 2)).sum();
+			lastFiveYearsBookingCostsCount.setAmount(lastFiveYearBookingsPrices.stream().mapToDouble(p -> p).sum());
+			lastFiveYearsBookingCostsAverage.setAmount(lastFiveYearBookingsPrices.stream().mapToDouble(p -> p).average().getAsDouble());
+			lastFiveYearsBookingCostsMinimum.setAmount(lastFiveYearBookingsPrices.stream().mapToDouble(p -> p).min().getAsDouble());
+			lastFiveYearsBookingCostsMaximum.setAmount(lastFiveYearBookingsPrices.stream().mapToDouble(p -> p).max().getAsDouble());
+			Double lastFiveYearBookingsSquaredSum = lastFiveYearBookingsPrices.stream().mapToDouble(p -> Math.pow(p - lastFiveYearsBookingCostsAverage.getAmount(), 2)).sum();
 			lastFiveYearsBookingCostsStandardDeviation = Math.sqrt(lastFiveYearBookingsSquaredSum / (lastFiveYearBookings.size() - 1));
+			if (lastFiveYearsBookingCostsStandardDeviation.isNaN())
+				lastFiveYearsBookingCostsStandardDeviation = null;
 		} else {
-			lastFiveYearsBookingCostsCount = 0.;
-			lastFiveYearsBookingCostsAverage = 0.;
-			lastFiveYearsBookingCostsMinimum = 0.;
-			lastFiveYearsBookingCostsMaximum = 0.;
-			lastFiveYearsBookingCostsStandardDeviation = 0.;
+			lastFiveYearsBookingCostsCount.setAmount(0.);
+			lastFiveYearsBookingCostsAverage.setAmount(0.);
+			lastFiveYearsBookingCostsMinimum.setAmount(0.);
+			lastFiveYearsBookingCostsMaximum.setAmount(0.);
+			lastFiveYearsBookingCostsStandardDeviation = null;
 		}
 
 		List<Booking> bookingsFromCustomer = this.repository.findBookingsFromCustomer(id);
@@ -103,12 +113,14 @@ public class CustomerDashboardShowService extends AbstractGuiService<Customer, C
 			bookingsNumberOfPassengersMaximum = bookingsNumberOfPassengers.stream().mapToInt(n -> n).max().getAsInt();
 			Double numberOfPassengersSquaredSum = bookingsNumberOfPassengers.stream().mapToInt(n -> n).mapToDouble(p -> Math.pow(p - bookingsNumberOfPassengersAverage, 2)).sum();
 			bookingsNumberOfPassengersStandardDeviation = Math.sqrt(numberOfPassengersSquaredSum / (bookingsFromCustomer.size() - 1));
+			if (bookingsNumberOfPassengersStandardDeviation.isNaN())
+				bookingsNumberOfPassengersStandardDeviation = null;
 		} else {
 			bookingsNumberOfPassengersCount = 0;
 			bookingsNumberOfPassengersAverage = 0.;
 			bookingsNumberOfPassengersMinimum = 0;
 			bookingsNumberOfPassengersMaximum = 0;
-			bookingsNumberOfPassengersStandardDeviation = 0.;
+			bookingsNumberOfPassengersStandardDeviation = null;
 		}
 
 		dashboard = new CustomerDashboard();

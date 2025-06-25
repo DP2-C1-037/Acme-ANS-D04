@@ -1,6 +1,6 @@
 customer.customer-dashboard.form.title = Panel del cliente
 
-customer.dashboard.form.title.general-indicators = Estadísticas sobre reservas y pasajeros
+customer.dashboard.form.title.general-indicators = Estadísticas sobre reservas publicadas
 
 customer.dashboard.form.label.last-five-destinations = Últimos cinco destinos
 customer.dashboard.form.label.last-year-money-spent-in-bookings = Dinero gastado en reservas a lo largo del último año

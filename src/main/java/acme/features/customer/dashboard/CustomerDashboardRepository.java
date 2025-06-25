@@ -15,16 +15,16 @@ import acme.entities.flight.Flight;
 @Repository
 public interface CustomerDashboardRepository extends AbstractRepository {
 
-	@Query("select b.flight from Booking b where b.customer.id=:customerId order by b.purchaseMoment desc")
+	@Query("select b.flight from Booking b where b.customer.id=:customerId and b.draftMode = false order by b.purchaseMoment desc")
 	List<Flight> findLastFiveFlights(int customerId, Pageable pageable);
 
-	@Query("select b from Booking b where b.customer.id=:customerId and b.purchaseMoment >= :yearsDelta")
+	@Query("select b from Booking b where b.customer.id=:customerId and b.purchaseMoment >= :yearsDelta and b.draftMode = false ")
 	List<Booking> findDeltaYearBookings(int customerId, Date yearsDelta);
 
-	@Query("select b.travelClass, count(b) from Booking b where b.customer.id=:customerId group by b.travelClass")
+	@Query("select b.travelClass, count(b) from Booking b where b.customer.id=:customerId and b.draftMode = false group by b.travelClass")
 	List<Object[]> findNumberOfBookingsByTravelClass(int customerId);
 
-	@Query("select b from Booking b where b.customer.id=:customerId")
+	@Query("select b from Booking b where b.customer.id=:customerId and b.draftMode = false")
 	List<Booking> findBookingsFromCustomer(int customerId);
 
 	@Query("select count(a) from AssignedTo a where a.booking.id=:bookingId")
