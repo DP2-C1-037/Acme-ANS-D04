@@ -44,9 +44,9 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 
 			validLeg = legId == 0 || leg != null;
 			if (validLeg && leg != null) {
-				boolean isSameAsAssigned = assignment.getLeg() != null && leg.getId() == assignment.getLeg().getId();
+				boolean isSameAsAssigned = assignment != null && assignment.getLeg() != null && leg.getId() == assignment.getLeg().getId();
 				boolean isFuture = MomentHelper.isBefore(MomentHelper.getCurrentMoment(), leg.getScheduledArrival());
-				boolean isMyAirline = leg.getAircraft().getAirline().getId() == member.getAirline().getId();
+				boolean isMyAirline = member != null && leg.getAircraft().getAirline().getId() == member.getAirline().getId();
 				validLeg = !leg.isDraftMode() && isMyAirline && (isFuture || isSameAsAssigned);
 			}
 			status = status && validLeg;
@@ -110,7 +110,10 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 	}
 
 	private void validateLegCompatibility(final FlightAssignment assignment) {
-		Collection<Leg> existingLegs = this.repository.findLegsByFlightCrewMemberId(assignment.getFlightCrewMember().getId());
+		int memberId = assignment.getFlightCrewMember().getId();
+		int assignmentId = assignment.getId();
+
+		Collection<Leg> existingLegs = this.repository.findLegsByFlightCrewMemberIdExcludingAssignment(memberId, assignmentId);
 
 		boolean hasIncompatibleLeg = existingLegs.stream().anyMatch(existingLeg -> this.legIsNotOverlapping(assignment.getLeg(), existingLeg));
 
