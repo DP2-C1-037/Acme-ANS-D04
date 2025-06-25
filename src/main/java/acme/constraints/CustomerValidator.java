@@ -41,15 +41,15 @@ public class CustomerValidator extends AbstractValidator<ValidCustomer, Customer
 				String surname = customer.getIdentity().getSurname().trim();
 				if (!StringHelper.isBlank(name) && !StringHelper.isBlank(surname)) {
 					String initials = "" + name.charAt(0) + surname.charAt(0);
+					if (customer.getIdentifier().length() >= initials.length()) {
+						String identifier = customer.getIdentifier().trim();
+						String identifierPrefix = identifier.substring(0, initials.length());
 
-					String identifier = customer.getIdentifier().trim();
-					String identifierPrefix = identifier.substring(0, initials.length());
-
-					identifierCorrectSyntax = initials.equals(identifierPrefix);
-					super.state(context, identifierCorrectSyntax, "identifier", "acme.validation.customer.identifier.syntax.message");
+						identifierCorrectSyntax = initials.equals(identifierPrefix);
+						super.state(context, identifierCorrectSyntax, "identifier", "acme.validation.customer.identifier.syntax.message");
+					}
 				} else
 					super.state(context, false, "identifier", "acme.validation.customer.identifier.syntax.message");
-
 			}
 		}
 
