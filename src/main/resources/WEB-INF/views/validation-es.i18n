@@ -112,6 +112,8 @@ acme.validation.booking.duplicated-booking.message = Código localizador de la r
 acme.validation.booking.lastNibble.message = Los últimos cuatro dígitos de la tarjeta de crédito deben ser registrados para publicar esta reserva
 acme.validation.booking.passengersPublished.message = Todos los pasajeros asignados deben estar publicados para publicar la reserva
 
+acme.validation.passenger.duplicated-passport-number.message = Ya le has asignado este número de pasaporte a otro pasajero
+
 acme.validation.claim.registrationMoment.message = El momento de registro debe ser posterior a la fecha de inicio de trabajo del agente de asistencia.
 
 acme.validation.claim.leg.cancelled.message= La reclamación debe estar vinculada a un tramo que haya ocurrido
