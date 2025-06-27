@@ -12,13 +12,13 @@
     <panel_attributes>&lt;&lt;Form&gt;&gt;
 CustomerDashboard
 --
-+ lastFiveDestinations: Double 
-+ lastYearMoneySpentInBookings: Double 
++ lastFiveDestinations: List&lt;String&gt; 
++ lastYearMoneySpentInBookings: Money 
 + numberOfBookingsByTravelClass: Map&lt;String, Integer&gt; 
-+ lastFiveYearsBookingCostsCount: Double 
-+ lastFiveYearsBookingCostsAverage: Double 
-+ lastFiveYearsBookingCostsMinimun: Double
-+ lastFiveYearsBookingCostsMaximum: Double 
++ lastFiveYearsBookingCostsCount: Money 
++ lastFiveYearsBookingCostsAverage: Money 
++ lastFiveYearsBookingCostsMinimun: Money
++ lastFiveYearsBookingCostsMaximum: Money 
 + lastFiveYearsBookingCostsStandardDeviation: Double 
 + bookingsNumberOfPassengersCount: Integer 
 + bookingsNumberOfPassengersAverage: Double 
