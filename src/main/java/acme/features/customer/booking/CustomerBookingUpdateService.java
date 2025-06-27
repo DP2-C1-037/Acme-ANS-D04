@@ -4,6 +4,7 @@ package acme.features.customer.booking;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -35,15 +36,19 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 		Booking booking;
 		int flightId;
 		Flight flight;
+		String travelClass;
 
 		bookingId = super.getRequest().getData("id", int.class);
 		booking = this.repository.findBookingById(bookingId);
 		status = booking != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(booking.getCustomer()) && !super.getRequest().getMethod().equals("GET");
 
 		if (status) {
+			travelClass = super.getRequest().getData("travelClass", String.class);
+			status = !(!travelClass.equals("0") && Stream.of(TravelClass.values()).noneMatch(v -> v.name().equals(travelClass)));
+
 			flightId = super.getRequest().getData("flight", int.class);
 			flight = this.repository.findFlightById(flightId);
-			status = flightId == 0 || flight != null && !flight.isDraftMode();
+			status = status && (flightId == 0 || flight != null && !flight.isDraftMode());
 		}
 
 		super.getResponse().setAuthorised(status);
