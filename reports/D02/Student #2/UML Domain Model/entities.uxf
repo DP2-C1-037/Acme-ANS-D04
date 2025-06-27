@@ -5,19 +5,20 @@
     <id>UMLClass</id>
     <coordinates>
       <x>300</x>
-      <y>440</y>
+      <y>420</y>
       <w>670</w>
-      <h>130</h>
+      <h>150</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
-Booking 
+Booking {ValidBooking}
 --
 + locatorCode: String {Mandatory, ValidString(pattern = "^[A-Z0-9]{6,8}$"), Column(unique = true)}
 + purcharseMoment: Date {Mandatory, ValidMoment(past = true), Temporal(TemporalType.TIMESTAMP)}
 + travelClass: TravelClass {Mandatory, Valid, Automapped}
-+ price: Money {Mandatory, ValidMoney, Automapped}
 + lastNibble: String {Optional, ValidString(min=4, max=4), Automapped}
-
++ draftMode: boolean {Mandatory, Automapped}
+--
++ getPrice(): Money
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>
@@ -27,17 +28,17 @@ bg=green</panel_attributes>
       <x>360</x>
       <y>120</y>
       <w>580</w>
-      <h>130</h>
+      <h>150</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
-Passenger 
+Passenger {ValidPassenger} 
 --
 + fullName: String {Mandatory, ValidString(min = 1, max = 255), Automapped}
 + email: String {Mandatory, ValidEmail, Automapped}
 + passportNumber: {Mandatory, ValidString(pattern = "^[A-Z0-9]{6,9}$"), Automapped}
 + birthDate: {Mandatory, ValidMoment(past = true), Temporal(TemporalType.TIMESTAMP)} 
 + specialNeeds: {Optional, ValidString(min = 0, max = 50), Automapped}
-
++ draftMode: boolean {Mandatory, Automapped}
 
 bg=green</panel_attributes>
     <additional_attributes/>
@@ -45,8 +46,8 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>20</x>
-      <y>490</y>
+      <x>0</x>
+      <y>340</y>
       <w>120</w>
       <h>40</h>
     </coordinates>
@@ -116,10 +117,10 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>130</x>
-      <y>490</y>
-      <w>190</w>
-      <h>60</h>
+      <x>110</x>
+      <y>360</y>
+      <w>210</w>
+      <h>170</h>
     </coordinates>
     <panel_attributes>&lt; Made by
 lt=&lt;-x
@@ -127,7 +128,7 @@ m1=1
 m2=*
 
 </panel_attributes>
-    <additional_attributes>10.0;20.0;170.0;20.0</additional_attributes>
+    <additional_attributes>10.0;10.0;190.0;150.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -144,5 +145,21 @@ m2=*
 
 </panel_attributes>
     <additional_attributes>10.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>110</x>
+      <y>190</y>
+      <w>270</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>&lt; Owned by
+lt=&lt;-x
+m1=1
+m2=*
+
+</panel_attributes>
+    <additional_attributes>10.0;160.0;250.0;10.0</additional_attributes>
   </element>
 </diagram>

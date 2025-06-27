@@ -74,7 +74,7 @@ bg=RED</panel_attributes>
       <h>70</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Constraint&gt;&gt;
-ValidCustomerIdentifier
+ValidCustomer
 --
 + entities identifier two first letters must correspond to its associated account initials
 bg=RED</panel_attributes>
@@ -85,7 +85,7 @@ bg=RED</panel_attributes>
     <coordinates>
       <x>130</x>
       <y>490</y>
-      <w>280</w>
+      <w>270</w>
       <h>90</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Constraint&gt;&gt;
@@ -93,6 +93,39 @@ ValidEmail
 --
 + value must be in range 1..255
 + value must match a valid email pattern
+bg=RED</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>420</x>
+      <y>490</y>
+      <w>530</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Constraint&gt;&gt;
+ValidBooking
+--
++ entities locator code must be unique
++ entities asociated flight must be in future
++ entities asociated flight must be published
+
+bg=RED</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>420</x>
+      <y>620</y>
+      <w>530</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Constraint&gt;&gt;
+ValidPassenger
+--
++ entities passport number must be unique
 bg=RED</panel_attributes>
     <additional_attributes/>
   </element>
