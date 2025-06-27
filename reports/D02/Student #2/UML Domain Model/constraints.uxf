@@ -125,7 +125,7 @@ bg=RED</panel_attributes>
     <panel_attributes>&lt;&lt;Constraint&gt;&gt;
 ValidPassenger
 --
-+ entities passport number must be unique
++ entities passport number must be unique among the other customer passengers
 bg=RED</panel_attributes>
     <additional_attributes/>
   </element>

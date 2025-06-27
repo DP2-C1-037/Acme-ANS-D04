@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -34,14 +35,19 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 
 		boolean status = true;
 		Flight flight;
+		String travelClass;
 		int flightId;
 
 		if (super.getRequest().getMethod().equals("GET"))
 			status = true;
 		else {
+
+			travelClass = super.getRequest().getData("travelClass", String.class);
+			status = !(!travelClass.equals("0") && Stream.of(TravelClass.values()).noneMatch(v -> v.name().equals(travelClass)));
+
 			flightId = super.getRequest().getData("flight", int.class);
 			flight = this.repository.findFlightById(flightId);
-			status = flightId == 0 || flight != null;
+			status = status && (flightId == 0 || flight != null);
 			if (status && flight != null)
 				status = !flight.isDraftMode();
 		}
